@@ -13,5 +13,5 @@ CAMBIAR LA PLANTILLA DE LA WEB
 
 IMPORTANTE:
 - El logo (tu personaje DJ) esta en el archivo "logo.png". No lo borres.
-- Si ngrok te da otra URL algun dia, cambia solo la linea STREAM_URL
-  dentro de index.html (y en la plantilla que uses).
+- El directo usa Cloudflare Tunnel. Si cambia la URL, actualiza solo la linea
+  STREAM_URL dentro de index.html (y en la plantilla que uses).
