@@ -125,18 +125,21 @@ footer{border-top:1px solid var(--border);padding:20px;text-align:center;color:v
 <main>
   <section id="inicio" class="active">
     <div class="hero">
-      <img class="dj-hero" src="logo.png" alt="DJ MG">
+      <img class="dj-hero" src="ChatGPT%20Imagen%2030%20jun%202025%2C%2018_51_19.png" alt="MG Barcelona Live">
       <h2>MG <span>Barcelona Live</span></h2>
       <p>Streaming de música electrónica desde Barcelona</p>
     </div>
     <div class="card player">
       <button class="play-btn paused" id="playBtn">&#9654;</button>
       <div class="status waiting" id="status">Pulsa play para escuchar</div>
-      <div class="eq" id="eq">
-        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
+        <div class="eq" id="eq">
+          <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+          <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+          <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+          <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+        </div>
+        <img src="logo.png" alt="DJ" style="width:120px;height:auto;border-radius:10px;border:1px solid var(--border);">
       </div>
       <div class="vol">Volumen <input type="range" id="vol" min="0" max="100" value="100"></div>
     </div>
