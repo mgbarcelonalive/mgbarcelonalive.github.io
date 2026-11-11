@@ -1,0 +1,17 @@
+CAMBIAR LA PLANTILLA DE LA WEB
+================================
+
+1. Entra en https://github.com/mgbarcelonalive/mgbarcelonalive.github.io
+2. Abre la carpeta "plantillas" y elige la que quieras:
+   azul.html, neon.html, clasica.html o navidad.html
+3. Pulsa el icono del lapiz (arriba a la derecha, "Edit this file")
+4. Pulsa Ctrl+A (seleccionar todo) y despues Ctrl+C (copiar)
+5. Vuelve atras y abre el archivo "index.html" de la carpeta principal
+6. Pulsa el lapiz, Ctrl+A y Ctrl+V (pegar)
+7. Abajo pulsa "Commit changes..." y luego "Commit changes"
+8. Espera 1 minuto y recarga https://mgbarcelonalive.github.io/
+
+IMPORTANTE:
+- El logo (tu personaje DJ) esta en el archivo "logo.png". No lo borres.
+- Si ngrok te da otra URL algun dia, cambia solo la linea STREAM_URL
+  dentro de index.html (y en la plantilla que uses).
