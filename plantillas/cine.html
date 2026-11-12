@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100c13">
+<title>MG Barcelona Live | Cine y publicidad</title>
+<script>
+if (/\/plantillas\/[^/]+\.html$/i.test(location.pathname)) {
+  const base=document.createElement('base');
+  base.href='../';
+  document.head.appendChild(base);
+}
+</script>
+<link rel="icon" type="image/png" href="logo.png">
+<style>
+:root{--bg:#100c13;--panel:#211621;--line:#51343f;--text:#fff1d2;--muted:#c5aeb8;--gold:#f4c478;--red:#b52b3d;--ok:#8ee8bf}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Segoe UI',Arial,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:default;opacity:.45}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+header{border-bottom:1px solid var(--line);background:#171019}
+.header-inner{max-width:1150px;margin:auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:42px;height:42px;object-fit:contain;border:1px solid var(--line);border-radius:7px;background:#000}
+.brand strong{display:block;font-size:19px;letter-spacing:.5px}
+.brand small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+nav{display:flex;gap:22px}
+nav button{border:0;background:none;color:var(--muted);font-size:13px;padding:8px 0;border-bottom:2px solid transparent}
+nav button.active{color:var(--gold);border-color:var(--gold)}
+main{max-width:1150px;margin:auto;padding:26px 24px 40px}
+section{display:none}
+section.active{display:block}
+.intro{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:18px}
+h1{font-size:26px;letter-spacing:-.7px;margin:0 0 5px}
+.intro p{margin:0;color:var(--muted);font-size:12px}
+.tag{border:1px solid var(--line);border-radius:5px;padding:8px 11px;color:var(--gold);font-size:9px;font-weight:700;letter-spacing:2px;white-space:nowrap}
+.cinema{position:relative;isolation:isolate;overflow:hidden;padding:25px 58px 115px;background:#050507;border:1px solid #713e32;border-radius:14px;box-shadow:0 16px 45px #0008}
+.cinema:before,.cinema:after{content:'';position:absolute;z-index:-1;top:0;bottom:0;width:45px;background:repeating-linear-gradient(90deg,#350710 0,#861226 9px,#bd2b36 18px,#5a0b1b 28px,#29050c 40px);box-shadow:0 0 28px #000}
+.cinema:before{left:0}
+.cinema:after{right:0;transform:scaleX(-1)}
+.floor{position:absolute;z-index:-1;left:0;right:0;bottom:0;height:90px;background:linear-gradient(175deg,#190c0a,#9b5426 41%,#db9b42 48%,#512817 61%,#170f12);border-top:1px solid #b3803c}
+.screen{position:relative;width:100%;aspect-ratio:16/9;background:#000;border:2px solid #484056;border-radius:4px;overflow:hidden;box-shadow:0 0 0 7px #131017,0 0 38px #000}
+.media{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.media img,.media video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+.placeholder{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:18px;background:radial-gradient(ellipse at center,#251a27,#050507 75%)}
+.placeholder[hidden]{display:none}
+.placeholder .small{font-size:9px;letter-spacing:4px;color:var(--muted);margin:0 0 14px}
+.placeholder h2{font-size:clamp(20px,4vw,46px);letter-spacing:3px;line-height:1.05;margin:0;color:var(--gold)}
+.placeholder p{font-size:clamp(10px,1.4vw,14px);color:var(--muted);line-height:1.7;margin:14px 0 0}
+.dj{position:absolute;bottom:12px;left:12px;width:165px;height:auto;z-index:2;mix-blend-mode:screen;pointer-events:none}
+.eq{position:absolute;display:flex;align-items:flex-end;gap:3px;left:185px;right:62px;bottom:16px;height:68px;overflow:hidden;border-bottom:1px solid #f4c47855}
+.eq-bar{flex:1;min-width:0;height:4px;background:#fff1d26b;border-radius:1px 1px 0 0}
+.eq.playing .eq-bar{background:linear-gradient(0deg,#e7b772,#fff4dc);animation:equalizer 1.05s ease-in-out infinite;box-shadow:0 0 7px #f4c47855}
+.eq.playing .eq-bar:nth-child(5n+2){animation-delay:-.18s;animation-duration:.87s}
+.eq.playing .eq-bar:nth-child(5n+3){animation-delay:-.42s;animation-duration:1.24s}
+.eq.playing .eq-bar:nth-child(5n+4){animation-delay:-.3s;animation-duration:.96s}
+.eq.playing .eq-bar:nth-child(5n){animation-delay:-.66s;animation-duration:1.37s}
+@keyframes equalizer{0%,100%{height:8%}50%{height:94%}}
+.ad-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 2px;color:var(--muted);font-size:12px}
+.ad-buttons{display:flex;gap:8px;flex-shrink:0}
+.small-btn{padding:9px 12px;border:1px solid var(--line);border-radius:6px;background:#231522;color:var(--text);font-size:11px}
+.small-btn:hover:enabled{border-color:var(--gold)}
+.player{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:24px;display:flex;align-items:center;gap:20px;margin-top:5px}
+.play-btn{flex-shrink:0;width:66px;height:66px;border:0;border-radius:50%;background:var(--gold);color:#2d1520;font-size:25px}
+.play-btn:hover:enabled{background:#ffe0a9}
+.play-btn.paused{background:#382733;color:var(--gold);border:1px solid #876749}
+.player-copy{flex:1;min-width:0}
+.player-copy h2{font-size:21px;margin:0 0 6px;letter-spacing:-.5px}
+.status{font-size:12px;line-height:1.6;margin:0;color:var(--muted)}
+.status.online{color:var(--ok)}
+.status.waiting{color:var(--gold)}
+.status.offline{color:#ff9ba6}
+.volume{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:11px;flex-shrink:0}
+.volume input{width:120px;accent-color:var(--gold)}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.card{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:23px;min-width:0}
+.card h3{font-size:12px;color:var(--gold);margin:0 0 13px;letter-spacing:1px}
+.card p{color:var(--muted);font-size:13px;line-height:1.7;margin:0}
+.stream-url{display:block;color:var(--ok);font:11px/1.7 Consolas,monospace;word-break:break-all;margin-bottom:12px}
+.section-heading{font-size:27px;margin:0 0 20px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;text-align:left;font-size:13px}
+th,td{padding:13px 10px;border-bottom:1px solid var(--line)}
+th{color:var(--gold);font-size:11px}
+tr:last-child td{border:0}
+footer{max-width:1150px;margin:auto;padding:0 24px 25px;color:#a68c99;font-size:10px;line-height:1.8;display:flex;justify-content:space-between;gap:20px}
+@media(max-width:760px){.volume{flex-direction:column;align-items:flex-start;gap:5px}.volume input{width:100px}.dj{width:135px;left:7px}.eq{left:142px;right:38px;gap:2px}.cinema{padding:20px 38px 100px}.cinema:before,.cinema:after{width:28px}.floor{height:78px}.eq{height:58px}.placeholder .small{letter-spacing:2px}}
+@media(max-width:600px){.header-inner{padding:16px 18px;gap:14px}nav{width:100%;justify-content:space-between;gap:12px}.brand strong{font-size:17px}main{padding:20px 14px 28px}.intro{gap:8px}.intro h1{font-size:21px}.intro .tag{display:none}.intro p{font-size:11px}.cinema{padding:14px 15px 83px;border-radius:10px}.cinema:before,.cinema:after{width:12px}.screen{border-width:1px;box-shadow:0 0 0 3px #131017}.dj{width:98px;bottom:9px;left:3px}.eq{left:105px;right:18px;bottom:12px;height:48px;gap:2px}.floor{height:65px}.placeholder .small{font-size:7px;letter-spacing:2px;margin-bottom:8px}.placeholder h2{font-size:22px;letter-spacing:1px}.placeholder p{font-size:9px;margin-top:8px}.ad-toolbar{flex-direction:column;align-items:flex-start;gap:9px;font-size:11px}.small-btn{padding:8px 10px;font-size:10px}.player{padding:18px 14px;gap:13px;flex-wrap:wrap}.play-btn{width:56px;height:56px;font-size:22px}.player-copy h2{font-size:19px}.volume{width:100%;flex-direction:row;align-items:center;padding-left:69px}.volume input{width:120px}.info-grid{grid-template-columns:1fr;gap:14px}.card{padding:20px}.section-heading{font-size:23px}th,td{font-size:11px;padding:12px 6px}footer{padding:0 18px 24px;flex-direction:column;gap:8px}}
+@media(prefers-reduced-motion:reduce){.eq.playing .eq-bar{animation:none;height:50%}.eq.playing .eq-bar:nth-child(even){height:78%}}
+</style>
+</head>
+<body>
+<header><div class="header-inner"><div class="brand"><img src="logo.png" alt="DJ MG" width="42" height="42"><div><strong>MG Barcelona Live</strong><small>Música electrónica · Cine y publicidad</small></div></div><nav aria-label="Secciones de la radio"><button class="active" data-section="inicio" aria-current="page">Inicio</button><button data-section="programacion">Programación</button><button data-section="contacto">La radio</button></nav></div></header>
+<main>
+<section id="inicio" class="active" aria-label="Radio y publicidad">
+  <div class="intro"><div><h1>Tu música. Tu pantalla.</h1><p>La radio acompaña tu ruta. Los anuncios tienen su propio escenario.</p></div><span class="tag">MG / CINE EDITION</span></div>
+  <div class="cinema">
+    <div class="screen"><div class="media" id="adMedia"></div><div class="placeholder" id="adPlaceholder"><p class="small">MG BARCELONA LIVE</p><h2>TU ANUNCIO<br>AQUÍ</h2><p>Añade vídeos e imágenes desde<br>la pestaña Publicidad del panel.</p></div></div>
+    <div class="floor" aria-hidden="true"></div><img class="dj" src="logo.png" alt="DJ MG en el escenario" width="165" height="136">
+    <div class="eq" id="eq" aria-hidden="true">
+      <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+      <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+      <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+      <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+    </div>
+  </div>
+  <div class="ad-toolbar"><span id="adStatus" role="status" aria-live="polite">Sin anuncios preparados · Vídeos siempre sin sonido</span><div class="ad-buttons"><button class="small-btn" id="adPause" disabled>Pausar anuncios</button><button class="small-btn" id="adNext" disabled>Siguiente</button></div></div>
+  <div class="player"><button class="play-btn paused" id="playBtn" aria-label="Reproducir radio" aria-pressed="false">&#9654;</button><div class="player-copy"><h2>MG Barcelona Live</h2><p class="status waiting" id="status" role="status" aria-live="polite">Pulsa play para escuchar</p></div><label class="volume" for="vol">Volumen<input type="range" id="vol" min="0" max="100" value="100" aria-label="Volumen de la radio"></label></div>
+  <div class="info-grid"><div class="card"><h3>UNA RADIO PARA TUS RUTAS</h3><p>Música electrónica desde Barcelona, con un escenario fijo y ecualizador visual de barras. Los anuncios no cambian el volumen de la radio.</p></div><div class="card"><h3>ENLACE DEL DIRECTO</h3><span class="stream-url" id="streamUrl"></span><button class="small-btn" id="copyBtn">Copiar enlace</button></div></div>
+</section>
+<section id="programacion" aria-label="Programación"><div class="card"><h2 class="section-heading">Programación semanal</h2><div class="table-wrap"><table><thead><tr><th>Hora</th><th>Programa</th><th>DJ</th></tr></thead><tbody><tr><td>00:00 - 02:00</td><td>Night Electro</td><td>DJ MG</td></tr><tr><td>02:00 - 06:00</td><td>Deep Night Chill</td><td>Auto</td></tr><tr><td>06:00 - 10:00</td><td>Morning Synth</td><td>Barcelona Live</td></tr><tr><td>10:00 - 14:00</td><td>Techno Break</td><td>DJ MG</td></tr><tr><td>14:00 - 18:00</td><td>House Vibes</td><td>Invitado</td></tr><tr><td>18:00 - 22:00</td><td>Prime Time Electro</td><td>DJ MG</td></tr><tr><td>22:00 - 00:00</td><td>Club Session</td><td>Residente</td></tr></tbody></table></div></div></section>
+<section id="contacto" aria-label="Información de la radio"><div class="card"><h2 class="section-heading">Radio MG Barcelona Live</h2><p>Emisión de música electrónica a través de Icecast y BUTT. La pantalla reproduce los archivos de publicidad que prepares en el panel, no una retransmisión de vídeo en directo de VirtualDJ.</p><p style="margin-top:18px">Web: mgbarcelonalive.github.io<br>Audio: MP3 · 128 kbps · /stream</p></div></section>
+</main>
+<footer><span>MG BARCELONA LIVE · CINE Y PUBLICIDAD</span><span>Vídeos silenciosos · Audio independiente · Escenario estático</span></footer>
+<script type="application/json" id="publicidad-config">{"anuncios":[{"archivo":"publicidad/8bcc0b6b664b01556fd7b4d17696b4dcf3f5d218ffbb51dac81c355b2e4754df.mp4","tipo":"video"}],"intervalo":8}</script>
+<script>
+const STREAM_URL='https://vacuum-nodes-diffs-ethnic.trycloudflare.com/stream';
+const audio=new Audio(STREAM_URL);
+audio.preload='none';
+const playBtn=document.getElementById('playBtn');
+const statusEl=document.getElementById('status');
+const eq=document.getElementById('eq');
+let connecting=false;
+function setPlaying(value){playBtn.textContent=value?'\u275A\u275A':'\u25B6';playBtn.classList.toggle('paused',!value);playBtn.setAttribute('aria-label',value?'Pausar radio':'Reproducir radio');playBtn.setAttribute('aria-pressed',String(value));eq.classList.toggle('playing',value);}
+function setStatus(text,state){statusEl.textContent=text;statusEl.className='status '+state;}
+playBtn.addEventListener('click',async()=>{
+  if(connecting)return;
+  if(!audio.paused){audio.pause();return;}
+  connecting=true;playBtn.disabled=true;setStatus('Conectando con el directo...','waiting');
+  try{await audio.play();}catch{setPlaying(false);setStatus('No se pudo conectar. Pulsa play para reintentar.','offline');}
+  finally{connecting=false;playBtn.disabled=false;}
+});
+audio.addEventListener('playing',()=>{setPlaying(true);setStatus('Reproduciendo en directo','online');});
+audio.addEventListener('pause',()=>{setPlaying(false);setStatus('En pausa','');});
+audio.addEventListener('waiting',()=>{eq.classList.remove('playing');setStatus('Cargando stream...','waiting');});
+audio.addEventListener('error',()=>{setPlaying(false);setStatus('Error de conexión. Pulsa play para reintentar.','offline');});
+document.getElementById('vol').addEventListener('input',event=>{audio.volume=Number(event.target.value)/100;});
+document.getElementById('streamUrl').textContent=STREAM_URL;
+document.getElementById('copyBtn').addEventListener('click',async()=>{const b=document.getElementById('copyBtn');try{await navigator.clipboard.writeText(STREAM_URL);b.textContent='Enlace copiado';}catch{b.textContent='Selecciona el enlace para copiarlo';}setTimeout(()=>{b.textContent='Copiar enlace';},2400);});
+document.querySelectorAll('nav button').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(item=>{item.classList.remove('active');item.removeAttribute('aria-current');});document.querySelectorAll('main > section').forEach(item=>item.classList.remove('active'));button.classList.add('active');button.setAttribute('aria-current','page');document.getElementById(button.dataset.section).classList.add('active');}));
+
+const adMedia=document.getElementById('adMedia');
+const adPlaceholder=document.getElementById('adPlaceholder');
+const adStatus=document.getElementById('adStatus');
+const adPause=document.getElementById('adPause');
+const adNext=document.getElementById('adNext');
+let adConfig;
+try{adConfig=JSON.parse(document.getElementById('publicidad-config').textContent);}catch{adConfig={intervalo:8,anuncios:[]};adStatus.textContent='La lista de anuncios no es válida.';}
+const ads=Array.isArray(adConfig?.anuncios)?adConfig.anuncios.filter(item=>item&&/^publicidad\/[a-f0-9]{64}\.(mp4|webm|jpg|jpeg|png|gif|webp)$/.test(item.archivo)&&((item.tipo==='video'&&/\.(mp4|webm)$/.test(item.archivo))||(item.tipo==='imagen'&&/\.(jpg|jpeg|png|gif|webp)$/.test(item.archivo)))):[];
+const imageSeconds=Number.isInteger(adConfig?.intervalo)&&adConfig.intervalo>=3&&adConfig.intervalo<=60?adConfig.intervalo:8;
+let adIndex=0;
+let adsPaused=false;
+let adTimer=null;
+let adElement=null;
+function clearAdTimer(){clearTimeout(adTimer);adTimer=null;}
+function scheduleNext(milliseconds){clearAdTimer();if(!adsPaused)adTimer=setTimeout(()=>showAd((adIndex+1)%ads.length),milliseconds);}
+function updateAdButton(){adPause.textContent=adsPaused?'Reproducir anuncios':'Pausar anuncios';adPause.setAttribute('aria-pressed',String(adsPaused));}
+function adFailed(){adStatus.textContent='No se puede mostrar este anuncio. Pasando al siguiente...';scheduleNext(2000);}
+async function playAdVideo(element){
+  try{await element.play();}
+  catch(error){if(element!==adElement)return;if(error.name==='NotAllowedError'){adsPaused=true;clearAdTimer();updateAdButton();adStatus.textContent='Pulsa Reproducir anuncios para iniciar el vídeo.';}else{adFailed();}}
+}
+function showAd(index){
+  if(!ads.length)return;
+  clearAdTimer();
+  if(adElement&&adElement.tagName==='VIDEO'){adElement.onended=null;adElement.onerror=null;adElement.pause();adElement.removeAttribute('src');adElement.load();}
+  adIndex=index;
+  const item=ads[index];
+  adElement=document.createElement(item.tipo==='video'?'video':'img');
+  const element=adElement;
+  adMedia.replaceChildren(element);
+  adPlaceholder.hidden=true;
+  adStatus.textContent='Publicidad '+(index+1)+' / '+ads.length+' · '+(item.tipo==='video'?'Vídeo sin sonido':'Imagen · '+imageSeconds+' s');
+  element.onerror=()=>{if(element===adElement)adFailed();};
+  if(item.tipo==='video'){
+    element.muted=true;element.defaultMuted=true;element.playsInline=true;element.preload='metadata';element.setAttribute('muted','');element.setAttribute('playsinline','');
+    element.onended=()=>{if(element===adElement&&!adsPaused)showAd((adIndex+1)%ads.length);};
+    element.src=item.archivo;
+    if(!adsPaused)playAdVideo(adElement);
+  }else{
+    element.alt='Anuncio '+(index+1);
+    element.onload=()=>{if(element===adElement)scheduleNext(imageSeconds*1000);};
+    element.src=item.archivo;
+  }
+}
+adPause.addEventListener('click',()=>{
+  adsPaused=!adsPaused;clearAdTimer();updateAdButton();
+  if(adElement?.tagName==='VIDEO'){if(adsPaused)adElement.pause();else playAdVideo(adElement);}
+  else if(!adsPaused)scheduleNext(imageSeconds*1000);
+});
+adNext.addEventListener('click',()=>{if(ads.length)showAd((adIndex+1)%ads.length);});
+if(ads.length){adPause.disabled=false;adNext.disabled=false;updateAdButton();showAd(0);}
+</script>
+</body>
+</html>
