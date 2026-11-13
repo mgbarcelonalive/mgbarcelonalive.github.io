@@ -144,7 +144,7 @@ footer{max-width:1150px;margin:auto;padding:0 24px 25px;color:#a68c99;font-size:
 <section id="programacion" aria-label="Programación"><div class="card"><h2 class="section-heading">Programación semanal</h2><div class="table-wrap"><table><thead><tr><th>Hora</th><th>Programa</th><th>DJ</th></tr></thead><tbody><tr><td>00:00 - 02:00</td><td>Night Electro</td><td>DJ MG</td></tr><tr><td>02:00 - 06:00</td><td>Deep Night Chill</td><td>Auto</td></tr><tr><td>06:00 - 10:00</td><td>Morning Synth</td><td>Barcelona Live</td></tr><tr><td>10:00 - 14:00</td><td>Techno Break</td><td>DJ MG</td></tr><tr><td>14:00 - 18:00</td><td>House Vibes</td><td>Invitado</td></tr><tr><td>18:00 - 22:00</td><td>Prime Time Electro</td><td>DJ MG</td></tr><tr><td>22:00 - 00:00</td><td>Club Session</td><td>Residente</td></tr></tbody></table></div></div></section>
 <section id="contacto" aria-label="Información de la radio"><div class="card"><h2 class="section-heading">Radio MG Barcelona Live</h2><p>Emisión de música electrónica a través de Icecast y BUTT. La pantalla reproduce los archivos de publicidad que prepares en el panel, no una retransmisión de vídeo en directo de VirtualDJ.</p><p style="margin-top:18px">Web: mgbarcelonalive.github.io<br>Audio: MP3 · 128 kbps · /stream</p></div></section>
 </main>
-<footer><span>MG BARCELONA LIVE · CINE Y PUBLICIDAD</span><span>Vídeos silenciosos · Audio independiente · Escenario estático</span><span>Oyentes: <b id="listeners">—</b> · Visitas: <b id="visits">—</b></span></footer>
+<footer><span>MG BARCELONA LIVE · CINE Y PUBLICIDAD</span><span>Vídeos silenciosos · Audio independiente · Escenario estático</span><span>Oyentes: <b id="listeners">—</b> · Visitas: <img src="https://hits.sh/mgbarcelonalive.github.io.svg?style=flat-square&amp;label=visitas&amp;color=8b5cf6&amp;labelColor=1f1b2e" alt="visitas" style="vertical-align:middle;height:14px;border-radius:3px"></span></footer>
 <script type="application/json" id="publicidad-config">{"anuncios":[{"archivo":"publicidad/43c25109d82e3217bbaab925bf064effc319b1956df84da3300949ef4455a9aa.mp4","tipo":"video"},{"archivo":"publicidad/18f581807f965a1759b6eee38f05afba215c3be2f092f8a796d3d33ad53b6452.mp4","tipo":"video"},{"archivo":"publicidad/061d9443f15357c0533bfb2ea80de13d7c64966f061b6bce49033f13858effec.mp4","tipo":"video"}],"intervalo":60}</script>
 <script>
 const STREAM_URL='https://best-packard-residential-maternity.trycloudflare.com/stream';
@@ -165,13 +165,6 @@ async function refreshListeners(){
 }
 refreshListeners();
 setInterval(refreshListeners,30000);
-(async()=>{
-  try{
-    const r=await fetch('https://api.counterapi.dev/v1/mgbarcelonalive/visits/up',{cache:'no-store'});
-    const j=await r.json();
-    if(visitsEl && typeof j?.count==='number') visitsEl.textContent=j.count.toLocaleString('es-ES');
-  }catch(e){ if(visitsEl) visitsEl.textContent='—'; }
-})();
 const audio=new Audio(STREAM_URL);
 audio.preload='none';
 const playBtn=document.getElementById('playBtn');
