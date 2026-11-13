@@ -97,8 +97,9 @@ footer{max-width:1150px;margin:auto;padding:0 24px 25px;color:#a68c99;font-size:
 .live-video-tag{font-size:11px;letter-spacing:2px;color:#b8bec6}
 .live-video-screen{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid #42454b;border-radius:6px;background:#050506}
 .live-video-screen video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
-.live-video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:18px;background:radial-gradient(ellipse at center,#292b30,#050506 75%)}
-.live-video-placeholder img{width:clamp(64px,18%,145px);max-height:45%;object-fit:contain;background:#000;border-radius:50%}
+.live-video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:18px;overflow:hidden;background:radial-gradient(ellipse at center,#292b30,#050506 75%)}
+.live-video-placeholder img{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:cover;object-position:center;opacity:.6}
+.live-video-placeholder strong,.live-video-placeholder span{position:relative;z-index:2;text-shadow:0 2px 14px #000}
 .live-video-placeholder strong{font-size:clamp(15px,3vw,26px);letter-spacing:2px}
 .live-video-placeholder span{font-size:12px;color:#b8bec6}
 .live-video-screen [hidden]{display:none}
@@ -126,7 +127,7 @@ footer{max-width:1150px;margin:auto;padding:0 24px 25px;color:#a68c99;font-size:
       <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
     </div>
   </div>
-  <div class="ad-toolbar"><span id="adStatus" role="status" aria-live="polite">Sin anuncios preparados · Vídeos siempre sin sonido</span><div class="ad-buttons"><button class="small-btn" id="adPause" disabled>Pausar anuncios</button><button class="small-btn" id="adNext" disabled>Siguiente</button></div></div>
+  <div class="ad-toolbar"><span id="adStatus" role="status" aria-live="polite">Sin anuncios preparados · Vídeos sin sonido</span><div class="ad-buttons"><button class="small-btn" id="adSound" disabled aria-pressed="false">Escuchar vídeo</button><button class="small-btn" id="adPause" disabled>Pausar anuncios</button><button class="small-btn" id="adNext" disabled>Siguiente</button></div></div>
   <div class="player"><button class="play-btn paused" id="playBtn" aria-label="Reproducir radio" aria-pressed="false">&#9654;</button><div class="player-copy"><h2>MG Barcelona Live</h2><p class="status waiting" id="status" role="status" aria-live="polite">Pulsa play para escuchar</p></div><label class="volume" for="vol">Volumen<input type="range" id="vol" min="0" max="100" value="100" aria-label="Volumen de la radio"></label></div>
   <div class="info-grid"><div class="card"><h3>UNA RADIO PARA TUS RUTAS</h3><p>Música electrónica desde Barcelona, con un escenario fijo y ecualizador visual de barras. Los anuncios no cambian el volumen de la radio.</p></div><div class="card"><h3>ENLACE DEL DIRECTO</h3><span class="stream-url" id="streamUrl"></span><button class="small-btn" id="copyBtn">Copiar enlace</button></div></div>
 
@@ -137,16 +138,16 @@ footer{max-width:1150px;margin:auto;padding:0 24px 25px;color:#a68c99;font-size:
     <div class="live-video-placeholder" id="liveVideoPlaceholder"><img src="img/logo-video.png" alt="" width="145" height="120"><strong>LA CABINA DE DJ MG</strong><span>Imagen del estudio y de la discoteca</span></div>
   </div>
   <div class="live-video-actions"><button class="live-video-button" id="liveVideoButton" type="button" disabled>Vídeo pendiente</button><p class="live-video-status" id="liveVideoStatus" role="status" aria-live="polite">Vídeo todavía no disponible.</p></div>
-  <p class="live-video-note">Los anuncios se reproducen solos en la pantalla de cine, sin sonido. Esta tarjeta queda reservada para el vídeo del estudio y la discoteca.</p>
+  <p class="live-video-note">Los anuncios se reproducen solos en la pantalla de cine, sin sonido. Si quieres oírlos, pulsa el botón «Escuchar vídeo» y la radio bajará de volumen.</p>
 </div>
 </section>
 <section id="programacion" aria-label="Programación"><div class="card"><h2 class="section-heading">Programación semanal</h2><div class="table-wrap"><table><thead><tr><th>Hora</th><th>Programa</th><th>DJ</th></tr></thead><tbody><tr><td>00:00 - 02:00</td><td>Night Electro</td><td>DJ MG</td></tr><tr><td>02:00 - 06:00</td><td>Deep Night Chill</td><td>Auto</td></tr><tr><td>06:00 - 10:00</td><td>Morning Synth</td><td>Barcelona Live</td></tr><tr><td>10:00 - 14:00</td><td>Techno Break</td><td>DJ MG</td></tr><tr><td>14:00 - 18:00</td><td>House Vibes</td><td>Invitado</td></tr><tr><td>18:00 - 22:00</td><td>Prime Time Electro</td><td>DJ MG</td></tr><tr><td>22:00 - 00:00</td><td>Club Session</td><td>Residente</td></tr></tbody></table></div></div></section>
 <section id="contacto" aria-label="Información de la radio"><div class="card"><h2 class="section-heading">Radio MG Barcelona Live</h2><p>Emisión de música electrónica a través de Icecast y BUTT. La pantalla reproduce los archivos de publicidad que prepares en el panel, no una retransmisión de vídeo en directo de VirtualDJ.</p><p style="margin-top:18px">Web: mgbarcelonalive.github.io<br>Audio: MP3 · 128 kbps · /stream</p></div></section>
 </main>
 <footer><span>MG BARCELONA LIVE · CINE Y PUBLICIDAD</span><span>Vídeos silenciosos · Audio independiente · Escenario estático</span></footer>
-<script type="application/json" id="publicidad-config">{"anuncios":[{"archivo":"publicidad/22250215561848a4695c294b91f62e692cf9bd3e907660919a91056beff6c10e.mp4","tipo":"video"},{"archivo":"publicidad/98e4b1e28724226888e7a47210db137e13583b08ce73a13fbbbb155e326b7076.mp4","tipo":"video"},{"archivo":"publicidad/a4279b82f9b28619d114cdcece9df9eddeee4c8c648071a12115ba4cd7f3216d.mp4","tipo":"video"}],"intervalo":8}</script>
+<script type="application/json" id="publicidad-config">{"anuncios":[{"archivo":"publicidad/22250215561848a4695c294b91f62e692cf9bd3e907660919a91056beff6c10e.mp4","tipo":"video"},{"archivo":"publicidad/98e4b1e28724226888e7a47210db137e13583b08ce73a13fbbbb155e326b7076.mp4","tipo":"video"},{"archivo":"publicidad/a4279b82f9b28619d114cdcece9df9eddeee4c8c648071a12115ba4cd7f3216d.mp4","tipo":"video"}],"intervalo":60}</script>
 <script>
-const STREAM_URL='https://syracuse-closer-brand-sends.trycloudflare.com/stream';
+const STREAM_URL='https://best-packard-residential-maternity.trycloudflare.com/stream';
 const audio=new Audio(STREAM_URL);
 audio.preload='none';
 const playBtn=document.getElementById('playBtn');
@@ -166,7 +167,7 @@ audio.addEventListener('playing',()=>{setPlaying(true);setStatus('Reproduciendo 
 audio.addEventListener('pause',()=>{setPlaying(false);setStatus('En pausa','');});
 audio.addEventListener('waiting',()=>{eq.classList.remove('playing');setStatus('Cargando stream...','waiting');});
 audio.addEventListener('error',()=>{setPlaying(false);setStatus('Error de conexión. Pulsa play para reintentar.','offline');});
-document.getElementById('vol').addEventListener('input',event=>{audio.volume=Number(event.target.value)/100;});
+document.getElementById('vol').addEventListener('input',()=>{applyRadioDucking();});
 document.getElementById('streamUrl').textContent=STREAM_URL;
 document.getElementById('copyBtn').addEventListener('click',async()=>{const b=document.getElementById('copyBtn');try{await navigator.clipboard.writeText(STREAM_URL);b.textContent='Enlace copiado';}catch{b.textContent='Selecciona el enlace para copiarlo';}setTimeout(()=>{b.textContent='Copiar enlace';},2400);});
 document.querySelectorAll('nav button').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(item=>{item.classList.remove('active');item.removeAttribute('aria-current');});document.querySelectorAll('main > section').forEach(item=>item.classList.remove('active'));button.classList.add('active');button.setAttribute('aria-current','page');document.getElementById(button.dataset.section).classList.add('active');}));
@@ -176,6 +177,13 @@ const adPlaceholder=document.getElementById('adPlaceholder');
 const adStatus=document.getElementById('adStatus');
 const adPause=document.getElementById('adPause');
 const adNext=document.getElementById('adNext');
+const adSound=document.getElementById('adSound');
+const volInput=document.getElementById('vol');
+let adsMuted=true;
+function radioBase(){return Number(volInput.value)/100;}
+function applyRadioDucking(){audio.volume=adsMuted?radioBase():radioBase()*0.15;}
+function updateSoundButton(){if(!adSound)return;adSound.textContent=adsMuted?'Escuchar vídeo':'Silenciar vídeo';adSound.setAttribute('aria-pressed',String(!adsMuted));}
+function applyAdMute(){if(adElement&&adElement.tagName==='VIDEO'){adElement.muted=adsMuted;adElement.defaultMuted=adsMuted;if(adsMuted)adElement.setAttribute('muted','');else adElement.removeAttribute('muted');}}
 let adConfig;
 try{adConfig=JSON.parse(document.getElementById('publicidad-config').textContent);}catch{adConfig={intervalo:8,anuncios:[]};adStatus.textContent='La lista de anuncios no es válida.';}
 const ads=Array.isArray(adConfig?.anuncios)?adConfig.anuncios.filter(item=>item&&/^publicidad\/[a-f0-9]{64}\.(mp4|webm|jpg|jpeg|png|gif|webp)$/.test(item.archivo)&&((item.tipo==='video'&&/\.(mp4|webm)$/.test(item.archivo))||(item.tipo==='imagen'&&/\.(jpg|jpeg|png|gif|webp)$/.test(item.archivo)))):[];
@@ -187,10 +195,66 @@ let adElement=null;
 function clearAdTimer(){clearTimeout(adTimer);adTimer=null;}
 function scheduleNext(milliseconds){clearAdTimer();if(!adsPaused)adTimer=setTimeout(()=>showAd((adIndex+1)%ads.length),milliseconds);}
 function updateAdButton(){adPause.textContent=adsPaused?'Reproducir anuncios':'Pausar anuncios';adPause.setAttribute('aria-pressed',String(adsPaused));}
-function adFailed(){adStatus.textContent='No se puede mostrar este anuncio. Pasando al siguiente...';scheduleNext(2000);}
+function adPaths(file){
+  const name=String(file).split('/').pop();
+  if(pantallaOK===false)return [file];
+  return ['pantalla/'+name,file];
+}
+function blockerDetected(){
+  try{
+    const bait=document.createElement('div');
+    bait.className='adsbox ad-banner publicidad-ad banner_ad sponsored';
+    bait.setAttribute('aria-hidden','true');
+    bait.style.cssText='position:absolute;left:-9999px;top:-9999px;width:300px;height:250px';
+    document.body.appendChild(bait);
+    const style=getComputedStyle(bait);
+    const hidden=bait.offsetHeight===0||style.display==='none'||style.visibility==='hidden';
+    bait.remove();
+    return hidden;
+  }catch{return false;}
+}
+const blockerLikely=blockerDetected();
+let pantallaOK=null;
+function adBlocked(){
+  adStatus.textContent=blockerLikely
+    ?'Se ha detectado un bloqueador de anuncios. Desactívalo para este sitio para poder ver los vídeos.'
+    :'No se puede mostrar este anuncio. Pasando al siguiente...';
+  scheduleNext(6000);
+}
+function adError(element){
+  if(element!==adElement)return;
+  let paths=[];
+  try{paths=JSON.parse(element.dataset.paths||'[]');}catch{}
+  const next=Number(element.dataset.tries||0)+1;
+  if(next<paths.length){
+    if(next===1)pantallaOK=false;
+    element.dataset.tries=String(next);
+    element.src=paths[next];
+    playAdVideo(element);
+  }else{
+    adBlocked();
+  }
+}
 async function playAdVideo(element){
-  try{await element.play();}
-  catch(error){if(element!==adElement)return;if(error.name==='NotAllowedError'){adsPaused=true;clearAdTimer();updateAdButton();adStatus.textContent='Pulsa Reproducir anuncios para iniciar el vídeo.';}else{adFailed();}}
+  const attempt=Number(element.dataset.tries||0);
+  try{
+    if(element.readyState<2){
+      await new Promise((ok,bad)=>{
+        const timer=setTimeout(()=>bad(new Error('timeout')),12000);
+        element.addEventListener('canplay',()=>{clearTimeout(timer);ok();},{once:true});
+        element.addEventListener('error',()=>{clearTimeout(timer);bad(new Error('error'));},{once:true});
+      });
+    }
+    await element.play();
+  }catch(error){
+    if(element!==adElement)return;
+    if(attempt!==Number(element.dataset.tries||0))return;
+    if(error.name==='NotAllowedError'){
+      if(!adsMuted){adsMuted=true;applyAdMute();applyRadioDucking();updateSoundButton();playAdVideo(element);return;}
+      adsPaused=true;clearAdTimer();updateAdButton();adStatus.textContent='Pulsa Reproducir anuncios para iniciar el vídeo.';
+    }
+    else{adError(element);}
+  }
 }
 function showAd(index){
   if(!ads.length)return;
@@ -203,16 +267,19 @@ function showAd(index){
   adMedia.replaceChildren(element);
   adPlaceholder.hidden=true;
   adStatus.textContent='Publicidad '+(index+1)+' / '+ads.length+' · '+(item.tipo==='video'?'Vídeo sin sonido':'Imagen · '+imageSeconds+' s');
-  element.onerror=()=>{if(element===adElement)adFailed();};
+  const paths=adPaths(item.archivo);
+  element.dataset.paths=JSON.stringify(paths);
+  element.dataset.tries='0';
+  element.onerror=()=>{if(element===adElement)adError(element);};
   if(item.tipo==='video'){
-    element.muted=true;element.defaultMuted=true;element.playsInline=true;element.preload='metadata';element.setAttribute('muted','');element.setAttribute('playsinline','');
+    element.muted=adsMuted;element.defaultMuted=adsMuted;element.playsInline=true;element.preload='auto';element.setAttribute('playsinline','');if(adsMuted)element.setAttribute('muted','');
     element.onended=()=>{if(element===adElement&&!adsPaused)showAd((adIndex+1)%ads.length);};
-    element.src=item.archivo;
+    element.src=paths[0];
     if(!adsPaused)playAdVideo(adElement);
   }else{
     element.alt='Anuncio '+(index+1);
     element.onload=()=>{if(element===adElement)scheduleNext(imageSeconds*1000);};
-    element.src=item.archivo;
+    element.src=paths[0];
   }
 }
 adPause.addEventListener('click',()=>{
@@ -221,7 +288,16 @@ adPause.addEventListener('click',()=>{
   else if(!adsPaused)scheduleNext(imageSeconds*1000);
 });
 adNext.addEventListener('click',()=>{if(ads.length)showAd((adIndex+1)%ads.length);});
-if(ads.length){adPause.disabled=false;adNext.disabled=false;updateAdButton();showAd(0);}
+adSound.addEventListener('click',()=>{
+  adsMuted=!adsMuted;
+  applyAdMute();
+  applyRadioDucking();
+  updateSoundButton();
+  adStatus.textContent=adsMuted
+    ?'Vídeo silenciado. La radio vuelve a su volumen.'
+    :'Sonido del vídeo activado. La radio baja de volumen mientras escuchas.';
+});
+if(ads.length){adPause.disabled=false;adNext.disabled=false;adSound.disabled=false;updateAdButton();updateSoundButton();showAd(0);}
 </script>
 <script id="live-video-script">
 (()=>{
