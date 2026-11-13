@@ -88,6 +88,8 @@ th{color:var(--gold);font-size:11px}
 tr:last-child td{border:0}
 footer{max-width:1150px;margin:auto;padding:0 24px 25px;color:#a68c99;font-size:10px;line-height:1.8;display:flex;justify-content:space-between;gap:20px}
 .live-stats{display:flex;align-items:center;gap:14px;font-size:15px;color:#c9b3bf;margin:12px 0 4px;font-weight:600}
+.live-stats .live-dot{width:10px;height:10px;border-radius:50%;background:#ff2d55;display:inline-block;box-shadow:0 0 8px #ff2d55;animation:pulseDot 1.4s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.85)}}
 .live-stats .stat b{color:#e9d5ff;font-size:22px;font-weight:800;margin-right:4px}
 .live-stats .sep{color:#5a4a55;font-size:18px}
 @media(max-width:760px){.volume{flex-direction:column;align-items:flex-start;gap:5px}.volume input{width:100px}.dj{width:135px;left:7px}.eq{left:142px;right:38px;gap:2px}.cinema{padding:20px 38px 100px}.cinema:before,.cinema:after{width:28px}.floor{height:78px}.eq{height:58px}.placeholder .small{letter-spacing:2px}}
@@ -119,7 +121,7 @@ footer{max-width:1150px;margin:auto;padding:0 24px 25px;color:#a68c99;font-size:
 <header><div class="header-inner"><div class="brand"><img src="logo.png" alt="DJ MG" width="42" height="42"><div><strong>MG Barcelona Live</strong><small>Música electrónica · Cine y publicidad</small></div></div><nav aria-label="Secciones de la radio"><button class="active" data-section="inicio" aria-current="page">Inicio</button><button data-section="programacion">Programación</button><button data-section="contacto">La radio</button></nav></div></header>
 <main>
 <section id="inicio" class="active" aria-label="Radio y publicidad">
-  <div class="intro"><div><h1>Tu música. Tu pantalla.</h1><p>La radio acompaña tu ruta. Los anuncios tienen su propio escenario.</p><div class="live-stats" aria-label="Estadísticas en directo"><span class="stat"><b id="listeners">0</b> oyentes en directo</span><span class="stat sep">·</span><img src="https://hits.sh/mgbarcelonalive.github.io.svg?style=flat-square&amp;label=visitas&amp;color=8b5cf6&amp;labelColor=1f1b2e" alt="visitas a la web" style="height:20px;border-radius:4px"></div></div><span class="tag">MG / CINE EDITION</span></div>
+  <div class="intro"><div><h1>Tu música. Tu pantalla.</h1><p>La radio acompaña tu ruta. Los anuncios tienen su propio escenario.</p><div class="live-stats" aria-label="Estadísticas en directo"><span class="live-dot" aria-hidden="true"></span><span class="stat"><b id="listeners">0</b> oyentes en directo</span><span class="stat sep">·</span><img src="https://hits.sh/mgbarcelonalive.github.io.svg?style=flat-square&amp;label=visitas&amp;color=8b5cf6&amp;labelColor=1f1b2e" alt="visitas a la web" style="height:22px;border-radius:4px"></div></div><span class="tag">MG / CINE EDITION</span></div>
   <div class="cinema">
     <div class="screen"><div class="media" id="adMedia"></div><div class="placeholder" id="adPlaceholder"><p class="small">MG BARCELONA LIVE</p><h2>TU ANUNCIO<br>AQUÍ</h2><p>Añade vídeos e imágenes desde<br>la pestaña Publicidad del panel.</p></div></div>
     <div class="floor" aria-hidden="true"></div><img class="dj" src="logo.png" alt="DJ MG en el escenario" width="165" height="136">
