@@ -179,7 +179,7 @@ footer{border-top:1px solid var(--border);padding:20px;text-align:center;color:v
     <div class="live-video-placeholder" id="liveVideoPlaceholder"><img src="logo.png" alt="" width="145" height="120"><strong>LA CABINA DE DJ MG</strong><span>Imagen del estudio y de la discoteca</span></div>
   </div>
   <div class="live-video-actions"><button class="live-video-button" id="liveVideoButton" type="button" disabled>Vídeo pendiente</button><p class="live-video-status" id="liveVideoStatus" role="status" aria-live="polite">Vídeo todavía no disponible.</p></div>
-  <p class="live-video-note">La radio sigue siendo independiente. El vídeo empieza sin sonido y solo cuando pulses reproducir.</p>
+  <p class="live-video-note">Los vídeos se reproducen solos y en bucle, sin sonido. La radio es independiente: pulsa play para escucharla.</p>
 </div>
   </section>
 
@@ -266,46 +266,64 @@ document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()
   document.getElementById(b.dataset.section).classList.add('active');
 }));
 </script>
+<script type="application/json" id="publicidad-config">{"anuncios":[{"archivo":"publicidad/8bcc0b6b664b01556fd7b4d17696b4dcf3f5d218ffbb51dac81c355b2e4754df.mp4","tipo":"video"}],"intervalo":8}</script>
 <script id="live-video-script">
 (()=>{
   const VIDEO_URL='https://mgbarcelonalive.github.io/publicidad/8bcc0b6b664b01556fd7b4d17696b4dcf3f5d218ffbb51dac81c355b2e4754df.mp4';
+  const USE_QUEUE=true;
   const video=document.getElementById('liveVideo');
   const placeholder=document.getElementById('liveVideoPlaceholder');
   const button=document.getElementById('liveVideoButton');
   const status=document.getElementById('liveVideoStatus');
-  if(!VIDEO_URL)return;
-  let source;
-  try{
-    source=new URL(VIDEO_URL);
-    if(source.protocol!=='https:'||source.username||source.password)throw new Error('Invalid video URL');
-  }catch{
-    status.textContent='La dirección del vídeo no es válida.';
-    return;
+  let playlist=[];
+  if(USE_QUEUE){
+    try{
+      const cfg=JSON.parse(document.getElementById('publicidad-config').textContent);
+      playlist=(Array.isArray(cfg&&cfg.anuncios)?cfg.anuncios:[])
+        .filter(a=>a&&a.tipo==='video'&&/^publicidad\/[a-f0-9]{64}\.(mp4|webm)$/.test(a.archivo))
+        .map(a=>a.archivo);
+    }catch{}
   }
-  button.disabled=false;
-  button.textContent='Ver vídeo';
-  status.textContent='Vídeo preparado. Pulsa Ver vídeo para reproducir.';
-  function failed(){
-    video.hidden=true;
-    placeholder.hidden=false;
-    status.textContent='No se puede cargar el vídeo. Puedes reintentar; la radio no cambia.';
+  if(!playlist.length&&VIDEO_URL){
+    try{
+      const source=new URL(VIDEO_URL);
+      if(source.protocol==='https:'&&!source.username&&!source.password)playlist=[source.href];
+    }catch{}
   }
-  button.addEventListener('click',async()=>{
-    button.disabled=true;
-    video.muted=true;
-    video.src=source.href;
+  if(!playlist.length)return;
+  let index=0;
+  function setText(t){status.textContent=t;}
+  function start(){
     video.hidden=false;
     placeholder.hidden=true;
-    status.textContent='Cargando vídeo...';
-    try{await video.play();}
-    catch{failed();}
-    finally{button.disabled=false;}
+    video.muted=true;
+    video.src=playlist[index];
+    video.play().catch(()=>{
+      button.textContent='Reproducir vídeo';
+      setText('El navegador ha bloqueado el inicio automático. Pulsa Reproducir vídeo.');
+    });
+  }
+  button.disabled=false;
+  button.addEventListener('click',()=>{
+    if(video.paused){video.play().catch(()=>{});}else{video.pause();}
   });
-  video.addEventListener('playing',()=>{status.textContent='Reproduciendo vídeo.';});
-  video.addEventListener('waiting',()=>{status.textContent='Cargando vídeo...';});
-  video.addEventListener('pause',()=>{if(!video.error)status.textContent='Vídeo en pausa.';});
-  video.addEventListener('ended',()=>{status.textContent='El vídeo ha finalizado.';});
-  video.addEventListener('error',failed);
+  video.addEventListener('playing',()=>{
+    button.textContent='Pausar vídeo';
+    setText('Reproduciendo vídeo '+(index+1)+' de '+playlist.length+'. Sin sonido; la radio suena aparte.');
+  });
+  video.addEventListener('waiting',()=>{setText('Cargando vídeo...');});
+  video.addEventListener('pause',()=>{
+    if(!video.error&&!video.ended){button.textContent='Reproducir vídeo';setText('Vídeo en pausa.');}
+  });
+  video.addEventListener('ended',()=>{index=(index+1)%playlist.length;start();});
+  video.addEventListener('error',()=>{
+    video.hidden=true;
+    placeholder.hidden=false;
+    setText('Este vídeo no se puede cargar. Pasando al siguiente...');
+    setTimeout(()=>{index=(index+1)%playlist.length;start();},2000);
+  });
+  setText('Cargando vídeo...');
+  start();
 })();
 </script>
 </body>
