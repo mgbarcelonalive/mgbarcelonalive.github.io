@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MG Barcelona Live · LGTB+ Pride Night +18</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0314;
+    --pink: #ff1e8a;
+    --violet: #9d4edd;
+    --cyan: #00f5d4;
+    --gold: #ffd60a;
+    --glass: rgba(24, 8, 38, 0.82);
+    --border: rgba(255, 30, 138, 0.34);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: #fff; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255, 30, 138, 0.25), transparent 50%),
+      radial-gradient(circle at 80% 30%, rgba(0, 245, 212, 0.16), transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(157, 78, 221, 0.2), transparent 55%);
+  }
+  canvas#particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+  .pride-bar {
+    position: fixed; top: 0; left: 0; right: 0; height: 6px; z-index: 120;
+    background: linear-gradient(90deg, #ff0040, #ff8c00, #ffd60a, #00e676, #00b0ff, #b44fff);
+  }
+  nav {
+    position: fixed; top: 6px; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 2rem; background: rgba(11, 3, 20, 0.88); backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 30, 138, 0.28);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; letter-spacing: 0.1em;
+    background: linear-gradient(90deg, #ff1e8a, #ffd60a, #00f5d4);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+  .nav-links a { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.68); text-decoration: none; }
+  .nav-links a:hover { color: var(--pink); }
+  @media(max-width:640px) { .nav-links { display: none; } }
+  .nav-ticket {
+    padding: 0.5rem 1.2rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--pink), var(--violet)); color: #fff; text-decoration: none;
+  }
+
+  section { position: relative; z-index: 2; padding: 4.5rem 1.5rem; max-width: 1120px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 6vw, 3.6rem); letter-spacing: 0.05em; line-height: 1; margin-bottom: 1.5rem; }
+
+  #hero { min-height: 96vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 7rem; }
+  .adult-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 1.2rem; border-radius: 999px;
+    background: rgba(255,30,138,0.18); border: 1px solid rgba(255,30,138,0.55);
+    color: var(--gold); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.4rem, 10vw, 7.2rem); line-height: 0.94;
+    background: linear-gradient(135deg, #ff1e8a 0%, #ffd60a 40%, #00f5d4 75%, #b44fff 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.8rem;
+  }
+  .hero-sub { font-size: clamp(0.95rem, 2.4vw, 1.3rem); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.78); margin-bottom: 1.8rem; }
+  .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  .btn-primary {
+    padding: 0.9rem 2rem; border-radius: 999px; font-weight: 700; font-size: 0.95rem;
+    background: linear-gradient(135deg, var(--pink), var(--violet)); color: #fff; text-decoration: none;
+    box-shadow: 0 0 26px rgba(255,30,138,0.5);
+  }
+  .btn-secondary {
+    padding: 0.9rem 2rem; border-radius: 999px; font-weight: 700; font-size: 0.95rem;
+    background: rgba(0,245,212,0.1); border: 1px solid rgba(0,245,212,0.45); color: var(--cyan); text-decoration: none;
+  }
+
+  .player-card {
+    background: var(--glass); border: 1px solid var(--border); border-radius: 24px; padding: 2.2rem;
+    max-width: 720px; margin: 0 auto; box-shadow: 0 0 40px rgba(255,30,138,0.22); backdrop-filter: blur(14px);
+  }
+  .player-top { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .play-btn {
+    width: 74px; height: 74px; border-radius: 50%; border: none; cursor: pointer;
+    background: linear-gradient(135deg, var(--pink), var(--gold)); color: #0b0314;
+    font-size: 1.6rem; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .waveform { display: flex; align-items: center; gap: 4px; height: 34px; margin-top: 0.8rem; }
+  .bar { width: 4px; height: 8px; border-radius: 4px; background: linear-gradient(to top, var(--pink), var(--gold), var(--cyan)); transition: height 0.15s; }
+  .vol-row { display: flex; align-items: center; gap: 0.8rem; margin-top: 1.3rem; }
+  input[type=range] { flex: 1; accent-color: var(--pink); }
+
+  .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.8rem; }
+  .media-card { background: var(--glass); border: 1px solid var(--border); border-radius: 22px; padding: 1.5rem; }
+  .media-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+  .media-tag { font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 999px; background: rgba(255,30,138,0.2); color: var(--gold); border: 1px solid rgba(255,30,138,0.45); }
+  .btn-outline {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.22); color: #fff;
+    border-radius: 999px; padding: 0.55rem 1.15rem; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+  }
+  .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
+
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.4rem; }
+  .pride-card { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 1.6rem; transition: transform 0.25s; }
+  .pride-card:hover { transform: translateY(-6px); border-color: var(--cyan); }
+  .pride-icon { font-size: 2.2rem; margin-bottom: 0.7rem; display: block; }
+  .pride-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; color: var(--pink); margin-bottom: 0.4rem; }
+  .pride-card p { font-size: 0.88rem; color: rgba(255,255,255,0.72); line-height: 1.55; }
+
+  .sponsor-card { background: var(--glass); border: 1px solid rgba(255,214,10,0.28); border-radius: 18px; padding: 1.6rem; text-align: center; }
+  .sponsor-tier { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); background: rgba(255,214,10,0.12); padding: 0.22rem 0.7rem; border-radius: 999px; display: inline-block; margin-bottom: 0.7rem; }
+
+  footer { position: relative; z-index: 2; text-align: center; padding: 3rem 1.5rem; border-top: 1px solid rgba(255,30,138,0.25); color: rgba(255,255,255,0.45); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<div class="pride-bar"></div>
+
+<nav>
+  <a href="#" class="nav-logo">MG BCN · PRIDE +18</a>
+  <ul class="nav-links">
+    <li><a href="#player">Radio Club</a></li>
+    <li><a href="#videos">Vídeos +18 &amp; Ads</a></li>
+    <li><a href="#nightlife">Noche Eixample &amp; Sitges</a></li>
+    <li><a href="#sponsors">Sponsors</a></li>
+  </ul>
+  <a href="#player" class="nav-ticket">🏳️‍🌈 Pride Live +18</a>
+</nav>
+
+<canvas id="particles"></canvas>
+
+<section id="hero">
+  <div class="adult-badge">🔞 NOCHE PRIDE +18 · CLUBBING &amp; CABARET BARCELONA</div>
+  <h1 class="hero-title">PRIDE AFTERHOURS<br>MG BARCELONA +18</h1>
+  <p class="hero-sub">House · Circuit · Cabaret · Moda Sensual · Directo 24H</p>
+  <div class="hero-btns">
+    <a href="#player" class="btn-primary">🎧 Escuchar Sesión +18</a>
+    <a href="#videos" class="btn-secondary">🔥 Vídeos Club &amp; Publicidad</a>
+    <a href="#nightlife" class="btn-secondary">🌈 Agenda Nocturna BCN</a>
+  </div>
+</section>
+
+<section id="player">
+  <p class="section-label" style="text-align:center;">📡 Cabina Pride · Eixample Barcelona</p>
+  <h2 class="section-title" style="text-align:center;">Radio en Directo</h2>
+  <div class="player-card">
+    <div class="player-top">
+      <button class="play-btn" id="play-btn" onclick="togglePlay()">▶</button>
+      <div style="flex:1; min-width:200px;">
+        <div id="status-text" style="font-size:0.8rem; font-weight:700; color:var(--cyan); text-transform:uppercase; letter-spacing:0.12em;">Pulsa Play para entrar en la sesión nocturna +18</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem;">MG Barcelona Live · Pride Circuit Mix</div>
+        <div class="waveform" id="waveform"></div>
+      </div>
+    </div>
+    <div class="vol-row">
+      <span>🔊</span>
+      <input type="range" id="vol" min="0" max="1" step="0.01" value="0.8">
+      <span id="vol-pct" style="font-size:0.8rem; color:var(--gold); width:42px;">80%</span>
+    </div>
+  </div>
+</section>
+
+<section id="videos">
+  <p class="section-label" style="text-align:center;">🔥 Pantalla Clubbing +18</p>
+  <h2 class="section-title" style="text-align:center;">Vídeos Visuales &amp; Publicidad</h2>
+  <div class="media-grid">
+    <div class="media-card">
+      <div class="media-head">
+        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; color:var(--pink);">Vídeos Nocturnos</h3>
+        <span class="media-tag">+18 CLUB &amp; MODA</span>
+      </div>
+      <div style="border-radius:14px; overflow:hidden; background:#000; border:1px solid rgba(255,30,138,0.4);">
+        <video id="liveVideo" controls playsinline autoplay muted style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover;"></video>
+      </div>
+      <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem;">
+        <button id="liveVideoButton" class="btn-outline">Pausar</button>
+        <button id="liveVideoNext" class="btn-outline">Siguiente</button>
+        <button id="liveVideoSound" class="btn-outline">Escuchar vídeo</button>
+      </div>
+      <p id="liveVideoStatus" style="font-size:0.78rem; color:rgba(255,255,255,0.65); margin-top:0.8rem;">Cargando vídeos nocturnos...</p>
+    </div>
+
+    <div class="media-card">
+      <div class="media-head">
+        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; color:var(--cyan);">Publicidad de la Radio</h3>
+        <span class="media-tag" style="color:var(--cyan); border-color:rgba(0,245,212,0.4);">ANUNCIOS MG</span>
+      </div>
+      <div style="border-radius:14px; overflow:hidden; background:#000; border:1px solid rgba(0,245,212,0.35);">
+        <video id="adVideo" controls playsinline autoplay muted style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover;"></video>
+      </div>
+      <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem;">
+        <button id="adPause" class="btn-outline">Pausar</button>
+        <button id="adNext" class="btn-outline">Siguiente</button>
+        <button id="adSound" class="btn-outline">Escuchar anuncio</button>
+      </div>
+      <p id="adStatus" style="font-size:0.78rem; color:rgba(255,255,255,0.65); margin-top:0.8rem;">Anuncios y autopromociones en directo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="nightlife">
+  <p class="section-label" style="text-align:center;">🌈 Escena LGTB+ Barcelona &amp; Sitges</p>
+  <h2 class="section-title" style="text-align:center;">Noches Sin Tabúes (+18)</h2>
+  <div class="cards-grid">
+    <div class="pride-card">
+      <span class="pride-icon">🔥</span>
+      <h3>Gaixample Circuit</h3>
+      <p>Sesiones intensas de Circuit House, Techno y shows de cabaret en el corazón nocturno de Barcelona.</p>
+    </div>
+    <div class="pride-card">
+      <span class="pride-icon">💋</span>
+      <h3>Burlesque &amp; Cabaret</h3>
+      <p>Espectáculos sensuales, pasarela nocturna y libertad total para mayores de 18 años hasta el amanecer.</p>
+    </div>
+    <div class="pride-card">
+      <span class="pride-icon">🌴</span>
+      <h3>Sitges Sunset +18</h3>
+      <p>Terrasas frente al mar, cócteles y sesiones VIP con la mejor música de MG Barcelona Live.</p>
+    </div>
+  </div>
+</section>
+
+<section id="sponsors">
+  <p class="section-label" style="text-align:center;">🤝 Patrocinadores Oficiales</p>
+  <h2 class="section-title" style="text-align:center;">Nuestros Sponsors</h2>
+  <div class="cards-grid">
+    <div class="sponsor-card"><span class="sponsor-tier">Sponsor Oficial</span><span class="pride-icon">🎧</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">BCN Sound Pro</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Sonido e iluminación profesional para clubs y fiestas Pride.</p></div>
+    <div class="sponsor-card"><span class="sponsor-tier">Partner VIP</span><span class="pride-icon">🍸</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">Noches Barcelona</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Locales nocturnos, terrazas y eventos +18 en Barcelona.</p></div>
+    <div class="sponsor-card"><span class="sponsor-tier">Media Partner</span><span class="pride-icon">🎬</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">MG Visual Studio</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Realización audiovisual y visuales 4K en directo.</p></div>
+    <div class="sponsor-card"><span class="sponsor-tier">Espacio Disponible</span><span class="pride-icon">⭐</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">Tu Marca Aquí</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Anúnciate en nuestra radio 24H y en la web oficial.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div style="font-family:'Bebas Neue',sans-serif; font-size:1.6rem; color:var(--pink); letter-spacing:0.1em;">MG BARCELONA LIVE · PRIDE NIGHT +18</div>
+  <p style="margin-top:0.4rem;">© 2026 MG Barcelona Live · Diversidad, música y libertad nocturna</p>
+</footer>
+
+<audio id="radio-audio" preload="none"></audio>
+
+<script>
+const STREAM_URL = 'https://attorney-comp-editing-completing.trycloudflare.com/stream';
+const audio = document.getElementById('radio-audio');
+const playBtn = document.getElementById('play-btn');
+const statusText = document.getElementById('status-text');
+const volSlider = document.getElementById('vol');
+const volPct = document.getElementById('vol-pct');
+const waveform = document.getElementById('waveform');
+let isPlaying = false, liveVideoMuted = true, adVideoMuted = true;
+
+for (let i = 0; i < 28; i++) { const b = document.createElement('div'); b.className = 'bar'; waveform.appendChild(b); }
+const bars = waveform.querySelectorAll('.bar');
+setInterval(() => { bars.forEach(b => { b.style.height = isPlaying ? (6 + Math.random() * 26) + 'px' : '6px'; }); }, 140);
+
+function radioBaseVol() { return parseFloat(volSlider.value || '0.8'); }
+volSlider.addEventListener('input', () => { volPct.textContent = Math.round(radioBaseVol() * 100) + '%'; applyDucking(); });
+
+function togglePlay() {
+  if (isPlaying) {
+    audio.pause(); audio.src = ''; isPlaying = false;
+    playBtn.textContent = '▶'; statusText.textContent = 'Emisión pausada';
+  } else {
+    audio.src = STREAM_URL; audio.volume = radioBaseVol(); audio.load();
+    audio.play().then(() => {
+      isPlaying = true; playBtn.textContent = '⏸'; statusText.textContent = '● EN DIRECTO · PRIDE CIRCUIT +18';
+    }).catch(() => { statusText.textContent = 'Conectando con la radio...'; });
+  }
+}
+
+function applyDucking() {
+  const lv = document.getElementById('liveVideo');
+  const av = document.getElementById('adVideo');
+  const lvSound = !liveVideoMuted && lv && !lv.paused;
+  const avSound = !adVideoMuted && av && !av.paused;
+  audio.volume = (lvSound || avSound) ? radioBaseVol() * 0.15 : radioBaseVol();
+}
+
+(function() {
+  const musicList = [
+    "videos/moda_01.mp4","videos/moda_02.mp4","videos/moda_03.mp4","videos/moda_04.mp4","videos/moda_05.mp4","videos/moda_06.mp4","videos/moda_07.mp4","videos/moda_08.mp4","videos/moda_09.mp4","videos/moda_10.mp4","videos/moda_11.mp4","videos/moda_12.mp4","videos/moda_13.mp4","videos/moda_14.mp4","videos/moda_15.mp4","videos/moda_16.mp4","videos/moda_17.mp4","videos/moda_18.mp4","videos/moda_19.mp4","videos/moda_20.mp4","videos/moda_21.mp4","videos/moda_22.mp4","videos/moda_23.mp4","videos/moda_24.mp4","videos/moda_25.mp4","videos/moda_26.mp4","videos/moda_27.mp4","videos/moda_28.mp4","videos/moda_29.mp4","videos/moda_30.mp4","videos/moda_31.mp4"
+  ];
+  const video = document.getElementById('liveVideo');
+  const btn = document.getElementById('liveVideoButton');
+  const nextBtn = document.getElementById('liveVideoNext');
+  const soundBtn = document.getElementById('liveVideoSound');
+  const status = document.getElementById('liveVideoStatus');
+  if (!video || !musicList.length) return;
+  let index = 0;
+  function setStatus(t) { if (status) status.textContent = t; }
+  function setMute(m) {
+    liveVideoMuted = m; video.muted = m; video.defaultMuted = m;
+    if (soundBtn) soundBtn.textContent = m ? 'Escuchar vídeo' : 'Silenciar vídeo';
+    applyDucking();
+  }
+  function playIdx(i) {
+    index = (i + musicList.length) % musicList.length;
+    video.src = musicList[index]; setMute(liveVideoMuted);
+    video.play().then(() => { btn.textContent = 'Pausar'; setStatus('Vídeo ' + (index + 1) + ' / ' + musicList.length); })
+      .catch(() => { btn.textContent = 'Reproducir'; setStatus('Vídeo ' + (index + 1) + ' listo.'); });
+  }
+  btn.addEventListener('click', () => { if (video.paused) video.play().catch(()=>{}); else video.pause(); applyDucking(); });
+  nextBtn.addEventListener('click', () => playIdx(index + 1));
+  soundBtn.addEventListener('click', () => setMute(!liveVideoMuted));
+  video.addEventListener('ended', () => playIdx(index + 1));
+  video.addEventListener('error', () => setTimeout(() => playIdx(index + 1), 1500));
+  playIdx(0);
+})();
+
+(function() {
+  const adList = [
+    "publicidad/43c25109d82e3217bbaab925bf064effc319b1956df84da3300949ef4455a9aa.mp4",
+    "publicidad/18f581807f965a1759b6eee38f05afba215c3be2f092f8a796d3d33ad53b6452.mp4",
+    "publicidad/061d9443f15357c0533bfb2ea80de13d7c64966f061b6bce49033f13858effec.mp4",
+    "publicidad/169210a336c7a964f8756d6256932952e7ccec6dc3afb8085e2bf20a6f722b73.mp4",
+    "publicidad/67c4a67950d1b55b7b5eb9a1285161f202d2c57f27cbd13d83a195e0d31fcda2.mp4",
+    "publicidad/6c4e0da8254a8d072e34ff5603d063dd1eef1101e7e575898dad4170608c5c98.mp4",
+    "publicidad/0835946073709b32799fd3cd95581d8d0610045de354985d8c498de8bc0a3b3e.mp4",
+    "publicidad/4ad6da39e24923ea1d8f875d55ba99ac11662d5838dac37cdd5e008b2c0e1e6f.mp4"
+  ];
+  const video = document.getElementById('adVideo');
+  const btn = document.getElementById('adPause');
+  const nextBtn = document.getElementById('adNext');
+  const soundBtn = document.getElementById('adSound');
+  const status = document.getElementById('adStatus');
+  if (!video || !adList.length) return;
+  let index = 0;
+  function setStatus(t) { if (status) status.textContent = t; }
+  function setMute(m) {
+    adVideoMuted = m; video.muted = m; video.defaultMuted = m;
+    if (soundBtn) soundBtn.textContent = m ? 'Escuchar anuncio' : 'Silenciar anuncio';
+    applyDucking();
+  }
+  function playIdx(i) {
+    index = (i + adList.length) % adList.length;
+    video.src = adList[index]; setMute(adVideoMuted);
+    video.play().then(() => { btn.textContent = 'Pausar'; setStatus('Publicidad ' + (index + 1) + ' / ' + adList.length); })
+      .catch(() => { btn.textContent = 'Reproducir'; setStatus('Anuncio ' + (index + 1) + ' listo.'); });
+  }
+  btn.addEventListener('click', () => { if (video.paused) video.play().catch(()=>{}); else video.pause(); applyDucking(); });
+  nextBtn.addEventListener('click', () => playIdx(index + 1));
+  soundBtn.addEventListener('click', () => setMute(!adVideoMuted));
+  video.addEventListener('ended', () => playIdx(index + 1));
+  video.addEventListener('error', () => setTimeout(() => playIdx(index + 1), 1500));
+  playIdx(0);
+})();
+
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+const COLORS = ['#ff1e8a', '#ffd60a', '#00f5d4', '#9d4edd', '#ff8c00'];
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+function initParticles() {
+  particles = Array.from({ length: 120 }, () => ({
+    x: Math.random() * W, y: Math.random() * H, r: Math.random() * 2.6 + 0.8,
+    vy: -Math.random() * 0.55 - 0.15, c: COLORS[Math.floor(Math.random() * COLORS.length)], a: Math.random() * 0.7 + 0.25
+  }));
+}
+function loop() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    p.y += p.vy; if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
+    ctx.save(); ctx.globalAlpha = p.a; ctx.fillStyle = p.c;
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+  });
+  requestAnimationFrame(loop);
+}
+window.addEventListener('resize', () => { resize(); initParticles(); });
+resize(); initParticles(); loop();
+</script>
+<script type="application/json" id="publicidad-config">{"anuncios":[{"archivo":"publicidad/43c25109d82e3217bbaab925bf064effc319b1956df84da3300949ef4455a9aa.mp4","tipo":"video"},{"archivo":"publicidad/18f581807f965a1759b6eee38f05afba215c3be2f092f8a796d3d33ad53b6452.mp4","tipo":"video"},{"archivo":"publicidad/061d9443f15357c0533bfb2ea80de13d7c64966f061b6bce49033f13858effec.mp4","tipo":"video"},{"archivo":"publicidad/169210a336c7a964f8756d6256932952e7ccec6dc3afb8085e2bf20a6f722b73.mp4","tipo":"video"},{"archivo":"publicidad/67c4a67950d1b55b7b5eb9a1285161f202d2c57f27cbd13d83a195e0d31fcda2.mp4","tipo":"video"},{"archivo":"publicidad/6c4e0da8254a8d072e34ff5603d063dd1eef1101e7e575898dad4170608c5c98.mp4","tipo":"video"},{"archivo":"publicidad/0835946073709b32799fd3cd95581d8d0610045de354985d8c498de8bc0a3b3e.mp4","tipo":"video"},{"archivo":"publicidad/4ad6da39e24923ea1d8f875d55ba99ac11662d5838dac37cdd5e008b2c0e1e6f.mp4","tipo":"video"}],"intervalo":60}</script>
+</body>
+</html>

@@ -3,215 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MG Barcelona Live · GTA VI Vice Vibes</title>
+<title>MG Barcelona Live · LGTB+ Pride Night +18</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0b0216;
-    --neon: #ff2a85;
-    --pink: #ff6b00;
+    --bg: #0b0314;
+    --pink: #ff1e8a;
+    --violet: #9d4edd;
     --cyan: #00f5d4;
-    --gold: #ffb703;
-    --glass: rgba(24, 7, 42, 0.78);
-    --border: rgba(255, 42, 133, 0.3);
+    --gold: #ffd60a;
+    --glass: rgba(24, 8, 38, 0.82);
+    --border: rgba(255, 30, 138, 0.34);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: #fff;
-    font-family: 'Outfit', sans-serif;
-    overflow-x: hidden;
-  }
+  body { background: var(--bg); color: #fff; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
   body::before {
-    content: '';
-    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
     background:
-      radial-gradient(circle at 50% 15%, rgba(255, 107, 0, 0.24), transparent 50%),
-      radial-gradient(circle at 15% 75%, rgba(0, 245, 212, 0.14), transparent 45%),
-      linear-gradient(180deg, #0b0216 0%, #1c0535 55%, #080111 100%);
+      radial-gradient(circle at 20% 20%, rgba(255, 30, 138, 0.25), transparent 50%),
+      radial-gradient(circle at 80% 30%, rgba(0, 245, 212, 0.16), transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(157, 78, 221, 0.2), transparent 55%);
   }
   canvas#particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
-  /* ─── WEAZEL NEWS TICKER ─── */
-  .news-ticker {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 120;
-    background: linear-gradient(90deg, #ff2a85, #ff6b00, #ffb703);
-    color: #0b0216; font-weight: 800; font-size: 0.78rem; letter-spacing: 0.08em;
-    text-transform: uppercase; padding: 0.35rem 0; overflow: hidden; white-space: nowrap;
+  .pride-bar {
+    position: fixed; top: 0; left: 0; right: 0; height: 6px; z-index: 120;
+    background: linear-gradient(90deg, #ff0040, #ff8c00, #ffd60a, #00e676, #00b0ff, #b44fff);
   }
-  .ticker-track { display: inline-block; animation: ticker 28s linear infinite; padding-left: 100%; }
-  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-
-  /* ─── NAV ─── */
   nav {
-    position: fixed; top: 28px; left: 0; right: 0; z-index: 100;
+    position: fixed; top: 6px; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0.9rem 2rem;
-    background: rgba(11, 2, 22, 0.85);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(255, 42, 133, 0.25);
+    padding: 0.9rem 2rem; background: rgba(11, 3, 20, 0.88); backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 30, 138, 0.28);
   }
   .nav-logo {
-    font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; letter-spacing: 0.12em;
-    background: linear-gradient(90deg, var(--gold), var(--neon), var(--cyan));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; letter-spacing: 0.1em;
+    background: linear-gradient(90deg, #ff1e8a, #ffd60a, #00f5d4);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none;
   }
   .nav-links { display: flex; gap: 1.6rem; list-style: none; }
-  .nav-links a { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--cyan); }
+  .nav-links a { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.68); text-decoration: none; }
+  .nav-links a:hover { color: var(--pink); }
   @media(max-width:640px) { .nav-links { display: none; } }
   .nav-ticket {
     padding: 0.5rem 1.2rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700;
-    background: linear-gradient(135deg, var(--neon), var(--pink));
-    color: #fff; text-decoration: none; box-shadow: 0 0 20px rgba(255,42,133,0.4);
+    background: linear-gradient(135deg, var(--pink), var(--violet)); color: #fff; text-decoration: none;
   }
 
   section { position: relative; z-index: 2; padding: 4.5rem 1.5rem; max-width: 1120px; margin: 0 auto; }
   .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
   .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 6vw, 3.6rem); letter-spacing: 0.05em; line-height: 1; margin-bottom: 1.5rem; }
 
-  /* ─── HERO GTA VI ─── */
-  #hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 8rem; }
-  .vi-badge {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    padding: 0.45rem 1.2rem; border-radius: 999px;
-    background: rgba(255,42,133,0.14); border: 1px solid rgba(255,42,133,0.45);
-    color: var(--gold); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-    margin-bottom: 1.2rem;
+  #hero { min-height: 96vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 7rem; }
+  .adult-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 1.2rem; border-radius: 999px;
+    background: rgba(255,30,138,0.18); border: 1px solid rgba(255,30,138,0.55);
+    color: var(--gold); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem;
   }
-  .vi-crest { width: 130px; height: 90px; margin-bottom: 0.6rem; filter: drop-shadow(0 0 22px rgba(255,42,133,0.6)); }
   .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3.6rem, 11vw, 7.6rem);
-    line-height: 0.92; letter-spacing: 0.04em;
-    background: linear-gradient(135deg, #ffb703 0%, #ff2a85 48%, #00f5d4 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    margin-bottom: 0.8rem;
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.4rem, 10vw, 7.2rem); line-height: 0.94;
+    background: linear-gradient(135deg, #ff1e8a 0%, #ffd60a 40%, #00f5d4 75%, #b44fff 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.8rem;
   }
-  .hero-sub { font-size: clamp(1rem, 2.5vw, 1.35rem); letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 2rem; }
+  .hero-sub { font-size: clamp(0.95rem, 2.4vw, 1.3rem); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.78); margin-bottom: 1.8rem; }
   .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
   .btn-primary {
     padding: 0.9rem 2rem; border-radius: 999px; font-weight: 700; font-size: 0.95rem;
-    background: linear-gradient(135deg, var(--neon), var(--pink)); color: #fff; text-decoration: none;
-    box-shadow: 0 0 28px rgba(255,42,133,0.5); transition: transform 0.2s;
+    background: linear-gradient(135deg, var(--pink), var(--violet)); color: #fff; text-decoration: none;
+    box-shadow: 0 0 26px rgba(255,30,138,0.5);
   }
-  .btn-primary:hover { transform: translateY(-2px); }
   .btn-secondary {
     padding: 0.9rem 2rem; border-radius: 999px; font-weight: 700; font-size: 0.95rem;
     background: rgba(0,245,212,0.1); border: 1px solid rgba(0,245,212,0.45); color: var(--cyan); text-decoration: none;
   }
 
-  /* ─── PLAYER ─── */
   .player-card {
-    background: var(--glass); border: 1px solid var(--border); border-radius: 24px;
-    padding: 2.2rem; max-width: 720px; margin: 0 auto;
-    box-shadow: 0 0 45px rgba(255,42,133,0.18); backdrop-filter: blur(14px);
+    background: var(--glass); border: 1px solid var(--border); border-radius: 24px; padding: 2.2rem;
+    max-width: 720px; margin: 0 auto; box-shadow: 0 0 40px rgba(255,30,138,0.22); backdrop-filter: blur(14px);
   }
   .player-top { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
   .play-btn {
     width: 74px; height: 74px; border-radius: 50%; border: none; cursor: pointer;
-    background: linear-gradient(135deg, var(--neon), var(--gold)); color: #0b0216;
-    font-size: 1.6rem; font-weight: 900; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 25px rgba(255,42,133,0.55); flex-shrink: 0;
+    background: linear-gradient(135deg, var(--pink), var(--gold)); color: #0b0314;
+    font-size: 1.6rem; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .waveform { display: flex; align-items: center; gap: 4px; height: 34px; margin-top: 0.8rem; }
-  .bar { width: 4px; height: 8px; border-radius: 4px; background: linear-gradient(to top, var(--neon), var(--cyan)); transition: height 0.15s; }
+  .bar { width: 4px; height: 8px; border-radius: 4px; background: linear-gradient(to top, var(--pink), var(--gold), var(--cyan)); transition: height 0.15s; }
   .vol-row { display: flex; align-items: center; gap: 0.8rem; margin-top: 1.3rem; }
-  input[type=range] { flex: 1; accent-color: var(--neon); }
+  input[type=range] { flex: 1; accent-color: var(--pink); }
 
-  /* ─── VIDEO & ADS ─── */
   .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.8rem; }
-  .media-card {
-    background: var(--glass); border: 1px solid var(--border); border-radius: 22px; padding: 1.5rem;
-    box-shadow: 0 0 30px rgba(0,0,0,0.4);
-  }
+  .media-card { background: var(--glass); border: 1px solid var(--border); border-radius: 22px; padding: 1.5rem; }
   .media-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-  .media-tag { font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 999px; background: rgba(0,245,212,0.12); color: var(--cyan); border: 1px solid rgba(0,245,212,0.35); }
+  .media-tag { font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 999px; background: rgba(255,30,138,0.2); color: var(--gold); border: 1px solid rgba(255,30,138,0.45); }
   .btn-outline {
     background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.22); color: #fff;
     border-radius: 999px; padding: 0.55rem 1.15rem; font-size: 0.82rem; font-weight: 600; cursor: pointer;
   }
-  .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+  .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
 
-  /* ─── LEONIDA / GTA VI FANSERVICE ─── */
   .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.4rem; }
-  .vice-card {
-    background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 1.6rem;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-  .vice-card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(255,42,133,0.22); border-color: var(--cyan); }
-  .vice-icon { font-size: 2.2rem; margin-bottom: 0.7rem; display: block; }
-  .vice-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; letter-spacing: 0.05em; color: var(--gold); margin-bottom: 0.4rem; }
-  .vice-card p { font-size: 0.88rem; color: rgba(255,255,255,0.68); line-height: 1.55; }
-  .tag-pill { display: inline-block; margin-top: 0.7rem; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.65rem; border-radius: 999px; background: rgba(255,42,133,0.16); color: var(--neon); border: 1px solid rgba(255,42,133,0.35); }
+  .pride-card { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 1.6rem; transition: transform 0.25s; }
+  .pride-card:hover { transform: translateY(-6px); border-color: var(--cyan); }
+  .pride-icon { font-size: 2.2rem; margin-bottom: 0.7rem; display: block; }
+  .pride-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; color: var(--pink); margin-bottom: 0.4rem; }
+  .pride-card p { font-size: 0.88rem; color: rgba(255,255,255,0.72); line-height: 1.55; }
 
-  /* ─── SPONSORS ─── */
-  .sponsor-card {
-    background: var(--glass); border: 1px solid rgba(255,183,3,0.28); border-radius: 18px;
-    padding: 1.6rem; text-align: center; transition: transform 0.25s;
-  }
-  .sponsor-card:hover { transform: translateY(-5px); border-color: var(--gold); }
-  .sponsor-tier { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); background: rgba(255,183,3,0.12); padding: 0.22rem 0.7rem; border-radius: 999px; display: inline-block; margin-bottom: 0.7rem; }
+  .sponsor-card { background: var(--glass); border: 1px solid rgba(255,214,10,0.28); border-radius: 18px; padding: 1.6rem; text-align: center; }
+  .sponsor-tier { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); background: rgba(255,214,10,0.12); padding: 0.22rem 0.7rem; border-radius: 999px; display: inline-block; margin-bottom: 0.7rem; }
 
-  footer { position: relative; z-index: 2; text-align: center; padding: 3rem 1.5rem; border-top: 1px solid rgba(255,42,133,0.2); color: rgba(255,255,255,0.45); font-size: 0.85rem; }
+  footer { position: relative; z-index: 2; text-align: center; padding: 3rem 1.5rem; border-top: 1px solid rgba(255,30,138,0.25); color: rgba(255,255,255,0.45); font-size: 0.85rem; }
 </style>
 </head>
 <body>
 
-<div class="news-ticker">
-  <div class="ticker-track">
-    🌴 WEAZEL NEWS BCN · RADIO OFICIAL VICE VIBES 24H · LUCIA &amp; JASON EN LEONIDA · PORT GELLHORN · VICE BEACH · SINTONIZA MG BARCELONA LIVE FM · MÚSICA, VÍDEOS Y PUBLICIDAD EN DIRECTO 🌴
-  </div>
-</div>
+<div class="pride-bar"></div>
 
 <nav>
-  <a href="#" class="nav-logo">MG BCN · VICE VI</a>
+  <a href="#" class="nav-logo">MG BCN · PRIDE +18</a>
   <ul class="nav-links">
-    <li><a href="#player">Radio FM</a></li>
-    <li><a href="#videos">Vídeos &amp; Ads</a></li>
-    <li><a href="#leonida">Mapa Leonida</a></li>
-    <li><a href="#noticias">Noticias VI</a></li>
+    <li><a href="#player">Radio Club</a></li>
+    <li><a href="#videos">Vídeos +18 &amp; Ads</a></li>
+    <li><a href="#nightlife">Noche Eixample &amp; Sitges</a></li>
     <li><a href="#sponsors">Sponsors</a></li>
   </ul>
-  <a href="#player" class="nav-ticket">📻 Vice FM</a>
+  <a href="#player" class="nav-ticket">🏳️‍🌈 Pride Live +18</a>
 </nav>
 
 <canvas id="particles"></canvas>
 
 <section id="hero">
-  <div class="vi-badge">🌴 LEONIDA EDITION · EMISIÓN 24H DESDE BARCELONA</div>
-  <svg class="vi-crest" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-label="Logo GTA VI Vice Vibes">
-    <defs>
-      <linearGradient id="viGrad" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#ffb703"/>
-        <stop offset="50%" stop-color="#ff2a85"/>
-        <stop offset="100%" stop-color="#00f5d4"/>
-      </linearGradient>
-    </defs>
-    <path d="M22 18 L52 18 L75 84 L98 18 L128 18 L90 105 L60 105 Z" fill="url(#viGrad)"/>
-    <rect x="140" y="18" width="28" height="87" rx="4" fill="url(#viGrad)"/>
-    <circle cx="176" cy="30" r="10" fill="#00f5d4"/>
-  </svg>
-  <h1 class="hero-title">MG BARCELONA<br>VICE VIBES</h1>
-  <p class="hero-sub">Radio · Synthwave · Leonida · Directo 24H</p>
+  <div class="adult-badge">🔞 NOCHE PRIDE +18 · CLUBBING &amp; CABARET BARCELONA</div>
+  <h1 class="hero-title">PRIDE AFTERHOURS<br>MG BARCELONA +18</h1>
+  <p class="hero-sub">House · Circuit · Cabaret · Moda Sensual · Directo 24H</p>
   <div class="hero-btns">
-    <a href="#player" class="btn-primary">🎧 Escuchar Vice FM</a>
-    <a href="#videos" class="btn-secondary">🎬 Vídeos &amp; Publicidad</a>
-    <a href="#leonida" class="btn-secondary">🗺️ Explorar Leonida</a>
+    <a href="#player" class="btn-primary">🎧 Escuchar Sesión +18</a>
+    <a href="#videos" class="btn-secondary">🔥 Vídeos Club &amp; Publicidad</a>
+    <a href="#nightlife" class="btn-secondary">🌈 Agenda Nocturna BCN</a>
   </div>
 </section>
 
 <section id="player">
-  <p class="section-label" style="text-align:center;">📻 Emisora Oficial · Dial 106.9 Vice BCN</p>
+  <p class="section-label" style="text-align:center;">📡 Cabina Pride · Eixample Barcelona</p>
   <h2 class="section-title" style="text-align:center;">Radio en Directo</h2>
   <div class="player-card">
     <div class="player-top">
       <button class="play-btn" id="play-btn" onclick="togglePlay()">▶</button>
       <div style="flex:1; min-width:200px;">
-        <div id="status-text" style="font-size:0.8rem; font-weight:700; color:var(--cyan); text-transform:uppercase; letter-spacing:0.12em;">Pulsa Play para sintonizar Vice FM</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:0.05em;">MG Barcelona Live · Vice City Mix</div>
+        <div id="status-text" style="font-size:0.8rem; font-weight:700; color:var(--cyan); text-transform:uppercase; letter-spacing:0.12em;">Pulsa Play para entrar en la sesión nocturna +18</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem;">MG Barcelona Live · Pride Circuit Mix</div>
         <div class="waveform" id="waveform"></div>
       </div>
     </div>
@@ -224,15 +165,15 @@
 </section>
 
 <section id="videos">
-  <p class="section-label" style="text-align:center;">🎬 Canal Visual Vice</p>
-  <h2 class="section-title" style="text-align:center;">Vídeos Musicales &amp; Publicidad</h2>
+  <p class="section-label" style="text-align:center;">🔥 Pantalla Clubbing +18</p>
+  <h2 class="section-title" style="text-align:center;">Vídeos Visuales &amp; Publicidad</h2>
   <div class="media-grid">
     <div class="media-card">
       <div class="media-head">
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; color:var(--cyan);">Vídeos Musicales</h3>
-        <span class="media-tag">MODA &amp; HOUSE</span>
+        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; color:var(--pink);">Vídeos Nocturnos</h3>
+        <span class="media-tag">+18 CLUB &amp; MODA</span>
       </div>
-      <div style="border-radius:14px; overflow:hidden; background:#000; border:1px solid rgba(0,245,212,0.25);">
+      <div style="border-radius:14px; overflow:hidden; background:#000; border:1px solid rgba(255,30,138,0.4);">
         <video id="liveVideo" controls playsinline autoplay muted style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover;"></video>
       </div>
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem;">
@@ -240,15 +181,15 @@
         <button id="liveVideoNext" class="btn-outline">Siguiente</button>
         <button id="liveVideoSound" class="btn-outline">Escuchar vídeo</button>
       </div>
-      <p id="liveVideoStatus" style="font-size:0.78rem; color:rgba(255,255,255,0.6); margin-top:0.8rem;">Cargando vídeos musicales...</p>
+      <p id="liveVideoStatus" style="font-size:0.78rem; color:rgba(255,255,255,0.65); margin-top:0.8rem;">Cargando vídeos nocturnos...</p>
     </div>
 
     <div class="media-card">
       <div class="media-head">
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; color:var(--neon);">Publicidad de la Radio</h3>
-        <span class="media-tag" style="color:var(--neon); border-color:rgba(255,42,133,0.4);">ANUNCIOS MG</span>
+        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; color:var(--cyan);">Publicidad de la Radio</h3>
+        <span class="media-tag" style="color:var(--cyan); border-color:rgba(0,245,212,0.4);">ANUNCIOS MG</span>
       </div>
-      <div style="border-radius:14px; overflow:hidden; background:#000; border:1px solid rgba(255,42,133,0.28);">
+      <div style="border-radius:14px; overflow:hidden; background:#000; border:1px solid rgba(0,245,212,0.35);">
         <video id="adVideo" controls playsinline autoplay muted style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover;"></video>
       </div>
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem;">
@@ -256,63 +197,29 @@
         <button id="adNext" class="btn-outline">Siguiente</button>
         <button id="adSound" class="btn-outline">Escuchar anuncio</button>
       </div>
-      <p id="adStatus" style="font-size:0.78rem; color:rgba(255,255,255,0.6); margin-top:0.8rem;">Anuncios y autopromociones en directo.</p>
+      <p id="adStatus" style="font-size:0.78rem; color:rgba(255,255,255,0.65); margin-top:0.8rem;">Anuncios y autopromociones en directo.</p>
     </div>
   </div>
 </section>
 
-<section id="leonida">
-  <p class="section-label" style="text-align:center;">🗺️ Guía Oficial de Zonas</p>
-  <h2 class="section-title" style="text-align:center;">Mapa de Leonida &amp; Vice City</h2>
+<section id="nightlife">
+  <p class="section-label" style="text-align:center;">🌈 Escena LGTB+ Barcelona &amp; Sitges</p>
+  <h2 class="section-title" style="text-align:center;">Noches Sin Tabúes (+18)</h2>
   <div class="cards-grid">
-    <div class="vice-card">
-      <span class="vice-icon">🏖️</span>
-      <h3>Vice Beach</h3>
-      <p>Hoteles Art Déco iluminados en neón rosa, paseos marítimos y sesiones electrónicas frente al océano.</p>
-      <span class="tag-pill">Ocean Drive</span>
+    <div class="pride-card">
+      <span class="pride-icon">🔥</span>
+      <h3>Gaixample Circuit</h3>
+      <p>Sesiones intensas de Circuit House, Techno y shows de cabaret en el corazón nocturno de Barcelona.</p>
     </div>
-    <div class="vice-card">
-      <span class="vice-icon">🐊</span>
-      <h3>Grassrivers</h3>
-      <p>Pantanos salvajes, aerodeslizadores nocturnos y rutas clandestinas al sur del estado de Leonida.</p>
-      <span class="tag-pill">Zona Salvaje</span>
+    <div class="pride-card">
+      <span class="pride-icon">💋</span>
+      <h3>Burlesque &amp; Cabaret</h3>
+      <p>Espectáculos sensuales, pasarela nocturna y libertad total para mayores de 18 años hasta el amanecer.</p>
     </div>
-    <div class="vice-card">
-      <span class="vice-icon">⚓</span>
-      <h3>Port Gellhorn</h3>
-      <p>Muelles industriales, coches clásicos modificados y encuentros nocturnos de motor y música urbana.</p>
-      <span class="tag-pill">Costa Oeste</span>
-    </div>
-    <div class="vice-card">
-      <span class="vice-icon">🏎️</span>
-      <h3>Kelly County</h3>
-      <p>Autopistas infinitas bajo el atardecer dorado de Leonida ideales para escuchar MG Barcelona Live.</p>
-      <span class="tag-pill">Ruta 27</span>
-    </div>
-  </div>
-</section>
-
-<section id="noticias">
-  <p class="section-label" style="text-align:center;">📰 Fanservice &amp; Actualidad</p>
-  <h2 class="section-title" style="text-align:center;">Noticias GTA VI &amp; Rockstar</h2>
-  <div class="cards-grid">
-    <div class="vice-card">
-      <span class="vice-icon">🎬</span>
-      <h3>Trailer &amp; Mundo Abierto</h3>
-      <p>El regreso más esperado a Vice City con el mapa más grande y detallado de la historia de Rockstar Games.</p>
-      <span class="tag-pill">Rockstar News</span>
-    </div>
-    <div class="vice-card">
-      <span class="vice-icon">🕶️</span>
-      <h3>Lucia &amp; Jason</h3>
-      <p>Dúo protagonista en una historia cargada de acción, atracos, música de los 80 y sonidos actuales.</p>
-      <span class="tag-pill">Protagonistas</span>
-    </div>
-    <div class="vice-card">
-      <span class="vice-icon">🎧</span>
-      <h3>Emisora Vice BCN</h3>
-      <p>Nuestra selección 24H combina Synthwave, Electro, House y clásicos de Vice City mientras juegas.</p>
-      <span class="tag-pill">En Directo</span>
+    <div class="pride-card">
+      <span class="pride-icon">🌴</span>
+      <h3>Sitges Sunset +18</h3>
+      <p>Terrasas frente al mar, cócteles y sesiones VIP con la mejor música de MG Barcelona Live.</p>
     </div>
   </div>
 </section>
@@ -321,36 +228,16 @@
   <p class="section-label" style="text-align:center;">🤝 Patrocinadores Oficiales</p>
   <h2 class="section-title" style="text-align:center;">Nuestros Sponsors</h2>
   <div class="cards-grid">
-    <div class="sponsor-card">
-      <span class="sponsor-tier">Sponsor Oficial</span>
-      <span class="vice-icon">🎧</span>
-      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">BCN Sound Pro</h3>
-      <p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Sonido profesional, iluminación LED y cabinas DJ en Barcelona.</p>
-    </div>
-    <div class="sponsor-card">
-      <span class="sponsor-tier">Partner VIP</span>
-      <span class="vice-icon">🍸</span>
-      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">Noches Barcelona</h3>
-      <p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Salas, eventos nocturnos y experiencias VIP en la ciudad.</p>
-    </div>
-    <div class="sponsor-card">
-      <span class="sponsor-tier">Media Partner</span>
-      <span class="vice-icon">🎬</span>
-      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">MG Visual Studio</h3>
-      <p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Producción audiovisual, visuales 4K y realización en directo.</p>
-    </div>
-    <div class="sponsor-card">
-      <span class="sponsor-tier">Espacio Disponible</span>
-      <span class="vice-icon">⭐</span>
-      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">Tu Marca Aquí</h3>
-      <p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Anúnciate en nuestra radio 24H, vídeos y web oficial.</p>
-    </div>
+    <div class="sponsor-card"><span class="sponsor-tier">Sponsor Oficial</span><span class="pride-icon">🎧</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">BCN Sound Pro</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Sonido e iluminación profesional para clubs y fiestas Pride.</p></div>
+    <div class="sponsor-card"><span class="sponsor-tier">Partner VIP</span><span class="pride-icon">🍸</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">Noches Barcelona</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Locales nocturnos, terrazas y eventos +18 en Barcelona.</p></div>
+    <div class="sponsor-card"><span class="sponsor-tier">Media Partner</span><span class="pride-icon">🎬</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">MG Visual Studio</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Realización audiovisual y visuales 4K en directo.</p></div>
+    <div class="sponsor-card"><span class="sponsor-tier">Espacio Disponible</span><span class="pride-icon">⭐</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">Tu Marca Aquí</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Anúnciate en nuestra radio 24H y en la web oficial.</p></div>
   </div>
 </section>
 
 <footer>
-  <div style="font-family:'Bebas Neue',sans-serif; font-size:1.6rem; color:var(--gold); letter-spacing:0.1em;">MG BARCELONA LIVE · VICE EDITION</div>
-  <p style="margin-top:0.4rem;">© 2026 MG Barcelona Live · Tema fan homenaje a GTA VI / Vice City</p>
+  <div style="font-family:'Bebas Neue',sans-serif; font-size:1.6rem; color:var(--pink); letter-spacing:0.1em;">MG BARCELONA LIVE · PRIDE NIGHT +18</div>
+  <p style="margin-top:0.4rem;">© 2026 MG Barcelona Live · Diversidad, música y libertad nocturna</p>
 </footer>
 
 <audio id="radio-audio" preload="none"></audio>
@@ -365,23 +252,12 @@ const volPct = document.getElementById('vol-pct');
 const waveform = document.getElementById('waveform');
 let isPlaying = false, liveVideoMuted = true, adVideoMuted = true;
 
-for (let i = 0; i < 28; i++) {
-  const b = document.createElement('div');
-  b.className = 'bar';
-  waveform.appendChild(b);
-}
+for (let i = 0; i < 28; i++) { const b = document.createElement('div'); b.className = 'bar'; waveform.appendChild(b); }
 const bars = waveform.querySelectorAll('.bar');
-setInterval(() => {
-  bars.forEach(b => {
-    b.style.height = isPlaying ? (6 + Math.random() * 26) + 'px' : '6px';
-  });
-}, 140);
+setInterval(() => { bars.forEach(b => { b.style.height = isPlaying ? (6 + Math.random() * 26) + 'px' : '6px'; }); }, 140);
 
 function radioBaseVol() { return parseFloat(volSlider.value || '0.8'); }
-volSlider.addEventListener('input', () => {
-  volPct.textContent = Math.round(radioBaseVol() * 100) + '%';
-  applyDucking();
-});
+volSlider.addEventListener('input', () => { volPct.textContent = Math.round(radioBaseVol() * 100) + '%'; applyDucking(); });
 
 function togglePlay() {
   if (isPlaying) {
@@ -390,7 +266,7 @@ function togglePlay() {
   } else {
     audio.src = STREAM_URL; audio.volume = radioBaseVol(); audio.load();
     audio.play().then(() => {
-      isPlaying = true; playBtn.textContent = '⏸'; statusText.textContent = '● EN DIRECTO · VICE FM 106.9';
+      isPlaying = true; playBtn.textContent = '⏸'; statusText.textContent = '● EN DIRECTO · PRIDE CIRCUIT +18';
     }).catch(() => { statusText.textContent = 'Conectando con la radio...'; });
   }
 }
@@ -474,31 +350,19 @@ function applyDucking() {
 
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
-let W, H, particles = [], gridOffset = 0;
-const COLORS = ['#ff2a85', '#00f5d4', '#ffb703', '#ff6b00'];
+let W, H, particles = [];
+const COLORS = ['#ff1e8a', '#ffd60a', '#00f5d4', '#9d4edd', '#ff8c00'];
 function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 function initParticles() {
-  particles = Array.from({ length: 100 }, () => ({
-    x: Math.random() * W, y: Math.random() * H * 0.72,
-    r: Math.random() * 2.2 + 0.7, vy: -Math.random() * 0.45 - 0.15,
-    c: COLORS[Math.floor(Math.random() * COLORS.length)], a: Math.random() * 0.7 + 0.2
+  particles = Array.from({ length: 120 }, () => ({
+    x: Math.random() * W, y: Math.random() * H, r: Math.random() * 2.6 + 0.8,
+    vy: -Math.random() * 0.55 - 0.15, c: COLORS[Math.floor(Math.random() * COLORS.length)], a: Math.random() * 0.7 + 0.25
   }));
 }
 function loop() {
   ctx.clearRect(0, 0, W, H);
-  const hy = H * 0.62;
-  ctx.save(); ctx.strokeStyle = 'rgba(255,42,133,0.18)'; ctx.lineWidth = 1;
-  for (let i = -12; i <= 12; i++) {
-    ctx.beginPath(); ctx.moveTo(W / 2 + i * 26, hy); ctx.lineTo(W / 2 + i * 210, H); ctx.stroke();
-  }
-  gridOffset = (gridOffset + 0.8) % 40;
-  for (let y = 0; y < H - hy; y += 40) {
-    const yy = hy + Math.pow((y + gridOffset) / (H - hy), 1.6) * (H - hy);
-    ctx.beginPath(); ctx.moveTo(0, yy); ctx.lineTo(W, yy); ctx.stroke();
-  }
-  ctx.restore();
   particles.forEach(p => {
-    p.y += p.vy; if (p.y < -10) { p.y = H * 0.72; p.x = Math.random() * W; }
+    p.y += p.vy; if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
     ctx.save(); ctx.globalAlpha = p.a; ctx.fillStyle = p.c;
     ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill(); ctx.restore();
   });
