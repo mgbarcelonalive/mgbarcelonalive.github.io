@@ -2,57 +2,8 @@
   "activo": true,
   "intervalo_segundos": 180,
   "bajar_musica_pct": 25,
-  "studio_auto": false,
-  "studio_orden": "Secuencial",
+  "studio_auto": true,
+  "studio_orden": "Aleatorio",
   "studio_duck": true,
-  "cunas": [
-    {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_26_09_Cornelio_-_Persuasive__Clear_and_Rich_pvc_s50_sim75_v4__1_.mp3",
-      "titulo": "ElevenLabs 2026-11-14T20 26 09 Cornelio - Persuasive, Clear and Rich pvc s50 sim75 v4 (1)",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_26_09_Cornelio_-_Persuasive__Clear_and_Rich_pvc_s50_sim75_v4.mp3",
-      "titulo": "ElevenLabs 2026-11-14T20 26 09 Cornelio - Persuasive, Clear and Rich pvc s50 sim75 v4",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_28_41_Bobby_-_Sharp__Persuasive_and_Dynamic_pvc_s50_sim19_v4__1_.mp3",
-      "titulo": "ElevenLabs 2026-11-14T20 28 41 Bobby - Sharp, Persuasive and Dynamic pvc s50 sim19 v4 (1)",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_28_41_Bobby_-_Sharp__Persuasive_and_Dynamic_pvc_s50_sim19_v4.mp3",
-      "titulo": "ElevenLabs 2026-11-14T20 28 41 Bobby - Sharp, Persuasive and Dynamic pvc s50 sim19 v4",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo_Braz_lez_-__Multilingual_pvc_s50_sim19_v4__1_.mp3",
-      "titulo": "ElevenLabs 2026-11-14T20 29 25 Guillermo Brazález -  Multilingual pvc s50 sim19 v4 (1)",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo_Braz_lez_-__Multilingual_pvc_s50_sim19_v4.mp3",
-      "titulo": "ElevenLabs 2026-11-14T20 29 25 Guillermo Brazález -  Multilingual pvc s50 sim19 v4",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/sube_el_nivel.mp3",
-      "titulo": "sube el nivel",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/vivelo_en_directo.mp3",
-      "titulo": "vivelo en directo",
-      "voz": "Audio PC",
-      "activa": true
-    }
-  ]
+  "cunas": []
 }

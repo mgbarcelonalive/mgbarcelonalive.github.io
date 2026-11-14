@@ -15,7 +15,7 @@
     st.id = 'mg-evfotos-style';
     st.textContent = [
       '.mg-evw-box{position:relative;width:100%;max-width:680px;height:320px;margin:18px auto 14px;border-radius:16px;overflow:hidden;background:rgba(12,8,24,0.82);border:1px solid rgba(255,255,255,0.16);box-shadow:0 14px 40px rgba(0,0,0,0.48);backdrop-filter:blur(10px);z-index:5;}',
-      '.mg-evw-img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .45s ease;cursor:pointer;}',
+      '.mg-evw-img{width:100%;height:100%;object-fit:contain;object-position:center;background:#000;display:block;transition:opacity .45s ease;cursor:pointer;}',
       '.mg-evw-top{position:absolute;top:10px;left:12px;right:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;pointer-events:none;}',
       '.mg-evw-badge{pointer-events:auto;background:rgba(10,7,20,0.72);border:1px solid rgba(255,255,255,0.18);color:#f5c842;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:999px;text-transform:uppercase;}',
       '.mg-evw-big{pointer-events:auto;background:rgba(142,45,226,0.82);border:1px solid #b44fff;color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35);}',
@@ -82,6 +82,11 @@
 
   async function render() {
     var tpl = getActiveTemplate();
+    // Si la página ya tiene la ventana oficial "FOTOGRAFÍA - MOISÉS GALLARDO", no inyectar galería suelta arriba
+    if (document.getElementById('fotografia-mg') && !document.getElementById('mg-evf-wrapped')) {
+      document.querySelectorAll('#mg-evf-section').forEach(function (el) { el.remove(); });
+      return;
+    }
     var existingAll = document.querySelectorAll('#mg-evf-section');
     if (existingAll.length === 1 && existingAll[0].getAttribute('data-tpl') === tpl) return;
     if (rendering) return;
@@ -101,8 +106,15 @@
         : (Array.isArray(data && data.fotos) ? data.fotos : []);
       if (!photos.length) return;
 
-      document.querySelectorAll('#mg-evf-section').forEach(function (el) { el.remove(); });
+      document.querySelectorAll('#mg-evf-section, #mg-evf-wrapped').forEach(function (el) { el.remove(); });
       injectStyles();
+      var wrap = document.createElement('section');
+      wrap.id = 'mg-evf-wrapped';
+      wrap.style.cssText = 'position:relative;z-index:2;padding:3rem 1.2rem;max-width:1100px;margin:0 auto;text-align:center;';
+      wrap.innerHTML =
+        '<p style="color:#00f0ff;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0 0 .35rem;">📸 Galería Visual</p>' +
+        '<h2 style="font-size:clamp(1.35rem,3vw,2rem);font-weight:900;letter-spacing:.06em;margin:0 0 1rem;color:#fff;">FOTOGRAFÍAS · MOISÉS GALLARDO</h2>';
+
       var box = document.createElement('div');
       box.id = 'mg-evf-section';
       box.setAttribute('data-tpl', tpl);
@@ -110,7 +122,7 @@
       box.innerHTML = [
         '<img class="mg-evw-img" id="mg-evw-img" src="" alt="Evento">',
         '<div class="mg-evw-top">',
-        '  <span class="mg-evw-badge">📸 Eventos Clubs</span>',
+        '  <span class="mg-evw-badge">📸 Fotógrafo: Moisés Gallardo</span>',
         '  <button class="mg-evw-big" id="mg-evw-big" type="button">⛶ Ver en grande</button>',
         '</div>',
         '<button class="mg-evw-nav mg-evw-prev" id="mg-evw-prev" type="button">‹</button>',
@@ -120,12 +132,13 @@
         '  <div class="mg-evw-cnt" id="mg-evw-cnt"></div>',
         '</div>'
       ].join('');
+      wrap.appendChild(box);
 
-      var anchor = document.querySelector('.hero-sub') || document.querySelector('h1.hero-title') || document.querySelector('h1');
-      if (anchor && anchor.parentNode) {
-        anchor.parentNode.insertBefore(box, anchor.nextSibling);
+      var target = document.querySelector('#events') || document.querySelector('#sponsors') || document.querySelector('footer');
+      if (target && target.parentNode) {
+        target.parentNode.insertBefore(wrap, target);
       } else {
-        document.body.insertBefore(box, document.body.firstChild);
+        document.body.appendChild(wrap);
       }
 
       var openLb = ensureLightbox(photos);
@@ -169,6 +182,9 @@
 
   if (!window.__mgEvfObserver && typeof MutationObserver !== 'undefined') {
     window.__mgEvfObserver = new MutationObserver(function () {
+      if (document.getElementById('fotografia-mg') && !document.getElementById('mg-evf-wrapped')) {
+        return;
+      }
       var tpl = getActiveTemplate();
       var sec = document.getElementById('mg-evf-section');
       if (!sec || sec.getAttribute('data-tpl') !== tpl) {

@@ -364,8 +364,11 @@
   }
 
   #play-btn {
-    width: 70px; height: 70px;
-    border-radius: 50%;
+    width: 68px; height: 68px;
+    min-width: 68px; min-height: 68px;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    border-radius: 16px;
     background: linear-gradient(135deg, var(--neon), var(--pink));
     border: none;
     cursor: pointer;
@@ -379,7 +382,7 @@
   #play-btn:hover { transform: scale(1.1); box-shadow: 0 0 50px rgba(180,79,255,0.8); }
   #play-btn .ripple {
     position: absolute; inset: -6px;
-    border-radius: 50%;
+    border-radius: 20px;
     border: 1px solid rgba(180,79,255,0.4);
     animation: ripple 2s ease-out infinite;
   }
@@ -865,72 +868,170 @@
       box-shadow: 0 0 18px rgba(255, 45, 120, 0.35);
     }
     #fotografia-mg .mg-lanzador-caja {
+      position: relative;
       margin-bottom: 2.2rem;
-      padding: 1.2rem;
-      background: var(--glass);
-      border: 1px solid rgba(245, 200, 66, 0.25);
-      border-radius: 20px;
+      padding: 1.1rem;
+      background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(180,79,255,0.06));
+      border: 1px solid rgba(245, 200, 66, 0.3);
+      border-radius: 22px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55), 0 0 30px rgba(180, 79, 255, 0.14);
+      overflow: hidden;
     }
     #fotografia-mg .mg-lanzador-salida {
+      position: relative;
       min-height: 120px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.85rem;
     }
     #fotografia-mg .mg-lanzador-salida img,
     #fotografia-mg .mg-lanzador-salida video {
       width: 100%;
-      max-height: 540px;
+      height: auto;
+      max-height: 460px;
       object-fit: contain;
+      object-position: center;
       border-radius: 14px;
       background: #000;
       display: block;
     }
-    #fotografia-mg .mg-foto-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
+    #fotografia-mg .mg-lanzador-salida img.mg-anim-slide {
+      animation: mgSlideFade 5s ease-in-out forwards;
     }
-    @media (min-width: 860px) {
-      #fotografia-mg .mg-foto-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.3rem;
+    @keyframes mgSlideFade {
+      0% { opacity: 0; transform: scale(0.985); }
+      10% { opacity: 1; transform: scale(1); }
+      90% { opacity: 1; transform: scale(1.025); }
+      100% { opacity: 0.88; transform: scale(1.03); }
+    }
+    #fotografia-mg .mg-stage-nav {
+      position: absolute;
+      top: 44%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(7,5,15,0.72);
+      color: #fff;
+      font-size: 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 4;
+      transition: background 0.2s, transform 0.2s;
+    }
+    #fotografia-mg .mg-stage-nav:hover {
+      background: var(--pink);
+      transform: translateY(-50%) scale(1.08);
+    }
+    #fotografia-mg .mg-stage-prev { left: 10px; }
+    #fotografia-mg .mg-stage-next { right: 10px; }
+    #fotografia-mg .mg-stage-bar {
+      width: 100%;
+      height: 3px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      overflow: hidden;
+      margin-top: 0.65rem;
+    }
+    #fotografia-mg .mg-stage-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--pink), var(--gold), var(--cyan));
+      transition: width 0.2s linear;
+    }
+    @media (max-width: 640px) {
+      #fotografia-mg .mg-lanzador-salida img,
+      #fotografia-mg .mg-lanzador-salida video {
+        max-height: 300px;
       }
     }
+    #fotografia-mg .mg-foto-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0.85rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 0.6rem 0.25rem 0.9rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--pink) rgba(255,255,255,0.08);
+    }
+    #fotografia-mg .mg-foto-grid::-webkit-scrollbar {
+      height: 6px;
+    }
+    #fotografia-mg .mg-foto-grid::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+    }
+    #fotografia-mg .mg-foto-grid::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, var(--pink), var(--neon));
+      border-radius: 999px;
+    }
+    @keyframes mgCardIn {
+      0% { opacity: 0; transform: translateY(16px) scale(0.97); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
     #fotografia-mg .mg-foto-card {
+      flex: 0 0 155px;
+      scroll-snap-align: start;
       background: var(--glass);
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 14px;
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      animation: mgCardIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
     }
-    #fotografia-mg .mg-foto-card:hover {
+    @media (min-width: 760px) {
+      #fotografia-mg .mg-foto-card {
+        flex: 0 0 195px;
+      }
+    }
+    #fotografia-mg .mg-foto-card:hover,
+    #fotografia-mg .mg-foto-card.is-current {
       transform: translateY(-4px);
       border-color: var(--gold);
+      box-shadow: 0 8px 22px rgba(245, 200, 66, 0.22), 0 0 16px rgba(255, 45, 120, 0.2);
     }
     #fotografia-mg .mg-foto-card.is-hidden {
       display: none;
     }
     #fotografia-mg .mg-foto-card img {
       width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
+      height: 115px;
+      object-fit: contain;
+      object-position: center;
       display: block;
       background: #000;
+      transition: transform 0.35s ease;
+    }
+    #fotografia-mg .mg-foto-card:hover img {
+      transform: scale(1.04);
+    }
+    @media (min-width: 760px) {
+      #fotografia-mg .mg-foto-card img {
+        height: 135px;
+      }
     }
     #fotografia-mg .mg-foto-rotulo {
       background: #000;
-      padding: 0.7rem 0.65rem;
+      padding: 0.45rem 0.4rem;
       text-align: center;
-      font-size: 0.7rem;
+      font-size: 0.58rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       color: var(--gold);
       border-top: 1px solid var(--border);
       text-transform: uppercase;
+      line-height: 1.25;
     }
     #mgFotoLightbox {
       position: fixed;
@@ -988,27 +1089,11 @@
     </div>
   </div>
 
-  <!-- Filtros de galería -->
+  <!-- Filtros de galería dentro de la única ventana Fotógrafo Moisés Gallardo -->
   <div class="mg-foto-filtros" role="group" aria-label="Filtrar fotografías por ciudad">
     <button type="button" class="mg-foto-btn" data-mg-city="barcelona">BARCELONA</button>
     <button type="button" class="mg-foto-btn" data-mg-city="ibiza">IBIZA</button>
     <button type="button" class="mg-foto-btn is-active" data-mg-city="todas">TODAS</button>
-  </div>
-
-  <!-- Galería fotográfica alimentada por tu herramienta o archivos locales -->
-  <div class="mg-foto-grid" id="mgFotoGrid">
-    <article class="mg-foto-card" data-city="barcelona">
-      <img src="eventos_fotos/foto1.jpg" alt="Barcelona - Moisés Gallardo" loading="lazy" />
-      <div class="mg-foto-rotulo">FOTÓGRAFO: MOISÉS GALLARDO - MG BARCELONA LIVE</div>
-    </article>
-    <article class="mg-foto-card" data-city="ibiza">
-      <img src="eventos_fotos/foto2.jpg" alt="Ibiza - Moisés Gallardo" loading="lazy" />
-      <div class="mg-foto-rotulo">FOTÓGRAFO: MOISÉS GALLARDO - MG BARCELONA LIVE</div>
-    </article>
-    <article class="mg-foto-card" data-city="barcelona">
-      <img src="eventos_fotos/foto3.jpg" alt="Barcelona Club - Moisés Gallardo" loading="lazy" />
-      <div class="mg-foto-rotulo">FOTÓGRAFO: MOISÉS GALLARDO - MG BARCELONA LIVE</div>
-    </article>
   </div>
 </section>
 
@@ -1022,7 +1107,6 @@
 <script>
 (function () {
   var salida = document.getElementById('lanzador-salida');
-  var grid = document.getElementById('mgFotoGrid');
   var lb = document.getElementById('mgFotoLightbox');
   var lbImg = document.getElementById('mgLbImg');
   var lbClose = document.getElementById('mgLbClose');
@@ -1040,24 +1124,37 @@
     lb.setAttribute('aria-hidden', 'true');
   }
 
-  // Filtros [BARCELONA] [IBIZA] [TODAS]
+  var allStageFotos = [];
+  var activeCity = 'todas';
+
+  function applyCityFilter(city) {
+    activeCity = city || 'todas';
+    if (!allStageFotos.length) return;
+    var filtered = allStageFotos.filter(function (f) {
+      if (activeCity === 'todas') return true;
+      var txt = ((f.club || '') + ' ' + (f.titulo || '')).toLowerCase();
+      var c = txt.indexOf('ibiza') !== -1 ? 'ibiza' : 'barcelona';
+      return c === activeCity;
+    });
+    stageFotos = filtered.length ? filtered : allStageFotos;
+    showStagePhoto(0);
+  }
+
+  // Filtros [BARCELONA] [IBIZA] [TODAS] dentro de la ventana única
   document.querySelectorAll('[data-mg-city]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var city = btn.getAttribute('data-mg-city');
       document.querySelectorAll('[data-mg-city]').forEach(function (b) {
         b.classList.toggle('is-active', b === btn);
       });
-      grid.querySelectorAll('.mg-foto-card').forEach(function (card) {
-        var match = city === 'todas' || card.getAttribute('data-city') === city;
-        card.classList.toggle('is-hidden', !match);
-      });
+      applyCityFilter(city);
     });
   });
 
-  // Clic en cualquier foto de la galería o del lanzador -> pantalla completa
+  // Clic en el visor grande -> pantalla completa
   document.getElementById('fotografia-mg').addEventListener('click', function (e) {
-    var img = e.target.closest('img');
-    if (img) openFullscreen(img.src, img.alt);
+    var stageImg = e.target.closest('#lanzador-salida img');
+    if (stageImg) openFullscreen(stageImg.src, stageImg.alt);
   });
 
   lbClose.addEventListener('click', closeFullscreen);
@@ -1087,16 +1184,73 @@
 
   // Función auxiliar opcional por si tu herramienta lanzadora quiere añadir fotos a la galería
   window.mgAgregarFotoLanzador = function (src, ciudad) {
-    var card = document.createElement('article');
-    card.className = 'mg-foto-card';
-    card.setAttribute('data-city', (ciudad || 'barcelona').toLowerCase());
-    card.innerHTML =
-      '<img src="' + src + '" alt="Moisés Gallardo" loading="lazy" />' +
-      '<div class="mg-foto-rotulo">FOTÓGRAFO: MOISÉS GALLARDO - MG BARCELONA LIVE</div>';
-    grid.prepend(card);
+    allStageFotos.unshift({ archivo: src, titulo: 'Moisés Gallardo', club: ciudad || 'Barcelona' });
+    applyCityFilter(activeCity);
   };
 
   // Conexión automática con la salida de tu herramienta lanzadora (eventos_fotos.json)
+  // + Carrusel animado moderno de 5s en #lanzador-salida (sin tocar vídeos lanzados)
+  var stageFotos = [];
+  var stageIdx = 0;
+  var stageTimer = null;
+  var barTimer = null;
+  var caja = salida ? salida.closest('.mg-lanzador-caja') : null;
+  var barFill = null;
+
+  if (caja && !caja.querySelector('.mg-stage-bar')) {
+    var prevBtn = document.createElement('button');
+    prevBtn.type = 'button';
+    prevBtn.className = 'mg-stage-nav mg-stage-prev';
+    prevBtn.setAttribute('aria-label', 'Foto anterior');
+    prevBtn.textContent = '‹';
+    var nextBtn = document.createElement('button');
+    nextBtn.type = 'button';
+    nextBtn.className = 'mg-stage-nav mg-stage-next';
+    nextBtn.setAttribute('aria-label', 'Siguiente foto');
+    nextBtn.textContent = '›';
+    var bar = document.createElement('div');
+    bar.className = 'mg-stage-bar';
+    barFill = document.createElement('div');
+    barFill.className = 'mg-stage-bar-fill';
+    bar.appendChild(barFill);
+    caja.appendChild(prevBtn);
+    caja.appendChild(nextBtn);
+    caja.appendChild(bar);
+
+    prevBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (stageFotos.length) showStagePhoto(stageIdx - 1);
+    });
+    nextBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (stageFotos.length) showStagePhoto(stageIdx + 1);
+    });
+  }
+
+  function showStagePhoto(idx) {
+    if (!salida || !stageFotos.length) return;
+    if (salida.querySelector('video')) return; // Respeta vídeos del lanzador
+    stageIdx = (idx + stageFotos.length) % stageFotos.length;
+    var f = stageFotos[stageIdx];
+    salida.innerHTML =
+      '<img class="mg-anim-slide" src="' + f.archivo + '" alt="' + (f.titulo || 'Moisés Gallardo') + '" />' +
+      '<div class="mg-foto-rotulo" style="width:100%; border-radius:10px;">FOTÓGRAFO: MOISÉS GALLARDO - MG BARCELONA LIVE</div>';
+
+    if (barFill) {
+      clearInterval(barTimer);
+      var t0 = Date.now();
+      barFill.style.width = '0%';
+      barTimer = setInterval(function () {
+        var pct = Math.min(100, ((Date.now() - t0) / 5000) * 100);
+        barFill.style.width = pct + '%';
+      }, 100);
+    }
+    clearTimeout(stageTimer);
+    stageTimer = setTimeout(function () {
+      showStagePhoto(stageIdx + 1);
+    }, 5000);
+  }
+
   async function syncFromLauncher() {
     try {
       var r = await fetch('eventos_fotos.json?_=' + Date.now(), { cache: 'no-store' });
@@ -1110,27 +1264,8 @@
         : (Array.isArray(data && data.fotos) ? data.fotos : []);
       if (!fotos.length) return;
 
-      // Muestra la primera foto en grande en #lanzador-salida si está vacío
-      if (salida && !salida.querySelector('img, video')) {
-        var first = fotos[0];
-        salida.innerHTML =
-          '<img src="' + first.archivo + '" alt="' + (first.titulo || 'Moisés Gallardo') + '" />' +
-          '<div class="mg-foto-rotulo" style="width:100%; border-radius:10px;">FOTÓGRAFO: MOISÉS GALLARDO - MG BARCELONA LIVE</div>';
-      }
-
-      // Rellena la galería #mgFotoGrid con las fotos publicadas desde mg_studio.py
-      grid.innerHTML = '';
-      fotos.forEach(function (f) {
-        var txt = ((f.club || '') + ' ' + (f.titulo || '')).toLowerCase();
-        var city = txt.indexOf('ibiza') !== -1 ? 'ibiza' : 'barcelona';
-        var card = document.createElement('article');
-        card.className = 'mg-foto-card';
-        card.setAttribute('data-city', city);
-        card.innerHTML =
-          '<img src="' + f.archivo + '" alt="' + (f.titulo || 'Moisés Gallardo') + '" loading="lazy" />' +
-          '<div class="mg-foto-rotulo">FOTÓGRAFO: MOISÉS GALLARDO - MG BARCELONA LIVE</div>';
-        grid.appendChild(card);
-      });
+      allStageFotos = fotos;
+      applyCityFilter(activeCity);
     } catch (e) {}
   }
 
@@ -1192,6 +1327,12 @@
     Marcas, locales y colaboradores que impulsan la música en directo y los eventos de MG Barcelona Live.
   </p>
   <div class="sponsors-grid">
+    <div class="sponsor-card" style="border-color: rgba(255,45,120,0.45); box-shadow: 0 0 28px rgba(255,45,120,0.16);">
+      <span class="sponsor-tier">Local Recomendado · Gaixample</span>
+      <img src="img/new_strass_barcelona.jpg" alt="New Strass Barcelona" loading="lazy" style="width:86px; height:86px; object-fit:cover; border-radius:14px; margin:0.65rem auto 0.5rem; border:1px solid rgba(255,255,255,0.2);" />
+      <div class="sponsor-name">New Strass Barcelona</div>
+      <p class="sponsor-desc">Shows Drag en vivo (23:30h), Drag Bingo los domingos, cócteles y pop/remix.<br>📍 C/ de Villarroel, 68 · Barcelona<br>🕒 Todos los días 18:00 – 03:00<br><a href="https://www.instagram.com/strass_bcn/" target="_blank" rel="noopener" style="color:var(--gold); font-weight:700;">@strass_bcn</a></p>
+    </div>
     <div class="sponsor-card">
       <span class="sponsor-tier">Sponsor Oficial</span>
       <span class="sponsor-icon">🎧</span>
@@ -1413,6 +1554,7 @@ function applyDucking() {
 // ─── ANUNCIOS DE LA RADIO (8 ANUNCIOS) ─────────────────────
 (function() {
   const adList = [
+    "publicidad/strass_barcelona.mp4",
     "publicidad/43c25109d82e3217bbaab925bf064effc319b1956df84da3300949ef4455a9aa.mp4",
     "publicidad/18f581807f965a1759b6eee38f05afba215c3be2f092f8a796d3d33ad53b6452.mp4",
     "publicidad/061d9443f15357c0533bfb2ea80de13d7c64966f061b6bce49033f13858effec.mp4",
