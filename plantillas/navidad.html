@@ -1026,8 +1026,9 @@ function applyDucking() {
 // ─── VIDEOS MUSICALES (31 CLIPS) ───────────────────────────
 (function() {
   
+    const musicList = [
     "videos/moda_01.mp4","videos/moda_02.mp4","videos/moda_03.mp4","videos/moda_04.mp4","videos/moda_05.mp4","videos/moda_06.mp4","videos/moda_07.mp4","videos/moda_08.mp4","videos/moda_09.mp4","videos/moda_10.mp4","videos/moda_11.mp4","videos/moda_12.mp4","videos/moda_13.mp4","videos/moda_14.mp4","videos/moda_15.mp4","videos/moda_16.mp4","videos/moda_17.mp4","videos/moda_18.mp4","videos/moda_19.mp4","videos/moda_20.mp4","videos/moda_21.mp4","videos/moda_22.mp4","videos/moda_23.mp4","videos/moda_24.mp4","videos/moda_25.mp4","videos/moda_26.mp4","videos/moda_27.mp4","videos/moda_28.mp4","videos/moda_29.mp4","videos/moda_30.mp4","videos/moda_31.mp4"
-  
+  ];
   const video = document.getElementById('liveVideo');
   const btn = document.getElementById('liveVideoButton');
   const nextBtn = document.getElementById('liveVideoNext');
@@ -1260,5 +1261,6 @@ document.querySelectorAll('.event-card, .stat-card, .player-card, .sponsor-card'
   observer.observe(el);
 });
 </script>
+<script type="application/json" id="publicidad-config">{"intervalo":8,"anuncios":[]}</script>
 </body>
 </html>
