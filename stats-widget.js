@@ -232,4 +232,25 @@
   } else {
     init();
   }
+
+  // Controlador universal de volumen (funciona en todas las plantillas incluso tras cambio en vivo y permite 0%)
+  if (!window.__mgVolBound) {
+    window.__mgVolBound = true;
+    var applyVol = function (e) {
+      var t = e && e.target;
+      if (!t || (t.id !== 'volume' && t.id !== 'vol')) return;
+      var v = parseFloat(t.value);
+      if (isNaN(v)) return;
+      v = Math.max(0, Math.min(1, v));
+      var a = document.getElementById('radio-audio') || window.__mgPersistentAudio;
+      if (a) {
+        a.muted = (v === 0);
+        a.volume = v;
+      }
+      var pct = document.getElementById('vol-pct');
+      if (pct) pct.textContent = Math.round(v * 100) + '%';
+    };
+    document.addEventListener('input', applyVol, true);
+    document.addEventListener('change', applyVol, true);
+  }
 })();

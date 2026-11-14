@@ -907,7 +907,7 @@ let liveVideoMuted = true;
 let adVideoMuted = true;
 
 function radioBaseVol() {
-  return parseFloat(volSlider.value) || 0.8;
+  var _v = parseFloat(volSlider.value); return isNaN(_v) ? 0.8 : _v;
 }
 
 function applyDucking() {
@@ -1159,7 +1159,7 @@ document.querySelectorAll('.event-card, .stat-card, .player-card').forEach(el =>
   observer.observe(el);
 });
 </script>
-<script src="stats-widget.js?v=2" defer></script>
+<script src="stats-widget.js?v=3" defer></script>
 <script src="eventos-fotos.js?v=1" defer></script>
 </body>
 </html>
