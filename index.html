@@ -653,6 +653,7 @@
   <a href="#" class="nav-logo">MG BCN Live</a>
   <ul class="nav-links">
     <li><a href="#player">Radio</a></li>
+    <li><a href="#fotografia-mg">Fotografía</a></li>
     <li><a href="#videos">Vídeos</a></li>
     <li><a href="#events">Eventos</a></li>
     <li><a href="#sponsors">Sponsors</a></li>
@@ -791,52 +792,10 @@
 </section>
 
 
-<!-- Video & Ads Section -->
-<section id="videos" style="position:relative; z-index:2; padding:5rem 1.5rem; max-width:1100px; margin:0 auto;">
-  <p class="section-label" style="text-align:center;">🎬 En Pantalla</p>
-  <h2 class="section-title" style="text-align:center;">Vídeos Musicales &amp; Publicidad</h2>
-
-  <div class="events-grid" style="grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));">
-    <!-- Tarjeta Vídeos Musicales -->
-    <div class="event-card" style="padding:1.8rem; background:var(--glass); border:1px solid rgba(0,240,255,0.2); border-radius:24px; box-shadow:0 0 35px rgba(0,240,255,0.1);">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.05em; color:var(--cyan); margin:0;">Vídeos Musicales</h3>
-        <span class="tag tag-cyan">Moda &amp; House</span>
-      </div>
-      <div style="position:relative; aspect-ratio:16/9; background:#000; border-radius:14px; overflow:hidden; border:1px solid rgba(0,240,255,0.25); box-shadow:0 0 25px rgba(0,240,255,0.2);">
-        <video id="liveVideo" autoplay playsinline muted preload="auto" style="width:100%; height:100%; object-fit:contain; display:block;"></video>
-      </div>
-      <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap; margin-top:1.2rem;">
-        <button id="liveVideoButton" class="btn btn-primary" style="padding:0.6rem 1.3rem; font-size:0.8rem;">Pausar</button>
-        <button id="liveVideoNext" class="btn btn-outline" style="padding:0.6rem 1.3rem; font-size:0.8rem;">Siguiente</button>
-        <button id="liveVideoSound" class="btn btn-outline" style="padding:0.6rem 1.3rem; font-size:0.8rem;">Escuchar vídeo</button>
-      </div>
-      <p id="liveVideoStatus" style="font-size:0.75rem; color:rgba(255,255,255,0.55); margin-top:0.9rem; line-height:1.5;">Cargando vídeos musicales...</p>
-    </div>
-
-    <!-- Tarjeta Publicidad de la Radio -->
-    <div class="event-card" style="padding:1.8rem; background:var(--glass); border:1px solid rgba(255,45,120,0.2); border-radius:24px; box-shadow:0 0 35px rgba(255,45,120,0.1);">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.05em; color:var(--pink); margin:0;">Publicidad de la Radio</h3>
-        <span class="tag tag-pink">Anuncios MG</span>
-      </div>
-      <div style="position:relative; aspect-ratio:16/9; background:#000; border-radius:14px; overflow:hidden; border:1px solid rgba(255,45,120,0.25); box-shadow:0 0 25px rgba(255,45,120,0.2);">
-        <video id="adVideo" autoplay playsinline muted preload="auto" style="width:100%; height:100%; object-fit:contain; display:block;"></video>
-      </div>
-      <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap; margin-top:1.2rem;">
-        <button id="adPause" class="btn btn-outline" style="padding:0.6rem 1.3rem; font-size:0.8rem;">Pausar</button>
-        <button id="adNext" class="btn btn-outline" style="padding:0.6rem 1.3rem; font-size:0.8rem;">Siguiente</button>
-        <button id="adSound" class="btn btn-outline" style="padding:0.6rem 1.3rem; font-size:0.8rem;">Escuchar anuncio</button>
-      </div>
-      <p id="adStatus" style="font-size:0.75rem; color:rgba(255,255,255,0.55); margin-top:0.9rem; line-height:1.5;">Anuncios y autopromociones en directo.</p>
-    </div>
-  </div>
-</section>
-
 <!-- =========================================================================
-     APARTADO FOTOGRÁFICO - MOISÉS GALLARDO (INTEGRADO CON ESTÉTICA ACTUAL)
+     APARTADO FOTOGRÁFICO - MOISÉS GALLARDO (POR ENCIMA DE VÍDEOS Y PUBLICIDAD)
      ========================================================================= -->
-<section id="fotografia-mg" style="position:relative; z-index:2; padding:4.5rem 1.5rem; max-width:1100px; margin:0 auto;">
+<section id="fotografia-mg" style="position:relative; z-index:2; padding:4.5rem 1.5rem 2.5rem; max-width:1100px; margin:0 auto;">
   <style>
     #fotografia-mg .mg-foto-filtros {
       display: flex;
@@ -876,6 +835,7 @@
       border-radius: 22px;
       box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55), 0 0 30px rgba(180, 79, 255, 0.14);
       overflow: hidden;
+      cursor: pointer;
     }
     #fotografia-mg .mg-lanzador-salida {
       position: relative;
@@ -890,7 +850,7 @@
     #fotografia-mg .mg-lanzador-salida video {
       width: 100%;
       height: auto;
-      max-height: 460px;
+      max-height: 480px;
       object-fit: contain;
       object-position: center;
       border-radius: 14px;
@@ -910,29 +870,30 @@
       position: absolute;
       top: 44%;
       transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.22);
-      background: rgba(7,5,15,0.72);
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(7,5,15,0.78);
       color: #fff;
-      font-size: 1.35rem;
+      font-size: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 4;
       transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
     #fotografia-mg .mg-stage-nav:hover {
       background: var(--pink);
-      transform: translateY(-50%) scale(1.08);
+      transform: translateY(-50%) scale(1.1);
     }
-    #fotografia-mg .mg-stage-prev { left: 10px; }
-    #fotografia-mg .mg-stage-next { right: 10px; }
+    #fotografia-mg .mg-stage-prev { left: 14px; }
+    #fotografia-mg .mg-stage-next { right: 14px; }
     #fotografia-mg .mg-stage-bar {
       width: 100%;
-      height: 3px;
+      height: 4px;
       border-radius: 999px;
       background: rgba(255,255,255,0.1);
       overflow: hidden;
@@ -944,138 +905,178 @@
       background: linear-gradient(90deg, var(--pink), var(--gold), var(--cyan));
       transition: width 0.2s linear;
     }
+    #fotografia-mg .mg-foto-rotulo {
+      background: #000;
+      padding: 0.55rem 0.6rem;
+      text-align: center;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      border-top: 1px solid var(--border);
+      text-transform: uppercase;
+      line-height: 1.25;
+    }
     @media (max-width: 640px) {
       #fotografia-mg .mg-lanzador-salida img,
       #fotografia-mg .mg-lanzador-salida video {
         max-height: 300px;
       }
     }
-    #fotografia-mg .mg-foto-grid {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 0.85rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding: 0.6rem 0.25rem 0.9rem;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: var(--pink) rgba(255,255,255,0.08);
-    }
-    #fotografia-mg .mg-foto-grid::-webkit-scrollbar {
-      height: 6px;
-    }
-    #fotografia-mg .mg-foto-grid::-webkit-scrollbar-track {
-      background: rgba(255,255,255,0.06);
-      border-radius: 999px;
-    }
-    #fotografia-mg .mg-foto-grid::-webkit-scrollbar-thumb {
-      background: linear-gradient(90deg, var(--pink), var(--neon));
-      border-radius: 999px;
-    }
-    @keyframes mgCardIn {
-      0% { opacity: 0; transform: translateY(16px) scale(0.97); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    #fotografia-mg .mg-foto-card {
-      flex: 0 0 155px;
-      scroll-snap-align: start;
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      animation: mgCardIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
-    }
-    @media (min-width: 760px) {
-      #fotografia-mg .mg-foto-card {
-        flex: 0 0 195px;
-      }
-    }
-    #fotografia-mg .mg-foto-card:hover,
-    #fotografia-mg .mg-foto-card.is-current {
-      transform: translateY(-4px);
-      border-color: var(--gold);
-      box-shadow: 0 8px 22px rgba(245, 200, 66, 0.22), 0 0 16px rgba(255, 45, 120, 0.2);
-    }
-    #fotografia-mg .mg-foto-card.is-hidden {
-      display: none;
-    }
-    #fotografia-mg .mg-foto-card img {
-      width: 100%;
-      height: 115px;
-      object-fit: contain;
-      object-position: center;
-      display: block;
-      background: #000;
-      transition: transform 0.35s ease;
-    }
-    #fotografia-mg .mg-foto-card:hover img {
-      transform: scale(1.04);
-    }
-    @media (min-width: 760px) {
-      #fotografia-mg .mg-foto-card img {
-        height: 135px;
-      }
-    }
-    #fotografia-mg .mg-foto-rotulo {
-      background: #000;
-      padding: 0.45rem 0.4rem;
-      text-align: center;
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--gold);
-      border-top: 1px solid var(--border);
-      text-transform: uppercase;
-      line-height: 1.25;
-    }
+
+    /* ─── LIGHTBOX VISOR PANTALLA COMPLETA (MODO AUTO Y MANUAL) ─── */
     #mgFotoLightbox {
       position: fixed;
       inset: 0;
       z-index: 99999;
-      background: rgba(7, 5, 15, 0.96);
+      background: rgba(5, 3, 14, 0.96);
+      backdrop-filter: blur(14px);
       display: none;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      padding: 1.2rem;
+      padding: 1.5rem;
+      user-select: none;
     }
     #mgFotoLightbox.is-open {
       display: flex;
     }
-    #mgFotoLightbox img {
-      max-width: 94vw;
-      max-height: 78vh;
-      object-fit: contain;
-      border-radius: 14px;
-      border: 1px solid var(--border);
+    #mgFotoLightbox .mg-lb-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 90vw;
+      max-height: 85vh;
+      position: relative;
     }
-    #mgFotoLightbox .mg-lb-rotulo {
+    #mgFotoLightbox img {
+      max-width: 88vw;
+      max-height: 72vh;
+      object-fit: contain;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.85);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    #mgFotoLightbox img.fade-swap {
+      opacity: 0.25;
+      transform: scale(0.98);
+    }
+    #mgFotoLightbox .mg-lb-caption {
       margin-top: 0.85rem;
-      color: var(--gold);
+      text-align: center;
+    }
+    #mgFotoLightbox .mg-lb-info {
+      color: var(--cyan);
       font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 0.08em;
-      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+    #mgFotoLightbox .mg-lb-rotulo {
+      color: var(--gold);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
     #mgFotoLightbox .mg-lb-close {
       position: fixed;
-      top: 16px;
-      right: 18px;
-      width: 44px;
-      height: 44px;
+      top: 20px;
+      right: 22px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--pink);
+      border: 1px solid rgba(255,45,120,0.6);
+      background: rgba(255,45,120,0.25);
       color: #fff;
-      font-size: 1.25rem;
+      font-size: 1.4rem;
       font-weight: 700;
       cursor: pointer;
+      z-index: 100001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    #mgFotoLightbox .mg-lb-close:hover {
+      background: var(--pink);
+      transform: scale(1.1);
+    }
+    #mgFotoLightbox .mg-lb-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(12, 8, 24, 0.75);
+      color: #fff;
+      font-size: 2.2rem;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 100001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    #mgFotoLightbox .mg-lb-nav:hover {
+      background: rgba(180, 79, 255, 0.9);
+      border-color: #b44fff;
+      transform: translateY(-50%) scale(1.12);
+    }
+    #mgFotoLightbox .mg-lb-prev { left: 24px; }
+    #mgFotoLightbox .mg-lb-next { right: 24px; }
+    #mgFotoLightbox .mg-lb-controls {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100001;
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+    #mgFotoLightbox .mg-lb-auto-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 240, 255, 0.45);
+      background: rgba(8, 20, 36, 0.88);
+      color: var(--cyan);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.6);
+      transition: all 0.2s ease;
+    }
+    #mgFotoLightbox .mg-lb-auto-btn:hover {
+      background: var(--cyan);
+      color: #07050f;
+      box-shadow: 0 0 25px rgba(0,240,255,0.45);
+    }
+    #mgFotoLightbox .mg-lb-auto-btn.is-paused {
+      border-color: rgba(245, 200, 66, 0.5);
+      color: var(--gold);
+      background: rgba(30, 24, 10, 0.88);
+    }
+    #mgFotoLightbox .mg-lb-auto-btn.is-paused:hover {
+      background: var(--gold);
+      color: #07050f;
+      box-shadow: 0 0 25px rgba(245,200,66,0.45);
+    }
+    @media(max-width: 600px) {
+      #mgFotoLightbox .mg-lb-prev { left: 8px; width: 42px; height: 42px; font-size: 1.8rem; }
+      #mgFotoLightbox .mg-lb-next { right: 8px; width: 42px; height: 42px; font-size: 1.8rem; }
+      #mgFotoLightbox .mg-lb-auto-btn { padding: 0.5rem 1rem; font-size: 0.75rem; }
     }
   </style>
 
@@ -1083,7 +1084,7 @@
   <h2 class="section-title" style="text-align:center;">FOTOGRAFÍA - MOISÉS GALLARDO</h2>
 
   <!-- Contenedor directo para la salida de tu herramienta lanzadora -->
-  <div class="mg-lanzador-caja">
+  <div class="mg-lanzador-caja" title="Haz clic en la foto para abrir a pantalla completa (modo automático o manual)">
     <div id="lanzador-salida" class="mg-lanzador-salida">
       <!-- AQUÍ VA LA SALIDA DE MI HERRAMIENTA LANZADORA: FOTOS / VÍDEOS / PUBLICIDAD -->
     </div>
@@ -1097,11 +1098,26 @@
   </div>
 </section>
 
-<!-- Visor pantalla completa para fotografías -->
-<div id="mgFotoLightbox" aria-hidden="true">
-  <button type="button" class="mg-lb-close" id="mgLbClose" aria-label="Cerrar foto">✕</button>
-  <img id="mgLbImg" src="" alt="Fotografía Moisés Gallardo" />
-  <div class="mg-lb-rotulo">FOTÓGRAFO: MOISÉS GALLARDO - MG BARCELONA LIVE</div>
+<!-- Visor pantalla completa para fotografías con modo automático y manual -->
+<div id="mgFotoLightbox" aria-hidden="true" role="dialog" aria-modal="true">
+  <button type="button" class="mg-lb-close" id="mgLbClose" aria-label="Cerrar visor">✕</button>
+  <button type="button" class="mg-lb-nav mg-lb-prev" id="mgLbPrev" aria-label="Foto anterior">‹</button>
+
+  <div class="mg-lb-content">
+    <img id="mgLbImg" src="" alt="Fotografía Moisés Gallardo" />
+    <div class="mg-lb-caption">
+      <div class="mg-lb-info" id="mgLbInfo">1 / 1 · Barcelona</div>
+      <div class="mg-lb-rotulo">FOTÓGRAFO: MOISÉS GALLARDO - MG BARCELONA LIVE</div>
+    </div>
+  </div>
+
+  <button type="button" class="mg-lb-nav mg-lb-next" id="mgLbNext" aria-label="Siguiente foto">›</button>
+
+  <div class="mg-lb-controls">
+    <button type="button" class="mg-lb-auto-btn is-playing" id="mgLbAutoBtn" aria-label="Pausar o activar pase automático">
+      <span id="mgLbAutoIcon">⏸</span> <span id="mgLbAutoText">Pase Automático (5s)</span>
+    </button>
+  </div>
 </div>
 
 <script>
@@ -1110,22 +1126,133 @@
   var lb = document.getElementById('mgFotoLightbox');
   var lbImg = document.getElementById('mgLbImg');
   var lbClose = document.getElementById('mgLbClose');
+  var lbPrev = document.getElementById('mgLbPrev');
+  var lbNext = document.getElementById('mgLbNext');
+  var lbAutoBtn = document.getElementById('mgLbAutoBtn');
+  var lbAutoIcon = document.getElementById('mgLbAutoIcon');
+  var lbAutoText = document.getElementById('mgLbAutoText');
+  var lbInfo = document.getElementById('mgLbInfo');
+
+  var allStageFotos = [];
+  var stageFotos = [];
+  var activeCity = 'todas';
+  var stageIdx = 0;
+  var stageTimer = null;
+  var barTimer = null;
+  var caja = salida ? salida.closest('.mg-lanzador-caja') : null;
+  var barFill = null;
+
+  var lbIdx = 0;
+  var lbAutoPlay = true;
+  var lbTimer = null;
+
+  function updateLbAutoUI() {
+    if (!lbAutoBtn) return;
+    if (lbAutoPlay) {
+      lbAutoBtn.classList.remove('is-paused');
+      lbAutoBtn.classList.add('is-playing');
+      if (lbAutoIcon) lbAutoIcon.textContent = '⏸';
+      if (lbAutoText) lbAutoText.textContent = 'Pase Automático (5s)';
+    } else {
+      lbAutoBtn.classList.remove('is-playing');
+      lbAutoBtn.classList.add('is-paused');
+      if (lbAutoIcon) lbAutoIcon.textContent = '▶';
+      if (lbAutoText) lbAutoText.textContent = 'Modo Manual (Clic para Auto)';
+    }
+  }
+
+  function startLbAuto() {
+    stopLbAuto();
+    if (!lbAutoPlay || !stageFotos.length) return;
+    lbTimer = setInterval(function () {
+      showLbPhoto(lbIdx + 1, false);
+    }, 5000);
+  }
+
+  function stopLbAuto() {
+    if (lbTimer) {
+      clearInterval(lbTimer);
+      lbTimer = null;
+    }
+  }
+
+  function showLbPhoto(idx, userInteraction) {
+    if (!stageFotos.length) return;
+    lbIdx = (idx + stageFotos.length) % stageFotos.length;
+    var f = stageFotos[lbIdx];
+    if (lbImg) {
+      lbImg.classList.add('fade-swap');
+      setTimeout(function () {
+        lbImg.src = f.archivo;
+        lbImg.alt = f.titulo || 'Moisés Gallardo';
+        lbImg.classList.remove('fade-swap');
+      }, 150);
+    }
+    if (lbInfo) {
+      lbInfo.textContent = (lbIdx + 1) + ' / ' + stageFotos.length + (f.club ? ' · ' + f.club : '');
+    }
+    if (userInteraction && lbAutoPlay) {
+      startLbAuto();
+    }
+  }
 
   function openFullscreen(src, alt) {
-    if (!src) return;
-    lbImg.src = src;
-    lbImg.alt = alt || 'Moisés Gallardo';
+    if (!stageFotos.length) return;
+    var found = -1;
+    if (src) {
+      for (var i = 0; i < stageFotos.length; i++) {
+        if (stageFotos[i].archivo === src || src.indexOf(stageFotos[i].archivo) !== -1) {
+          found = i;
+          break;
+        }
+      }
+    }
+    lbIdx = found >= 0 ? found : stageIdx;
+    showLbPhoto(lbIdx, false);
     lb.classList.add('is-open');
     lb.setAttribute('aria-hidden', 'false');
+    updateLbAutoUI();
+    if (lbAutoPlay) startLbAuto();
   }
 
   function closeFullscreen() {
+    stopLbAuto();
     lb.classList.remove('is-open');
     lb.setAttribute('aria-hidden', 'true');
   }
 
-  var allStageFotos = [];
-  var activeCity = 'todas';
+  if (lbClose) lbClose.addEventListener('click', closeFullscreen);
+  if (lbPrev) lbPrev.addEventListener('click', function (e) {
+    e.stopPropagation();
+    showLbPhoto(lbIdx - 1, true);
+  });
+  if (lbNext) lbNext.addEventListener('click', function (e) {
+    e.stopPropagation();
+    showLbPhoto(lbIdx + 1, true);
+  });
+  if (lbAutoBtn) lbAutoBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    lbAutoPlay = !lbAutoPlay;
+    updateLbAutoUI();
+    if (lbAutoPlay) startLbAuto(); else stopLbAuto();
+  });
+
+  lb.addEventListener('click', function (e) {
+    if (e.target === lb) closeFullscreen();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeFullscreen();
+    if (e.key === 'ArrowLeft') showLbPhoto(lbIdx - 1, true);
+    if (e.key === 'ArrowRight') showLbPhoto(lbIdx + 1, true);
+    if (e.key === ' ' || e.code === 'Space') {
+      e.preventDefault();
+      lbAutoPlay = !lbAutoPlay;
+      updateLbAutoUI();
+      if (lbAutoPlay) startLbAuto(); else stopLbAuto();
+    }
+  });
 
   function applyCityFilter(city) {
     activeCity = city || 'todas';
@@ -1138,9 +1265,12 @@
     });
     stageFotos = filtered.length ? filtered : allStageFotos;
     showStagePhoto(0);
+    if (lb.classList.contains('is-open')) {
+      showLbPhoto(0, false);
+    }
   }
 
-  // Filtros [BARCELONA] [IBIZA] [TODAS] dentro de la ventana única
+  // Filtros [BARCELONA] [IBIZA] [TODAS]
   document.querySelectorAll('[data-mg-city]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var city = btn.getAttribute('data-mg-city');
@@ -1151,19 +1281,14 @@
     });
   });
 
-  // Clic en el visor grande -> pantalla completa
-  document.getElementById('fotografia-mg').addEventListener('click', function (e) {
-    var stageImg = e.target.closest('#lanzador-salida img');
-    if (stageImg) openFullscreen(stageImg.src, stageImg.alt);
-  });
-
-  lbClose.addEventListener('click', closeFullscreen);
-  lb.addEventListener('click', function (e) {
-    if (e.target === lb) closeFullscreen();
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && lb.classList.contains('is-open')) closeFullscreen();
-  });
+  // Clic en la foto o caja -> abrir a pantalla completa
+  if (caja) {
+    caja.addEventListener('click', function (e) {
+      if (e.target.closest('.mg-stage-nav')) return;
+      var img = salida ? salida.querySelector('img') : null;
+      if (img) openFullscreen(img.src, img.alt);
+    });
+  }
 
   // Garantiza que cualquier vídeo inyectado por tu lanzador salga SIEMPRE en MUTE
   function enforceMuteInsideLauncher() {
@@ -1182,20 +1307,10 @@
     enforceMuteInsideLauncher();
   }
 
-  // Función auxiliar opcional por si tu herramienta lanzadora quiere añadir fotos a la galería
   window.mgAgregarFotoLanzador = function (src, ciudad) {
     allStageFotos.unshift({ archivo: src, titulo: 'Moisés Gallardo', club: ciudad || 'Barcelona' });
     applyCityFilter(activeCity);
   };
-
-  // Conexión automática con la salida de tu herramienta lanzadora (eventos_fotos.json)
-  // + Carrusel animado moderno de 5s en #lanzador-salida (sin tocar vídeos lanzados)
-  var stageFotos = [];
-  var stageIdx = 0;
-  var stageTimer = null;
-  var barTimer = null;
-  var caja = salida ? salida.closest('.mg-lanzador-caja') : null;
-  var barFill = null;
 
   if (caja && !caja.querySelector('.mg-stage-bar')) {
     var prevBtn = document.createElement('button');
@@ -1229,7 +1344,7 @@
 
   function showStagePhoto(idx) {
     if (!salida || !stageFotos.length) return;
-    if (salida.querySelector('video')) return; // Respeta vídeos del lanzador
+    if (salida.querySelector('video')) return;
     stageIdx = (idx + stageFotos.length) % stageFotos.length;
     var f = stageFotos[stageIdx];
     salida.innerHTML =
@@ -1272,6 +1387,56 @@
   syncFromLauncher();
 })();
 </script>
+
+<!-- Video & Ads Section (VENTANAS MÁS GRANDES Y SEPARADAS) -->
+<section id="videos" style="position:relative; z-index:2; padding:5.5rem 1.5rem 5rem; max-width:1300px; margin:0 auto;">
+  <p class="section-label" style="text-align:center;">🎬 En Pantalla</p>
+  <h2 class="section-title" style="text-align:center;">Vídeos Musicales &amp; Publicidad</h2>
+
+  <div class="events-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(460px, 1fr)); gap:3.2rem; margin-top:2.2rem;">
+    <!-- Tarjeta Vídeos Musicales -->
+    <div class="event-card" style="padding:2.2rem; background:var(--glass); border:1px solid rgba(0,240,255,0.25); border-radius:26px; box-shadow:0 0 42px rgba(0,240,255,0.12); display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+          <h3 style="font-family:'Bebas Neue',sans-serif; font-size:2.2rem; letter-spacing:0.05em; color:var(--cyan); margin:0;">Vídeos Musicales</h3>
+          <span class="tag tag-cyan" style="font-size:0.8rem; padding:0.35rem 0.9rem;">Moda &amp; House</span>
+        </div>
+        <div style="position:relative; aspect-ratio:16/9; background:#000; border-radius:16px; overflow:hidden; border:1px solid rgba(0,240,255,0.3); box-shadow:0 0 30px rgba(0,240,255,0.22);">
+          <video id="liveVideo" autoplay playsinline muted preload="auto" style="width:100%; height:100%; object-fit:contain; display:block;"></video>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex; gap:0.7rem; align-items:center; flex-wrap:wrap; margin-top:1.4rem;">
+          <button id="liveVideoButton" class="btn btn-primary" style="padding:0.7rem 1.4rem; font-size:0.85rem;">Pausar</button>
+          <button id="liveVideoNext" class="btn btn-outline" style="padding:0.7rem 1.4rem; font-size:0.85rem;">Siguiente</button>
+          <button id="liveVideoSound" class="btn btn-outline" style="padding:0.7rem 1.4rem; font-size:0.85rem;">Escuchar vídeo</button>
+        </div>
+        <p id="liveVideoStatus" style="font-size:0.8rem; color:rgba(255,255,255,0.65); margin-top:1rem; line-height:1.5;">Cargando vídeos musicales...</p>
+      </div>
+    </div>
+
+    <!-- Tarjeta Publicidad de la Radio -->
+    <div class="event-card" style="padding:2.2rem; background:var(--glass); border:1px solid rgba(255,45,120,0.25); border-radius:26px; box-shadow:0 0 42px rgba(255,45,120,0.12); display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+          <h3 style="font-family:'Bebas Neue',sans-serif; font-size:2.2rem; letter-spacing:0.05em; color:var(--pink); margin:0;">Publicidad de la Radio</h3>
+          <span class="tag tag-pink" style="font-size:0.8rem; padding:0.35rem 0.9rem;">Anuncios MG</span>
+        </div>
+        <div style="position:relative; aspect-ratio:16/9; background:#000; border-radius:16px; overflow:hidden; border:1px solid rgba(255,45,120,0.3); box-shadow:0 0 30px rgba(255,45,120,0.22);">
+          <video id="adVideo" autoplay playsinline muted preload="auto" style="width:100%; height:100%; object-fit:contain; display:block;"></video>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex; gap:0.7rem; align-items:center; flex-wrap:wrap; margin-top:1.4rem;">
+          <button id="adPause" class="btn btn-outline" style="padding:0.7rem 1.4rem; font-size:0.85rem;">Pausar</button>
+          <button id="adNext" class="btn btn-outline" style="padding:0.7rem 1.4rem; font-size:0.85rem;">Siguiente</button>
+          <button id="adSound" class="btn btn-outline" style="padding:0.7rem 1.4rem; font-size:0.85rem;">Escuchar anuncio</button>
+        </div>
+        <p id="adStatus" style="font-size:0.8rem; color:rgba(255,255,255,0.65); margin-top:1rem; line-height:1.5;">Anuncios y autopromociones en directo.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Events -->
 <section id="events">
@@ -1327,9 +1492,11 @@
     Marcas, locales y colaboradores que impulsan la música en directo y los eventos de MG Barcelona Live.
   </p>
   <div class="sponsors-grid">
-    <div class="sponsor-card" style="border-color: rgba(255,45,120,0.45); box-shadow: 0 0 28px rgba(255,45,120,0.16);">
+    <div class="sponsor-card" style="border-color: rgba(255,45,120,0.55); box-shadow: 0 0 32px rgba(255,45,120,0.22);">
       <span class="sponsor-tier">Local Recomendado · Gaixample</span>
-      <img src="img/new_strass_barcelona.jpg" alt="New Strass Barcelona" loading="lazy" style="width:86px; height:86px; object-fit:cover; border-radius:14px; margin:0.65rem auto 0.5rem; border:1px solid rgba(255,255,255,0.2);" />
+      <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
+        <img src="img/new_strass_barcelona.jpg" alt="New Strass Barcelona" loading="lazy" onerror="this.src='publicidad/new_strass_barcelona.jpg'" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
+      </div>
       <div class="sponsor-name">New Strass Barcelona</div>
       <p class="sponsor-desc">Shows Drag en vivo (23:30h), Drag Bingo los domingos, cócteles y pop/remix.<br>📍 C/ de Villarroel, 68 · Barcelona<br>🕒 Todos los días 18:00 – 03:00<br><a href="https://www.instagram.com/strass_bcn/" target="_blank" rel="noopener" style="color:var(--gold); font-weight:700;">@strass_bcn</a></p>
     </div>
