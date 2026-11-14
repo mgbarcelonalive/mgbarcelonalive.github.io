@@ -1,0 +1,42 @@
+{
+  "activo": true,
+  "intervalo_segundos": 180,
+  "bajar_musica_pct": 25,
+  "cunas": [
+    {
+      "archivo": "cunas/cuna_01_bienvenida_mg.mp3",
+      "titulo": "Bienvenida MG Media Live",
+      "voz": "es-ES-AlvaroNeural",
+      "texto": "¡Estás escuchando MG Media Live, MG Barcelona Live! La radio electrónica oficial desde el corazón de Barcelona. House, Tech House y los mejores clubes, las veinticuatro horas en directo.",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/cuna_02_web_oficial.mp3",
+      "titulo": "Web Oficial MG Media Live",
+      "voz": "es-ES-ElviraNeural",
+      "texto": "Conéctate desde cualquier lugar del mundo en m g barcelona live punto github punto i o. Música sin cortes, vídeos exclusivos y toda la agenda de eventos de Barcelona.",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/cuna_03_anunciate_aqui.mp3",
+      "titulo": "Publicidad y Patrocinio",
+      "voz": "es-ES-AlvaroNeural",
+      "texto": "¿Quieres que tu marca, club o evento suene en toda Barcelona y el mundo? Anúnciate en MG Media Live. Tu publicidad en imagen, vídeo y voz comercial en cada sesión.",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/cuna_04_fiesta_barcelona.mp3",
+      "titulo": "Noches y Clubs de Barcelona",
+      "voz": "es-ES-ElviraNeural",
+      "texto": "Sube el volumen, porque la noche empieza aquí. MG Media Live, la banda sonora de tus sesiones, eventos y discotecas en Barcelona.",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/cuna_05_pide_cancion.mp3",
+      "titulo": "Directo Sin Cortes 24H",
+      "voz": "es-ES-AlvaroNeural",
+      "texto": "Seguimos en directo desde cabina en MG Media Live. Comparte el enlace con tus amigos y disfruta del mejor sonido club las veinticuatro horas.",
+      "activa": true
+    }
+  ]
+}

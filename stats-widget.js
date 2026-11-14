@@ -415,4 +415,59 @@
     });
     window.__mgAdsObs.observe(document.documentElement, { childList: true, subtree: true });
   }
+
+  // Motor de Presentador / Cuñas de Voz automaticas con ducking de radio real
+  if (!window.__mgCunasInstalled) {
+    window.__mgCunasInstalled = true;
+    var cunaIdx = 0;
+    var cunaTimer = null;
+    var cunaConfig = null;
+    var cunaAudio = new Audio();
+    cunaAudio.setAttribute('playsinline', '');
+
+    async function loadCunasConfig() {
+      try {
+        var r = await fetch('cunas.json?_=' + Date.now(), { cache: 'no-store' });
+        if (!r.ok) return;
+        var d = await r.json();
+        var prevInt = cunaConfig ? Number(cunaConfig.intervalo_segundos) : 0;
+        cunaConfig = d;
+        var nextInt = Math.max(20, Number(d && d.intervalo_segundos) || 180);
+        if (!cunaTimer || prevInt !== nextInt) {
+          if (cunaTimer) clearInterval(cunaTimer);
+          cunaTimer = setInterval(playNextCunaIfLive, nextInt * 1000);
+        }
+      } catch (e) {}
+    }
+
+    function playNextCunaIfLive() {
+      if (!cunaConfig || !cunaConfig.activo) return;
+      var list = (cunaConfig.cunas || []).filter(function (c) { return c.activa !== false && c.archivo; });
+      if (!list.length) return;
+      var radio = document.getElementById('radio-audio') || window.__mgPersistentAudio;
+      if (!radio || radio.paused || !radio.src) return;
+      if (!cunaAudio.paused) return;
+
+      var item = list[cunaIdx % list.length];
+      cunaIdx = (cunaIdx + 1) % list.length;
+      var savedVol = radio.volume;
+      var duckRatio = Math.max(0.05, Math.min(1.0, (Number(cunaConfig.bajar_musica_pct) || 25) / 100));
+
+      cunaAudio.src = item.archivo + '?v=' + Date.now();
+      cunaAudio.volume = 1.0;
+
+      var restore = function () {
+        if (radio) radio.volume = savedVol;
+      };
+      cunaAudio.onended = restore;
+      cunaAudio.onerror = restore;
+
+      cunaAudio.play().then(function () {
+        radio.volume = savedVol * duckRatio;
+      }).catch(restore);
+    }
+
+    loadCunasConfig();
+    setInterval(loadCunasConfig, 60000);
+  }
 })();
