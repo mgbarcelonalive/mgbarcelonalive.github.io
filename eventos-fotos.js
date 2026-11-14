@@ -1,5 +1,14 @@
-/* MG Barcelona Live - Galería automática de Fotos de Eventos de Clubs */
+/* MG Barcelona Live - Galería automática de Fotos de Eventos por Plantilla */
 (function () {
+  function getActiveTemplate() {
+    var m = document.querySelector('meta[name="mg-template"]');
+    if (m && m.getAttribute('content')) {
+      return m.getAttribute('content').trim().toLowerCase();
+    }
+    var p = (location.pathname || '').match(/plantillas\/([a-z0-9_-]+)\.html/i);
+    return p ? p[1].toLowerCase() : 'principal';
+  }
+
   function injectStyles() {
     if (document.getElementById('mg-evfotos-style')) return;
     var st = document.createElement('style');
@@ -67,17 +76,24 @@
   }
 
   async function render() {
-    if (document.getElementById('mg-evf-section')) return;
+    var tpl = getActiveTemplate();
+    var existing = document.getElementById('mg-evf-section');
+    if (existing && existing.getAttribute('data-tpl') === tpl) return;
+    if (existing) existing.remove();
     try {
       var r = await fetch('eventos_fotos.json?_=' + Date.now(), { cache: 'no-store' });
       if (!r.ok) return;
       var data = await r.json();
-      var photos = Array.isArray(data && data.fotos) ? data.fotos : [];
+      var byTpl = (data && data.por_plantilla) || {};
+      var photos = Array.isArray(byTpl[tpl]) && byTpl[tpl].length
+        ? byTpl[tpl]
+        : (Array.isArray(data && data.fotos) ? data.fotos : []);
       if (!photos.length) return;
 
       injectStyles();
       var sec = document.createElement('div');
       sec.id = 'mg-evf-section';
+      sec.setAttribute('data-tpl', tpl);
       sec.className = 'mg-evf-wrap';
       sec.innerHTML = [
         '<div class="mg-evf-head">',
@@ -120,7 +136,9 @@
 
   if (!window.__mgEvfObserver && typeof MutationObserver !== 'undefined') {
     window.__mgEvfObserver = new MutationObserver(function () {
-      if (!document.getElementById('mg-evf-section')) {
+      var tpl = getActiveTemplate();
+      var sec = document.getElementById('mg-evf-section');
+      if (!sec || sec.getAttribute('data-tpl') !== tpl) {
         render();
       }
     });
