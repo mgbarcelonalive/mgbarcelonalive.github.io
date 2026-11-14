@@ -2,31 +2,10 @@
   "activo": true,
   "intervalo_segundos": 180,
   "bajar_musica_pct": 25,
+  "studio_auto": false,
+  "studio_orden": "Secuencial",
+  "studio_duck": true,
   "cunas": [
-    {
-      "archivo": "cunas/cuna_02_web_oficial.mp3",
-      "titulo": "Web Oficial MG Media Live",
-      "voz": "es-ES-ElviraNeural",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/cuna_03_anunciate_aqui.mp3",
-      "titulo": "Publicidad y Patrocinio",
-      "voz": "es-ES-AlvaroNeural",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/cuna_04_fiesta_barcelona.mp3",
-      "titulo": "Noches y Clubs de Barcelona",
-      "voz": "es-ES-ElviraNeural",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/cuna_05_pide_cancion.mp3",
-      "titulo": "Directo Sin Cortes 24H",
-      "voz": "es-ES-AlvaroNeural",
-      "activa": true
-    },
     {
       "archivo": "cunas/ElevenLabs_2026-11-14T20_26_09_Cornelio_-_Persuasive__Clear_and_Rich_pvc_s50_sim75_v4__1_.mp3",
       "titulo": "ElevenLabs 2026-11-14T20 26 09 Cornelio - Persuasive, Clear and Rich pvc s50 sim75 v4 (1)",
