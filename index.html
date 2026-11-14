@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta name="mg-tpl" content="ets2">
+<meta name="mg-tpl" content="lgtb">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MG Barcelona Live · ETS2 &amp; TruckersMP Radio</title>
+<title>MG Barcelona Live · LGTB+ Pride Night +18</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #05080f;
-    --amber: #ff9e00;
-    --cyan: #00e5ff;
-    --gold: #ffd166;
-    --red: #ff3b30;
-    --glass: rgba(12, 19, 34, 0.82);
-    --border: rgba(255, 158, 0, 0.28);
+    --bg: #0b0314;
+    --pink: #ff1e8a;
+    --violet: #9d4edd;
+    --cyan: #00f5d4;
+    --gold: #ffd60a;
+    --glass: rgba(24, 8, 38, 0.82);
+    --border: rgba(255, 30, 138, 0.34);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -22,187 +22,152 @@
   body::before {
     content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
     background:
-      radial-gradient(circle at 50% 20%, rgba(0, 229, 255, 0.14), transparent 55%),
-      radial-gradient(circle at 80% 80%, rgba(255, 158, 0, 0.12), transparent 50%),
-      linear-gradient(180deg, #04070d 0%, #091322 60%, #05080f 100%);
+      radial-gradient(circle at 20% 20%, rgba(255, 30, 138, 0.25), transparent 50%),
+      radial-gradient(circle at 80% 30%, rgba(0, 245, 212, 0.16), transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(157, 78, 221, 0.2), transparent 55%);
   }
-  canvas#particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  canvas#particles { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.55; }
+  .bg-video-wrap {
+    position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: #0b0314;
+  }
+  .bg-video-wrap video {
+    width: 100%; height: 100%; object-fit: cover; opacity: 0.45;
+    filter: saturate(1.3) contrast(1.08) brightness(0.85);
+  }
+  .bg-video-wrap::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(11,3,20,0.62) 0%, rgba(28,6,46,0.45) 50%, rgba(11,3,20,0.85) 100%);
+  }
 
+  .pride-bar {
+    position: fixed; top: 0; left: 0; right: 0; height: 6px; z-index: 120;
+    background: linear-gradient(90deg, #ff0040, #ff8c00, #ffd60a, #00e676, #00b0ff, #b44fff);
+  }
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    position: fixed; top: 6px; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0.95rem 2rem;
-    background: rgba(5, 8, 15, 0.88); backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(255, 158, 0, 0.25);
+    padding: 0.9rem 2rem; background: rgba(11, 3, 20, 0.88); backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 30, 138, 0.28);
   }
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; letter-spacing: 0.1em;
-    background: linear-gradient(90deg, var(--gold), var(--amber), var(--cyan));
+    background: linear-gradient(90deg, #ff1e8a, #ffd60a, #00f5d4);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none;
   }
   .nav-links { display: flex; gap: 1.6rem; list-style: none; }
-  .nav-links a { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.65); text-decoration: none; }
-  .nav-links a:hover { color: var(--amber); }
-  @media(max-width:680px) { .nav-links { display: none; } }
+  .nav-links a { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.68); text-decoration: none; }
+  .nav-links a:hover { color: var(--pink); }
+  @media(max-width:640px) { .nav-links { display: none; } }
   .nav-ticket {
     padding: 0.5rem 1.2rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700;
-    background: linear-gradient(135deg, var(--amber), #ff6b00); color: #05080f; text-decoration: none;
+    background: linear-gradient(135deg, var(--pink), var(--violet)); color: #fff; text-decoration: none;
   }
 
-  section { position: relative; z-index: 2; padding: 4.5rem 1.5rem; max-width: 1140px; margin: 0 auto; }
+  section { position: relative; z-index: 2; padding: 4.5rem 1.5rem; max-width: 1120px; margin: 0 auto; }
   .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
   .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 6vw, 3.6rem); letter-spacing: 0.05em; line-height: 1; margin-bottom: 1.5rem; }
 
-  #hero { min-height: 96vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 6.5rem; }
-  .ets-badge {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.45rem 1.2rem; border-radius: 999px;
-    background: rgba(255,158,0,0.14); border: 1px solid rgba(255,158,0,0.45);
-    color: var(--gold); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.2rem;
+  #hero { min-height: 96vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-top: 7rem; }
+  .adult-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 1.2rem; border-radius: 999px;
+    background: rgba(255,30,138,0.18); border: 1px solid rgba(255,30,138,0.55);
+    color: var(--gold); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem;
   }
-  .ets-crest { width: 150px; height: 82px; margin-bottom: 0.6rem; filter: drop-shadow(0 0 18px rgba(255,158,0,0.45)); }
   .hero-title {
-    font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.4rem, 10vw, 7rem); line-height: 0.94;
-    background: linear-gradient(135deg, #ffd166 0%, #ff9e00 50%, #00e5ff 100%);
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.4rem, 10vw, 7.2rem); line-height: 0.94;
+    background: linear-gradient(135deg, #ff1e8a 0%, #ffd60a 40%, #00f5d4 75%, #b44fff 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.8rem;
   }
-  .hero-sub { font-size: clamp(0.95rem, 2.4vw, 1.3rem); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.72); margin-bottom: 1.8rem; }
-
-  /* ─── CABIN HUD TELEMETRY ─── */
-  .hud-bar {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.9rem;
-    width: 100%; max-width: 820px; margin: 1.8rem auto 0;
-  }
-  .hud-cell {
-    background: var(--glass); border: 1px solid rgba(0,229,255,0.22); border-radius: 14px; padding: 0.9rem; text-align: center;
-  }
-  .hud-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; color: var(--amber); letter-spacing: 0.06em; }
-  .hud-lbl { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.55); }
-
+  .hero-sub { font-size: clamp(0.95rem, 2.4vw, 1.3rem); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.78); margin-bottom: 1.8rem; }
   .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
   .btn-primary {
     padding: 0.9rem 2rem; border-radius: 999px; font-weight: 700; font-size: 0.95rem;
-    background: linear-gradient(135deg, var(--amber), #ff6b00); color: #05080f; text-decoration: none;
-    box-shadow: 0 0 24px rgba(255,158,0,0.45);
+    background: linear-gradient(135deg, var(--pink), var(--violet)); color: #fff; text-decoration: none;
+    box-shadow: 0 0 26px rgba(255,30,138,0.5);
   }
   .btn-secondary {
     padding: 0.9rem 2rem; border-radius: 999px; font-weight: 700; font-size: 0.95rem;
-    background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.45); color: var(--cyan); text-decoration: none;
+    background: rgba(0,245,212,0.1); border: 1px solid rgba(0,245,212,0.45); color: var(--cyan); text-decoration: none;
   }
 
   .player-card {
     background: var(--glass); border: 1px solid var(--border); border-radius: 24px; padding: 2.2rem;
-    max-width: 720px; margin: 0 auto; box-shadow: 0 0 40px rgba(255,158,0,0.14); backdrop-filter: blur(14px);
+    max-width: 720px; margin: 0 auto; box-shadow: 0 0 40px rgba(255,30,138,0.22); backdrop-filter: blur(14px);
   }
   .player-top { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
   .play-btn {
     width: 74px; height: 74px; border-radius: 50%; border: none; cursor: pointer;
-    background: linear-gradient(135deg, var(--amber), var(--cyan)); color: #05080f;
+    background: linear-gradient(135deg, var(--pink), var(--gold)); color: #0b0314;
     font-size: 1.6rem; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .waveform { display: flex; align-items: center; gap: 4px; height: 34px; margin-top: 0.8rem; }
-  .bar { width: 4px; height: 8px; border-radius: 4px; background: linear-gradient(to top, var(--amber), var(--cyan)); transition: height 0.15s; }
+  .bar { width: 4px; height: 8px; border-radius: 4px; background: linear-gradient(to top, var(--pink), var(--gold), var(--cyan)); transition: height 0.15s; }
   .vol-row { display: flex; align-items: center; gap: 0.8rem; margin-top: 1.3rem; }
-  input[type=range] { flex: 1; accent-color: var(--amber); }
+  input[type=range] { flex: 1; accent-color: var(--pink); }
 
   .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.8rem; }
   .media-card { background: var(--glass); border: 1px solid var(--border); border-radius: 22px; padding: 1.5rem; }
   .media-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-  .media-tag { font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 999px; background: rgba(0,229,255,0.12); color: var(--cyan); border: 1px solid rgba(0,229,255,0.35); }
+  .media-tag { font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 999px; background: rgba(255,30,138,0.2); color: var(--gold); border: 1px solid rgba(255,30,138,0.45); }
   .btn-outline {
     background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.22); color: #fff;
     border-radius: 999px; padding: 0.55rem 1.15rem; font-size: 0.82rem; font-weight: 600; cursor: pointer;
   }
-  .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
-
-  /* ─── TRUCKERSMP MAP & SERVERS ─── */
-  .tmp-panel {
-    background: var(--glass); border: 1px solid rgba(0,229,255,0.28); border-radius: 22px; padding: 1.5rem;
-  }
-  .tmp-servers { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-bottom: 1.4rem; }
-  .tmp-srv {
-    background: rgba(5,8,15,0.65); border: 1px solid rgba(255,158,0,0.25); border-radius: 14px; padding: 1rem;
-  }
-  .tmp-srv-name { font-weight: 700; color: var(--gold); font-size: 0.95rem; }
-  .tmp-srv-players { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--cyan); margin-top: 0.2rem; }
-  .map-frame-wrap {
-    position: relative; width: 100%; height: 420px; border-radius: 16px; overflow: hidden;
-    border: 1px solid rgba(0,229,255,0.3); background: #070d18;
-  }
-  .map-frame-wrap iframe { width: 100%; height: 100%; border: 0; }
+  .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
 
   .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.4rem; }
-  .ets-card { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 1.6rem; transition: transform 0.25s; }
-  .ets-card:hover { transform: translateY(-6px); border-color: var(--cyan); }
-  .ets-icon { font-size: 2.2rem; margin-bottom: 0.7rem; display: block; }
-  .ets-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; color: var(--amber); margin-bottom: 0.4rem; }
-  .ets-card p { font-size: 0.88rem; color: rgba(255,255,255,0.68); line-height: 1.55; }
+  .pride-card { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; padding: 1.6rem; transition: transform 0.25s; }
+  .pride-card:hover { transform: translateY(-6px); border-color: var(--cyan); }
+  .pride-icon { font-size: 2.2rem; margin-bottom: 0.7rem; display: block; }
+  .pride-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; color: var(--pink); margin-bottom: 0.4rem; }
+  .pride-card p { font-size: 0.88rem; color: rgba(255,255,255,0.72); line-height: 1.55; }
 
-  .sponsor-card { background: var(--glass); border: 1px solid rgba(255,209,102,0.25); border-radius: 18px; padding: 1.6rem; text-align: center; }
-  .sponsor-tier { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); background: rgba(255,209,102,0.12); padding: 0.22rem 0.7rem; border-radius: 999px; display: inline-block; margin-bottom: 0.7rem; }
+  .sponsor-card { background: var(--glass); border: 1px solid rgba(255,214,10,0.28); border-radius: 18px; padding: 1.6rem; text-align: center; }
+  .sponsor-tier { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); background: rgba(255,214,10,0.12); padding: 0.22rem 0.7rem; border-radius: 999px; display: inline-block; margin-bottom: 0.7rem; }
 
-  footer { position: relative; z-index: 2; text-align: center; padding: 3rem 1.5rem; border-top: 1px solid rgba(255,158,0,0.2); color: rgba(255,255,255,0.45); font-size: 0.85rem; }
-  .bg-video-wrap { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; display: none; }
-  .bg-video-wrap video { width: 100%; height: 100%; object-fit: cover; opacity: 0.42; filter: saturate(1.2) contrast(1.06); }
-  .bg-video-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,4,14,0.58) 0%, rgba(6,4,14,0.42) 50%, rgba(6,4,14,0.82) 100%); }
+  footer { position: relative; z-index: 2; text-align: center; padding: 3rem 1.5rem; border-top: 1px solid rgba(255,30,138,0.25); color: rgba(255,255,255,0.45); font-size: 0.85rem; }
 </style>
 </head>
 <body>
 
+<div class="pride-bar"></div>
+
 <nav>
-  <a href="#" class="nav-logo">MG BCN · ETS2 RADIO</a>
+  <a href="#" class="nav-logo">MG BCN · PRIDE +18</a>
   <ul class="nav-links">
-    <li><a href="#player">Radio Cabina</a></li>
-    <li><a href="#videos">Vídeos &amp; Ads</a></li>
-    <li><a href="#truckersmp">Mapa TruckersMP</a></li>
-    <li><a href="#scs">SCS &amp; DLCs</a></li>
+    <li><a href="#player">Radio Club</a></li>
+    <li><a href="#videos">Vídeos +18 &amp; Ads</a></li>
+    <li><a href="#nightlife">Noche Eixample &amp; Sitges</a></li>
     <li><a href="#sponsors">Sponsors</a></li>
   </ul>
-  <a href="#truckersmp" class="nav-ticket">🗺️ Mapa Live</a>
+  <a href="#player" class="nav-ticket">🏳️‍🌈 Pride Live +18</a>
 </nav>
 
-<div class="bg-video-wrap" id="bgVideoWrap">
+<div class="bg-video-wrap">
   <video id="bgVideo" autoplay muted playsinline></video>
 </div>
 <canvas id="particles"></canvas>
 
 <section id="hero">
-  <div class="ets-badge">🚛 EURO TRUCK SIMULATOR 2 · AUTOBUSES &amp; CAMIONES 24H</div>
-  <svg class="ets-crest" viewBox="0 0 260 110" xmlns="http://www.w3.org/2000/svg" aria-label="Emblema ETS2 Radio">
-    <defs>
-      <linearGradient id="etsGrad" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#ffd166"/>
-        <stop offset="55%" stop-color="#ff9e00"/>
-        <stop offset="100%" stop-color="#00e5ff"/>
-      </linearGradient>
-    </defs>
-    <rect x="12" y="18" width="236" height="74" rx="14" fill="rgba(12,19,34,0.85)" stroke="url(#etsGrad)" stroke-width="3"/>
-    <text x="130" y="66" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="42" letter-spacing="4" fill="url(#etsGrad)">ETS 2 · MG FM</text>
-  </svg>
-  <h1 class="hero-title">RUTA NOCTURNA<br>MG BARCELONA</h1>
-  <p class="hero-sub">La radio oficial de los camioneros y autobuses virtuales</p>
+  <div class="adult-badge">🔞 NOCHE PRIDE +18 · CLUBBING &amp; CABARET BARCELONA</div>
+  <h1 class="hero-title">PRIDE AFTERHOURS<br>MG BARCELONA +18</h1>
+  <p class="hero-sub">House · Circuit · Cabaret · Moda Sensual · Directo 24H</p>
   <div class="hero-btns">
-    <a href="#player" class="btn-primary">🎧 Encender Radio de Cabina</a>
-    <a href="#truckersmp" class="btn-secondary">🗺️ Ver Mapa TruckersMP</a>
-    <a href="#videos" class="btn-secondary">🎬 Vídeos &amp; Publicidad</a>
-  </div>
-  <div class="hud-bar">
-    <div class="hud-cell"><div class="hud-val">90 KM/H</div><div class="hud-lbl">Limitador Ruta</div></div>
-    <div class="hud-cell"><div class="hud-val">BCN → PAR</div><div class="hud-lbl">Convoy Activo</div></div>
-    <div class="hud-cell"><div class="hud-val">24H LIVE</div><div class="hud-lbl">Cabina FM</div></div>
-    <div class="hud-cell"><div class="hud-val">IBERIA</div><div class="hud-lbl">Base Principal</div></div>
+    <a href="#player" class="btn-primary">🎧 Escuchar Sesión +18</a>
+    <a href="#videos" class="btn-secondary">🔥 Vídeos Club &amp; Publicidad</a>
+    <button type="button" onclick="nextBgVideo()" class="btn-secondary" style="cursor:pointer;">🎞️ Cambiar Vídeo de Fondo</button>
   </div>
 </section>
 
 <section id="player">
-  <p class="section-label" style="text-align:center;">📡 Sistema de Audio en Cabina</p>
-  <h2 class="section-title" style="text-align:center;">Escúchanos en Ruta</h2>
+  <p class="section-label" style="text-align:center;">📡 Cabina Pride · Eixample Barcelona</p>
+  <h2 class="section-title" style="text-align:center;">Radio en Directo</h2>
   <div class="player-card">
     <div class="player-top">
       <button class="play-btn" id="play-btn" onclick="togglePlay()">▶</button>
       <div style="flex:1; min-width:200px;">
-        <div id="status-text" style="font-size:0.8rem; font-weight:700; color:var(--cyan); text-transform:uppercase; letter-spacing:0.12em;">Pulsa Play para sintonizar en tu camión o autobús</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem;">MG Barcelona Live · Trucker Mix</div>
+        <div id="status-text" style="font-size:0.8rem; font-weight:700; color:var(--cyan); text-transform:uppercase; letter-spacing:0.12em;">Pulsa Play para entrar en la sesión nocturna +18</div>
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem;">MG Barcelona Live · Pride Circuit Mix</div>
         <div class="waveform" id="waveform"></div>
       </div>
     </div>
@@ -215,15 +180,15 @@
 </section>
 
 <section id="videos">
-  <p class="section-label" style="text-align:center;">🎬 Área de Descanso &amp; Pantalla</p>
-  <h2 class="section-title" style="text-align:center;">Vídeos Musicales &amp; Publicidad</h2>
+  <p class="section-label" style="text-align:center;">🔥 Pantalla Clubbing +18</p>
+  <h2 class="section-title" style="text-align:center;">Vídeos Visuales &amp; Publicidad</h2>
   <div class="media-grid">
     <div class="media-card">
       <div class="media-head">
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; color:var(--cyan);">Vídeos Musicales</h3>
-        <span class="media-tag">MODA &amp; HOUSE</span>
+        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; color:var(--pink);">Vídeos Nocturnos</h3>
+        <span class="media-tag">+18 CLUB &amp; MODA</span>
       </div>
-      <div style="border-radius:14px; overflow:hidden; background:#000; border:1px solid rgba(0,229,255,0.25);">
+      <div style="border-radius:14px; overflow:hidden; background:#000; border:1px solid rgba(255,30,138,0.4);">
         <video id="liveVideo" controls playsinline autoplay muted style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover;"></video>
       </div>
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem;">
@@ -231,15 +196,15 @@
         <button id="liveVideoNext" class="btn-outline">Siguiente</button>
         <button id="liveVideoSound" class="btn-outline">Escuchar vídeo</button>
       </div>
-      <p id="liveVideoStatus" style="font-size:0.78rem; color:rgba(255,255,255,0.6); margin-top:0.8rem;">Cargando vídeos musicales...</p>
+      <p id="liveVideoStatus" style="font-size:0.78rem; color:rgba(255,255,255,0.65); margin-top:0.8rem;">Cargando vídeos nocturnos...</p>
     </div>
 
     <div class="media-card">
       <div class="media-head">
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; color:var(--amber);">Publicidad de la Radio</h3>
-        <span class="media-tag" style="color:var(--amber); border-color:rgba(255,158,0,0.4);">ANUNCIOS MG</span>
+        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.7rem; color:var(--cyan);">Publicidad de la Radio</h3>
+        <span class="media-tag" style="color:var(--cyan); border-color:rgba(0,245,212,0.4);">ANUNCIOS MG</span>
       </div>
-      <div style="border-radius:14px; overflow:hidden; background:#000; border:1px solid rgba(255,158,0,0.28);">
+      <div style="border-radius:14px; overflow:hidden; background:#000; border:1px solid rgba(0,245,212,0.35);">
         <video id="adVideo" controls playsinline autoplay muted style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover;"></video>
       </div>
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem;">
@@ -247,48 +212,29 @@
         <button id="adNext" class="btn-outline">Siguiente</button>
         <button id="adSound" class="btn-outline">Escuchar anuncio</button>
       </div>
-      <p id="adStatus" style="font-size:0.78rem; color:rgba(255,255,255,0.6); margin-top:0.8rem;">Anuncios y autopromociones en directo.</p>
+      <p id="adStatus" style="font-size:0.78rem; color:rgba(255,255,255,0.65); margin-top:0.8rem;">Anuncios y autopromociones en directo.</p>
     </div>
   </div>
 </section>
 
-<section id="truckersmp">
-  <p class="section-label" style="text-align:center;">🗺️ Tráfico Real en Directo</p>
-  <h2 class="section-title" style="text-align:center;">Mapa TruckersMP &amp; Servidores</h2>
-  <div class="tmp-panel">
-    <div class="tmp-servers" id="tmp-servers">
-      <div class="tmp-srv"><div class="tmp-srv-name">Simulation 1</div><div class="tmp-srv-players" id="srv-sim1">Cargando...</div></div>
-      <div class="tmp-srv"><div class="tmp-srv-name">Simulation 2</div><div class="tmp-srv-players" id="srv-sim2">Cargando...</div></div>
-      <div class="tmp-srv"><div class="tmp-srv-name">ProMods</div><div class="tmp-srv-players" id="srv-promods">Cargando...</div></div>
-    </div>
-    <div class="map-frame-wrap">
-      <iframe src="https://map.truckersmp.com/" title="Mapa en directo TruckersMP" loading="lazy"></iframe>
-    </div>
-    <div style="margin-top:1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.8rem;">
-      <span style="font-size:0.82rem; color:rgba(255,255,255,0.6);">Consulta tráfico en Calais-Duisburg, Iberia y toda Europa en tiempo real.</span>
-      <a href="https://map.truckersmp.com/" target="_blank" rel="noopener" class="btn-secondary" style="padding:0.55rem 1.2rem; font-size:0.82rem;">Abrir Mapa TruckersMP ↗</a>
-    </div>
-  </div>
-</section>
-
-<section id="scs">
-  <p class="section-label" style="text-align:center;">📰 Noticias SCS Software &amp; DLCs</p>
-  <h2 class="section-title" style="text-align:center;">Novedades de Carretera</h2>
+<section id="nightlife">
+  <p class="section-label" style="text-align:center;">🌈 Escena LGTB+ Barcelona &amp; Sitges</p>
+  <h2 class="section-title" style="text-align:center;">Noches Sin Tabúes (+18)</h2>
   <div class="cards-grid">
-    <div class="ets-card">
-      <span class="ets-icon">🚌</span>
-      <h3>Coaches DLC &amp; Autobuses</h3>
-      <p>Rutas de pasajeros por Europa y estaciones de autobuses mientras suenan los mejores éxitos de MG Barcelona Live.</p>
+    <div class="pride-card">
+      <span class="pride-icon">🔥</span>
+      <h3>Gaixample Circuit</h3>
+      <p>Sesiones intensas de Circuit House, Techno y shows de cabaret en el corazón nocturno de Barcelona.</p>
     </div>
-    <div class="ets-card">
-      <span class="ets-icon">🇬🇷</span>
-      <h3>Grecia &amp; Nordic Horizons</h3>
-      <p>Nuevas carreteras mediterráneas, ferris y rutas nórdicas para disfrutar en convoy con amigos.</p>
+    <div class="pride-card">
+      <span class="pride-icon">💋</span>
+      <h3>Burlesque &amp; Cabaret</h3>
+      <p>Espectáculos sensuales, pasarela nocturna y libertad total para mayores de 18 años hasta el amanecer.</p>
     </div>
-    <div class="ets-card">
-      <span class="ets-icon">🇪🇸</span>
-      <h3>Base Iberia · Barcelona</h3>
-      <p>Salidas oficiales desde Barcelona por la AP-7 rumbo a Lyon, Milán, París y Calais.</p>
+    <div class="pride-card">
+      <span class="pride-icon">🌴</span>
+      <h3>Sitges Sunset +18</h3>
+      <p>Terrasas frente al mar, cócteles y sesiones VIP con la mejor música de MG Barcelona Live.</p>
     </div>
   </div>
 </section>
@@ -297,16 +243,16 @@
   <p class="section-label" style="text-align:center;">🤝 Patrocinadores Oficiales</p>
   <h2 class="section-title" style="text-align:center;">Nuestros Sponsors</h2>
   <div class="cards-grid">
-    <div class="sponsor-card"><span class="sponsor-tier">Sponsor Oficial</span><span class="ets-icon">🎧</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">BCN Sound Pro</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Audio profesional e iluminación para eventos.</p></div>
-    <div class="sponsor-card"><span class="sponsor-tier">Partner Convoy</span><span class="ets-icon">🚛</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">Iberia Logistics VTC</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Rutas virtuales y convoys nocturnos semanales.</p></div>
-    <div class="sponsor-card"><span class="sponsor-tier">Media Partner</span><span class="ets-icon">🎬</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">MG Visual Studio</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Realización audiovisual y visuales 4K.</p></div>
-    <div class="sponsor-card"><span class="sponsor-tier">Espacio Disponible</span><span class="ets-icon">⭐</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">Tu Marca Aquí</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Anúnciate en nuestra radio 24H y en la web.</p></div>
+    <div class="sponsor-card"><span class="sponsor-tier">Sponsor Oficial</span><span class="pride-icon">🎧</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">BCN Sound Pro</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Sonido e iluminación profesional para clubs y fiestas Pride.</p></div>
+    <div class="sponsor-card"><span class="sponsor-tier">Partner VIP</span><span class="pride-icon">🍸</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">Noches Barcelona</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Locales nocturnos, terrazas y eventos +18 en Barcelona.</p></div>
+    <div class="sponsor-card"><span class="sponsor-tier">Media Partner</span><span class="pride-icon">🎬</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">MG Visual Studio</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Realización audiovisual y visuales 4K en directo.</p></div>
+    <div class="sponsor-card"><span class="sponsor-tier">Espacio Disponible</span><span class="pride-icon">⭐</span><h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;">Tu Marca Aquí</h3><p style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Anúnciate en nuestra radio 24H y en la web oficial.</p></div>
   </div>
 </section>
 
 <footer>
-  <div style="font-family:'Bebas Neue',sans-serif; font-size:1.6rem; color:var(--amber); letter-spacing:0.1em;">MG BARCELONA LIVE · ETS2 &amp; TRUCKERSMP EDITION</div>
-  <p style="margin-top:0.4rem;">© 2026 MG Barcelona Live · Buena ruta y precaución en carretera</p>
+  <div style="font-family:'Bebas Neue',sans-serif; font-size:1.6rem; color:var(--pink); letter-spacing:0.1em;">MG BARCELONA LIVE · PRIDE NIGHT +18</div>
+  <p style="margin-top:0.4rem;">© 2026 MG Barcelona Live · Diversidad, música y libertad nocturna</p>
 </footer>
 
 <audio id="radio-audio" preload="none"></audio>
@@ -331,12 +277,12 @@ volSlider.addEventListener('input', () => { volPct.textContent = Math.round(radi
 function togglePlay() {
   if (isPlaying) {
     audio.pause(); audio.src = ''; isPlaying = false;
-    playBtn.textContent = '▶'; statusText.textContent = 'Radio de cabina apagada';
+    playBtn.textContent = '▶'; statusText.textContent = 'Emisión pausada';
   } else {
     audio.src = STREAM_URL; audio.volume = radioBaseVol(); audio.load();
     audio.play().then(() => {
-      isPlaying = true; playBtn.textContent = '⏸'; statusText.textContent = '● EN DIRECTO · CABINA ETS2 FM';
-    }).catch(() => { statusText.textContent = 'Conectando con la emisora...'; });
+      isPlaying = true; playBtn.textContent = '⏸'; statusText.textContent = '● EN DIRECTO · PRIDE CIRCUIT +18';
+    }).catch(() => { statusText.textContent = 'Conectando con la radio...'; });
   }
 }
 
@@ -347,21 +293,6 @@ function applyDucking() {
   const avSound = !adVideoMuted && av && !av.paused;
   audio.volume = (lvSound || avSound) ? radioBaseVol() * 0.15 : radioBaseVol();
 }
-
-// Live TruckersMP servers count
-fetch('https://api.truckersmp.com/v2/servers').then(r => r.json()).then(d => {
-  if (!d || !d.response) return;
-  const s1 = d.response.find(s => s.shortname === 'EU Sim 1' || s.name.includes('Simulation 1'));
-  const s2 = d.response.find(s => s.shortname === 'EU Sim 2' || s.name.includes('Simulation 2'));
-  const pm = d.response.find(s => s.name.includes('ProMods'));
-  if (s1) document.getElementById('srv-sim1').textContent = s1.players + ' / ' + s1.maxplayers + ' jugadores';
-  if (s2) document.getElementById('srv-sim2').textContent = s2.players + ' / ' + s2.maxplayers + ' jugadores';
-  if (pm) document.getElementById('srv-promods').textContent = pm.players + ' / ' + pm.maxplayers + ' jugadores';
-}).catch(() => {
-  document.getElementById('srv-sim1').textContent = 'Online · Europa';
-  document.getElementById('srv-sim2').textContent = 'Online · Europa';
-  document.getElementById('srv-promods').textContent = 'Online · ProMods';
-});
 
 (function() {
   const musicList = [
@@ -434,50 +365,45 @@ fetch('https://api.truckersmp.com/v2/servers').then(r => r.json()).then(d => {
 
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
-let W, H, stars = [], dashOffset = 0;
+let W, H, particles = [];
+const COLORS = ['#ff1e8a', '#ffd60a', '#00f5d4', '#9d4edd', '#ff8c00'];
 function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 function initParticles() {
-  stars = Array.from({ length: 90 }, () => ({ x: Math.random() * W, y: Math.random() * H * 0.58, r: Math.random() * 1.6 + 0.4, a: Math.random() * 0.6 + 0.2 }));
+  particles = Array.from({ length: 120 }, () => ({
+    x: Math.random() * W, y: Math.random() * H, r: Math.random() * 2.6 + 0.8,
+    vy: -Math.random() * 0.55 - 0.15, c: COLORS[Math.floor(Math.random() * COLORS.length)], a: Math.random() * 0.7 + 0.25
+  }));
 }
 function loop() {
   ctx.clearRect(0, 0, W, H);
-  stars.forEach(s => { ctx.save(); ctx.globalAlpha = s.a; ctx.fillStyle = '#cbe8ff'; ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill(); ctx.restore(); });
-  const hy = H * 0.6;
-  ctx.save(); ctx.strokeStyle = 'rgba(0,229,255,0.16)'; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(W * 0.46, hy); ctx.lineTo(W * 0.08, H); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(W * 0.54, hy); ctx.lineTo(W * 0.92, H); ctx.stroke();
-  dashOffset = (dashOffset + 2.4) % 60;
-  ctx.strokeStyle = 'rgba(255,158,0,0.45)'; ctx.lineWidth = 3;
-  for (let d = 0; d < 8; d++) {
-    const t1 = (d * 60 + dashOffset) / 480;
-    const t2 = Math.min(1, t1 + 0.055);
-    if (t1 > 1) continue;
-    ctx.beginPath(); ctx.moveTo(W / 2, hy + Math.pow(t1, 1.8) * (H - hy)); ctx.lineTo(W / 2, hy + Math.pow(t2, 1.8) * (H - hy)); ctx.stroke();
-  }
-  ctx.restore();
+  particles.forEach(p => {
+    p.y += p.vy; if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
+    ctx.save(); ctx.globalAlpha = p.a; ctx.fillStyle = p.c;
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+  });
   requestAnimationFrame(loop);
 }
 window.addEventListener('resize', () => { resize(); initParticles(); });
 resize(); initParticles(); loop();
-</script>
-<script>
-// ─── TEMPLATE BACKGROUND VIDEO ROTATION ────────────────────
-const bgList = [];
+
+// ─── FULLSCREEN BACKGROUND VIDEO ROTATION (+18) ───────────
+const bgList = [
+  "videos/moda_01.mp4","videos/moda_02.mp4","videos/moda_03.mp4","videos/moda_04.mp4","videos/moda_05.mp4","videos/moda_06.mp4","videos/moda_07.mp4","videos/moda_08.mp4","videos/moda_09.mp4","videos/moda_10.mp4","videos/moda_11.mp4","videos/moda_12.mp4","videos/moda_13.mp4","videos/moda_14.mp4","videos/moda_15.mp4","videos/moda_16.mp4","videos/moda_17.mp4","videos/moda_18.mp4","videos/moda_19.mp4","videos/moda_20.mp4","videos/moda_21.mp4","videos/moda_22.mp4","videos/moda_23.mp4","videos/moda_24.mp4","videos/moda_25.mp4","videos/moda_26.mp4","videos/moda_27.mp4","videos/moda_28.mp4","videos/moda_29.mp4","videos/moda_30.mp4","videos/moda_31.mp4"
+];
 const bgVid = document.getElementById('bgVideo');
-const bgWrap = document.getElementById('bgVideoWrap');
 let bgIdx = 0;
 function loadBgVideo(i) {
-  if (!bgVid || !bgList.length) { if (bgWrap) bgWrap.style.display = 'none'; return; }
-  if (bgWrap) bgWrap.style.display = 'block';
+  if (!bgVid || !bgList.length) return;
   bgIdx = (i + bgList.length) % bgList.length;
   bgVid.src = bgList[bgIdx];
   bgVid.muted = true;
   bgVid.play().catch(() => {});
 }
-if (bgVid && bgList.length) {
-  bgVid.addEventListener('ended', () => loadBgVideo(bgIdx + 1));
-  bgVid.addEventListener('error', () => setTimeout(() => loadBgVideo(bgIdx + 1), 1000));
-  loadBgVideo(0);
+function nextBgVideo() { loadBgVideo(bgIdx + 1); }
+if (bgVid) {
+  bgVid.addEventListener('ended', () => nextBgVideo());
+  bgVid.addEventListener('error', () => setTimeout(nextBgVideo, 1000));
+  loadBgVideo(Math.floor(Math.random() * bgList.length));
 }
 </script>
 <script type="application/json" id="publicidad-config">{"anuncios":[{"archivo":"publicidad/c8c3eb9391feefb9da4fa0cf5be3e02aa42842a90818867e24fe4900b7276b6b.mp4","tipo":"video"},{"archivo":"publicidad/d77fafc2fb4565c04fd4d69968b909c65e2372c5c0dc7cc8a0093036e23db394.mp4","tipo":"video"},{"archivo":"publicidad/80d6f0c1a3f73fdebcfbcd9b0ce6968fcb67cac98cf244b7255e4ee148268df6.mp4","tipo":"video"},{"archivo":"publicidad/3ad7c268fe6c96c500c4bbd9eb39aaeb70edad188bbf7c8f7b0cab21a5105e36.mp4","tipo":"video"},{"archivo":"publicidad/4286aa3134c68c03117ee5f798cc931d8d01b3811c4f31eeb659ce0bc82ecad3.mp4","tipo":"video"},{"archivo":"publicidad/43c25109d82e3217bbaab925bf064effc319b1956df84da3300949ef4455a9aa.mp4","tipo":"video"},{"archivo":"publicidad/18f581807f965a1759b6eee38f05afba215c3be2f092f8a796d3d33ad53b6452.mp4","tipo":"video"},{"archivo":"publicidad/061d9443f15357c0533bfb2ea80de13d7c64966f061b6bce49033f13858effec.mp4","tipo":"video"},{"archivo":"publicidad/169210a336c7a964f8756d6256932952e7ccec6dc3afb8085e2bf20a6f722b73.mp4","tipo":"video"},{"archivo":"publicidad/67c4a67950d1b55b7b5eb9a1285161f202d2c57f27cbd13d83a195e0d31fcda2.mp4","tipo":"video"},{"archivo":"publicidad/6c4e0da8254a8d072e34ff5603d063dd1eef1101e7e575898dad4170608c5c98.mp4","tipo":"video"},{"archivo":"publicidad/0835946073709b32799fd3cd95581d8d0610045de354985d8c498de8bc0a3b3e.mp4","tipo":"video"},{"archivo":"publicidad/4ad6da39e24923ea1d8f875d55ba99ac11662d5838dac37cdd5e008b2c0e1e6f.mp4","tipo":"video"}],"intervalo":60}</script>
