@@ -339,4 +339,80 @@
       }
     }, true);
   }
+
+  // Gestor universal de Publicidad: carga SIEMPRE todos los videos/imagenes desde publicidad.json
+  var adSyncing = false;
+  async function initAdsPlayer() {
+    var v = document.getElementById('adVideo');
+    if (!v || adSyncing) return;
+    if (v.getAttribute('data-mg-ads-ok') === '1') return;
+    adSyncing = true;
+    try {
+      var r = await fetch('publicidad.json?_=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) return;
+      var data = await r.json();
+      var ads = Array.isArray(data && data.anuncios) ? data.anuncios : [];
+      if (!ads.length) return;
+
+      v.setAttribute('data-mg-ads-ok', '1');
+      var imgEl = document.getElementById('adImage');
+      var statusEl = document.getElementById('adStatus') || document.getElementById('ad-status');
+      var playEl = document.getElementById('adPlayBtn') || document.getElementById('ad-play');
+      var prevEl = document.getElementById('adPrevBtn') || document.getElementById('ad-prev');
+      var nextEl = document.getElementById('adNextBtn') || document.getElementById('ad-next');
+      var idx = 0;
+      var imgTimer = null;
+
+      function playAd(i) {
+        if (!document.body.contains(v)) return;
+        idx = (i + ads.length) % ads.length;
+        var item = ads[idx];
+        var src = item.archivo || item;
+        var tipo = (item.tipo || (/\.(mp4|webm)$/i.test(src) ? 'video' : 'imagen')).toLowerCase();
+        if (imgTimer) { clearTimeout(imgTimer); imgTimer = null; }
+
+        if (tipo === 'imagen' && imgEl) {
+          v.pause();
+          v.style.display = 'none';
+          imgEl.src = src;
+          imgEl.style.display = 'block';
+          if (statusEl) statusEl.textContent = 'Publicidad ' + (idx + 1) + ' / ' + ads.length;
+          imgTimer = setTimeout(function () { playAd(idx + 1); }, (Number(data.intervalo) || 8) * 1000);
+          return;
+        }
+
+        if (imgEl) imgEl.style.display = 'none';
+        v.style.display = 'block';
+        v.muted = true;
+        v.src = src;
+        v.onended = function () { playAd(idx + 1); };
+        v.play().then(function () {
+          if (playEl) playEl.textContent = 'Pausar';
+          if (statusEl) statusEl.textContent = 'Publicidad ' + (idx + 1) + ' / ' + ads.length;
+        }).catch(function () {
+          if (statusEl) statusEl.textContent = 'Publicidad ' + (idx + 1) + ' / ' + ads.length + ' lista.';
+        });
+      }
+
+      if (prevEl) prevEl.onclick = function (e) { e.stopImmediatePropagation(); playAd(idx - 1); };
+      if (nextEl) nextEl.onclick = function (e) { e.stopImmediatePropagation(); playAd(idx + 1); };
+      playAd(0);
+    } catch (e) {}
+    finally { adSyncing = false; }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAdsPlayer);
+  } else {
+    initAdsPlayer();
+  }
+  if (!window.__mgAdsObs && typeof MutationObserver !== 'undefined') {
+    window.__mgAdsObs = new MutationObserver(function () {
+      var v = document.getElementById('adVideo');
+      if (v && v.getAttribute('data-mg-ads-ok') !== '1') {
+        initAdsPlayer();
+      }
+    });
+    window.__mgAdsObs.observe(document.documentElement, { childList: true, subtree: true });
+  }
 })();
