@@ -1,3 +1,42 @@
 {
-  "fotos": []
+  "fotos": [],
+  "por_plantilla": {
+    "principal": [
+      {
+        "archivo": "eventos_fotos/principal/image_20261114_170136.jpg",
+        "titulo": "image 20261114 170136",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/image_20261114_170138.jpg",
+        "titulo": "image 20261114 170138",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/image_20261114_170146.jpg",
+        "titulo": "image 20261114 170146",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/image_20261114_170220.jpg",
+        "titulo": "image 20261114 170220",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/image_20261114_170310.jpg",
+        "titulo": "image 20261114 170310",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/image_20261114_170311.jpg",
+        "titulo": "image 20261114 170311",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/image_20261114_170314.jpg",
+        "titulo": "image 20261114 170314",
+        "club": "Barcelona Club"
+      }
+    ]
+  }
 }
