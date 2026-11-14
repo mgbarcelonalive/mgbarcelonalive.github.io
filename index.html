@@ -458,6 +458,70 @@
   }
   .e1 .event-thumb { background: linear-gradient(135deg, #1a0533, #b44fff44); }
   .e2 .event-thumb { background: linear-gradient(135deg, #05151f, #00f0ff44); }
+
+  /* ─── SPONSORS ─── */
+  #sponsors {
+    position: relative;
+    z-index: 2;
+    padding: 5rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.4rem;
+    margin-top: 1.5rem;
+  }
+  .sponsor-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.8rem 1.4rem;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .sponsor-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(245,200,66,0.45);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.45), 0 0 24px rgba(180,79,255,0.2);
+  }
+  .sponsor-tier {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(245,200,66,0.12);
+    color: var(--gold);
+    border: 1px solid rgba(245,200,66,0.3);
+    margin-bottom: 0.9rem;
+  }
+  .sponsor-icon {
+    font-size: 2.6rem;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .sponsor-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    color: #fff;
+    margin-bottom: 0.35rem;
+  }
+  .sponsor-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+  }
+  .sponsor-cta {
+    margin-top: 2.2rem;
+    text-align: center;
+  }
   .e3 .event-thumb { background: linear-gradient(135deg, #200a0a, #ff2d7844); }
 
   .event-body { padding: 1.2rem; }
@@ -584,6 +648,7 @@
     <li><a href="#player">Radio</a></li>
     <li><a href="#videos">Vídeos</a></li>
     <li><a href="#events">Eventos</a></li>
+    <li><a href="#sponsors">Sponsors</a></li>
     <li><a href="#about">Nosotros</a></li>
   </ul>
   <a href="#events" class="nav-ticket">🎟 Eventos</a>
@@ -801,6 +866,44 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- Sponsors -->
+<section id="sponsors">
+  <p class="section-label" style="text-align:center">🤝 Patrocinadores Oficiales</p>
+  <h2 class="section-title" style="text-align:center">Nuestros Sponsors</h2>
+  <p style="text-align:center; color:rgba(255,255,255,0.55); max-width:620px; margin:0 auto;">
+    Marcas, locales y colaboradores que impulsan la música en directo y los eventos de MG Barcelona Live.
+  </p>
+  <div class="sponsors-grid">
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Sponsor Oficial</span>
+      <span class="sponsor-icon">🎧</span>
+      <div class="sponsor-name">BCN Sound Pro</div>
+      <p class="sponsor-desc">Equipos de sonido, iluminación LED y producción técnica para cabinas y discotecas.</p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Partner VIP</span>
+      <span class="sponsor-icon">🍸</span>
+      <div class="sponsor-name">Noches Barcelona</div>
+      <p class="sponsor-desc">Salas, rooftops y experiencias VIP en el corazón de la ciudad condal.</p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Media Partner</span>
+      <span class="sponsor-icon">🎬</span>
+      <div class="sponsor-name">MG Visual Studio</div>
+      <p class="sponsor-desc">Realización audiovisual, visuales 4K y promoción digital en directo.</p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Espacio Disponible</span>
+      <span class="sponsor-icon">⭐</span>
+      <div class="sponsor-name">Tu Marca Aquí</div>
+      <p class="sponsor-desc">Anúnciate en nuestra radio 24H, en el reproductor de vídeo y en la web oficial.</p>
+    </div>
+  </div>
+  <div class="sponsor-cta">
+    <a href="#player" class="btn-secondary">📢 Patrocina MG Barcelona Live</a>
   </div>
 </section>
 
@@ -1152,7 +1255,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.event-card, .stat-card, .player-card').forEach(el => {
+document.querySelectorAll('.event-card, .stat-card, .player-card, .sponsor-card').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(30px)';
   el.style.transition = 'opacity 0.6s, transform 0.6s';
