@@ -4,12 +4,6 @@
   "bajar_musica_pct": 25,
   "cunas": [
     {
-      "archivo": "cunas/cuna_01_bienvenida_mg.mp3",
-      "titulo": "Bienvenida MG Media Live",
-      "voz": "es-ES-AlvaroNeural",
-      "activa": true
-    },
-    {
       "archivo": "cunas/cuna_02_web_oficial.mp3",
       "titulo": "Web Oficial MG Media Live",
       "voz": "es-ES-ElviraNeural",
