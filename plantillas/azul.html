@@ -112,7 +112,7 @@ footer{border-top:1px solid var(--border);padding:20px;text-align:center;color:v
 .live-video-screen{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid #42454b;border-radius:6px;background:#050506}
 .live-video-screen video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
 .live-video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:18px;background:radial-gradient(ellipse at center,#292b30,#050506 75%)}
-.live-video-placeholder img{width:clamp(64px,18%,145px);max-height:45%;object-fit:contain;filter:grayscale(1)}
+.live-video-placeholder img{width:clamp(64px,18%,145px);max-height:45%;object-fit:contain;background:#000;border-radius:50%}
 .live-video-placeholder strong{font-size:clamp(15px,3vw,26px);letter-spacing:2px}
 .live-video-placeholder span{font-size:12px;color:#b8bec6}
 .live-video-screen [hidden]{display:none}
@@ -176,7 +176,7 @@ footer{border-top:1px solid var(--border);padding:20px;text-align:center;color:v
   <div class="live-video-head"><h2 id="liveVideoHeading">Estudio y disco · Vídeo</h2><span class="live-video-tag">DJ MG / STUDIO 2026</span></div>
   <div class="live-video-screen">
     <video id="liveVideo" controls playsinline muted preload="none" hidden aria-label="Vídeo de MG Barcelona Live" aria-describedby="liveVideoStatus"></video>
-    <div class="live-video-placeholder" id="liveVideoPlaceholder"><img src="logo.png" alt="" width="145" height="120"><strong>LA CABINA DE DJ MG</strong><span>Imagen del estudio y de la discoteca</span></div>
+    <div class="live-video-placeholder" id="liveVideoPlaceholder"><img src="img/logo-video.png" alt="" width="145" height="120"><strong>LA CABINA DE DJ MG</strong><span>Imagen del estudio y de la discoteca</span></div>
   </div>
   <div class="live-video-actions"><button class="live-video-button" id="liveVideoButton" type="button" disabled>Vídeo pendiente</button><p class="live-video-status" id="liveVideoStatus" role="status" aria-live="polite">Vídeo todavía no disponible.</p></div>
   <p class="live-video-note">Los vídeos se reproducen solos y en bucle, sin sonido. La radio es independiente: pulsa play para escucharla.</p>
@@ -266,7 +266,7 @@ document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()
   document.getElementById(b.dataset.section).classList.add('active');
 }));
 </script>
-<script type="application/json" id="publicidad-config">{"anuncios":[{"archivo":"publicidad/8bcc0b6b664b01556fd7b4d17696b4dcf3f5d218ffbb51dac81c355b2e4754df.mp4","tipo":"video"}],"intervalo":8}</script>
+<script type="application/json" id="publicidad-config">{"intervalo":8,"anuncios":[]}</script>
 <script id="live-video-script">
 (()=>{
   const VIDEO_URL='https://mgbarcelonalive.github.io/publicidad/8bcc0b6b664b01556fd7b4d17696b4dcf3f5d218ffbb51dac81c355b2e4754df.mp4';
