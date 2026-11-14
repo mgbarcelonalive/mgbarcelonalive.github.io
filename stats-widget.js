@@ -89,9 +89,24 @@
       var info = document.getElementById('stream-info');
       var txt = info ? info.textContent || '' : '';
       var m = txt.match(/https?:\/\/[^\s'"]+\/stream/);
-      if (m) return m[0].replace(/\/stream.*$/, '');
+      if (m) {
+        window.__mgStreamUrl = m[0];
+        return m[0].replace(/\/stream.*$/, '');
+      }
       if (typeof STREAM_URL === 'string' && STREAM_URL.indexOf('http') === 0) {
+        window.__mgStreamUrl = STREAM_URL;
         return STREAM_URL.replace(/\/stream.*$/, '');
+      }
+      if (window.__mgStreamUrl) {
+        return window.__mgStreamUrl.replace(/\/stream.*$/, '');
+      }
+      var sc = document.scripts;
+      for (var i = 0; i < sc.length; i++) {
+        var sm = (sc[i].textContent || '').match(/https?:\/\/[^\s'"]+\/stream/);
+        if (sm) {
+          window.__mgStreamUrl = sm[0];
+          return sm[0].replace(/\/stream.*$/, '');
+        }
       }
     } catch (e) {}
     return '';
@@ -252,5 +267,67 @@
     };
     document.addEventListener('input', applyVol, true);
     document.addEventListener('change', applyVol, true);
+  }
+
+  // Controlador universal de Play/Pause para movil y PC (evita fallos tras cambio de plantilla)
+  if (!window.__mgPlayBound) {
+    window.__mgPlayBound = true;
+    document.addEventListener('click', function (e) {
+      var btn = e.target && e.target.closest ? e.target.closest('#play-btn') : null;
+      if (!btn) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+
+      var a = document.getElementById('radio-audio') || window.__mgPersistentAudio;
+      if (!a) {
+        a = document.createElement('audio');
+        a.id = 'radio-audio';
+        a.setAttribute('playsinline', '');
+        document.body.appendChild(a);
+        window.__mgPersistentAudio = a;
+      }
+
+      var base = getIcecastBase();
+      var streamUrl = base ? (base + '/stream') : '';
+      var icon = document.getElementById('play-icon') || btn;
+      var st = document.getElementById('status-text') || document.getElementById('np-sub');
+
+      if (!a.paused && a.src) {
+        a.pause();
+        try { a.removeAttribute('src'); a.load(); } catch (err) {}
+        icon.textContent = '▶';
+        if (st) st.textContent = 'Pulsa ▶ para escuchar en directo';
+        return;
+      }
+
+      if (!streamUrl) {
+        if (st) st.textContent = '⚠ Enlace de emisión no disponible';
+        return;
+      }
+
+      var vs = document.getElementById('volume') || document.getElementById('vol');
+      if (vs) {
+        var vv = parseFloat(vs.value);
+        if (!isNaN(vv)) {
+          a.muted = (vv === 0);
+          a.volume = Math.max(0, Math.min(1, vv));
+        }
+      }
+
+      if (st) st.textContent = 'Conectando con la radio...';
+      a.src = streamUrl;
+      var p = a.play();
+      if (p && typeof p.then === 'function') {
+        p.then(function () {
+          icon.textContent = '⏸';
+          if (st) st.textContent = '🔴 Emitiendo en directo desde Barcelona';
+        }).catch(function () {
+          if (st) st.textContent = '⚠ Toca ▶ de nuevo para activar el audio';
+        });
+      } else {
+        icon.textContent = '⏸';
+        if (st) st.textContent = '🔴 Emitiendo en directo desde Barcelona';
+      }
+    }, true);
   }
 })();
