@@ -637,6 +637,9 @@
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .nav-ticket:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(180,79,255,0.5); }
+  .bg-video-wrap { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; display: none; }
+  .bg-video-wrap video { width: 100%; height: 100%; object-fit: cover; opacity: 0.42; filter: saturate(1.2) contrast(1.06); }
+  .bg-video-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,4,14,0.58) 0%, rgba(6,4,14,0.42) 50%, rgba(6,4,14,0.82) 100%); }
 </style>
 </head>
 <body>
@@ -655,6 +658,9 @@
 </nav>
 
 <!-- Particle canvas -->
+<div class="bg-video-wrap" id="bgVideoWrap">
+  <video id="bgVideo" autoplay muted playsinline></video>
+</div>
 <canvas id="particles"></canvas>
 
 <!-- Hero -->
@@ -1263,6 +1269,26 @@ document.querySelectorAll('.event-card, .stat-card, .player-card, .sponsor-card'
   observer.observe(el);
 });
 </script>
-<script type="application/json" id="publicidad-config">{"intervalo":8,"anuncios":[]}</script>
+<script>
+// ─── TEMPLATE BACKGROUND VIDEO ROTATION ────────────────────
+const bgList = [];
+const bgVid = document.getElementById('bgVideo');
+const bgWrap = document.getElementById('bgVideoWrap');
+let bgIdx = 0;
+function loadBgVideo(i) {
+  if (!bgVid || !bgList.length) { if (bgWrap) bgWrap.style.display = 'none'; return; }
+  if (bgWrap) bgWrap.style.display = 'block';
+  bgIdx = (i + bgList.length) % bgList.length;
+  bgVid.src = bgList[bgIdx];
+  bgVid.muted = true;
+  bgVid.play().catch(() => {});
+}
+if (bgVid && bgList.length) {
+  bgVid.addEventListener('ended', () => loadBgVideo(bgIdx + 1));
+  bgVid.addEventListener('error', () => setTimeout(() => loadBgVideo(bgIdx + 1), 1000));
+  loadBgVideo(0);
+}
+</script>
+<script type="application/json" id="publicidad-config">{"anuncios":[{"archivo":"publicidad/43c25109d82e3217bbaab925bf064effc319b1956df84da3300949ef4455a9aa.mp4","tipo":"video"},{"archivo":"publicidad/18f581807f965a1759b6eee38f05afba215c3be2f092f8a796d3d33ad53b6452.mp4","tipo":"video"},{"archivo":"publicidad/061d9443f15357c0533bfb2ea80de13d7c64966f061b6bce49033f13858effec.mp4","tipo":"video"},{"archivo":"publicidad/169210a336c7a964f8756d6256932952e7ccec6dc3afb8085e2bf20a6f722b73.mp4","tipo":"video"},{"archivo":"publicidad/67c4a67950d1b55b7b5eb9a1285161f202d2c57f27cbd13d83a195e0d31fcda2.mp4","tipo":"video"},{"archivo":"publicidad/6c4e0da8254a8d072e34ff5603d063dd1eef1101e7e575898dad4170608c5c98.mp4","tipo":"video"},{"archivo":"publicidad/0835946073709b32799fd3cd95581d8d0610045de354985d8c498de8bc0a3b3e.mp4","tipo":"video"},{"archivo":"publicidad/4ad6da39e24923ea1d8f875d55ba99ac11662d5838dac37cdd5e008b2c0e1e6f.mp4","tipo":"video"}],"intervalo":60}</script>
 </body>
 </html>
