@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta name="mg-tpl" content="moderna">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MG Barcelona Live · Radio · Eventos · Discoteca</title>
@@ -1158,6 +1159,116 @@ document.querySelectorAll('.event-card, .stat-card, .player-card').forEach(el =>
   el.style.transition = 'opacity 0.6s, transform 0.6s';
   observer.observe(el);
 });
+</script>
+<script id="mg-live-sync">
+(function(){
+  if (window.__mgLiveSyncInstalled) return;
+  window.__mgLiveSyncInstalled = true;
+  var metaEl = document.querySelector('meta[name="mg-tpl"]');
+  var currentTpl = metaEl ? metaEl.getAttribute('content') : '';
+  var currentTs = 0;
+  var switching = false;
+
+  // Keep a single persistent audio element across live template swaps
+  function getLiveAudio() {
+    if (!window.__mgPersistentAudio) {
+      var existing = document.getElementById('radio-audio');
+      window.__mgPersistentAudio = existing || document.createElement('audio');
+      window.__mgPersistentAudio.id = 'radio-audio';
+    }
+    return window.__mgPersistentAudio;
+  }
+  getLiveAudio();
+
+  async function applyTemplateLive(tpl, ts) {
+    if (switching) return;
+    switching = true;
+    try {
+      var res = await fetch('plantillas/' + encodeURIComponent(tpl) + '.html?t=' + ts, { cache: 'no-store' });
+      if (!res.ok) return;
+      var html = await res.text();
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      if (!doc || !doc.body) return;
+
+      // Preserve playing audio element
+      var liveAudio = getLiveAudio();
+      var wasPlaying = !liveAudio.paused && !!liveAudio.src;
+      var savedVol = liveAudio.volume;
+      if (liveAudio.parentNode) liveAudio.parentNode.removeChild(liveAudio);
+
+      // Clean up old animation loops if any
+      if (window.__mgRafIds) { window.__mgRafIds.forEach(cancelAnimationFrame); }
+      window.__mgRafIds = [];
+
+      // Swap <title> and <style> tags
+      document.title = doc.title || document.title;
+      document.head.querySelectorAll('style').forEach(function(s){ s.remove(); });
+      doc.head.querySelectorAll('style').forEach(function(s){
+        var ns = document.createElement('style');
+        ns.textContent = s.textContent;
+        document.head.appendChild(ns);
+      });
+
+      // Swap body HTML (excluding scripts & audio)
+      var newAudio = doc.body.querySelector('#radio-audio');
+      if (newAudio) newAudio.remove();
+      var scripts = Array.from(doc.body.querySelectorAll('script'));
+      scripts.forEach(function(s){ s.remove(); });
+      document.body.innerHTML = doc.body.innerHTML;
+      document.body.appendChild(liveAudio);
+
+      currentTpl = tpl;
+      currentTs = ts;
+      if (metaEl) metaEl.setAttribute('content', tpl);
+
+      // Execute new template scripts
+      for (var i = 0; i < scripts.length; i++) {
+        var oldS = scripts[i];
+        if (oldS.id === 'mg-live-sync' || oldS.type === 'application/json') {
+          if (oldS.type === 'application/json') {
+            var cloneJson = document.createElement('script');
+            cloneJson.type = 'application/json';
+            cloneJson.id = oldS.id;
+            cloneJson.textContent = oldS.textContent;
+            document.body.appendChild(cloneJson);
+          }
+          continue;
+        }
+        var ns = document.createElement('script');
+        if (oldS.src) ns.src = oldS.src;
+        else ns.textContent = oldS.textContent;
+        document.body.appendChild(ns);
+      }
+
+      // Restore live audio UI state seamlessly
+      if (wasPlaying) {
+        liveAudio.volume = savedVol;
+        var pb = document.getElementById('play-btn');
+        var st = document.getElementById('status-text');
+        if (pb) pb.textContent = '⏸';
+        if (st) st.textContent = '● EN DIRECTO · MG BARCELONA LIVE';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) {
+    } finally {
+      switching = false;
+    }
+  }
+
+  setInterval(async function(){
+    if (switching) return;
+    try {
+      var r = await fetch('plantilla_live.json?t=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) return;
+      var d = await r.json();
+      if (!d || !d.plantilla) return;
+      if (!currentTs) currentTs = d.ts || 0;
+      if (d.plantilla !== currentTpl || (d.ts && d.ts !== currentTs)) {
+        await applyTemplateLive(d.plantilla, d.ts || Date.now());
+      }
+    } catch (e) {}
+  }, 4000);
+})();
 </script>
 </body>
 </html>

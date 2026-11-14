@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta name="mg-tpl" content="principal">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MG Barcelona Live · Radio · Eventos · Discoteca</title>
@@ -1289,6 +1290,116 @@ if (bgVid && bgList.length) {
   loadBgVideo(0);
 }
 </script>
-<script type="application/json" id="publicidad-config">{"anuncios":[{"archivo":"publicidad/43c25109d82e3217bbaab925bf064effc319b1956df84da3300949ef4455a9aa.mp4","tipo":"video"},{"archivo":"publicidad/18f581807f965a1759b6eee38f05afba215c3be2f092f8a796d3d33ad53b6452.mp4","tipo":"video"},{"archivo":"publicidad/061d9443f15357c0533bfb2ea80de13d7c64966f061b6bce49033f13858effec.mp4","tipo":"video"},{"archivo":"publicidad/169210a336c7a964f8756d6256932952e7ccec6dc3afb8085e2bf20a6f722b73.mp4","tipo":"video"},{"archivo":"publicidad/67c4a67950d1b55b7b5eb9a1285161f202d2c57f27cbd13d83a195e0d31fcda2.mp4","tipo":"video"},{"archivo":"publicidad/6c4e0da8254a8d072e34ff5603d063dd1eef1101e7e575898dad4170608c5c98.mp4","tipo":"video"},{"archivo":"publicidad/0835946073709b32799fd3cd95581d8d0610045de354985d8c498de8bc0a3b3e.mp4","tipo":"video"},{"archivo":"publicidad/4ad6da39e24923ea1d8f875d55ba99ac11662d5838dac37cdd5e008b2c0e1e6f.mp4","tipo":"video"}],"intervalo":60}</script>
+<script type="application/json" id="publicidad-config">{"intervalo":8,"anuncios":[]}</script>
+<script id="mg-live-sync">
+(function(){
+  if (window.__mgLiveSyncInstalled) return;
+  window.__mgLiveSyncInstalled = true;
+  var metaEl = document.querySelector('meta[name="mg-tpl"]');
+  var currentTpl = metaEl ? metaEl.getAttribute('content') : '';
+  var currentTs = 0;
+  var switching = false;
+
+  // Keep a single persistent audio element across live template swaps
+  function getLiveAudio() {
+    if (!window.__mgPersistentAudio) {
+      var existing = document.getElementById('radio-audio');
+      window.__mgPersistentAudio = existing || document.createElement('audio');
+      window.__mgPersistentAudio.id = 'radio-audio';
+    }
+    return window.__mgPersistentAudio;
+  }
+  getLiveAudio();
+
+  async function applyTemplateLive(tpl, ts) {
+    if (switching) return;
+    switching = true;
+    try {
+      var res = await fetch('plantillas/' + encodeURIComponent(tpl) + '.html?t=' + ts, { cache: 'no-store' });
+      if (!res.ok) return;
+      var html = await res.text();
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      if (!doc || !doc.body) return;
+
+      // Preserve playing audio element
+      var liveAudio = getLiveAudio();
+      var wasPlaying = !liveAudio.paused && !!liveAudio.src;
+      var savedVol = liveAudio.volume;
+      if (liveAudio.parentNode) liveAudio.parentNode.removeChild(liveAudio);
+
+      // Clean up old animation loops if any
+      if (window.__mgRafIds) { window.__mgRafIds.forEach(cancelAnimationFrame); }
+      window.__mgRafIds = [];
+
+      // Swap <title> and <style> tags
+      document.title = doc.title || document.title;
+      document.head.querySelectorAll('style').forEach(function(s){ s.remove(); });
+      doc.head.querySelectorAll('style').forEach(function(s){
+        var ns = document.createElement('style');
+        ns.textContent = s.textContent;
+        document.head.appendChild(ns);
+      });
+
+      // Swap body HTML (excluding scripts & audio)
+      var newAudio = doc.body.querySelector('#radio-audio');
+      if (newAudio) newAudio.remove();
+      var scripts = Array.from(doc.body.querySelectorAll('script'));
+      scripts.forEach(function(s){ s.remove(); });
+      document.body.innerHTML = doc.body.innerHTML;
+      document.body.appendChild(liveAudio);
+
+      currentTpl = tpl;
+      currentTs = ts;
+      if (metaEl) metaEl.setAttribute('content', tpl);
+
+      // Execute new template scripts
+      for (var i = 0; i < scripts.length; i++) {
+        var oldS = scripts[i];
+        if (oldS.id === 'mg-live-sync' || oldS.type === 'application/json') {
+          if (oldS.type === 'application/json') {
+            var cloneJson = document.createElement('script');
+            cloneJson.type = 'application/json';
+            cloneJson.id = oldS.id;
+            cloneJson.textContent = oldS.textContent;
+            document.body.appendChild(cloneJson);
+          }
+          continue;
+        }
+        var ns = document.createElement('script');
+        if (oldS.src) ns.src = oldS.src;
+        else ns.textContent = oldS.textContent;
+        document.body.appendChild(ns);
+      }
+
+      // Restore live audio UI state seamlessly
+      if (wasPlaying) {
+        liveAudio.volume = savedVol;
+        var pb = document.getElementById('play-btn');
+        var st = document.getElementById('status-text');
+        if (pb) pb.textContent = '⏸';
+        if (st) st.textContent = '● EN DIRECTO · MG BARCELONA LIVE';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) {
+    } finally {
+      switching = false;
+    }
+  }
+
+  setInterval(async function(){
+    if (switching) return;
+    try {
+      var r = await fetch('plantilla_live.json?t=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) return;
+      var d = await r.json();
+      if (!d || !d.plantilla) return;
+      if (!currentTs) currentTs = d.ts || 0;
+      if (d.plantilla !== currentTpl || (d.ts && d.ts !== currentTs)) {
+        await applyTemplateLive(d.plantilla, d.ts || Date.now());
+      }
+    } catch (e) {}
+  }, 4000);
+})();
+</script>
 </body>
 </html>
