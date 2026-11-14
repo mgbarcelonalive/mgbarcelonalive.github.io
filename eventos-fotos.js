@@ -1,4 +1,4 @@
-/* MG Barcelona Live - Galería automática de Fotos de Eventos por Plantilla */
+/* MG Barcelona Live - Ventana automática de Fotos de Eventos (5s) debajo del título */
 (function () {
   function getActiveTemplate() {
     var m = document.querySelector('meta[name="mg-template"]');
@@ -14,24 +14,27 @@
     var st = document.createElement('style');
     st.id = 'mg-evfotos-style';
     st.textContent = [
-      '.mg-evf-wrap{max-width:1160px;margin:36px auto 12px;padding:0 16px;}',
-      '.mg-evf-head{text-align:center;margin-bottom:20px;}',
-      '.mg-evf-kicker{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:#ff2d78;font-weight:700;margin-bottom:6px;}',
-      '.mg-evf-title{font-size:clamp(1.35rem,2.6vw,1.9rem);font-weight:800;color:#fff;margin:0;}',
-      '.mg-evf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}',
-      '.mg-evf-card{position:relative;border-radius:14px;overflow:hidden;background:rgba(16,11,30,0.75);border:1px solid rgba(255,255,255,0.12);cursor:pointer;aspect-ratio:4/3;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease;}',
-      '.mg-evf-card:hover{transform:translateY(-4px);border-color:#b44fff;box-shadow:0 12px 30px rgba(180,79,255,0.28);}',
-      '.mg-evf-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease;}',
-      '.mg-evf-card:hover img{transform:scale(1.06);}',
-      '.mg-evf-cap{position:absolute;left:0;right:0;bottom:0;padding:24px 12px 10px;background:linear-gradient(transparent,rgba(7,5,15,0.92));color:#fff;font-size:.82rem;}',
-      '.mg-evf-club{font-size:.7rem;color:#00f0ff;font-weight:700;text-transform:uppercase;letter-spacing:.8px;}',
-      '.mg-evf-lb{position:fixed;inset:0;z-index:9999;background:rgba(5,3,12,0.92);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px;}',
+      '.mg-evw-box{position:relative;width:100%;max-width:680px;height:320px;margin:18px auto 14px;border-radius:16px;overflow:hidden;background:rgba(12,8,24,0.82);border:1px solid rgba(255,255,255,0.16);box-shadow:0 14px 40px rgba(0,0,0,0.48);backdrop-filter:blur(10px);z-index:5;}',
+      '.mg-evw-img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .45s ease;cursor:pointer;}',
+      '.mg-evw-top{position:absolute;top:10px;left:12px;right:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;pointer-events:none;}',
+      '.mg-evw-badge{pointer-events:auto;background:rgba(10,7,20,0.72);border:1px solid rgba(255,255,255,0.18);color:#f5c842;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:999px;text-transform:uppercase;}',
+      '.mg-evw-big{pointer-events:auto;background:rgba(142,45,226,0.82);border:1px solid #b44fff;color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35);}',
+      '.mg-evw-big:hover{background:#b44fff;}',
+      '.mg-evw-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(10,7,20,0.58);color:#fff;border:1px solid rgba(255,255,255,0.22);border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;}',
+      '.mg-evw-nav:hover{background:rgba(180,79,255,0.75);}',
+      '.mg-evw-prev{left:10px;} .mg-evw-next{right:10px;}',
+      '.mg-evw-bot{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 10px;background:linear-gradient(transparent,rgba(7,5,15,0.92));display:flex;align-items:flex-end;justify-content:space-between;gap:10px;color:#fff;}',
+      '.mg-evw-club{font-size:11px;color:#00f0ff;font-weight:700;text-transform:uppercase;letter-spacing:.8px;}',
+      '.mg-evw-tit{font-size:14px;font-weight:700;color:#f3ecff;}',
+      '.mg-evw-cnt{font-size:11px;color:rgba(255,255,255,0.72);font-weight:700;flex-shrink:0;}',
+      '.mg-evf-lb{position:fixed;inset:0;z-index:9999;background:rgba(5,3,12,0.94);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px;}',
       '.mg-evf-lb.open{display:flex;}',
-      '.mg-evf-lb img{max-width:92vw;max-height:78vh;border-radius:12px;border:1px solid rgba(255,255,255,0.18);box-shadow:0 20px 60px rgba(0,0,0,0.7);}',
+      '.mg-evf-lb img{max-width:94vw;max-height:80vh;border-radius:12px;border:1px solid rgba(255,255,255,0.18);box-shadow:0 20px 60px rgba(0,0,0,0.75);}',
       '.mg-evf-lb-txt{margin-top:12px;color:#f3ecff;font-size:.95rem;text-align:center;}',
       '.mg-evf-lb-btn{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);color:#fff;border:1px solid rgba(255,255,255,0.22);border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer;}',
       '.mg-evf-lb-prev{left:18px;} .mg-evf-lb-next{right:18px;}',
-      '.mg-evf-lb-close{position:fixed;top:18px;right:22px;background:rgba(255,45,120,0.25);color:#fff;border:1px solid #ff2d78;border-radius:999px;padding:6px 14px;font-weight:700;cursor:pointer;}'
+      '.mg-evf-lb-close{position:fixed;top:18px;right:22px;background:rgba(255,45,120,0.28);color:#fff;border:1px solid #ff2d78;border-radius:999px;padding:6px 14px;font-weight:700;cursor:pointer;}',
+      '@media(max-width:640px){.mg-evw-box{height:230px;margin:14px auto 12px;}}'
     ].join('');
     document.head.appendChild(st);
   }
@@ -80,6 +83,11 @@
     var existing = document.getElementById('mg-evf-section');
     if (existing && existing.getAttribute('data-tpl') === tpl) return;
     if (existing) existing.remove();
+    if (window.__mgEvwTimer) {
+      clearInterval(window.__mgEvwTimer);
+      window.__mgEvwTimer = null;
+    }
+
     try {
       var r = await fetch('eventos_fotos.json?_=' + Date.now(), { cache: 'no-store' });
       if (!r.ok) return;
@@ -91,40 +99,60 @@
       if (!photos.length) return;
 
       injectStyles();
-      var sec = document.createElement('div');
-      sec.id = 'mg-evf-section';
-      sec.setAttribute('data-tpl', tpl);
-      sec.className = 'mg-evf-wrap';
-      sec.innerHTML = [
-        '<div class="mg-evf-head">',
-        '  <div class="mg-evf-kicker">📸 Galería de Clubs y Sesiones</div>',
-        '  <h3 class="mg-evf-title">Fotos de Eventos</h3>',
+      var box = document.createElement('div');
+      box.id = 'mg-evf-section';
+      box.setAttribute('data-tpl', tpl);
+      box.className = 'mg-evw-box';
+      box.innerHTML = [
+        '<img class="mg-evw-img" id="mg-evw-img" src="" alt="Evento">',
+        '<div class="mg-evw-top">',
+        '  <span class="mg-evw-badge">📸 Eventos Clubs</span>',
+        '  <button class="mg-evw-big" id="mg-evw-big" type="button">⛶ Ver en grande</button>',
         '</div>',
-        '<div class="mg-evf-grid" id="mg-evf-grid"></div>'
+        '<button class="mg-evw-nav mg-evw-prev" id="mg-evw-prev" type="button">‹</button>',
+        '<button class="mg-evw-nav mg-evw-next" id="mg-evw-next" type="button">›</button>',
+        '<div class="mg-evw-bot">',
+        '  <div><div class="mg-evw-club" id="mg-evw-club"></div><div class="mg-evw-tit" id="mg-evw-tit"></div></div>',
+        '  <div class="mg-evw-cnt" id="mg-evw-cnt"></div>',
+        '</div>'
       ].join('');
 
-      var eventsSec = document.getElementById('events');
-      var sponsorsSec = document.getElementById('sponsors');
-      if (eventsSec) {
-        eventsSec.appendChild(sec);
-      } else if (sponsorsSec && sponsorsSec.parentNode) {
-        sponsorsSec.parentNode.insertBefore(sec, sponsorsSec);
+      var anchor = document.querySelector('.hero-sub') || document.querySelector('h1.hero-title') || document.querySelector('h1');
+      if (anchor && anchor.parentNode) {
+        anchor.parentNode.insertBefore(box, anchor.nextSibling);
       } else {
-        document.body.appendChild(sec);
+        document.body.insertBefore(box, document.body.firstChild);
       }
 
       var openLb = ensureLightbox(photos);
-      var grid = document.getElementById('mg-evf-grid');
-      photos.forEach(function (p, i) {
-        var card = document.createElement('div');
-        card.className = 'mg-evf-card';
-        card.innerHTML = '<img src="' + p.archivo + '" alt="' + (p.titulo || 'Evento') + '" loading="lazy">' +
-          '<div class="mg-evf-cap">' +
-          (p.club ? '<div class="mg-evf-club">' + p.club + '</div>' : '') +
-          '<div>' + (p.titulo || '') + '</div></div>';
-        card.onclick = function () { openLb(i); };
-        grid.appendChild(card);
-      });
+      var imgEl = document.getElementById('mg-evw-img');
+      var clubEl = document.getElementById('mg-evw-club');
+      var titEl = document.getElementById('mg-evw-tit');
+      var cntEl = document.getElementById('mg-evw-cnt');
+      var cur = 0;
+
+      function showSlide(i) {
+        cur = (i + photos.length) % photos.length;
+        var p = photos[cur];
+        imgEl.style.opacity = '0.25';
+        setTimeout(function () {
+          imgEl.src = p.archivo;
+          clubEl.textContent = p.club || '';
+          titEl.textContent = p.titulo || '';
+          cntEl.textContent = (cur + 1) + ' / ' + photos.length;
+          imgEl.style.opacity = '1';
+        }, 120);
+      }
+
+      showSlide(0);
+      if (photos.length > 1) {
+        window.__mgEvwTimer = setInterval(function () { showSlide(cur + 1); }, 5000);
+      }
+
+      document.getElementById('mg-evw-prev').onclick = function (e) { e.stopPropagation(); showSlide(cur - 1); };
+      document.getElementById('mg-evw-next').onclick = function (e) { e.stopPropagation(); showSlide(cur + 1); };
+      document.getElementById('mg-evw-big').onclick = function (e) { e.stopPropagation(); openLb(cur); };
+      imgEl.onclick = function () { openLb(cur); };
     } catch (e) {}
   }
 
