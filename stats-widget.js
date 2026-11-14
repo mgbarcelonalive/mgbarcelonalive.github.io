@@ -254,6 +254,7 @@
     var applyVol = function (e) {
       var t = e && e.target;
       if (!t || (t.id !== 'volume' && t.id !== 'vol')) return;
+      t.dataset.mgUserSet = '1';
       var v = parseFloat(t.value);
       if (isNaN(v)) return;
       v = Math.max(0, Math.min(1, v));
@@ -307,11 +308,19 @@
 
       var vs = document.getElementById('volume') || document.getElementById('vol');
       if (vs) {
+        if (!vs.dataset.mgUserSet) {
+          vs.value = '1';
+          var pct0 = document.getElementById('vol-pct');
+          if (pct0) pct0.textContent = '100%';
+        }
         var vv = parseFloat(vs.value);
         if (!isNaN(vv)) {
           a.muted = (vv === 0);
           a.volume = Math.max(0, Math.min(1, vv));
         }
+      } else {
+        a.muted = false;
+        a.volume = 1.0;
       }
 
       if (st) st.textContent = 'Conectando con la radio...';
