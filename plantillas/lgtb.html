@@ -25,7 +25,18 @@
       radial-gradient(circle at 80% 30%, rgba(0, 245, 212, 0.16), transparent 50%),
       radial-gradient(circle at 50% 80%, rgba(157, 78, 221, 0.2), transparent 55%);
   }
-  canvas#particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  canvas#particles { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.55; }
+  .bg-video-wrap {
+    position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: #0b0314;
+  }
+  .bg-video-wrap video {
+    width: 100%; height: 100%; object-fit: cover; opacity: 0.45;
+    filter: saturate(1.3) contrast(1.08) brightness(0.85);
+  }
+  .bg-video-wrap::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(11,3,20,0.62) 0%, rgba(28,6,46,0.45) 50%, rgba(11,3,20,0.85) 100%);
+  }
 
   .pride-bar {
     position: fixed; top: 0; left: 0; right: 0; height: 6px; z-index: 120;
@@ -131,6 +142,9 @@
   <a href="#player" class="nav-ticket">🏳️‍🌈 Pride Live +18</a>
 </nav>
 
+<div class="bg-video-wrap">
+  <video id="bgVideo" autoplay muted playsinline></video>
+</div>
 <canvas id="particles"></canvas>
 
 <section id="hero">
@@ -140,7 +154,7 @@
   <div class="hero-btns">
     <a href="#player" class="btn-primary">🎧 Escuchar Sesión +18</a>
     <a href="#videos" class="btn-secondary">🔥 Vídeos Club &amp; Publicidad</a>
-    <a href="#nightlife" class="btn-secondary">🌈 Agenda Nocturna BCN</a>
+    <button type="button" onclick="nextBgVideo()" class="btn-secondary" style="cursor:pointer;">🎞️ Cambiar Vídeo de Fondo</button>
   </div>
 </section>
 
@@ -370,6 +384,26 @@ function loop() {
 }
 window.addEventListener('resize', () => { resize(); initParticles(); });
 resize(); initParticles(); loop();
+
+// ─── FULLSCREEN BACKGROUND VIDEO ROTATION (+18) ───────────
+const bgList = [
+  "videos/moda_01.mp4","videos/moda_02.mp4","videos/moda_03.mp4","videos/moda_04.mp4","videos/moda_05.mp4","videos/moda_06.mp4","videos/moda_07.mp4","videos/moda_08.mp4","videos/moda_09.mp4","videos/moda_10.mp4","videos/moda_11.mp4","videos/moda_12.mp4","videos/moda_13.mp4","videos/moda_14.mp4","videos/moda_15.mp4","videos/moda_16.mp4","videos/moda_17.mp4","videos/moda_18.mp4","videos/moda_19.mp4","videos/moda_20.mp4","videos/moda_21.mp4","videos/moda_22.mp4","videos/moda_23.mp4","videos/moda_24.mp4","videos/moda_25.mp4","videos/moda_26.mp4","videos/moda_27.mp4","videos/moda_28.mp4","videos/moda_29.mp4","videos/moda_30.mp4","videos/moda_31.mp4"
+];
+const bgVid = document.getElementById('bgVideo');
+let bgIdx = 0;
+function loadBgVideo(i) {
+  if (!bgVid || !bgList.length) return;
+  bgIdx = (i + bgList.length) % bgList.length;
+  bgVid.src = bgList[bgIdx];
+  bgVid.muted = true;
+  bgVid.play().catch(() => {});
+}
+function nextBgVideo() { loadBgVideo(bgIdx + 1); }
+if (bgVid) {
+  bgVid.addEventListener('ended', () => nextBgVideo());
+  bgVid.addEventListener('error', () => setTimeout(nextBgVideo, 1000));
+  loadBgVideo(Math.floor(Math.random() * bgList.length));
+}
 </script>
 <script type="application/json" id="publicidad-config">{"anuncios":[{"archivo":"publicidad/43c25109d82e3217bbaab925bf064effc319b1956df84da3300949ef4455a9aa.mp4","tipo":"video"},{"archivo":"publicidad/18f581807f965a1759b6eee38f05afba215c3be2f092f8a796d3d33ad53b6452.mp4","tipo":"video"},{"archivo":"publicidad/061d9443f15357c0533bfb2ea80de13d7c64966f061b6bce49033f13858effec.mp4","tipo":"video"},{"archivo":"publicidad/169210a336c7a964f8756d6256932952e7ccec6dc3afb8085e2bf20a6f722b73.mp4","tipo":"video"},{"archivo":"publicidad/67c4a67950d1b55b7b5eb9a1285161f202d2c57f27cbd13d83a195e0d31fcda2.mp4","tipo":"video"},{"archivo":"publicidad/6c4e0da8254a8d072e34ff5603d063dd1eef1101e7e575898dad4170608c5c98.mp4","tipo":"video"},{"archivo":"publicidad/0835946073709b32799fd3cd95581d8d0610045de354985d8c498de8bc0a3b3e.mp4","tipo":"video"},{"archivo":"publicidad/4ad6da39e24923ea1d8f875d55ba99ac11662d5838dac37cdd5e008b2c0e1e6f.mp4","tipo":"video"}],"intervalo":60}</script>
 </body>
