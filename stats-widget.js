@@ -1,4 +1,4 @@
-/* MG Barcelona Live - Contador de visitas, oyentes en directo y banderas por IP */
+/* MG Barcelona Live - Barra superior sutil de oyentes, visitas y banderas por IP */
 (function () {
   var NS = 'mgbarcelonalive';
   var ABACUS = 'https://abacus.jasoncameron.dev';
@@ -16,20 +16,21 @@
     var st = document.createElement('style');
     st.id = 'mg-stats-style';
     st.textContent = [
-      '.mg-stats-wrap{max-width:1100px;margin:28px auto 18px;padding:18px 20px;border-radius:18px;background:rgba(12,8,26,0.78);border:1px solid rgba(255,255,255,0.14);backdrop-filter:blur(12px);color:#f3ecff;font-family:"Segoe UI",system-ui,sans-serif;box-shadow:0 12px 36px rgba(0,0,0,0.45);}',
-      '.mg-stats-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px;}',
-      '.mg-stats-title{font-size:1.05rem;font-weight:800;letter-spacing:.4px;color:#f5c842;display:flex;align-items:center;gap:8px;}',
-      '.mg-stats-you{font-size:.86rem;color:#c9b8ea;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);padding:5px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.1);}',
-      '.mg-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:14px;}',
-      '.mg-stat-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:12px 14px;}',
-      '.mg-stat-lbl{font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:#a58cc9;margin-bottom:4px;}',
-      '.mg-stat-val{font-size:1.55rem;font-weight:800;color:#00f0ff;line-height:1.1;}',
-      '.mg-stat-val.live{color:#3fd68f;}',
-      '.mg-flags-title{font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:#a58cc9;margin-bottom:8px;}',
-      '.mg-flags-list{display:flex;flex-wrap:wrap;gap:8px;}',
-      '.mg-flag-pill{display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);font-size:.82rem;font-weight:600;color:#efe8ff;}',
-      '.mg-flag-pill img{width:20px;height:15px;border-radius:2px;object-fit:cover;box-shadow:0 1px 3px rgba(0,0,0,.4);}',
-      '.mg-flag-cnt{color:#f5c842;font-weight:800;}'
+      '.mg-top-pill{position:fixed;left:50%;transform:translateX(-50%);z-index:95;display:flex;align-items:center;gap:12px;max-width:94vw;padding:5px 14px;border-radius:999px;background:rgba(10,7,22,0.56);border:1px solid rgba(255,255,255,0.11);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 24px rgba(0,0,0,0.28);color:rgba(243,236,255,0.92);font-family:"Segoe UI",system-ui,sans-serif;font-size:12px;line-height:1;white-space:nowrap;overflow-x:auto;scrollbar-width:none;transition:opacity .25s ease;}',
+      '.mg-top-pill::-webkit-scrollbar{display:none;}',
+      '.mg-tp-item{display:inline-flex;align-items:center;gap:6px;flex-shrink:0;}',
+      '.mg-tp-dot{width:7px;height:7px;border-radius:50%;background:#3fd68f;box-shadow:0 0 8px #3fd68f;animation:mgPulse 2s infinite;}',
+      '@keyframes mgPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.45;transform:scale(.82);}}',
+      '.mg-tp-lbl{color:rgba(205,190,235,0.72);font-weight:500;}',
+      '.mg-tp-val{color:#ffffff;font-weight:700;}',
+      '.mg-tp-val.live{color:#3fd68f;}',
+      '.mg-tp-val.cyan{color:#5eead4;}',
+      '.mg-tp-sep{width:1px;height:12px;background:rgba(255,255,255,0.14);flex-shrink:0;}',
+      '.mg-tp-flags{display:inline-flex;align-items:center;gap:6px;flex-shrink:0;}',
+      '.mg-tp-flag{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);font-size:11px;color:#e9dfff;}',
+      '.mg-tp-flag img,.mg-tp-you img{width:16px;height:12px;border-radius:2px;object-fit:cover;display:block;}',
+      '.mg-tp-flag b{color:#f5c842;font-weight:700;}',
+      '@media(max-width:640px){.mg-top-pill{padding:5px 10px;gap:8px;font-size:11px;}}'
     ].join('');
     document.head.appendChild(st);
   }
@@ -39,32 +40,46 @@
     return '<img src="https://flagcdn.com/24x18/' + code + '.png" alt="' + (alt || code.toUpperCase()) + '" loading="lazy" onerror="this.style.display=\'none\'">';
   }
 
+  function positionBelowNav(card) {
+    var nav = document.querySelector('nav');
+    var topPx = 12;
+    if (nav) {
+      var rect = nav.getBoundingClientRect();
+      if (rect.height > 0 && rect.top <= 20) {
+        topPx = Math.round(rect.bottom + 8);
+      }
+    }
+    card.style.top = topPx + 'px';
+  }
+
   function ensureCard() {
     var existing = document.getElementById('mg-stats-card');
-    if (existing) return existing;
+    if (existing) {
+      positionBelowNav(existing);
+      return existing;
+    }
     injectStyles();
-    var card = document.createElement('section');
+    var card = document.createElement('div');
     card.id = 'mg-stats-card';
-    card.className = 'mg-stats-wrap';
+    card.className = 'mg-top-pill';
     card.innerHTML = [
-      '<div class="mg-stats-head">',
-      '  <div class="mg-stats-title">📊 Audiencia en Directo · MG Barcelona Live</div>',
-      '  <div class="mg-stats-you" id="mg-you-loc">🌍 Detectando tu país por IP...</div>',
-      '</div>',
-      '<div class="mg-stats-grid">',
-      '  <div class="mg-stat-box"><div class="mg-stat-lbl">🎧 Oyentes ahora</div><div class="mg-stat-val live" id="mg-listeners-val">0</div></div>',
-      '  <div class="mg-stat-box"><div class="mg-stat-lbl">👁 Visitas totales</div><div class="mg-stat-val" id="mg-visits-val">--</div></div>',
-      '  <div class="mg-stat-box"><div class="mg-stat-lbl">🌎 Países conectados</div><div class="mg-stat-val" id="mg-countries-val">1</div></div>',
-      '</div>',
-      '<div class="mg-flags-title">🚩 Oyentes y visitas por país (IP)</div>',
-      '<div class="mg-flags-list" id="mg-flags-list"><span class="mg-flag-pill">Cargando banderas...</span></div>'
+      '<span class="mg-tp-item"><span class="mg-tp-dot"></span><span class="mg-tp-lbl">Oyentes</span><span class="mg-tp-val live" id="mg-listeners-val">0</span></span>',
+      '<span class="mg-tp-sep"></span>',
+      '<span class="mg-tp-item"><span class="mg-tp-lbl">Visitas</span><span class="mg-tp-val cyan" id="mg-visits-val">--</span></span>',
+      '<span class="mg-tp-sep"></span>',
+      '<span class="mg-tp-item mg-tp-you" id="mg-you-loc"><span class="mg-tp-lbl">IP...</span></span>',
+      '<span class="mg-tp-sep"></span>',
+      '<span class="mg-tp-flags" id="mg-flags-list"></span>'
     ].join('');
 
-    var footer = document.querySelector('footer');
-    if (footer && footer.parentNode) {
-      footer.parentNode.insertBefore(card, footer);
-    } else {
-      document.body.appendChild(card);
+    document.body.insertBefore(card, document.body.firstChild);
+    positionBelowNav(card);
+    if (!window.__mgStatsResizeBound) {
+      window.__mgStatsResizeBound = true;
+      window.addEventListener('resize', function () {
+        var c = document.getElementById('mg-stats-card');
+        if (c) positionBelowNav(c);
+      });
     }
     return card;
   }
@@ -163,7 +178,6 @@
 
   async function loadCountryFlags(myGeo) {
     var listEl = document.getElementById('mg-flags-list');
-    var cntEl = document.getElementById('mg-countries-val');
     if (!listEl) return;
 
     var pool = TRACKED_COUNTRIES.slice();
@@ -188,9 +202,8 @@
       items.push({ cc: myGeo.cc, name: myGeo.country, count: 1 });
     }
 
-    if (cntEl) cntEl.textContent = String(items.length || 1);
-    listEl.innerHTML = items.map(function (it) {
-      return '<span class="mg-flag-pill">' + flagImg(it.cc, it.name) + '<span>' + it.name + '</span><span class="mg-flag-cnt">' + it.count.toLocaleString('es-ES') + '</span></span>';
+    listEl.innerHTML = items.slice(0, 10).map(function (it) {
+      return '<span class="mg-tp-flag" title="' + it.name + ': ' + it.count + ' visitas">' + flagImg(it.cc, it.name) + '<b>' + it.count.toLocaleString('es-ES') + '</b></span>';
     }).join('');
   }
 
@@ -204,10 +217,10 @@
     var geo = await detectGeo();
     var youEl = document.getElementById('mg-you-loc');
     if (youEl && geo) {
-      var place = geo.city ? (geo.city + ', ' + geo.country) : geo.country;
-      youEl.innerHTML = flagImg(geo.cc, geo.country) + ' <span>Tu IP: <strong>' + place + '</strong></span>';
+      var place = geo.city || geo.country;
+      youEl.innerHTML = flagImg(geo.cc, geo.country) + '<span class="mg-tp-val">' + place + '</span>';
     } else if (youEl) {
-      youEl.textContent = '🌍 Conexión internacional';
+      youEl.innerHTML = '<span class="mg-tp-lbl">Internacional</span>';
     }
 
     await countVisitAndCountry(geo);
