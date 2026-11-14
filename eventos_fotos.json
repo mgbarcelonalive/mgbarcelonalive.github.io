@@ -3,38 +3,203 @@
   "por_plantilla": {
     "principal": [
       {
-        "archivo": "eventos_fotos/principal/image_20261114_170136.jpg",
-        "titulo": "image 20261114 170136",
+        "archivo": "eventos_fotos/principal/foto_01_mg__1_.jpg",
+        "titulo": "foto 01 mg (1)",
         "club": "Barcelona Club"
       },
       {
-        "archivo": "eventos_fotos/principal/image_20261114_170138.jpg",
-        "titulo": "image 20261114 170138",
+        "archivo": "eventos_fotos/principal/foto_01_mg__2_.jpg",
+        "titulo": "foto 01 mg (2)",
         "club": "Barcelona Club"
       },
       {
-        "archivo": "eventos_fotos/principal/image_20261114_170146.jpg",
-        "titulo": "image 20261114 170146",
+        "archivo": "eventos_fotos/principal/foto_01_mg__3_.jpg",
+        "titulo": "foto 01 mg (3)",
         "club": "Barcelona Club"
       },
       {
-        "archivo": "eventos_fotos/principal/image_20261114_170220.jpg",
-        "titulo": "image 20261114 170220",
+        "archivo": "eventos_fotos/principal/foto_01_mg.jpg",
+        "titulo": "foto 01 mg",
         "club": "Barcelona Club"
       },
       {
-        "archivo": "eventos_fotos/principal/image_20261114_170310.jpg",
-        "titulo": "image 20261114 170310",
+        "archivo": "eventos_fotos/principal/foto_02_mg__1_.jpg",
+        "titulo": "foto 02 mg (1)",
         "club": "Barcelona Club"
       },
       {
-        "archivo": "eventos_fotos/principal/image_20261114_170311.jpg",
-        "titulo": "image 20261114 170311",
+        "archivo": "eventos_fotos/principal/foto_02_mg__2_.jpg",
+        "titulo": "foto 02 mg (2)",
         "club": "Barcelona Club"
       },
       {
-        "archivo": "eventos_fotos/principal/image_20261114_170314.jpg",
-        "titulo": "image 20261114 170314",
+        "archivo": "eventos_fotos/principal/foto_02_mg__3_.jpg",
+        "titulo": "foto 02 mg (3)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_02_mg.jpg",
+        "titulo": "foto 02 mg",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_03_mg__1_.jpg",
+        "titulo": "foto 03 mg (1)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_03_mg__2_.jpg",
+        "titulo": "foto 03 mg (2)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_03_mg__3_.jpg",
+        "titulo": "foto 03 mg (3)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_03_mg.jpg",
+        "titulo": "foto 03 mg",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_04_mg__1_.jpg",
+        "titulo": "foto 04 mg (1)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_04_mg__2_.jpg",
+        "titulo": "foto 04 mg (2)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_04_mg__3_.jpg",
+        "titulo": "foto 04 mg (3)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_04_mg.jpg",
+        "titulo": "foto 04 mg",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_05_mg__1_.jpg",
+        "titulo": "foto 05 mg (1)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_05_mg__2_.jpg",
+        "titulo": "foto 05 mg (2)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_05_mg__3_.jpg",
+        "titulo": "foto 05 mg (3)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_05_mg.jpg",
+        "titulo": "foto 05 mg",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_06_mg__1_.jpg",
+        "titulo": "foto 06 mg (1)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_06_mg__2_.jpg",
+        "titulo": "foto 06 mg (2)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_06_mg__3_.jpg",
+        "titulo": "foto 06 mg (3)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_06_mg.jpg",
+        "titulo": "foto 06 mg",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_07_mg__1_.jpg",
+        "titulo": "foto 07 mg (1)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_07_mg__2_.jpg",
+        "titulo": "foto 07 mg (2)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_07_mg__3_.jpg",
+        "titulo": "foto 07 mg (3)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_07_mg.jpg",
+        "titulo": "foto 07 mg",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_08_mg__1_.jpg",
+        "titulo": "foto 08 mg (1)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_08_mg__2_.jpg",
+        "titulo": "foto 08 mg (2)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_08_mg__4_.jpg",
+        "titulo": "foto 08 mg (4)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_08_mg.jpg",
+        "titulo": "foto 08 mg",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_09_mg__1_.jpg",
+        "titulo": "foto 09 mg (1)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_09_mg__2_.jpg",
+        "titulo": "foto 09 mg (2)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_09_mg__4_.jpg",
+        "titulo": "foto 09 mg (4)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_09_mg.jpg",
+        "titulo": "foto 09 mg",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_10_mg__1_.jpg",
+        "titulo": "foto 10 mg (1)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_10_mg__2_.jpg",
+        "titulo": "foto 10 mg (2)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_10_mg__4_.jpg",
+        "titulo": "foto 10 mg (4)",
+        "club": "Barcelona Club"
+      },
+      {
+        "archivo": "eventos_fotos/principal/foto_10_mg.jpg",
+        "titulo": "foto 10 mg",
         "club": "Barcelona Club"
       }
     ]
