@@ -138,20 +138,25 @@ footer{max-width:1150px;margin:auto;padding:0 24px 25px;color:#a68c99;font-size:
   <div class="info-grid"><div class="card"><h3>UNA RADIO PARA TUS RUTAS</h3><p>Música electrónica desde Barcelona, con un escenario fijo y ecualizador visual de barras. Los anuncios no cambian el volumen de la radio.</p></div><div class="card"><h3>ENLACE DEL DIRECTO</h3><span class="stream-url" id="streamUrl"></span><button class="small-btn" id="copyBtn">Copiar enlace</button></div></div>
 
 <div class="live-video-card" role="region" aria-labelledby="liveVideoHeading">
-  <div class="live-video-head"><h2 id="liveVideoHeading">Estudio y disco · Vídeo</h2><span class="live-video-tag">DJ MG / STUDIO 2026</span></div>
+  <div class="live-video-head"><h2 id="liveVideoHeading">Vídeos musicales · DJ MG</h2><span class="live-video-tag">DJ MG / MODA &amp; HOUSE</span></div>
   <div class="live-video-screen">
-    <video id="liveVideo" controls playsinline muted preload="none" hidden aria-label="Vídeo de MG Barcelona Live" aria-describedby="liveVideoStatus"></video>
-    <div class="live-video-placeholder" id="liveVideoPlaceholder"><img src="img/logo-video.png" alt="" width="145" height="120"><strong>LA CABINA DE DJ MG</strong><span>Imagen del estudio y de la discoteca</span></div>
+    <video id="liveVideo" controls playsinline muted preload="auto" aria-label="Vídeos musicales de MG Barcelona Live" aria-describedby="liveVideoStatus"></video>
+    <div class="live-video-placeholder" id="liveVideoPlaceholder" hidden><img src="img/logo-video.png" alt="" width="145" height="120"><strong>VÍDEOS MUSICALES</strong><span>Moda y música house</span></div>
   </div>
-  <div class="live-video-actions"><button class="live-video-button" id="liveVideoButton" type="button" disabled>Vídeo pendiente</button><p class="live-video-status" id="liveVideoStatus" role="status" aria-live="polite">Vídeo todavía no disponible.</p></div>
-  <p class="live-video-note">Los anuncios se reproducen solos en la pantalla de cine, sin sonido. Si quieres oírlos, pulsa el botón «Escuchar vídeo» y la radio bajará de volumen.</p>
+  <div class="live-video-actions">
+    <button class="live-video-button" id="liveVideoButton" type="button">Reproducir vídeo</button>
+    <button class="live-video-button" id="liveVideoNext" type="button">Siguiente vídeo</button>
+    <button class="live-video-button" id="liveVideoSound" type="button">Escuchar vídeo</button>
+    <p class="live-video-status" id="liveVideoStatus" role="status" aria-live="polite">Vídeo preparado. Pulsa reproducir.</p>
+  </div>
+  <p class="live-video-note">Vídeos de moda y ambiente house en rotación continua mientras escuchas la radio. Si activas el sonido del vídeo, la radio baja de volumen automáticamente.</p>
 </div>
 </section>
 <section id="programacion" aria-label="Programación"><div class="card"><h2 class="section-heading">Programación semanal</h2><div class="table-wrap"><table><thead><tr><th>Hora</th><th>Programa</th><th>DJ</th></tr></thead><tbody><tr><td>00:00 - 02:00</td><td>Night Electro</td><td>DJ MG</td></tr><tr><td>02:00 - 06:00</td><td>Deep Night Chill</td><td>Auto</td></tr><tr><td>06:00 - 10:00</td><td>Morning Synth</td><td>Barcelona Live</td></tr><tr><td>10:00 - 14:00</td><td>Techno Break</td><td>DJ MG</td></tr><tr><td>14:00 - 18:00</td><td>House Vibes</td><td>Invitado</td></tr><tr><td>18:00 - 22:00</td><td>Prime Time Electro</td><td>DJ MG</td></tr><tr><td>22:00 - 00:00</td><td>Club Session</td><td>Residente</td></tr></tbody></table></div></div></section>
 <section id="contacto" aria-label="Información de la radio"><div class="card"><h2 class="section-heading">Radio MG Barcelona Live</h2><p>Emisión de música electrónica a través de Icecast y BUTT. La pantalla reproduce los archivos de publicidad que prepares en el panel, no una retransmisión de vídeo en directo de VirtualDJ.</p><p style="margin-top:18px">Web: mgbarcelonalive.github.io<br>Audio: MP3 · 128 kbps · /stream</p></div></section>
 </main>
 <footer><span>MG BARCELONA LIVE · CINE Y PUBLICIDAD</span><span>Vídeos silenciosos · Audio independiente · Escenario estático</span><span><a href="https://mgbarcelonalive.goatcounter.com" target="_blank" rel="noopener" style="color:#a68c99;text-decoration:underline">Estadísticas</a></span></footer>
-<script type="application/json" id="publicidad-config">{"anuncios":[{"archivo":"publicidad/43c25109d82e3217bbaab925bf064effc319b1956df84da3300949ef4455a9aa.mp4","tipo":"video"},{"archivo":"publicidad/18f581807f965a1759b6eee38f05afba215c3be2f092f8a796d3d33ad53b6452.mp4","tipo":"video"},{"archivo":"publicidad/061d9443f15357c0533bfb2ea80de13d7c64966f061b6bce49033f13858effec.mp4","tipo":"video"}],"intervalo":60}</script>
+<script type="application/json" id="publicidad-config">{"intervalo":60,"anuncios":[{"archivo":"publicidad/43c25109d82e3217bbaab925bf064effc319b1956df84da3300949ef4455a9aa.mp4","tipo":"video"},{"archivo":"publicidad/18f581807f965a1759b6eee38f05afba215c3be2f092f8a796d3d33ad53b6452.mp4","tipo":"video"},{"archivo":"publicidad/061d9443f15357c0533bfb2ea80de13d7c64966f061b6bce49033f13858effec.mp4","tipo":"video"},{"archivo":"publicidad/169210a336c7a964f8756d6256932952e7ccec6dc3afb8085e2bf20a6f722b73.mp4","tipo":"video"},{"archivo":"publicidad/67c4a67950d1b55b7b5eb9a1285161f202d2c57f27cbd13d83a195e0d31fcda2.mp4","tipo":"video"},{"archivo":"publicidad/6c4e0da8254a8d072e34ff5603d063dd1eef1101e7e575898dad4170608c5c98.mp4","tipo":"video"},{"archivo":"publicidad/0835946073709b32799fd3cd95581d8d0610045de354985d8c498de8bc0a3b3e.mp4","tipo":"video"},{"archivo":"publicidad/4ad6da39e24923ea1d8f875d55ba99ac11662d5838dac37cdd5e008b2c0e1e6f.mp4","tipo":"video"}]}</script>
 <script>
 const STREAM_URL='https://attorney-comp-editing-completing.trycloudflare.com/stream';
 const STATUS_URL=STREAM_URL.replace(/\/stream$/,'/status-json.xsl');
@@ -203,8 +208,14 @@ const adNext=document.getElementById('adNext');
 const adSound=document.getElementById('adSound');
 const volInput=document.getElementById('vol');
 let adsMuted=true;
+let liveVideoMuted=true;
 function radioBase(){return Number(volInput.value)/100;}
-function applyRadioDucking(){audio.volume=adsMuted?radioBase():radioBase()*0.15;}
+function applyRadioDucking(){
+  const adHasSound = !adsMuted && adElement && adElement.tagName==='VIDEO';
+  const videoEl = document.getElementById('liveVideo');
+  const videoHasSound = !liveVideoMuted && videoEl && !videoEl.paused;
+  audio.volume = (adHasSound || videoHasSound) ? radioBase() * 0.15 : radioBase();
+}
 function updateSoundButton(){if(!adSound)return;adSound.textContent=adsMuted?'Escuchar vídeo':'Silenciar vídeo';adSound.setAttribute('aria-pressed',String(!adsMuted));}
 function applyAdMute(){if(adElement&&adElement.tagName==='VIDEO'){adElement.muted=adsMuted;adElement.defaultMuted=adsMuted;if(adsMuted)adElement.setAttribute('muted','');else adElement.removeAttribute('muted');}}
 let adConfig;
@@ -324,61 +335,114 @@ if(ads.length){adPause.disabled=false;adNext.disabled=false;adSound.disabled=fal
 </script>
 <script id="live-video-script">
 (()=>{
-  const VIDEO_URL='';
-  const USE_QUEUE=false;
-  const video=document.getElementById('liveVideo');
-  const placeholder=document.getElementById('liveVideoPlaceholder');
-  const button=document.getElementById('liveVideoButton');
-  const status=document.getElementById('liveVideoStatus');
-  let playlist=[];
-  if(USE_QUEUE){
-    try{
-      const cfg=JSON.parse(document.getElementById('publicidad-config').textContent);
-      playlist=(Array.isArray(cfg&&cfg.anuncios)?cfg.anuncios:[])
-        .filter(a=>a&&a.tipo==='video'&&/^publicidad\/[a-f0-9]{64}\.(mp4|webm)$/.test(a.archivo))
-        .map(a=>a.archivo);
-    }catch{}
+  const videoPlaylist = [
+    "videos/moda_01.mp4","videos/moda_02.mp4","videos/moda_03.mp4","videos/moda_04.mp4","videos/moda_05.mp4",
+    "videos/moda_06.mp4","videos/moda_07.mp4","videos/moda_08.mp4","videos/moda_09.mp4","videos/moda_10.mp4",
+    "videos/moda_11.mp4","videos/moda_12.mp4","videos/moda_13.mp4","videos/moda_14.mp4","videos/moda_15.mp4",
+    "videos/moda_16.mp4","videos/moda_17.mp4","videos/moda_18.mp4","videos/moda_19.mp4","videos/moda_20.mp4",
+    "videos/moda_21.mp4","videos/moda_22.mp4","videos/moda_23.mp4","videos/moda_24.mp4","videos/moda_25.mp4",
+    "videos/moda_26.mp4","videos/moda_27.mp4","videos/moda_28.mp4","videos/moda_29.mp4","videos/moda_30.mp4",
+    "videos/moda_31.mp4"
+  ];
+  const video = document.getElementById('liveVideo');
+  const placeholder = document.getElementById('liveVideoPlaceholder');
+  const button = document.getElementById('liveVideoButton');
+  const nextBtn = document.getElementById('liveVideoNext');
+  const soundBtn = document.getElementById('liveVideoSound');
+  const status = document.getElementById('liveVideoStatus');
+  if (!video || !videoPlaylist.length) return;
+
+  let index = 0;
+
+  function updateStatus(text) {
+    if (status) status.textContent = text;
   }
-  if(!playlist.length&&VIDEO_URL){
-    try{
-      const source=new URL(VIDEO_URL);
-      if(source.protocol==='https:'&&!source.username&&!source.password)playlist=[source.href];
-    }catch{}
+
+  function updateSoundButton() {
+    if (!soundBtn) return;
+    soundBtn.textContent = liveVideoMuted ? 'Escuchar vídeo' : 'Silenciar vídeo';
+    soundBtn.setAttribute('aria-pressed', String(!liveVideoMuted));
   }
-  if(!playlist.length)return;
-  let index=0;
-  function setText(t){status.textContent=t;}
-  function start(){
-    video.hidden=false;
-    placeholder.hidden=true;
-    video.muted=true;
-    video.src=playlist[index];
-    video.play().catch(()=>{
-      button.textContent='Reproducir vídeo';
-      setText('El navegador ha bloqueado el inicio automático. Pulsa Reproducir vídeo.');
+
+  function applyLiveVideoSound() {
+    video.muted = liveVideoMuted;
+    video.defaultMuted = liveVideoMuted;
+    if (liveVideoMuted) video.setAttribute('muted', '');
+    else video.removeAttribute('muted');
+    applyRadioDucking();
+  }
+
+  function loadVideo(i) {
+    index = (i + videoPlaylist.length) % videoPlaylist.length;
+    video.hidden = false;
+    if (placeholder) placeholder.hidden = true;
+    video.src = videoPlaylist[index];
+    applyLiveVideoSound();
+    video.play().then(() => {
+      button.textContent = 'Pausar vídeo';
+      updateStatus('Reproduciendo vídeo musical ' + (index + 1) + ' de ' + videoPlaylist.length + (liveVideoMuted ? ' (sin sonido)' : ' (con sonido)'));
+    }).catch(() => {
+      button.textContent = 'Reproducir vídeo';
+      updateStatus('Vídeo ' + (index + 1) + ' preparado. Pulsa reproducir.');
     });
   }
-  button.disabled=false;
-  button.addEventListener('click',()=>{
-    if(video.paused){video.play().catch(()=>{});}else{video.pause();}
+
+  button.disabled = false;
+  button.addEventListener('click', () => {
+    if (video.paused) {
+      video.play().then(() => {
+        button.textContent = 'Pausar vídeo';
+        applyRadioDucking();
+      }).catch(() => {});
+    } else {
+      video.pause();
+      button.textContent = 'Reproducir vídeo';
+      applyRadioDucking();
+    }
   });
-  video.addEventListener('playing',()=>{
-    button.textContent='Pausar vídeo';
-    setText('Reproduciendo vídeo '+(index+1)+' de '+playlist.length+'. Sin sonido; la radio suena aparte.');
+
+  if (nextBtn) {
+    nextBtn.disabled = false;
+    nextBtn.addEventListener('click', () => {
+      loadVideo(index + 1);
+    });
+  }
+
+  if (soundBtn) {
+    soundBtn.disabled = false;
+    updateSoundButton();
+    soundBtn.addEventListener('click', () => {
+      liveVideoMuted = !liveVideoMuted;
+      applyLiveVideoSound();
+      updateSoundButton();
+      updateStatus(liveVideoMuted ? 'Vídeo silenciado. La radio vuelve a su volumen.' : 'Sonido del vídeo activado. La radio baja de volumen.');
+    });
+  }
+
+  video.addEventListener('playing', () => {
+    button.textContent = 'Pausar vídeo';
+    applyRadioDucking();
+    updateStatus('Reproduciendo vídeo musical ' + (index + 1) + ' de ' + videoPlaylist.length + (liveVideoMuted ? ' (sin sonido)' : ' (con sonido)'));
   });
-  video.addEventListener('waiting',()=>{setText('Cargando vídeo...');});
-  video.addEventListener('pause',()=>{
-    if(!video.error&&!video.ended){button.textContent='Reproducir vídeo';setText('Vídeo en pausa.');}
+
+  video.addEventListener('pause', () => {
+    applyRadioDucking();
+    if (!video.ended && !video.error) {
+      button.textContent = 'Reproducir vídeo';
+      updateStatus('Vídeo musical en pausa (' + (index + 1) + '/' + videoPlaylist.length + ')');
+    }
   });
-  video.addEventListener('ended',()=>{index=(index+1)%playlist.length;start();});
-  video.addEventListener('error',()=>{
-    video.hidden=true;
-    placeholder.hidden=false;
-    setText('Este vídeo no se puede cargar. Pasando al siguiente...');
-    setTimeout(()=>{index=(index+1)%playlist.length;start();},2000);
+
+  video.addEventListener('ended', () => {
+    loadVideo(index + 1);
   });
-  setText('Cargando vídeo...');
-  start();
+
+  video.addEventListener('error', () => {
+    updateStatus('Vídeo ' + (index + 1) + ' no disponible. Pasando al siguiente...');
+    setTimeout(() => { loadVideo(index + 1); }, 1500);
+  });
+
+  loadVideo(0);
 })();
 </script>
 </body>
