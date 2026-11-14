@@ -117,4 +117,13 @@
   } else {
     render();
   }
+
+  if (!window.__mgEvfObserver && typeof MutationObserver !== 'undefined') {
+    window.__mgEvfObserver = new MutationObserver(function () {
+      if (!document.getElementById('mg-evf-section')) {
+        render();
+      }
+    });
+    window.__mgEvfObserver.observe(document.documentElement, { childList: true, subtree: true });
+  }
 })();
