@@ -43,12 +43,6 @@
       "activa": true
     },
     {
-      "archivo": "cunas/sube_el_nivel.mp3",
-      "titulo": "19. Sube El Nivel",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
       "archivo": "cunas/vivelo_en_directo.mp3",
       "titulo": "20. Vivelo En Directo",
       "voz": "Audio PC",
