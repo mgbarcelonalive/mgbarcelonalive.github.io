@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="mg-tpl" content="dragrace">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MG Barcelona Live · Drag Race España All Stars · Reinas del Drag</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #090110;
+    --bg-card: rgba(26, 3, 38, 0.78);
+    --gold: #fbd561;
+    --gold-glow: rgba(251, 213, 97, 0.55);
+    --pink: #ff1493;
+    --pink-glow: rgba(255, 20, 147, 0.6);
+    --purple: #8a2be2;
+    --cyan: #00f0ff;
+    --border: rgba(251, 213, 97, 0.35);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* Animated Night Runway Atmosphere */
+  #runwayCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Runway Top Gold/Magenta Crown Ribbon */
+  .drag-top-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #ff1493, #ffd700, #9d4edd, #ff1493);
+    background-size: 300% 100%;
+    animation: barShine 4s linear infinite;
+    z-index: 1000;
+  }
+  @keyframes barShine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+
+  /* Navigation Bar */
+  nav {
+    position: fixed;
+    top: 6px; left: 0; right: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 2.5rem;
+    background: rgba(9, 1, 16, 0.88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(251, 213, 97, 0.25);
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+  .nav-crown {
+    font-size: 1.6rem;
+    filter: drop-shadow(0 0 10px #ffd700);
+    animation: crownFloat 3s ease-in-out infinite;
+  }
+  @keyframes crownFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-3px) rotate(4deg); }
+  }
+  .nav-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    background: linear-gradient(135deg, #ffd700 0%, #ff80bf 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.78);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .nav-links a:hover {
+    color: var(--gold);
+    text-shadow: 0 0 12px var(--gold-glow);
+  }
+  .nav-allstars-btn {
+    padding: 0.55rem 1.4rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ff1493, #8a2be2);
+    border: 1px solid rgba(255,215,0,0.6);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 0 20px rgba(255,20,147,0.45);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .nav-allstars-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(251,213,97,0.7);
+  }
+
+  /* Main Sections */
+  main {
+    position: relative;
+    z-index: 10;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 6.5rem 1.5rem 4rem;
+  }
+
+  /* Hero Section */
+  .drag-hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1rem;
+    position: relative;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 1.4rem;
+    border-radius: 999px;
+    background: rgba(255, 20, 147, 0.18);
+    border: 1px solid rgba(251, 213, 97, 0.5);
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 1.8rem;
+    box-shadow: 0 0 25px rgba(255,20,147,0.3);
+  }
+  .hero-logo-wrap {
+    max-width: 480px;
+    width: 90%;
+    margin: 0 auto 1.5rem;
+    filter: drop-shadow(0 0 35px rgba(255, 20, 147, 0.6)) drop-shadow(0 0 15px rgba(251, 213, 97, 0.5));
+    animation: logoPulse 4s ease-in-out infinite;
+  }
+  @keyframes logoPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(255, 20, 147, 0.6)); }
+    50% { transform: scale(1.02); filter: drop-shadow(0 0 45px rgba(251, 213, 97, 0.8)); }
+  }
+  .hero-logo-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .hero-slogan-box {
+    max-width: 820px;
+    margin: 0 auto 2.2rem;
+  }
+  .hero-slogan-main {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.25;
+    background: linear-gradient(135deg, #ffffff 0%, #ffd700 35%, #ff4da6 70%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 25px rgba(255,215,0,0.3);
+    margin-bottom: 0.8rem;
+  }
+  .hero-slogan-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+    color: #f7e6ff;
+    text-shadow: 0 0 15px rgba(255,20,147,0.7);
+    line-height: 1.4;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+  }
+  .btn-runway {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 2.4rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ffd700 0%, #ff1493 50%, #9d4edd 100%);
+    color: #000;
+    font-weight: 900;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 0 35px rgba(255, 20, 147, 0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .btn-runway:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 0 50px rgba(251, 213, 97, 0.8);
+  }
+
+  /* Player Card */
+  .player-section {
+    padding: 3rem 0;
+  }
+  .player-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 28px;
+    padding: 2.4rem;
+    max-width: 820px;
+    margin: 0 auto;
+    box-shadow: 0 0 50px rgba(255, 20, 147, 0.25), inset 0 0 30px rgba(251, 213, 97, 0.1);
+    backdrop-filter: blur(25px);
+  }
+  .player-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .player-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    background: rgba(255, 20, 147, 0.25);
+    border: 1px solid var(--pink);
+    color: #ff66b2;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .live-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #ff1493;
+    box-shadow: 0 0 10px #ff1493;
+    animation: livePulse 1.4s infinite;
+  }
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+  .player-body {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+  }
+  .play-circle-btn {
+    width: 82px; height: 82px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ffd700, #ff1493);
+    color: #0a0112;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(255, 20, 147, 0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .play-circle-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 45px rgba(251, 213, 97, 0.8);
+  }
+  .track-meta {
+    flex: 1;
+    min-width: 220px;
+  }
+  .track-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 0.35rem;
+  }
+  .track-sub {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.08em;
+  }
+
+  /* Queens Tribute Grid */
+  .queens-section {
+    padding: 5rem 0;
+  }
+  .section-badge {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .section-heading {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #ff1493 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .queens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.8rem;
+  }
+  .queen-card {
+    background: rgba(26, 3, 38, 0.65);
+    border: 1px solid rgba(251, 213, 97, 0.3);
+    border-radius: 20px;
+    padding: 1.8rem 1.4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(15px);
+  }
+  .queen-card:hover {
+    transform: translateY(-8px);
+    border-color: #ffd700;
+    box-shadow: 0 15px 35px rgba(255,20,147,0.35), 0 0 25px rgba(251,213,97,0.4);
+  }
+  .queen-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff1493, #ffd700, #9d4edd);
+  }
+  .queen-badge {
+    display: inline-block;
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: rgba(251, 213, 97, 0.15);
+    color: var(--gold);
+    border: 1px solid rgba(251, 213, 97, 0.35);
+    margin-bottom: 1rem;
+  }
+  .queen-icon {
+    font-size: 2.8rem;
+    margin-bottom: 0.6rem;
+    filter: drop-shadow(0 0 12px rgba(255, 20, 147, 0.6));
+  }
+  .queen-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 0.4rem;
+  }
+  .queen-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #ffb3d9;
+    margin-bottom: 0.8rem;
+  }
+  .queen-desc {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  /* Sponsors Grid in Template */
+  .sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.6rem;
+    margin-top: 2rem;
+  }
+  .sponsor-card {
+    background: rgba(18, 2, 28, 0.7);
+    border: 1px solid rgba(255, 20, 147, 0.4);
+    border-radius: 20px;
+    padding: 1.8rem 1.4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(15px);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  }
+  .sponsor-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(251, 213, 97, 0.7);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 25px rgba(255,20,147,0.4);
+  }
+  .sponsor-tier {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(251, 213, 97, 0.12);
+    color: var(--gold);
+    border: 1px solid rgba(251, 213, 97, 0.3);
+    margin-bottom: 0.9rem;
+  }
+  .sponsor-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .sponsor-desc {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.68);
+    line-height: 1.55;
+  }
+  .sponsor-desc a {
+    color: var(--gold);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border-top: 1px solid rgba(251, 213, 97, 0.2);
+    background: rgba(9, 1, 16, 0.92);
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+  }
+</style>
+</head>
+<body>
+<div class="drag-top-bar"></div>
+<canvas id="runwayCanvas"></canvas>
+
+<!-- Navigation -->
+<nav>
+  <a href="#" class="nav-brand">
+    <span class="nav-crown">👑</span>
+    <span class="nav-title">MG BARCELONA LIVE</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero">Inicio</a></li>
+    <li><a href="#radio">Radio 24H</a></li>
+    <li><a href="#reinas">Reinas</a></li>
+    <li><a href="#sponsors">Sponsors</a></li>
+  </ul>
+  <a href="#reinas" class="nav-allstars-btn">⭐ All Stars</a>
+</nav>
+
+<main>
+  <!-- Hero Section -->
+  <section class="drag-hero" id="hero">
+    <div class="hero-tag">
+      <span>👑</span>
+      <span>Homenaje Oficial · Drag Queens de España · All Stars</span>
+    </div>
+    
+    <div class="hero-logo-wrap">
+      <img src="../img/drag_race_allstars_logo.png" alt="Drag Race España All Stars" onerror="this.src='../img/drag_race_espana.jpg'">
+    </div>
+
+    <div class="hero-slogan-box">
+      <h1 class="hero-slogan-main">REINAS DEL GLAMOUR, EL ARTE Y LA PASARELA</h1>
+      <p class="hero-slogan-sub">"Porque en España el Drag no se explica... ¡se corona!"</p>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#radio" class="btn-runway">📻 Escuchar Radio 24H</a>
+      <a href="#reinas" class="btn-runway" style="background:rgba(255,20,147,0.2); border:1px solid var(--pink); color:#fff;">✨ Pasarela All Stars</a>
+    </div>
+  </section>
+
+  <!-- Radio Player Section -->
+  <section class="player-section" id="radio">
+    <div class="player-card">
+      <div class="player-header">
+        <div class="player-live-badge">
+          <div class="live-dot"></div>
+          <span>Emisión Oficial 24H · Sonido Estudio</span>
+        </div>
+        <span style="font-size:0.8rem; color:var(--gold); font-weight:700;">Barcelona · Música & Noche</span>
+      </div>
+      <div class="player-body">
+        <button class="play-circle-btn" id="livePlayBtn" onclick="togglePlay()">▶</button>
+        <div class="track-meta">
+          <div class="track-title" id="trackTitle">MG Barcelona Live Radio</div>
+          <div class="track-sub" id="trackStatus">Sesión non-stop · Pop, Hits, Remixed & Drag Runway Anthems</div>
+        </div>
+      </div>
+      <audio id="radio-audio" preload="none" src="https://stream.zeno.fm/f3wvbbq18nhvv"></audio>
+    </div>
+  </section>
+
+  <!-- Drag Queens Tribute Runway Grid -->
+  <section class="queens-section" id="reinas">
+    <div class="section-badge">✨ Pasarela de Leyendas</div>
+    <h2 class="section-heading">LAS REINAS QUE HICIERON HISTORIA</h2>
+    <p class="section-desc">Un homenaje apasionado a las artistas, diseñadoras y drag queens que elevan el arte drag español a nivel mundial con talento, comedia y glamour infinito.</p>
+
+    <div class="queens-grid">
+      <!-- Carmen Farala -->
+      <div class="queen-card">
+        <span class="queen-badge">Ganadora Temporada 1</span>
+        <div class="queen-icon">💎</div>
+        <div class="queen-name">Carmen Farala</div>
+        <div class="queen-quote">"Moda, perfección y alta costura."</div>
+        <p class="queen-desc">La reina absoluta de la confección en tiempo récord, elegancia suprema y corazón generoso. Un estándar internacional de excelencia.</p>
+      </div>
+
+      <!-- Sharonne -->
+      <div class="queen-card">
+        <span class="queen-badge">Ganadora Temporada 2</span>
+        <div class="queen-icon">🌟</div>
+        <div class="queen-name">Sharonne</div>
+        <div class="queen-quote">"Voz, carisma y leyenda del escenario."</div>
+        <p class="queen-desc">Maestra del directo, el canto y la comedia. Una artista completa que deslumbró con talento clásico y modernidad arrolladora.</p>
+      </div>
+
+      <!-- Pitita -->
+      <div class="queen-card">
+        <span class="queen-badge">Ganadora Temporada 3</span>
+        <div class="queen-icon">👑</div>
+        <div class="queen-name">Pitita</div>
+        <div class="queen-quote">"Moda conceptual, garbo y arte catalán."</div>
+        <p class="queen-desc">Alta moda, siluetas deslumbrantes y creatividad sin límites. Un orgullo de la escena drag de Barcelona con personalidad única.</p>
+      </div>
+
+      <!-- Drag Sethlas -->
+      <div class="queen-card">
+        <span class="queen-badge">Ganadora All Stars</span>
+        <div class="queen-icon">🔥</div>
+        <div class="queen-name">Drag Sethlas</div>
+        <div class="queen-quote">"Fuerza canaria, plataformas y espectáculo."</div>
+        <p class="queen-desc">Poderío, acrobacia, plataformas infinitas y la esencia del carnaval drag canario llevada a su máximo esplendor mundial.</p>
+      </div>
+
+      <!-- Supremme de Luxe -->
+      <div class="queen-card">
+        <span class="queen-badge">Nuestra Presentadora & Madre</span>
+        <div class="queen-icon">💖</div>
+        <div class="queen-name">Supremme de Luxe</div>
+        <div class="queen-quote">"Cariño, empatía y puro amor al Drag."</div>
+        <p class="queen-desc">La voz, la elegancia y la ternura que une a todas las reinas. Presentadora mítica e icono indispensable de la cultura en España.</p>
+      </div>
+
+      <!-- Pupi Poisson -->
+      <div class="queen-card">
+        <span class="queen-badge">Miss Simpatía & Show</span>
+        <div class="queen-icon">🎭</div>
+        <div class="queen-name">Pupi Poisson</div>
+        <div class="queen-quote">"Risa, espontaneidad y picardía pura."</div>
+        <p class="queen-desc">El alma de la comedia, el desenfado y la ternura. Capaz de conquistar a cualquier público con solo una sonrisa y una frase ingeniosa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsors Section -->
+  <section id="sponsors" style="padding: 4rem 0;">
+    <div class="section-badge">📢 Red de Ocio y Noche</div>
+    <h2 class="section-heading">NUESTROS SPONSORS OFICIALES</h2>
+    <p class="section-desc">Las salas, clubes y eventos imprescindibles que impulsan el arte, la música y la noche LGTBIQ+ de Barcelona.</p>
+
+    <div class="sponsors-grid">
+      <!-- New Strass Barcelona -->
+      <div class="sponsor-card">
+        <span class="sponsor-tier">Local Recomendado · Gaixample</span>
+        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
+          <img src="../img/new_strass_barcelona.jpg" alt="New Strass Barcelona" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
+        </div>
+        <div class="sponsor-name">New Strass Barcelona</div>
+        <p class="sponsor-desc">Shows Drag en vivo (23:30h), Drag Bingo los domingos y pop/remix.<br>📍 C/ de Villarroel, 68 · Barcelona<br><a href="https://www.instagram.com/strass_bcn/" target="_blank" rel="noopener">@strass_bcn</a></p>
+      </div>
+
+      <!-- La Sastrería Barcelona -->
+      <div class="sponsor-card">
+        <span class="sponsor-tier">Local Recomendado · Gaixample</span>
+        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
+          <img src="../img/la_sastreria_bcn.jpg" alt="La Sastrería Barcelona" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
+        </div>
+        <div class="sponsor-name">La Sastrería</div>
+        <p class="sponsor-desc">Bar y ocio LGTBIQ+, cócteles y ambientazo.<br>📍 C/ del Consell de Cent, 245 bis · Barcelona<br><a href="https://www.instagram.com/lasastreriacafebcn/" target="_blank" rel="noopener">@lasastreriacafebcn</a></p>
+      </div>
+
+      <!-- Night Barcelona -->
+      <div class="sponsor-card">
+        <span class="sponsor-tier">Local Recomendado · Gaixample</span>
+        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
+          <img src="../img/night_barcelona.jpg" alt="Night Barcelona" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
+        </div>
+        <div class="sponsor-name">Night Barcelona</div>
+        <p class="sponsor-desc">Mítico bar y club cruising para hombres en el Gaixample.<br>📍 C/ de la Diputació, 161 · Barcelona<br><a href="https://www.instagram.com/nightbcngay/?hl=es" target="_blank" rel="noopener">@nightbcngay</a></p>
+      </div>
+
+      <!-- Safari Disco Club -->
+      <div class="sponsor-card">
+        <span class="sponsor-tier">Discoteca Recomendada · Sants</span>
+        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
+          <img src="../img/safari_club_bcn.jpg" alt="Safari Disco Club" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
+        </div>
+        <div class="sponsor-name">Safari Disco Club</div>
+        <p class="sponsor-desc">Emblemática discoteca LGTBIQ+ de Barcelona. Pop, techno y fiesta.<br>📍 C/ de Tarragona, 141 · Barcelona<br><a href="https://www.instagram.com/safari_club_bcn/?hl=es" target="_blank" rel="noopener">@safari_club_bcn</a></p>
+      </div>
+
+      <!-- Believe Club Barcelona -->
+      <div class="sponsor-card">
+        <span class="sponsor-tier">Club & Shows · Gaixample</span>
+        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
+          <img src="../img/believe_club_bcn.jpg" alt="Believe Club Barcelona" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
+        </div>
+        <div class="sponsor-name">Believe Club</div>
+        <p class="sponsor-desc">Shows Drag en vivo, pop y cócteles en el Gaixample.<br>📍 C/ de Balmes, 56 · Barcelona<br><a href="https://www.instagram.com/believeclubbcn/?hl=es" target="_blank" rel="noopener">@believeclubbcn</a></p>
+      </div>
+
+      <!-- Arena Experience Barcelona -->
+      <div class="sponsor-card">
+        <span class="sponsor-tier">Grupo & Discotecas · Gaixample</span>
+        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
+          <img src="../img/arena_experience_bcn.jpg" alt="Arena Experience Barcelona" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
+        </div>
+        <div class="sponsor-name">Arena Experience</div>
+        <p class="sponsor-desc">El referente histórico de la noche LGTBIQ+ en Barcelona.<br>📍 C/ de la Diputació, 233 · Barcelona<br><a href="https://www.instagram.com/arenaexperience.bcn/" target="_blank" rel="noopener">@arenaexperience.bcn</a></p>
+      </div>
+
+      <!-- Circuit Festival Barcelona -->
+      <div class="sponsor-card">
+        <span class="sponsor-tier">Macrofestival Mundial · Barcelona</span>
+        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
+          <img src="../img/circuit_festival_bcn.jpg" alt="Circuit Festival Barcelona" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
+        </div>
+        <div class="sponsor-name">Circuit Festival</div>
+        <p class="sponsor-desc">El mayor festival LGTBIQ+ del planeta producido por Matinée Group.<br>📍 Barcelona (Agosto 2026)<br><a href="https://www.instagram.com/circuitfestival/" target="_blank" rel="noopener">@circuitfestival</a></p>
+      </div>
+
+      <!-- Sala Razzmatazz -->
+      <div class="sponsor-card">
+        <span class="sponsor-tier">Discoteca & Fiestas · Poblenou</span>
+        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
+          <img src="../img/razzmatazz_bcn.jpg" alt="Sala Razzmatazz Barcelona" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
+        </div>
+        <div class="sponsor-name">Sala Razzmatazz</div>
+        <p class="sponsor-desc">5 salas míticas, conciertos y las sesiones más libres de Barcelona.<br>📍 C/ dels Almogàvers, 122 · Barcelona<br><a href="https://www.instagram.com/razzmatazzclubs/" target="_blank" rel="noopener">@razzmatazzclubs</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>MG Barcelona Live · Plantilla Drag Race España All Stars · Fotografía Oficial Moisés Gallardo · Barcelona 2026</p>
+</footer>
+
+<!-- Interactive Night Runway Canvas Animation -->
+<script>
+(function() {
+  const canvas = document.getElementById('runwayCanvas');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  let particles = [];
+  let spotlights = [];
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function init() {
+    resize();
+    particles = [];
+    for (let i = 0; i < 90; i++) {
+      particles.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 2.2 + 0.6,
+        vy: -Math.random() * 0.45 - 0.15,
+        c: ['#ffd700', '#ff1493', '#ffffff', '#9d4edd', '#ff80bf'][Math.floor(Math.random() * 5)],
+        a: Math.random() * 0.8 + 0.2
+      });
+    }
+
+    spotlights = [
+      { x: W * 0.2, angle: -0.3, speed: 0.005, color: 'rgba(255, 20, 147, 0.08)' },
+      { x: W * 0.8, angle: 0.3, speed: -0.004, color: 'rgba(251, 213, 97, 0.07)' },
+      { x: W * 0.5, angle: 0.1, speed: 0.003, color: 'rgba(157, 78, 221, 0.08)' }
+    ];
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Draw spotlights sweeping across the night runway
+    spotlights.forEach(s => {
+      s.angle += s.speed;
+      if (s.angle > 0.45 || s.angle < -0.45) s.speed = -s.speed;
+
+      ctx.save();
+      const grad = ctx.createRadialGradient(s.x, H, 10, s.x + Math.sin(s.angle) * 350, 0, W * 0.45);
+      grad.addColorStop(0, s.color);
+      grad.addColorStop(1, 'transparent');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.moveTo(s.x, H);
+      ctx.lineTo(s.x + Math.sin(s.angle) * W - W * 0.25, 0);
+      ctx.lineTo(s.x + Math.sin(s.angle) * W + W * 0.25, 0);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    });
+
+    // Draw glitter particles
+    particles.forEach(p => {
+      p.y += p.vy;
+      if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
+      ctx.save();
+      ctx.globalAlpha = p.a;
+      ctx.fillStyle = p.c;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = p.c;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
+
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', init);
+  init();
+  loop();
+})();
+
+// Radio Play/Pause
+const audio = document.getElementById('radio-audio');
+const playBtn = document.getElementById('livePlayBtn');
+const statusText = document.getElementById('trackStatus');
+
+function togglePlay() {
+  if (audio.paused) {
+    audio.play().then(() => {
+      playBtn.textContent = '⏸';
+      statusText.textContent = 'En antena · Sonando en vivo por MG Barcelona Live';
+    }).catch(e => {
+      statusText.textContent = 'Haz clic para permitir audio en directo.';
+    });
+  } else {
+    audio.pause();
+    playBtn.textContent = '▶';
+    statusText.textContent = 'Pausado · Pulsa para reanudar';
+  }
+}
+</script>
+</body>
+</html>
