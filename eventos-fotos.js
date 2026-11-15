@@ -14,7 +14,7 @@
     var st = document.createElement('style');
     st.id = 'mg-evfotos-style';
     st.textContent = [
-      '.mg-evw-box{position:relative;width:100%;max-width:1060px;height:520px;margin:18px auto 14px;border-radius:18px;overflow:hidden;background:rgba(12,8,24,0.82);border:2px solid rgba(0,240,255,0.4);box-shadow:0 14px 44px rgba(0,0,0,0.55);backdrop-filter:blur(10px);z-index:5;}',
+      '.mg-evw-box{position:relative;width:100%;max-width:1280px;height:560px;margin:22px auto 14px;border-radius:22px;overflow:hidden;background:rgba(12,8,24,0.85);border:2px solid rgba(0,240,255,0.45);box-shadow:0 18px 50px rgba(0,0,0,0.6);backdrop-filter:blur(12px);z-index:5;}',
       '.mg-evw-img{width:100%;height:100%;object-fit:contain;object-position:center;background:#000;display:block;transition:opacity .45s ease;cursor:pointer;}',
       '.mg-evw-top{position:absolute;top:10px;left:12px;right:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;pointer-events:none;}',
       '.mg-evw-badge{pointer-events:auto;background:rgba(10,7,20,0.72);border:1px solid rgba(255,255,255,0.18);color:#f5c842;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:999px;text-transform:uppercase;}',
@@ -110,10 +110,10 @@
       injectStyles();
       var wrap = document.createElement('section');
       wrap.id = 'mg-evf-wrapped';
-      wrap.style.cssText = 'position:relative;z-index:2;padding:3rem 1.2rem;max-width:1100px;margin:0 auto;text-align:center;';
+      wrap.style.cssText = 'position:relative;z-index:2;padding:3rem 1.2rem;max-width:1320px;margin:0 auto;text-align:center;';
       wrap.innerHTML =
-        '<p style="color:#00f0ff;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0 0 .35rem;">📸 Galería Visual</p>' +
-        '<h2 style="font-size:clamp(1.35rem,3vw,2rem);font-weight:900;letter-spacing:.06em;margin:0 0 1rem;color:#fff;">FOTOGRAFÍAS · MOISÉS GALLARDO</h2>';
+        '<p class="section-label" style="text-align:center;margin-bottom:0.5rem;">📸 Galería Visual</p>' +
+        '<h2 class="section-title" style="text-align:center;margin-bottom:2rem;">Fotografías · Moisés Gallardo</h2>';
 
       var box = document.createElement('div');
       box.id = 'mg-evf-section';
