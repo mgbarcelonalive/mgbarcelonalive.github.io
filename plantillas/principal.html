@@ -735,29 +735,26 @@ if ('serviceWorker' in navigator) {
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .nav-ticket:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(180,79,255,0.5); }
-  /* ─── FONDO DE VÍDEO AMBIENTAL (AJUSTADO A LA WEB, SIN ZOOM EXCESIVO NI CORTES) ─── */
+  /* ─── FONDO DE VÍDEO EN LA PORTADA (DETRÁS DE MG BARCELONA LIVE, A PANTALLA COMPLETA SIN BORDES) ─── */
   .bg-video-wrap {
-    position: fixed;
+    position: absolute;
     inset: 0;
-    z-index: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0 !important;
     overflow: hidden;
     pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transform: translate3d(0,0,0);
     will-change: transform;
-    background: radial-gradient(circle at 50% 50%, #150b2e 0%, #07050f 100%);
+    background: #07050f;
   }
   .bg-video-wrap video {
-    width: 100vw;
-    height: 100vh;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     object-position: center center;
-    opacity: 0.65;
-    filter: brightness(0.88) contrast(1.08) saturate(1.18);
+    opacity: 0.72;
+    filter: brightness(0.92) contrast(1.08) saturate(1.18);
     transform: translate3d(0,0,0);
     transition: opacity 0.8s ease;
   }
@@ -766,20 +763,26 @@ if ('serviceWorker' in navigator) {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 50% 40%, rgba(7,5,15,0.18) 0%, rgba(7,5,15,0.48) 70%, rgba(7,5,15,0.78) 100%),
-      linear-gradient(180deg, rgba(7,5,15,0.35) 0%, rgba(7,5,15,0.18) 35%, rgba(7,5,15,0.35) 75%, rgba(7,5,15,0.82) 100%);
+      radial-gradient(ellipse at 50% 45%, rgba(7,5,15,0.12) 0%, rgba(7,5,15,0.45) 75%, rgba(7,5,15,0.75) 100%),
+      linear-gradient(180deg, rgba(7,5,15,0.38) 0%, rgba(7,5,15,0.12) 45%, rgba(7,5,15,0.96) 100%);
   }
 
-  /* Secciones translúcidas para que el vídeo de fondo se vea en toda la web sin taparlo */
-  #player, #videos, #events, #sponsors, #about, #contact {
-    position: relative;
-    z-index: 1;
-    background: rgba(7, 5, 15, 0.38);
-  }
   #hero {
     position: relative;
     z-index: 1;
-    background: transparent;
+    overflow: hidden;
+    background: #07050f;
+  }
+  #hero > *:not(.bg-video-wrap) {
+    z-index: 2;
+  }
+  .hero-eyebrow, .hero-title, .hero-sub, .live-badge, .hero-ctas {
+    position: relative;
+  }
+  #player, #videos, #events, #sponsors, #about, #contact {
+    position: relative;
+    z-index: 1;
+    background: #07050f;
   }
 
   /* ─── MARCOS RGB LUCES DE DISCOTECA ─── */
@@ -1201,13 +1204,13 @@ if ('serviceWorker' in navigator) {
 </nav>
 
 <!-- Particle canvas -->
-<div class="bg-video-wrap" id="bgVideoWrap">
-  <video id="bgVideo" autoplay muted playsinline webkit-playsinline preload="auto"></video>
-</div>
 <canvas id="particles"></canvas>
 
 <!-- Hero -->
 <section id="hero">
+  <div class="bg-video-wrap" id="bgVideoWrap">
+    <video id="bgVideo" autoplay muted playsinline webkit-playsinline preload="auto"></video>
+  </div>
   <div id="rope"></div>
   <div id="disco-ball"></div>
   <div class="laser"></div>
