@@ -1230,7 +1230,7 @@ if ('serviceWorker' in navigator) {
   </div>
 
   <div class="hero-ctas">
-    <button class="btn btn-primary" onclick="document.getElementById('player').scrollIntoView({behavior:'smooth'})">
+    <button class="btn btn-primary" onclick="document.getElementById('player').scrollIntoView({behavior:'smooth'}); var au=document.getElementById('radio-audio'); var pb=document.getElementById('play-btn'); if(au && pb && au.paused){ pb.click(); }">
       🎧 Escuchar ahora
     </button>
     <button class="btn btn-outline" id="btnInstallApp" onclick="window.__mgInstallApp && window.__mgInstallApp()" style="border-color:rgba(245,200,66,0.75); background:linear-gradient(135deg, rgba(245,200,66,0.18), rgba(180,79,255,0.22)); color:#fff; box-shadow:0 0 22px rgba(245,200,66,0.25);">
@@ -1632,7 +1632,7 @@ if ('serviceWorker' in navigator) {
 
 <script>
 // ─── CONFIG ───────────────────────────────────────────────
-const STREAM_URL = 'https://attorney-comp-editing-completing.trycloudflare.com/stream';
+const STREAM_URL = 'https://mgbarcelonalive-radio.onrender.com/stream';
 
 // ─── ECUALIZADOR LED ESTILO BUTT / CONTROLADOR DJ ──────────
 const waveform = document.getElementById('waveform');
