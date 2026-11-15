@@ -744,8 +744,6 @@ if ('serviceWorker' in navigator) {
     z-index: 0 !important;
     overflow: hidden;
     pointer-events: none;
-    transform: translate3d(0,0,0);
-    will-change: transform;
     background: #07050f;
   }
   .bg-video-wrap video {
@@ -755,8 +753,12 @@ if ('serviceWorker' in navigator) {
     object-position: center center;
     opacity: 0.72;
     filter: brightness(0.92) contrast(1.08) saturate(1.18);
-    transform: translate3d(0,0,0);
     transition: opacity 0.8s ease;
+  }
+  @media (max-width: 900px) {
+    .disco-spot, #particles { display: none !important; }
+    .hero-title { animation: fadeUp 0.35s ease-out forwards !important; filter: none !important; }
+    .event-card, .stat-card, .sponsor-card, .mg-video-card { animation: none !important; }
   }
   .bg-video-wrap::after {
     content: '';
@@ -1639,7 +1641,7 @@ const eqCanvas = document.createElement('canvas');
 eqCanvas.id = 'dj-eq-canvas';
 waveform.innerHTML = '';
 waveform.appendChild(eqCanvas);
-const eqCtx = eqCanvas.getContext('2d', { alpha: true, desynchronized: true });
+const eqCtx = eqCanvas.getContext('2d', { alpha: true });
 
 const EQ_BANDS = 28;
 const EQ_SEGS = 12;
@@ -2059,7 +2061,7 @@ audio.addEventListener('error', () => {
 
 // ─── PARTICLES (disco lights - 60/90/120 FPS FLUIDEZ MÓVIL) ───
 const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
+const ctx = canvas.getContext('2d', { alpha: true });
 let W, H, particles;
 let lastLoopTime = 0;
 
