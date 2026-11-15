@@ -1783,16 +1783,64 @@ function setPlayingUI(playing) {
   }
 }
 
+let userWantsPlay = false;
+let reconnectTimer = null;
+
+function reconnectRadioStream() {
+  if (!userWantsPlay) return;
+  clearTimeout(reconnectTimer);
+  npSub.textContent = '🔄 Reconectando señal en directo...';
+  reconnectTimer = setTimeout(() => {
+    if (!userWantsPlay) return;
+    audio.src = STREAM_URL + '?t=' + Date.now();
+    audio.load();
+    audio.play().then(() => {
+      setPlayingUI(true);
+    }).catch(() => {
+      audio.removeAttribute('crossorigin');
+      audio.crossOrigin = null;
+      useRealFft = false;
+      audio.src = STREAM_URL + '?t=' + Date.now();
+      audio.load();
+      audio.play().then(() => setPlayingUI(true)).catch(() => {
+        if (userWantsPlay) reconnectTimer = setTimeout(reconnectRadioStream, 2500);
+      });
+    });
+  }, 1200);
+}
+
 audio.addEventListener('playing', () => setPlayingUI(true));
-audio.addEventListener('pause', () => setPlayingUI(false));
-audio.addEventListener('ended', () => setPlayingUI(false));
+audio.addEventListener('pause', () => {
+  if (!userWantsPlay) setPlayingUI(false);
+  else reconnectRadioStream();
+});
+audio.addEventListener('ended', () => {
+  if (userWantsPlay) reconnectRadioStream();
+  else setPlayingUI(false);
+});
+audio.addEventListener('error', () => {
+  if (userWantsPlay) reconnectRadioStream();
+});
+audio.addEventListener('stalled', () => {
+  if (userWantsPlay) reconnectRadioStream();
+});
+
+// Vigilante continuo cada 5s por si el túnel o la red sufren un micro-corte
+setInterval(() => {
+  if (userWantsPlay && (audio.paused || audio.ended)) {
+    reconnectRadioStream();
+  }
+}, 5000);
 
 playBtn.addEventListener('click', () => {
-  if (isPlaying) {
+  if (userWantsPlay || isPlaying) {
+    userWantsPlay = false;
+    clearTimeout(reconnectTimer);
     audio.pause();
     audio.src = '';
     setPlayingUI(false);
   } else {
+    userWantsPlay = true;
     npSub.textContent = '⏳ Conectando con la radio...';
     audio.crossOrigin = 'anonymous';
     audio.src = STREAM_URL + '?t=' + Date.now();
@@ -1808,8 +1856,8 @@ playBtn.addEventListener('click', () => {
       audio.src = STREAM_URL + '?t=' + Date.now();
       audio.load();
       audio.play().then(() => setPlayingUI(true)).catch(err => {
-        npSub.textContent = '⚠ No se pudo conectar. Comprueba la señal.';
         console.error(err);
+        reconnectRadioStream();
       });
     });
   }
