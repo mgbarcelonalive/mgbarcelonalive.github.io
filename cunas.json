@@ -1,7 +1,7 @@
 {
   "activo": true,
-  "intervalo_segundos": 180,
-  "bajar_musica_pct": 25,
+  "intervalo_segundos": 50,
+  "bajar_musica_pct": 50,
   "studio_auto": true,
   "studio_orden": "Aleatorio",
   "studio_duck": true,
