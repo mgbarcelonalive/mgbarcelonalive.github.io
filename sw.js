@@ -39,7 +39,8 @@ self.addEventListener('fetch', (event) => {
     url.pathname.endsWith('plantilla_live.json') ||
     url.pathname.endsWith('videos.json') ||
     url.pathname.endsWith('publicidad.json') ||
-    url.pathname.endsWith('eventos_fotos.json')
+    url.pathname.endsWith('eventos_fotos.json') ||
+    url.pathname.endsWith('fondos.json')
   ) {
     return;
   }

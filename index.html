@@ -735,41 +735,46 @@ if ('serviceWorker' in navigator) {
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .nav-ticket:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(180,79,255,0.5); }
-  /* ─── FONDO DE VÍDEO AMBIENTAL (INTEGRADO, SIN ZOOM EXCESIVO NI CORTES) ─── */
+  /* ─── FONDO DE VÍDEO AMBIENTAL (AJUSTADO A LA WEB, SIN ZOOM EXCESIVO NI CORTES) ─── */
   .bg-video-wrap {
     position: fixed;
     inset: 0;
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transform: translate3d(0,0,0);
     will-change: transform;
-    background: #07050f;
+    background: radial-gradient(circle at 50% 50%, #150b2e 0%, #07050f 100%);
   }
   .bg-video-wrap video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.22;
-    filter: brightness(0.55) contrast(1.1) saturate(1.2);
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    opacity: 0.65;
+    filter: brightness(0.88) contrast(1.08) saturate(1.18);
     transform: translate3d(0,0,0);
-    transition: opacity 1s ease;
+    transition: opacity 0.8s ease;
   }
   .bg-video-wrap::after {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 50% 30%, rgba(7,5,15,0.3) 0%, rgba(7,5,15,0.75) 65%, rgba(7,5,15,0.96) 100%),
-      linear-gradient(180deg, rgba(7,5,15,0.65) 0%, rgba(7,5,15,0.3) 30%, rgba(7,5,15,0.6) 70%, rgba(7,5,15,0.98) 100%);
+      radial-gradient(ellipse at 50% 40%, rgba(7,5,15,0.18) 0%, rgba(7,5,15,0.48) 70%, rgba(7,5,15,0.78) 100%),
+      linear-gradient(180deg, rgba(7,5,15,0.35) 0%, rgba(7,5,15,0.18) 35%, rgba(7,5,15,0.35) 75%, rgba(7,5,15,0.82) 100%);
   }
 
-  /* Secciones con fondo sólido nocturno para evitar que el vídeo de fondo ensucie tarjetas */
+  /* Secciones translúcidas para que el vídeo de fondo se vea en toda la web sin taparlo */
   #player, #videos, #events, #sponsors, #about, #contact {
     position: relative;
     z-index: 1;
-    background: #07050f;
+    background: rgba(7, 5, 15, 0.38);
   }
   #hero {
     position: relative;
@@ -2150,7 +2155,16 @@ document.querySelectorAll('.event-card, .stat-card, .player-card, .sponsor-card'
 </script>
 <script>
 // ─── TEMPLATE BACKGROUND VIDEO ROTATION ────────────────────
-const bgList = [
+let bgList = [
+  "fondos_principal/Men_dancing_in_nightclub_7b9fab85_1080p.mp4",
+  "fondos_principal/Drag_queens_with_Torre_Agbar_446b9a94_1080p.mp4",
+  "fondos_principal/bailarines_2bf7b7b0_1080p.mp4",
+  "fondos_principal/Models_walking_on_fashion_runway_a05633b0_1080p.mp4",
+  "fondos_principal/Male_models_walking_on_runway_8c9947bb_1080p.mp4",
+  "fondos_principal/People_walking_at_hotel_background_f19269fd_1080p.mp4",
+  "fondos_principal/animalos_1d71ba7c_1080p.mp4",
+  "fondos_principal/animar_la_imagen_bf58aa98_1080p.mp4",
+  "fondos_principal/draq queen.mp4",
   "videos/fondos_principal/saturgays_cantante_bg.mp4",
   "videos/fondos_principal/saturgays_gogos_bg.mp4",
   "videos/fondos_principal/saturgays_vestuarios_bg.mp4"
@@ -2160,17 +2174,25 @@ const bgWrap = document.getElementById('bgVideoWrap');
 let bgIdx = 0;
 function loadBgVideo(i) {
   if (!bgVid || !bgList.length) { if (bgWrap) bgWrap.style.display = 'none'; return; }
-  if (bgWrap) bgWrap.style.display = 'block';
+  if (bgWrap) bgWrap.style.display = 'flex';
   bgIdx = (i + bgList.length) % bgList.length;
-  bgVid.src = bgList[bgIdx];
+  bgVid.src = encodeURI(bgList[bgIdx]);
   bgVid.muted = true;
   bgVid.playsInline = true;
   bgVid.play().catch(() => {});
 }
-if (bgVid && bgList.length) {
+if (bgVid) {
   bgVid.addEventListener('ended', () => loadBgVideo(bgIdx + 1));
-  bgVid.addEventListener('error', () => setTimeout(() => loadBgVideo(bgIdx + 1), 3000));
-  loadBgVideo(0);
+  bgVid.addEventListener('error', () => setTimeout(() => loadBgVideo(bgIdx + 1), 2500));
+  fetch('fondos.json?t=' + Date.now(), { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : null)
+    .then(d => {
+      if (d && Array.isArray(d.fondos) && d.fondos.length) {
+        bgList = d.fondos;
+      }
+      loadBgVideo(0);
+    })
+    .catch(() => loadBgVideo(0));
 }
 </script>
 <script type="application/json" id="publicidad-config">{"intervalo":8,"anuncios":[]}</script>
