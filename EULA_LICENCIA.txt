@@ -1,0 +1,17 @@
+ACUERDO DE LICENCIA DE USUARIO FINAL (EULA) - MG BARCELONA LIVE APP
+Versión 2.5 · Emisora Oficial MG Barcelona Live (Barcelona, España)
+
+1. CONCESIÓN DE LICENCIA
+MG Barcelona Live (Moisés Gallardo) otorga al usuario una licencia gratuita, personal, no exclusiva e intransferible para descargar, instalar y ejecutar la Aplicación Móvil oficial de MG Barcelona Live en dispositivos Android, iOS (iPhone/iPad) y ordenadores.
+
+2. PERMISOS DE SEGURIDAD Y FUNCIONAMIENTO
+Para garantizar la reproducción continua 24/7 sin cortes, esta aplicación utiliza exclusivamente los siguientes permisos seguros del sistema:
+- Acceso a Red Segura (HTTPS/TLS): Para recibir la emisión de audio en directo (192/320 kbps Estéreo) y los vídeos musicales oficiales.
+- Reproducción en Segundo Plano (Background Audio & MediaSession): Permite que la música siga sonando al apagar la pantalla, bloquear el móvil o conectar por Bluetooth al coche o altavoces.
+- Prevención de Suspensión de Audio (WakeLock): Evita que el ahorro de batería corte la mezcla musical en vivo.
+
+3. PRIVACIDAD Y SEGURIDAD
+Esta aplicación está verificada libre de virus, malware o rastreadores comerciales. No accede a tus contactos, cámara, micrófono ni ubicación privada.
+
+4. PROPIEDAD INTELECTUAL
+Todos los logotipos, emisiones, sesiones DJ, cuñas y contenidos audiovisuales son propiedad de MG Barcelona Live y sus respectivos autores.

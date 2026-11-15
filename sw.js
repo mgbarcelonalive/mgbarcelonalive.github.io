@@ -1,11 +1,12 @@
-const CACHE_NAME = 'mg-bcn-live-v1';
+const CACHE_NAME = 'mg-bcn-live-v3';
 const ASSETS_TO_CACHE = [
-  './',
-  './index.html',
-  './manifest.json',
-  './icon-192.png',
-  './icon-512.png',
-  './logo.png'
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/icon-192.png',
+  '/icon-512.png',
+  '/logo.png',
+  '/EULA_LICENCIA.txt'
 ];
 
 self.addEventListener('install', (event) => {
@@ -29,18 +30,21 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(req.url);
 
-  // Nunca cachear el stream de audio en directo, vídeos pesados ni los JSON dinámicos
+  // Nunca cachear el stream de audio en directo, vídeos pesados ni los catálogos JSON en vivo
   if (
     url.hostname.includes('trycloudflare.com') ||
     url.pathname.endsWith('/stream') ||
     url.pathname.endsWith('.mp3') ||
     url.pathname.endsWith('.mp4') ||
-    url.pathname.endsWith('.json')
+    url.pathname.endsWith('plantilla_live.json') ||
+    url.pathname.endsWith('videos.json') ||
+    url.pathname.endsWith('publicidad.json') ||
+    url.pathname.endsWith('eventos_fotos.json')
   ) {
     return;
   }
 
-  // Estrategia Network-First con respaldo en caché para que siempre cargue la última versión
+  // Estrategia Network-First con respaldo en caché para cumplir 100% los requisitos PWA de Android/Chrome e iOS
   event.respondWith(
     fetch(req)
       .then((res) => {
@@ -50,6 +54,6 @@ self.addEventListener('fetch', (event) => {
         }
         return res;
       })
-      .catch(() => caches.match(req).then((cached) => cached || caches.match('./index.html')))
+      .catch(() => caches.match(req).then((cached) => cached || caches.match('/index.html')))
   );
 });

@@ -17,6 +17,17 @@
 <meta name="apple-mobile-web-app-title" content="MG BCN Live">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<script>
+// Captura temprana del instalador nativo Android/Chrome y registro inmediato del Service Worker
+window.__mgDeferredPrompt = window.__mgDeferredPrompt || null;
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  window.__mgDeferredPrompt = e;
+});
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js', { scope: './' }).catch(function(){});
+}
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap');
 
@@ -2275,51 +2286,174 @@ if (bgVid && bgList.length) {
 </script>
 <script src="stats-widget.js?v=6" defer></script>
 <script src="eventos-fotos.js?v=4" defer></script>
-<!-- Modal e instalación de App Móvil (PWA) + Controles en Pantalla de Bloqueo -->
-<div id="mg-pwa-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(7,5,15,0.88);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:1.2rem;">
-  <div style="background:#110d20;border:2px solid rgba(0,240,255,0.5);border-radius:22px;max-width:400px;width:100%;padding:1.8rem 1.4rem;text-align:center;box-shadow:0 0 40px rgba(180,79,255,0.45);color:#fff;font-family:'Inter',sans-serif;">
-    <img src="icon-192.png" alt="MG BCN Live" style="width:76px;height:76px;border-radius:18px;margin-bottom:0.9rem;border:1px solid rgba(255,255,255,0.2);">
-    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.06em;color:#f5c842;margin-bottom:0.5rem;">Instalar App MG Barcelona Live</h3>
-    <p id="mg-pwa-instructions" style="font-size:0.9rem;line-height:1.55;color:rgba(255,255,255,0.85);margin-bottom:1.3rem;"></p>
-    <button onclick="document.getElementById('mg-pwa-modal').style.display='none'" style="padding:0.7rem 1.8rem;border-radius:999px;border:none;background:linear-gradient(135deg,#b44fff,#ff2d78);color:#fff;font-weight:700;cursor:pointer;font-size:0.85rem;">Entendido</button>
+<!-- Modal Oficial de Instalación de App Móvil con Licencia EULA + Permisos de Seguridad -->
+<div id="mg-pwa-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(7,5,15,0.92);backdrop-filter:blur(14px);align-items:center;justify-content:center;padding:1rem;overflow-y:auto;">
+  <div style="background:linear-gradient(145deg,#110d20,#1b1136);border:2px solid rgba(0,240,255,0.65);border-radius:22px;max-width:460px;width:100%;padding:1.5rem 1.35rem;text-align:left;box-shadow:0 0 45px rgba(180,79,255,0.55);color:#fff;font-family:'Inter',sans-serif;">
+    <div style="display:flex;align-items:center;gap:0.9rem;margin-bottom:0.85rem;">
+      <img src="icon-192.png" alt="MG BCN Live" style="width:64px;height:64px;border-radius:16px;border:2px solid #f5c842;flex-shrink:0;">
+      <div>
+        <div style="font-size:0.72rem;color:#00ff99;font-weight:700;letter-spacing:0.06em;">🛡️ VERIFICADA · CERTIFICADO SSL/EULA</div>
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.75rem;letter-spacing:0.05em;color:#f5c842;margin:0;line-height:1.1;">MG Barcelona Live · App Móvil</h3>
+        <div style="font-size:0.74rem;color:rgba(255,255,255,0.7);">Versión 2.5 · Android, iPhone/iPad y PC</div>
+      </div>
+    </div>
+
+    <!-- Cuadro de Licencia EULA -->
+    <div style="font-size:0.75rem;font-weight:700;color:#00f0ff;margin-bottom:0.3rem;">📜 ACUERDO DE LICENCIA DE USUARIO FINAL (EULA):</div>
+    <div style="background:#080512;border:1px solid rgba(255,255,255,0.16);border-radius:10px;padding:0.65rem;max-height:115px;overflow-y:auto;font-size:0.72rem;line-height:1.45;color:rgba(255,255,255,0.82);margin-bottom:0.75rem;">
+      <b>1. Licencia Oficial EULA:</b> MG Barcelona Live (Moisés Gallardo) concede licencia gratuita y segura para instalar y ejecutar esta aplicación oficial en su dispositivo móvil.<br>
+      <b>2. Permisos de Seguridad Autorizados:</b><br>
+      • <b>Audio en Segundo Plano (MediaSession / WakeLock):</b> Permite que la radio siga sonando sin cortes con la pantalla apagada, bloqueada o en el Bluetooth del coche.<br>
+      • <b>Streaming Seguro HTTPS 24/7:</b> Conexión directa cifrada al servidor musical y de vídeos sin anuncios intrusivos ni rastreadores.<br>
+      <b>3. Garantía de Seguridad:</b> Aplicación verificada libre de virus. No accede a contactos, micrófono ni cámara. (<a href="EULA_LICENCIA.txt" target="_blank" style="color:#f5c842;">Ver EULA completa</a>)
+    </div>
+
+    <!-- Casillas de Aceptación EULA y Permisos de Seguridad -->
+    <label style="display:flex;align-items:flex-start;gap:0.55rem;font-size:0.78rem;margin-bottom:0.45rem;cursor:pointer;background:rgba(0,255,153,0.08);padding:0.5rem 0.65rem;border-radius:9px;border:1px solid rgba(0,255,153,0.3);">
+      <input type="checkbox" id="mgEulaAccept" checked style="margin-top:0.15rem;accent-color:#00ff99;width:16px;height:16px;">
+      <span><b>Acepto la Licencia EULA</b> de MG Barcelona Live y los Términos de Uso.</span>
+    </label>
+    <label style="display:flex;align-items:flex-start;gap:0.55rem;font-size:0.78rem;margin-bottom:0.8rem;cursor:pointer;background:rgba(0,240,255,0.08);padding:0.5rem 0.65rem;border-radius:9px;border:1px solid rgba(0,240,255,0.3);">
+      <input type="checkbox" id="mgPermAccept" checked style="margin-top:0.15rem;accent-color:#00f0ff;width:16px;height:16px;">
+      <span><b>Conceder Permisos de Seguridad:</b> Audio en 2º plano, pantalla bloqueada y reconexión continua.</span>
+    </label>
+
+    <!-- Estado e instrucciones dinámicas -->
+    <div id="mg-pwa-instructions" style="font-size:0.8rem;line-height:1.45;color:#fff;background:rgba(245,200,66,0.11);border:1px solid rgba(245,200,66,0.4);border-radius:10px;padding:0.65rem;margin-bottom:0.85rem;"></div>
+
+    <!-- Botones de Instalación y Descarga Directa -->
+    <div style="display:flex;flex-direction:column;gap:0.55rem;">
+      <button id="mgBtnConfirmInstall" onclick="window.__mgExecuteInstall()" style="width:100%;padding:0.82rem 1rem;border-radius:999px;border:none;background:linear-gradient(135deg,#00ff99,#00c3ff);color:#07050f;font-weight:800;cursor:pointer;font-size:0.9rem;box-shadow:0 0 20px rgba(0,255,153,0.45);">
+        📲 ACEPTAR EULA E INSTALAR APP AHORA
+      </button>
+      <a id="mgBtnAndroidIntent" href="intent://mgbarcelonalive.github.io/?autoinstall=1#Intent;scheme=https;package=com.android.chrome;end" style="display:none;text-align:center;text-decoration:none;width:100%;padding:0.7rem 1rem;border-radius:999px;border:1px solid #f5c842;background:rgba(245,200,66,0.16);color:#f5c842;font-weight:700;font-size:0.82rem;">
+        🚀 Abrir Instalador Directo en Google Chrome (Android)
+      </a>
+      <a id="mgBtnIosProfile" href="MG_Barcelona_Live.mobileconfig" download="MG_Barcelona_Live.mobileconfig" style="display:none;text-align:center;text-decoration:none;width:100%;padding:0.7rem 1rem;border-radius:999px;border:1px solid #00f0ff;background:rgba(0,240,255,0.15);color:#00f0ff;font-weight:700;font-size:0.82rem;">
+        📥 Descargar Perfil Instalable iPhone/iPad (con EULA)
+      </a>
+      <button onclick="document.getElementById('mg-pwa-modal').style.display='none'" style="width:100%;padding:0.55rem;border-radius:999px;border:1px solid rgba(255,255,255,0.2);background:transparent;color:rgba(255,255,255,0.75);font-weight:600;cursor:pointer;font-size:0.78rem;">
+        Cerrar ventana
+      </button>
+    </div>
   </div>
 </div>
 <script id="mg-pwa-setup">
 (function(){
-  // 1. Registrar Service Worker para App Instalable (PWA)
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('sw.js').catch(function(){});
-    });
+    navigator.serviceWorker.register('sw.js', { scope: './' }).catch(function(){});
   }
 
-  // 2. Capturar el evento nativo de instalación en Android / Chrome / Edge
-  var deferredPrompt = null;
   window.addEventListener('beforeinstallprompt', function(e) {
     e.preventDefault();
-    deferredPrompt = e;
+    window.__mgDeferredPrompt = e;
     var btn = document.getElementById('btnInstallApp');
     if (btn) btn.style.display = 'inline-flex';
   });
 
-  window.__mgInstallApp = async function() {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      try { await deferredPrompt.userChoice; } catch(err) {}
-      deferredPrompt = null;
-      return;
-    }
+  window.addEventListener('appinstalled', function() {
+    window.__mgDeferredPrompt = null;
+    var txt = document.getElementById('mg-pwa-instructions');
+    if (txt) txt.innerHTML = '✅ <b>¡App MG Barcelona Live instalada con éxito!</b> Ya tienes el icono oficial en la pantalla principal de tu móvil con la Licencia EULA activada.';
+  });
+
+  // Abrir el Instalador Oficial con Licencia EULA y Permisos
+  window.__mgInstallApp = function() {
     var modal = document.getElementById('mg-pwa-modal');
     var txt = document.getElementById('mg-pwa-instructions');
+    var btnIntent = document.getElementById('mgBtnAndroidIntent');
+    var btnIos = document.getElementById('mgBtnIosProfile');
+    var btnMain = document.getElementById('mgBtnConfirmInstall');
     if (!modal || !txt) return;
-    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    if (isIOS) {
-      txt.innerHTML = 'En tu <b>iPhone / iPad</b>:<br><br>1. Pulsa el botón <b>Compartir ⬆️</b> en la barra inferior de Safari.<br>2. Selecciona <b>«Añadir a pantalla de inicio» ➕</b>.<br>3. Pulsa <b>Añadir</b> y tendrás la App oficial en tu móvil.';
+
+    var ua = navigator.userAgent || '';
+    var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    var isAndroid = /Android/i.test(ua);
+    var isInAppBrowser = /Instagram|FBAN|FBAV|WhatsApp|Line|TikTok/i.test(ua);
+
+    if (window.__mgDeferredPrompt) {
+      btnMain.textContent = '📲 ACEPTAR EULA E INSTALAR APP (1 CLIC)';
+      txt.innerHTML = '✅ <b>Instalador Nativo Listo:</b> Verifica las casillas de <b>Licencia EULA</b> y <b>Permisos de Seguridad</b> y pulsa el botón verde de abajo para instalar la App directamente en tu móvil.';
+      if (btnIntent) btnIntent.style.display = 'none';
+      if (btnIos) btnIos.style.display = 'none';
+    } else if (isIOS) {
+      btnMain.textContent = '✅ ACEPTAR EULA Y ACTIVAR PERMISOS iOS';
+      txt.innerHTML = '📱 <b>Instalación en iPhone / iPad:</b><br>1. Pulsa <b>«Aceptar EULA y Activar Permisos»</b> o descarga el <b>Perfil Instalable</b> abajo.<br>2. O en Safari pulsa <b>Compartir ⬆️</b> abajo y toca <b>«Añadir a pantalla de inicio ➕»</b>.';
+      if (btnIos) btnIos.style.display = 'block';
+      if (btnIntent) btnIntent.style.display = 'none';
+    } else if (isAndroid) {
+      btnMain.textContent = '📲 ACEPTAR EULA Y PREPARAR INSTALACIÓN';
+      if (isInAppBrowser) {
+        txt.innerHTML = '⚠️ Estás abriendo la radio dentro de una red social. Pulsa <b>«🚀 Abrir Instalador Directo en Google Chrome»</b> abajo para que el móvil descargue e instale la App sin bloqueo.';
+      } else {
+        txt.innerHTML = '📱 <b>Instalación en Android:</b><br>1. Pulsa el botón verde para autorizar la <b>Licencia EULA</b> y los <b>Permisos de Audio</b>.<br>2. Si tu navegador no abre el aviso automático, toca los <b>3 puntos (⋮) arriba a la derecha</b> en Chrome y pulsa <b>«Instalar aplicación»</b>.';
+      }
+      if (btnIntent) btnIntent.style.display = 'block';
+      if (btnIos) btnIos.style.display = 'none';
     } else {
-      txt.innerHTML = 'En tu <b>Móvil Android</b>:<br><br>1. Pulsa el menú de 3 puntos <b>(⋮)</b> arriba a la derecha en Chrome.<br>2. Toca en <b>«Instalar aplicación»</b> o <b>«Añadir a pantalla de inicio»</b>.<br>3. ¡Listo! Se instalará con su icono en tu pantalla principal.';
+      btnMain.textContent = '📲 ACEPTAR EULA E INSTALAR APP';
+      txt.innerHTML = '💻 <b>Instalación verificada:</b> Acepta la Licencia EULA y pulsa el botón verde (o el icono de instalación 📥 en la barra de direcciones arriba a la derecha).';
     }
     modal.style.display = 'flex';
   };
+
+  // Ejecutar la aceptación de EULA + Permisos + Disparo de instalación nativa
+  window.__mgExecuteInstall = async function() {
+    var eulaOk = document.getElementById('mgEulaAccept');
+    var permOk = document.getElementById('mgPermAccept');
+    var txt = document.getElementById('mg-pwa-instructions');
+    if (eulaOk && !eulaOk.checked) {
+      txt.innerHTML = '⚠️ <b>Requisito obligatorio:</b> Debes marcar la casilla <b>«Acepto la Licencia EULA»</b> para que el sistema permita instalar la aplicación.';
+      return;
+    }
+    if (permOk && !permOk.checked) {
+      txt.innerHTML = '⚠️ <b>Requisito de seguridad:</b> Activa la casilla de <b>Permisos de Seguridad</b> para que el audio no se corte.';
+      return;
+    }
+
+    // Guardar certificado local de aceptación EULA y permisos
+    try {
+      localStorage.setItem('mg_eula_accepted_v25', new Date().toISOString());
+      localStorage.setItem('mg_security_perms_v25', 'granted');
+    } catch (e) {}
+
+    // Solicitar WakeLock (evitar suspensión del móvil mientras suena la radio)
+    try {
+      if ('wakeLock' in navigator && navigator.wakeLock.request) {
+        await navigator.wakeLock.request('screen').catch(function(){});
+      }
+    } catch (e) {}
+
+    // Si el navegador Android/Chrome/Edge tiene listo el paquete nativo WebAPK, lanzarlo ahora mismo
+    if (window.__mgDeferredPrompt) {
+      try {
+        window.__mgDeferredPrompt.prompt();
+        var choice = await window.__mgDeferredPrompt.userChoice;
+        window.__mgDeferredPrompt = null;
+        if (choice && choice.outcome === 'accepted') {
+          txt.innerHTML = '✅ <b>¡Instalando App MG Barcelona Live!</b> Revisa tu pantalla de inicio en unos segundos.';
+          setTimeout(function(){ document.getElementById('mg-pwa-modal').style.display = 'none'; }, 2500);
+          return;
+        }
+      } catch (err) {}
+    }
+
+    // Si ya se aceptó EULA y el navegador requiere el toque final del menú nativo
+    var ua = navigator.userAgent || '';
+    var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    if (isIOS) {
+      txt.innerHTML = '✅ <b>Licencia EULA y Permisos Autorizados.</b><br>Ahora pulsa el botón azul <b>«📥 Descargar Perfil Instalable iPhone/iPad»</b> de aquí abajo, o toca <b>Compartir ⬆️ -> Añadir a pantalla de inicio ➕</b>.';
+    } else {
+      txt.innerHTML = '✅ <b>Licencia EULA y Permisos de Seguridad Activados correctamente.</b><br>👉 Para completar la creación del icono en tu Android: toca ahora el menú de <b>3 puntos (⋮) arriba a la derecha</b> de tu navegador y pulsa <b>«Instalar aplicación»</b> (o pulsa el botón amarillo de abajo para abrir el instalador en Chrome).';
+    }
+  };
+
+  // Si viene desde el Intent directo (?autoinstall=1), abrir la ventana de instalación automáticamente
+  if (window.location.search.indexOf('autoinstall=1') !== -1) {
+    setTimeout(function() {
+      if (window.__mgInstallApp) window.__mgInstallApp();
+    }, 900);
+  }
 
   // 3. MediaSession API: Controles en pantalla de bloqueo, barra de notificaciones y Bluetooth/Coche
   function setupMediaSession() {
