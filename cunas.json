@@ -7,63 +7,135 @@
   "studio_duck": true,
   "cunas": [
     {
-      "titulo": "01. Cuña Bienvenida MG Barcelona Live",
-      "voz": "Locutor MG",
       "archivo": "cunas/cuna_01_bienvenida_mg.mp3",
+      "titulo": "01. Cuna 01 Bienvenida Mg",
+      "voz": "Audio Local",
       "activa": true
     },
     {
-      "titulo": "02. Cuña Web Oficial MG Barcelona Live",
-      "voz": "Locutor MG",
       "archivo": "cunas/cuna_02_web_oficial.mp3",
+      "titulo": "02. Cuna 02 Web Oficial",
+      "voz": "Audio Local",
       "activa": true
     },
     {
-      "titulo": "03. Cuña Anúnciate Aquí y Patrocinios",
-      "voz": "Locutor Comercial",
       "archivo": "cunas/cuna_03_anunciate_aqui.mp3",
+      "titulo": "03. Cuna 03 Anunciate Aqui",
+      "voz": "Audio Local",
       "activa": true
     },
     {
-      "titulo": "04. Cuña Noches de Fiesta Barcelona",
-      "voz": "Locutor MG",
       "archivo": "cunas/cuna_04_fiesta_barcelona.mp3",
+      "titulo": "04. Cuna 04 Fiesta Barcelona",
+      "voz": "Audio Local",
       "activa": true
     },
     {
-      "titulo": "05. Cuña Pide tu Canción en Directo",
-      "voz": "Locutor MG",
       "archivo": "cunas/cuna_05_pide_cancion.mp3",
+      "titulo": "05. Cuna 05 Pide Cancion",
+      "voz": "Audio Local",
       "activa": true
     },
     {
-      "titulo": "06. Cuña Sube el Nivel",
-      "voz": "Bobby · Dynamic",
-      "archivo": "cunas/sube_el_nivel.mp3",
+      "archivo": "cunas/ElevenLabs_2026-11-14T20_26_09_Cornelio - Persuasive, Clear and Rich_pvc_s50_sim75_v4 (1).mp3",
+      "titulo": "06. Elevenlabs 2026-11-14T20 26 09 Cornelio - Persuasive, Clear And Rich Pvc S50 Sim75 V4 (1)",
+      "voz": "Audio Local",
       "activa": true
     },
     {
-      "titulo": "07. Cuña Vívelo en Directo",
-      "voz": "Guillermo · Multilingual",
-      "archivo": "cunas/vivelo_en_directo.mp3",
+      "archivo": "cunas/ElevenLabs_2026-11-14T20_26_09_Cornelio - Persuasive, Clear and Rich_pvc_s50_sim75_v4.mp3",
+      "titulo": "07. Elevenlabs 2026-11-14T20 26 09 Cornelio - Persuasive, Clear And Rich Pvc S50 Sim75 V4",
+      "voz": "Audio Local",
       "activa": true
     },
     {
-      "titulo": "08. Cuña Locución Cornelio Radio 24H",
-      "voz": "Cornelio · Rich",
       "archivo": "cunas/ElevenLabs_2026-11-14T20_26_09_Cornelio_-_Persuasive__Clear_and_Rich_pvc_s50_sim75_v4.mp3",
+      "titulo": "08. Elevenlabs 2026-11-14T20 26 09 Cornelio - Persuasive  Clear And Rich Pvc S50 Sim75 V4",
+      "voz": "Audio Local",
       "activa": true
     },
     {
-      "titulo": "09. Cuña Locución Bobby Dynamic",
-      "voz": "Bobby · Sharp",
+      "archivo": "cunas/ElevenLabs_2026-11-14T20_26_09_Cornelio_-_Persuasive__Clear_and_Rich_pvc_s50_sim75_v4__1_.mp3",
+      "titulo": "09. Elevenlabs 2026-11-14T20 26 09 Cornelio - Persuasive  Clear And Rich Pvc S50 Sim75 V4  1",
+      "voz": "Audio Local",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/ElevenLabs_2026-11-14T20_28_41_Bobby - Sharp, Persuasive and Dynamic_pvc_s50_sim19_v4 (1).mp3",
+      "titulo": "10. Elevenlabs 2026-11-14T20 28 41 Bobby - Sharp, Persuasive And Dynamic Pvc S50 Sim19 V4 (1)",
+      "voz": "Audio Local",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/ElevenLabs_2026-11-14T20_28_41_Bobby - Sharp, Persuasive and Dynamic_pvc_s50_sim19_v4.mp3",
+      "titulo": "11. Elevenlabs 2026-11-14T20 28 41 Bobby - Sharp, Persuasive And Dynamic Pvc S50 Sim19 V4",
+      "voz": "Audio Local",
+      "activa": true
+    },
+    {
       "archivo": "cunas/ElevenLabs_2026-11-14T20_28_41_Bobby_-_Sharp__Persuasive_and_Dynamic_pvc_s50_sim19_v4.mp3",
+      "titulo": "12. Elevenlabs 2026-11-14T20 28 41 Bobby - Sharp  Persuasive And Dynamic Pvc S50 Sim19 V4",
+      "voz": "Audio Local",
       "activa": true
     },
     {
-      "titulo": "10. Cuña Locución Guillermo Brazález",
-      "voz": "Guillermo Brazález",
+      "archivo": "cunas/ElevenLabs_2026-11-14T20_28_41_Bobby_-_Sharp__Persuasive_and_Dynamic_pvc_s50_sim19_v4__1_.mp3",
+      "titulo": "13. Elevenlabs 2026-11-14T20 28 41 Bobby - Sharp  Persuasive And Dynamic Pvc S50 Sim19 V4  1",
+      "voz": "Audio Local",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo Brazález -  Multilingual_pvc_s50_sim19_v4 (1).mp3",
+      "titulo": "14. Elevenlabs 2026-11-14T20 29 25 Guillermo Brazález -  Multilingual Pvc S50 Sim19 V4 (1)",
+      "voz": "Audio Local",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo Brazález -  Multilingual_pvc_s50_sim19_v4.mp3",
+      "titulo": "15. Elevenlabs 2026-11-14T20 29 25 Guillermo Brazález -  Multilingual Pvc S50 Sim19 V4",
+      "voz": "Audio Local",
+      "activa": true
+    },
+    {
       "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo_Braz_lez_-__Multilingual_pvc_s50_sim19_v4.mp3",
+      "titulo": "16. Elevenlabs 2026-11-14T20 29 25 Guillermo Braz Lez -  Multilingual Pvc S50 Sim19 V4",
+      "voz": "Audio Local",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo_Braz_lez_-__Multilingual_pvc_s50_sim19_v4__1_.mp3",
+      "titulo": "17. Elevenlabs 2026-11-14T20 29 25 Guillermo Braz Lez -  Multilingual Pvc S50 Sim19 V4  1",
+      "voz": "Audio Local",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/sube el nivel.mp3",
+      "titulo": "18. Sube El Nivel",
+      "voz": "Audio Local",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/sube_el_nivel.mp3",
+      "titulo": "19. Sube El Nivel",
+      "voz": "Audio Local",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/vivelo en directo.mp3",
+      "titulo": "20. Vivelo En Directo",
+      "voz": "Audio Local",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/vivelo_en_directo.mp3",
+      "titulo": "21. Vivelo En Directo",
+      "voz": "Audio Local",
+      "activa": true
+    },
+    {
+      "archivo": "cunas/cuna_01_bienvenida_mg.mp3",
+      "titulo": "22. Cuna 01 Bienvenida Mg",
+      "voz": "Audio PC",
       "activa": true
     }
   ]
