@@ -1,52 +1,9 @@
 {
-  "activo": false,
-  "intervalo_segundos": 100,
-  "bajar_musica_pct": 100,
-  "studio_auto": false,
-  "studio_orden": "Secuencial",
+  "activo": true,
+  "intervalo_segundos": 60,
+  "bajar_musica_pct": 80,
+  "studio_auto": true,
+  "studio_orden": "Aleatorio",
   "studio_duck": true,
-  "cunas": [
-    {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_26_09_Cornelio_-_Persuasive__Clear_and_Rich_pvc_s50_sim75_v4.mp3",
-      "titulo": "01. Cornelio - Persuasive Clear And Rich",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_28_41_Bobby_-_Sharp__Persuasive_and_Dynamic_pvc_s50_sim19_v4.mp3",
-      "titulo": "02. Bobby - Sharp, Persuasive And Dynamic",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_28_41_Bobby_-_Sharp__Persuasive_and_Dynamic_pvc_s50_sim19_v4.mp3",
-      "titulo": "03. Bobby - Sharp Persuasive And Dynamic (V2)",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo_Braz_lez_-__Multilingual_pvc_s50_sim19_v4.mp3",
-      "titulo": "04. Guillermo Brazález - Multilingual",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo_Braz_lez_-__Multilingual_pvc_s50_sim19_v4.mp3",
-      "titulo": "05. Guillermo Brazález - Multilingual (V2)",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/sube_el_nivel.mp3",
-      "titulo": "06. Sube El Nivel",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/vivelo_en_directo.mp3",
-      "titulo": "07. Vívelo En Directo",
-      "voz": "Audio PC",
-      "activa": true
-    }
-  ]
+  "cunas": []
 }

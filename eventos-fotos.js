@@ -14,7 +14,7 @@
     var st = document.createElement('style');
     st.id = 'mg-evfotos-style';
     st.textContent = [
-      '.mg-evw-box{position:relative;width:100%;max-width:1280px;height:560px;margin:22px auto 14px;border-radius:22px;overflow:hidden;background:rgba(12,8,24,0.85);border:2px solid rgba(0,240,255,0.45);box-shadow:0 18px 50px rgba(0,0,0,0.6);backdrop-filter:blur(12px);z-index:5;}',
+      '.mg-evw-box{position:relative;width:100%;max-width:1440px;height:580px;margin:22px auto 14px;border-radius:22px;overflow:hidden;background:rgba(12,8,24,0.85);border:2px solid rgba(0,240,255,0.45);box-shadow:0 18px 50px rgba(0,0,0,0.6);backdrop-filter:blur(12px);z-index:5;box-sizing:border-box;}',
       '.mg-evw-img{width:100%;height:100%;object-fit:contain;object-position:center;background:#000;display:block;transition:opacity .45s ease;cursor:pointer;}',
       '.mg-evw-top{position:absolute;top:10px;left:12px;right:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;pointer-events:none;}',
       '.mg-evw-badge{pointer-events:auto;background:rgba(10,7,20,0.72);border:1px solid rgba(255,255,255,0.18);color:#f5c842;font-size:11px;font-weight:700;letter-spacing:.6px;padding:4px 10px;border-radius:999px;text-transform:uppercase;}',
@@ -34,7 +34,7 @@
       '.mg-evf-lb-btn{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);color:#fff;border:1px solid rgba(255,255,255,0.22);border-radius:50%;width:44px;height:44px;font-size:22px;cursor:pointer;}',
       '.mg-evf-lb-prev{left:18px;} .mg-evf-lb-next{right:18px;}',
       '.mg-evf-lb-close{position:fixed;top:18px;right:22px;background:rgba(255,45,120,0.28);color:#fff;border:1px solid #ff2d78;border-radius:999px;padding:6px 14px;font-weight:700;cursor:pointer;}',
-      '@media(max-width:640px){.mg-evw-box{height:300px;margin:14px auto 12px;}}'
+      '@media(max-width:768px){.mg-evw-box{height:clamp(230px,58vw,320px);margin:12px auto 10px;border-radius:16px;}}'
     ].join('');
     document.head.appendChild(st);
   }

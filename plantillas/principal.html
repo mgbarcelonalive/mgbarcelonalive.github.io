@@ -716,16 +716,54 @@
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .nav-ticket:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(180,79,255,0.5); }
-  .bg-video-wrap { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; display: none; transform: translate3d(0,0,0); will-change: transform; contain: strict; }
-  .bg-video-wrap video { width: 100%; height: 100%; object-fit: cover; opacity: 0.44; transform: translate3d(0,0,0); }
-  .bg-video-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,4,14,0.58) 0%, rgba(6,4,14,0.42) 50%, rgba(6,4,14,0.82) 100%); }
+  /* ─── FONDO DE VÍDEO AMBIENTAL (INTEGRADO, SIN ZOOM EXCESIVO NI CORTES) ─── */
+  .bg-video-wrap {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    display: none;
+    transform: translate3d(0,0,0);
+    will-change: transform;
+    background: #07050f;
+  }
+  .bg-video-wrap video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.22;
+    filter: brightness(0.55) contrast(1.1) saturate(1.2);
+    transform: translate3d(0,0,0);
+    transition: opacity 1s ease;
+  }
+  .bg-video-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(7,5,15,0.3) 0%, rgba(7,5,15,0.75) 65%, rgba(7,5,15,0.96) 100%),
+      linear-gradient(180deg, rgba(7,5,15,0.65) 0%, rgba(7,5,15,0.3) 30%, rgba(7,5,15,0.6) 70%, rgba(7,5,15,0.98) 100%);
+  }
+
+  /* Secciones con fondo sólido nocturno para evitar que el vídeo de fondo ensucie tarjetas */
+  #player, #videos, #events, #sponsors, #about, #contact {
+    position: relative;
+    z-index: 1;
+    background: #07050f;
+  }
+  #hero {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+  }
 
   /* ─── MARCOS RGB LUCES DE DISCOTECA ─── */
-  .event-card, .stat-card, .sponsor-card {
+  .event-card, .stat-card, .sponsor-card, .mg-video-card {
     border: 2px solid rgba(0, 240, 255, 0.45) !important;
     animation: rgbCardGlow 6s linear infinite;
   }
-  .event-card:nth-child(2n), .stat-card:nth-child(2n), .sponsor-card:nth-child(2n) { animation-delay: -1.5s; }
+  .event-card:nth-child(2n), .stat-card:nth-child(2n), .sponsor-card:nth-child(2n), .mg-video-card:nth-child(2n) { animation-delay: -1.5s; }
   .event-card:nth-child(3n), .stat-card:nth-child(3n), .sponsor-card:nth-child(3n) { animation-delay: -3.2s; }
 
   /* ─── FOCOS VIRTUALES TIPO LÁSER EN LAS ESQUINAS ─── */
@@ -791,6 +829,329 @@
     0%, 100% { box-shadow: 0 0 24px 8px rgba(0,240,255,0.85); }
     33%      { box-shadow: 0 0 24px 8px rgba(255,45,120,0.85); }
     66%      { box-shadow: 0 0 24px 8px rgba(0,230,145,0.85); }
+  }
+  /* ─── PANTALLAS DE VÍDEO & PUBLICIDAD (ADAPTADO A MÓVILES Y MONITORES PC) ─── */
+  .mg-video-section {
+    position: relative;
+    z-index: 2;
+    padding: 5rem 2rem;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .mg-video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    width: 100%;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+
+  .mg-video-card {
+    background: var(--glass);
+    border: 2px solid rgba(0, 240, 255, 0.45);
+    border-radius: 26px;
+    padding: 2.2rem;
+    box-shadow: 0 0 35px rgba(0, 240, 255, 0.12), 0 20px 50px rgba(0,0,0,0.65);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    overflow: hidden;
+    animation: rgbCardGlow 7s linear infinite;
+    transform: translate3d(0, 0, 0);
+  }
+  .mg-video-card.ad-card {
+    border-color: rgba(255, 45, 120, 0.45);
+    box-shadow: 0 0 35px rgba(255, 45, 120, 0.12), 0 20px 50px rgba(0,0,0,0.65);
+    animation-delay: -2s;
+  }
+
+  .mg-video-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .mg-video-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    letter-spacing: 0.05em;
+    color: #fff;
+    margin: 0;
+    line-height: 1;
+  }
+  .mg-video-title.cyan { color: var(--cyan); }
+  .mg-video-title.pink { color: var(--pink); }
+
+  .mg-video-screen {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.85), 0 8px 30px rgba(0, 0, 0, 0.5);
+  }
+  .mg-video-screen video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000;
+  }
+
+  .mg-video-controls {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1.3rem;
+  }
+  .mg-video-btn {
+    padding: 0.7rem 1.6rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: transparent;
+    color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mg-video-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .mg-video-btn.primary {
+    background: linear-gradient(135deg, var(--neon), var(--pink));
+    border: none;
+    box-shadow: 0 0 24px rgba(180, 79, 255, 0.45);
+  }
+  .mg-video-btn.primary:hover {
+    box-shadow: 0 0 45px rgba(180, 79, 255, 0.75);
+    color: #fff;
+  }
+
+  .mg-video-status {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1rem;
+    line-height: 1.5;
+  }
+
+  /* ─── OPTIMIZACIÓN MÓVIL (PANTALLAS SMARTPHONES <= 768px) ─── */
+  @media (max-width: 768px) {
+    #hero {
+      padding: 1rem 0.9rem 2.8rem;
+      min-height: auto;
+      padding-top: 4.6rem;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 12vw, 4.5rem);
+      line-height: 0.95;
+      margin-top: 0.2rem;
+    }
+    .hero-sub {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      margin-top: 0.6rem;
+    }
+    .live-badge {
+      margin-top: 1rem;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.7rem;
+    }
+    .hero-ctas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem;
+      width: 100%;
+      max-width: 360px;
+      margin-top: 1.4rem;
+    }
+    .hero-ctas .btn {
+      padding: 0.65rem 0.5rem;
+      font-size: 0.78rem;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .scroll-arrow {
+      position: static;
+      margin-top: 1.6rem;
+      transform: none;
+    }
+
+    #player, #videos, #events, #sponsors, #about {
+      padding: 2.8rem 0.9rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 8.5vw, 3rem);
+      margin-bottom: 1.6rem;
+    }
+
+    /* Fondo de vídeo en móvil: se restringe a la cabecera/hero, evitando zoom excesivo y manchas */
+    .bg-video-wrap {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: 65vh !important;
+      max-height: 520px !important;
+      overflow: hidden !important;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%) !important;
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%) !important;
+      z-index: 0 !important;
+    }
+    .bg-video-wrap video {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center 20% !important;
+      opacity: 0.25 !important;
+      filter: brightness(0.48) contrast(1.1) saturate(1.15) !important;
+      transform: translate3d(0,0,0) !important;
+    }
+
+    /* Tarjetas de vídeo en móvil: adaptadas a pantalla móvil completa sin recortar */
+    .mg-video-section {
+      padding: 2.8rem 0.85rem;
+    }
+    .mg-video-grid {
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+    }
+    .mg-video-card {
+      padding: 1.1rem 0.85rem;
+      border-radius: 18px;
+    }
+    .mg-video-header {
+      margin-bottom: 0.75rem;
+    }
+    .mg-video-title {
+      font-size: 1.45rem;
+    }
+    .mg-video-screen {
+      border-radius: 12px;
+      aspect-ratio: 16 / 9;
+      min-height: unset !important;
+    }
+    /* En móvil, contain para que no corte caras, siluetas ni textos */
+    .mg-video-screen video {
+      object-fit: contain;
+      background: #000;
+    }
+    .mg-video-controls {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4rem;
+      width: 100%;
+      margin-top: 0.85rem;
+    }
+    .mg-video-btn {
+      padding: 0.55rem 0.3rem;
+      font-size: 0.72rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .mg-video-status {
+      font-size: 0.74rem;
+      margin-top: 0.65rem;
+      line-height: 1.4;
+    }
+
+    /* Reproductor en móvil: botón circular perfecto, sin estiramientos */
+    .player-card {
+      padding: 1.25rem 0.9rem !important;
+      border-radius: 18px !important;
+      max-width: 95% !important;
+      margin: 0 auto !important;
+    }
+    #waveform {
+      height: 50px !important;
+      margin-bottom: 0.9rem !important;
+    }
+    .now-playing {
+      margin-bottom: 1rem !important;
+    }
+    .player-controls {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 1rem !important;
+      width: 100% !important;
+    }
+    #play-btn {
+      width: 76px !important;
+      height: 76px !important;
+      min-width: 76px !important;
+      min-height: 76px !important;
+      aspect-ratio: 1 / 1 !important;
+      border-radius: 50% !important;
+      flex-shrink: 0 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 1.75rem !important;
+      box-shadow: 0 0 30px rgba(180,79,255,0.65) !important;
+    }
+    .vol-control {
+      width: 100% !important;
+      max-width: 250px !important;
+      justify-content: center !important;
+      gap: 0.6rem !important;
+    }
+    .stream-url {
+      font-size: 0.72rem !important;
+      padding: 0.5rem 0.75rem !important;
+      margin-top: 0.9rem !important;
+      word-break: break-all !important;
+    }
+  }
+
+  /* ─── OPTIMIZACIÓN MONITORES PC Y PANTALLAS ANCHAS (>= 1200px) ─── */
+  @media (min-width: 1200px) {
+    .mg-video-section {
+      max-width: 1480px;
+      padding: 5rem 2rem;
+    }
+    .mg-video-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.8rem;
+    }
+    .mg-video-card {
+      padding: 2.4rem;
+      border-radius: 28px;
+    }
+    .mg-video-title {
+      font-size: 2.2rem;
+    }
+    .mg-video-screen {
+      border-radius: 20px;
+    }
+    .mg-video-screen video {
+      object-fit: cover;
+    }
+    .player-card {
+      max-width: 740px;
+      padding: 2.8rem;
+      border-radius: 28px;
+    }
   }
 </style>
 </head>
@@ -950,43 +1311,43 @@
 
 
 <!-- Video & Ads Section -->
-<section id="videos" style="position:relative; z-index:2; padding:5rem 1.5rem; max-width:1320px; margin:0 auto;">
+<section id="videos" class="mg-video-section">
   <p class="section-label" style="text-align:center;">🎬 En Pantalla</p>
   <h2 class="section-title" style="text-align:center;">Vídeos Musicales &amp; Publicidad</h2>
 
-  <div class="events-grid" style="grid-template-columns:repeat(auto-fit, minmax(min(100%, 520px), 1fr)); gap:2rem;">
+  <div class="mg-video-grid">
     <!-- Tarjeta Vídeos Musicales -->
-    <div class="event-card" style="padding:1.8rem; background:var(--glass); border:1px solid rgba(0,240,255,0.2); border-radius:24px; box-shadow:0 0 35px rgba(0,240,255,0.1);">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.9rem; letter-spacing:0.05em; color:var(--cyan); margin:0;">Vídeos Musicales</h3>
+    <div class="mg-video-card">
+      <div class="mg-video-header">
+        <h3 class="mg-video-title cyan">Vídeos Musicales</h3>
         <span class="tag tag-cyan">Moda &amp; House</span>
       </div>
-      <div style="position:relative; aspect-ratio:16/9; min-height:280px; background:#000; border-radius:16px; overflow:hidden; border:1px solid rgba(0,240,255,0.25); box-shadow:0 0 25px rgba(0,240,255,0.2);">
-        <video id="liveVideo" autoplay playsinline muted preload="auto" style="width:100%; height:100%; object-fit:cover; display:block;"></video>
+      <div class="mg-video-screen">
+        <video id="liveVideo" autoplay playsinline muted preload="auto"></video>
       </div>
-      <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap; margin-top:1.2rem;">
-        <button id="liveVideoButton" class="btn btn-primary" style="padding:0.6rem 1.3rem; font-size:0.8rem;">Pausar</button>
-        <button id="liveVideoNext" class="btn btn-outline" style="padding:0.6rem 1.3rem; font-size:0.8rem;">Siguiente</button>
-        <button id="liveVideoSound" class="btn btn-outline" style="padding:0.6rem 1.3rem; font-size:0.8rem;">Escuchar vídeo</button>
+      <div class="mg-video-controls">
+        <button id="liveVideoButton" class="mg-video-btn primary">Pausar</button>
+        <button id="liveVideoNext" class="mg-video-btn">Siguiente</button>
+        <button id="liveVideoSound" class="mg-video-btn">Escuchar vídeo</button>
       </div>
-      <p id="liveVideoStatus" style="font-size:0.75rem; color:rgba(255,255,255,0.55); margin-top:0.9rem; line-height:1.5;">Cargando vídeos musicales...</p>
+      <p id="liveVideoStatus" class="mg-video-status">Cargando vídeos musicales...</p>
     </div>
 
     <!-- Tarjeta Publicidad de la Radio -->
-    <div class="event-card" style="padding:1.8rem; background:var(--glass); border:1px solid rgba(255,45,120,0.2); border-radius:24px; box-shadow:0 0 35px rgba(255,45,120,0.1);">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-        <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.9rem; letter-spacing:0.05em; color:var(--pink); margin:0;">Publicidad de la Radio</h3>
+    <div class="mg-video-card ad-card">
+      <div class="mg-video-header">
+        <h3 class="mg-video-title pink">Publicidad de la Radio</h3>
         <span class="tag tag-pink">Anuncios MG</span>
       </div>
-      <div style="position:relative; aspect-ratio:16/9; min-height:280px; background:#000; border-radius:16px; overflow:hidden; border:1px solid rgba(255,45,120,0.25); box-shadow:0 0 25px rgba(255,45,120,0.2);">
-        <video id="adVideo" autoplay playsinline muted preload="auto" style="width:100%; height:100%; object-fit:cover; display:block;"></video>
+      <div class="mg-video-screen">
+        <video id="adVideo" autoplay playsinline muted preload="auto"></video>
       </div>
-      <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap; margin-top:1.2rem;">
-        <button id="adPause" class="btn btn-outline" style="padding:0.6rem 1.3rem; font-size:0.8rem;">Pausar</button>
-        <button id="adNext" class="btn btn-outline" style="padding:0.6rem 1.3rem; font-size:0.8rem;">Siguiente</button>
-        <button id="adSound" class="btn btn-outline" style="padding:0.6rem 1.3rem; font-size:0.8rem;">Escuchar anuncio</button>
+      <div class="mg-video-controls">
+        <button id="adPause" class="mg-video-btn">Pausar</button>
+        <button id="adNext" class="mg-video-btn">Siguiente</button>
+        <button id="adSound" class="mg-video-btn">Escuchar anuncio</button>
       </div>
-      <p id="adStatus" style="font-size:0.75rem; color:rgba(255,255,255,0.55); margin-top:0.9rem; line-height:1.5;">Anuncios y autopromociones en directo.</p>
+      <p id="adStatus" class="mg-video-status">Anuncios y autopromociones en directo.</p>
     </div>
   </div>
 </section>
@@ -1175,39 +1536,39 @@
     Sintonízanos y vive la noche.
   </p>
 
-  <div class="events-grid" style="max-width:1320px; margin:2.2rem auto 0; grid-template-columns:repeat(auto-fit, minmax(min(100%, 520px), 1fr)); gap:2rem; text-align:left;">
-    <div class="event-card" style="padding:1.8rem; background:var(--glass); border-radius:24px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem; margin-bottom:1rem;">
+  <div class="mg-video-grid" style="margin-top:2.2rem;">
+    <div class="mg-video-card">
+      <div class="mg-video-header">
         <div>
           <p style="font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--cyan); font-weight:700; margin:0 0 0.25rem;">🎬 Entrevista · iclubbing.tv</p>
-          <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.05em; color:#fff; margin:0;">Moisés Gallardo en Saturgays</h3>
+          <h3 class="mg-video-title">Moisés Gallardo en Saturgays</h3>
         </div>
         <span class="tag tag-pink">Saturgays BCN</span>
       </div>
-      <div style="position:relative; aspect-ratio:16/9; min-height:280px; background:#000; border-radius:16px; overflow:hidden; border:1px solid rgba(0,240,255,0.28);">
-        <video controls playsinline preload="metadata" style="width:100%; height:100%; object-fit:cover; display:block;">
+      <div class="mg-video-screen">
+        <video controls playsinline preload="metadata">
           <source src="videos/entrevista_moises_saturgays.mp4" type="video/mp4">
         </video>
       </div>
-      <p style="font-size:0.8rem; color:rgba(255,255,255,0.62); margin:0.9rem 0 0; line-height:1.6;">
+      <p class="mg-video-status">
         Reportaje en <strong style="color:#fff;">Saturgays</strong> (Barcelona) junto a <strong style="color:var(--gold);">iclubbing.tv</strong>, presentando a Moisés como fotógrafo oficial de la noche de Barcelona.
       </p>
     </div>
 
-    <div class="event-card" style="padding:1.8rem; background:var(--glass); border-radius:24px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem; margin-bottom:1rem;">
+    <div class="mg-video-card ad-card">
+      <div class="mg-video-header">
         <div>
           <p style="font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--pink); font-weight:700; margin:0 0 0.25rem;">🎬 Entrevista · iclubbing.tv</p>
-          <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.05em; color:#fff; margin:0;">Sara Gallardo en Saturgays</h3>
+          <h3 class="mg-video-title">Sara Gallardo en Saturgays</h3>
         </div>
         <span class="tag tag-cyan">Familia MG</span>
       </div>
-      <div style="position:relative; aspect-ratio:16/9; min-height:280px; background:#000; border-radius:16px; overflow:hidden; border:1px solid rgba(255,45,120,0.28);">
-        <video controls playsinline preload="metadata" style="width:100%; height:100%; object-fit:cover; display:block;">
+      <div class="mg-video-screen">
+        <video controls playsinline preload="metadata">
           <source src="videos/entrevista_sara_saturgays.mp4" type="video/mp4">
         </video>
       </div>
-      <p style="font-size:0.8rem; color:rgba(255,255,255,0.62); margin:0.9rem 0 0; line-height:1.6;">
+      <p class="mg-video-status">
         La hermana de Moisés en la misma noche de <strong style="color:#fff;">Saturgays</strong> junto a <strong style="color:var(--gold);">iclubbing.tv</strong>: <em>&laquo;Mi hermano es el fotógrafo, el más queridito del ambiente&raquo;</em>.
       </p>
     </div>
