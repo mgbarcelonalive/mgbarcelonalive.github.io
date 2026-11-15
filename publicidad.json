@@ -1,5 +1,5 @@
 {
-    "intervalo": 60,
+    "intervalo": 10,
     "anuncios": [
         {
             "archivo": "publicidad/strass_barcelona.mp4",

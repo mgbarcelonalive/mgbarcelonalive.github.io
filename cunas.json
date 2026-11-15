@@ -5,5 +5,66 @@
   "studio_auto": true,
   "studio_orden": "Aleatorio",
   "studio_duck": true,
-  "cunas": []
+  "cunas": [
+    {
+      "titulo": "01. Cuña Bienvenida MG Barcelona Live",
+      "voz": "Locutor MG",
+      "archivo": "cunas/cuna_01_bienvenida_mg.mp3",
+      "activa": true
+    },
+    {
+      "titulo": "02. Cuña Web Oficial MG Barcelona Live",
+      "voz": "Locutor MG",
+      "archivo": "cunas/cuna_02_web_oficial.mp3",
+      "activa": true
+    },
+    {
+      "titulo": "03. Cuña Anúnciate Aquí y Patrocinios",
+      "voz": "Locutor Comercial",
+      "archivo": "cunas/cuna_03_anunciate_aqui.mp3",
+      "activa": true
+    },
+    {
+      "titulo": "04. Cuña Noches de Fiesta Barcelona",
+      "voz": "Locutor MG",
+      "archivo": "cunas/cuna_04_fiesta_barcelona.mp3",
+      "activa": true
+    },
+    {
+      "titulo": "05. Cuña Pide tu Canción en Directo",
+      "voz": "Locutor MG",
+      "archivo": "cunas/cuna_05_pide_cancion.mp3",
+      "activa": true
+    },
+    {
+      "titulo": "06. Cuña Sube el Nivel",
+      "voz": "Bobby · Dynamic",
+      "archivo": "cunas/sube_el_nivel.mp3",
+      "activa": true
+    },
+    {
+      "titulo": "07. Cuña Vívelo en Directo",
+      "voz": "Guillermo · Multilingual",
+      "archivo": "cunas/vivelo_en_directo.mp3",
+      "activa": true
+    },
+    {
+      "titulo": "08. Cuña Locución Cornelio Radio 24H",
+      "voz": "Cornelio · Rich",
+      "archivo": "cunas/ElevenLabs_2026-11-14T20_26_09_Cornelio_-_Persuasive__Clear_and_Rich_pvc_s50_sim75_v4.mp3",
+      "activa": true
+    },
+    {
+      "titulo": "09. Cuña Locución Bobby Dynamic",
+      "voz": "Bobby · Sharp",
+      "archivo": "cunas/ElevenLabs_2026-11-14T20_28_41_Bobby_-_Sharp__Persuasive_and_Dynamic_pvc_s50_sim19_v4.mp3",
+      "activa": true
+    },
+    {
+      "titulo": "10. Cuña Locución Guillermo Brazález",
+      "voz": "Guillermo Brazález",
+      "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo_Braz_lez_-__Multilingual_pvc_s50_sim19_v4.mp3",
+      "activa": true
+    }
+  ]
 }
