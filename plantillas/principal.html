@@ -24,13 +24,13 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: auto; overflow-x: clip; }
 
   body {
     background: var(--bg);
     color: #fff;
     font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   /* ─── CANVAS PARTICLES ─── */
@@ -39,6 +39,8 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
   }
 
   /* ─── HERO ─── */
@@ -306,46 +308,54 @@
     background-clip: text;
   }
 
+  @keyframes rgbCardGlow {
+    0%   { border-color: #00f0ff; box-shadow: 0 0 28px rgba(0,240,255,0.45), 0 0 70px rgba(180,79,255,0.22), 0 24px 55px rgba(0,0,0,0.65); }
+    25%  { border-color: #b44fff; box-shadow: 0 0 32px rgba(180,79,255,0.52), 0 0 75px rgba(255,45,120,0.25), 0 24px 55px rgba(0,0,0,0.65); }
+    50%  { border-color: #ff2d78; box-shadow: 0 0 32px rgba(255,45,120,0.52), 0 0 75px rgba(245,200,66,0.25), 0 24px 55px rgba(0,0,0,0.65); }
+    75%  { border-color: #00e691; box-shadow: 0 0 30px rgba(0,230,145,0.48), 0 0 75px rgba(0,240,255,0.25), 0 24px 55px rgba(0,0,0,0.65); }
+    100% { border-color: #00f0ff; box-shadow: 0 0 28px rgba(0,240,255,0.45), 0 0 70px rgba(180,79,255,0.22), 0 24px 55px rgba(0,0,0,0.65); }
+  }
+
   .player-card {
     width: 100%;
     max-width: 640px;
-    background: var(--glass);
-    border: 1px solid var(--border);
+    background: rgba(12, 9, 24, 0.88);
+    border: 2px solid rgba(0, 240, 255, 0.45);
     border-radius: 24px;
     padding: 2.5rem;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 60px rgba(180,79,255,0.1), 0 30px 60px rgba(0,0,0,0.5);
+    animation: rgbCardGlow 7s linear infinite;
     position: relative;
     overflow: hidden;
+  }
+  .player-card.playing-rgb {
+    animation-duration: 3.2s;
   }
   .player-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--neon), transparent);
+    height: 2px;
+    background: linear-gradient(90deg, #00e691, #00f0ff, #b44fff, #ff2d78, #f5c842, #00e691);
   }
 
-  /* Waveform */
+  /* Ecualizador LED estilo BUTT / Controlador DJ */
   #waveform {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3px;
-    height: 60px;
-    margin-bottom: 2rem;
+    width: 100%;
+    height: 88px;
+    margin-bottom: 1.8rem;
+    padding: 8px 12px;
+    background: rgba(5, 4, 12, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 14px;
+    box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.75);
   }
-  .bar {
-    width: 4px;
-    border-radius: 2px;
-    background: linear-gradient(to top, var(--neon), var(--cyan));
-    transition: height 0.1s;
-    height: 4px;
-  }
-  .bar.active { animation: wave 0.8s ease-in-out infinite; }
-  @keyframes wave {
-    0%,100% { transform: scaleY(0.3); }
-    50%      { transform: scaleY(1); }
+  #dj-eq-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   .now-playing {
@@ -609,9 +619,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(7,5,15,0.6);
-    backdrop-filter: blur(20px);
+    background: rgba(7,5,15,0.92);
     border-bottom: 1px solid rgba(255,255,255,0.05);
+    transform: translate3d(0,0,0);
   }
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
@@ -638,12 +648,89 @@
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .nav-ticket:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(180,79,255,0.5); }
-  .bg-video-wrap { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; display: none; }
-  .bg-video-wrap video { width: 100%; height: 100%; object-fit: cover; opacity: 0.42; filter: saturate(1.2) contrast(1.06); }
+  .bg-video-wrap { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; display: none; transform: translate3d(0,0,0); will-change: transform; contain: strict; }
+  .bg-video-wrap video { width: 100%; height: 100%; object-fit: cover; opacity: 0.44; transform: translate3d(0,0,0); }
   .bg-video-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,4,14,0.58) 0%, rgba(6,4,14,0.42) 50%, rgba(6,4,14,0.82) 100%); }
+
+  /* ─── MARCOS RGB LUCES DE DISCOTECA ─── */
+  .event-card, .stat-card, .sponsor-card {
+    border: 2px solid rgba(0, 240, 255, 0.45) !important;
+    animation: rgbCardGlow 6s linear infinite;
+  }
+  .event-card:nth-child(2n), .stat-card:nth-child(2n), .sponsor-card:nth-child(2n) { animation-delay: -1.5s; }
+  .event-card:nth-child(3n), .stat-card:nth-child(3n), .sponsor-card:nth-child(3n) { animation-delay: -3.2s; }
+
+  /* ─── FOCOS VIRTUALES TIPO LÁSER EN LAS ESQUINAS ─── */
+  .disco-spot {
+    position: fixed;
+    top: -10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    z-index: 90;
+    pointer-events: none;
+    transform: translate3d(0,0,0);
+  }
+  .disco-spot.left  { left: -6px; }
+  .disco-spot.right { right: -6px; }
+
+  .disco-spot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffffff 0%, #00f0ff 45%, transparent 75%);
+    animation: laserColorBulb 5s linear infinite;
+  }
+  .disco-spot.right::before { animation-delay: -2.5s; }
+
+  .disco-beam {
+    position: absolute;
+    top: 14px;
+    width: 110vmax;
+    height: 22vmax;
+    pointer-events: none;
+    transform-origin: 0% 50%;
+    will-change: transform;
+    opacity: 0.28;
+    mix-blend-mode: screen;
+    clip-path: polygon(0% 48%, 100% 0%, 100% 100%, 0% 52%);
+    background: linear-gradient(90deg, rgba(0,240,255,0.95) 0%, rgba(180,79,255,0.42) 45%, rgba(255,45,120,0.0) 100%);
+    animation: sweepLeft 7s ease-in-out infinite, laserHue 6s linear infinite;
+  }
+  .disco-spot.left .disco-beam { left: 16px; }
+  .disco-spot.right .disco-beam {
+    right: 16px;
+    transform-origin: 100% 50%;
+    clip-path: polygon(100% 48%, 0% 0%, 0% 100%, 100% 52%);
+    background: linear-gradient(270deg, rgba(255,45,120,0.95) 0%, rgba(245,200,66,0.42) 45%, rgba(0,240,255,0.0) 100%);
+    animation: sweepRight 7.5s ease-in-out infinite, laserHue 6s linear infinite reverse;
+  }
+
+  @keyframes sweepLeft {
+    0%, 100% { transform: rotate(14deg) translate3d(0,0,0); }
+    50%      { transform: rotate(64deg) translate3d(0,0,0); }
+  }
+  @keyframes sweepRight {
+    0%, 100% { transform: rotate(-14deg) translate3d(0,0,0); }
+    50%      { transform: rotate(-64deg) translate3d(0,0,0); }
+  }
+  @keyframes laserHue {
+    0%   { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+  @keyframes laserColorBulb {
+    0%, 100% { box-shadow: 0 0 24px 8px rgba(0,240,255,0.85); }
+    33%      { box-shadow: 0 0 24px 8px rgba(255,45,120,0.85); }
+    66%      { box-shadow: 0 0 24px 8px rgba(0,230,145,0.85); }
+  }
 </style>
 </head>
 <body>
+
+<!-- Focos virtuales tipo láser en las esquinas -->
+<div class="disco-spot left"><div class="disco-beam"></div></div>
+<div class="disco-spot right"><div class="disco-beam"></div></div>
 
 <!-- Navigation -->
 <nav>
@@ -951,26 +1038,144 @@
 // ─── CONFIG ───────────────────────────────────────────────
 const STREAM_URL = 'https://attorney-comp-editing-completing.trycloudflare.com/stream';
 
-// ─── WAVEFORM BARS ────────────────────────────────────────
+// ─── ECUALIZADOR LED ESTILO BUTT / CONTROLADOR DJ ──────────
 const waveform = document.getElementById('waveform');
-const NUM_BARS = 32;
-const bars = [];
-for (let i = 0; i < NUM_BARS; i++) {
-  const b = document.createElement('div');
-  b.className = 'bar';
-  waveform.appendChild(b);
-  bars.push(b);
-}
+const playerCard = document.querySelector('.player-card');
+const eqCanvas = document.createElement('canvas');
+eqCanvas.id = 'dj-eq-canvas';
+waveform.innerHTML = '';
+waveform.appendChild(eqCanvas);
+const eqCtx = eqCanvas.getContext('2d');
+
+const EQ_BANDS = 28;
+const EQ_SEGS = 12;
+const eqLevels = new Float32Array(EQ_BANDS);
+const eqPeaks = new Float32Array(EQ_BANDS);
+const eqHold = new Uint8Array(EQ_BANDS);
 
 let isPlaying = false;
-let waveInterval = null;
+let audioCtx = null;
+let analyser = null;
+let freqData = null;
+let mediaSrc = null;
+let useRealFft = false;
 
-function animateWave() {
-  bars.forEach((b, i) => {
-    const h = isPlaying ? (Math.random() * 50 + 10) : 4;
-    b.style.height = h + 'px';
-  });
+function initAudioAnalyser() {
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    if (!audioCtx) {
+      audioCtx = new AC();
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 128;
+      analyser.smoothingTimeConstant = 0.72;
+      freqData = new Uint8Array(analyser.frequencyBinCount);
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume().catch(() => {});
+    }
+    if (!mediaSrc && audio.crossOrigin === 'anonymous') {
+      mediaSrc = audioCtx.createMediaElementSource(audio);
+      mediaSrc.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      useRealFft = true;
+    }
+  } catch (e) {
+    useRealFft = false;
+  }
 }
+
+function resizeEqCanvas() {
+  const r = waveform.getBoundingClientRect();
+  if (r.width > 0 && r.height > 0) {
+    eqCanvas.width = Math.floor(r.width - 24);
+    eqCanvas.height = Math.floor(r.height - 16);
+  }
+}
+window.addEventListener('resize', resizeEqCanvas);
+setTimeout(resizeEqCanvas, 50);
+
+function drawDjEq(nowMs) {
+  requestAnimationFrame(drawDjEq);
+  if (!eqCtx || !eqCanvas.width || !eqCanvas.height) {
+    resizeEqCanvas();
+    return;
+  }
+  const W = eqCanvas.width;
+  const H = eqCanvas.height;
+  eqCtx.clearRect(0, 0, W, H);
+
+  const active = isPlaying && !audio.paused;
+  let hasFftEnergy = false;
+
+  if (active && useRealFft && analyser && freqData) {
+    analyser.getByteFrequencyData(freqData);
+    for (let k = 0; k < freqData.length; k++) {
+      if (freqData[k] > 2) { hasFftEnergy = true; break; }
+    }
+  }
+
+  const t = nowMs * 0.001;
+  const beat = Math.pow(0.5 + 0.5 * Math.sin(t * 2.07 * Math.PI * 2), 2.2); // ~124 BPM house groove
+
+  const gapX = 4;
+  const bandW = Math.max(4, (W - (EQ_BANDS - 1) * gapX) / EQ_BANDS);
+  const gapY = 2;
+  const segH = Math.max(2, (H - (EQ_SEGS - 1) * gapY) / EQ_SEGS);
+
+  for (let i = 0; i < EQ_BANDS; i++) {
+    let target = 0.0;
+    if (active) {
+      if (hasFftEnergy) {
+        const bin = Math.min(freqData.length - 1, Math.floor((i / EQ_BANDS) * (freqData.length * 0.78)));
+        target = Math.min(1.0, (freqData[bin] / 230.0) * (1.0 + i * 0.012));
+      } else {
+        // Fallback reactivo estilo cabina DJ si el stream no permite FFT directo
+        const bassWeight = Math.max(0, 1 - i / 10);
+        const midWeight = Math.exp(-Math.pow((i - 12) / 6, 2));
+        const highWeight = Math.max(0, (i - 16) / 12);
+        const jitter = 0.35 + 0.65 * Math.abs(Math.sin(t * (5.3 + i * 0.7) + i * 1.9));
+        target = Math.min(1.0, 0.22 + beat * 0.52 * bassWeight + jitter * (0.45 * midWeight + 0.42 * highWeight + 0.22));
+      }
+    }
+
+    if (target >= eqLevels[i]) {
+      eqLevels[i] = eqLevels[i] * 0.35 + target * 0.65;
+    } else {
+      eqLevels[i] = Math.max(0, eqLevels[i] - 0.045);
+    }
+
+    if (eqLevels[i] >= eqPeaks[i]) {
+      eqPeaks[i] = eqLevels[i];
+      eqHold[i] = 18;
+    } else if (eqHold[i] > 0) {
+      eqHold[i]--;
+    } else {
+      eqPeaks[i] = Math.max(0, eqPeaks[i] - 0.025);
+    }
+
+    const lit = Math.round(eqLevels[i] * EQ_SEGS);
+    const peakSeg = eqPeaks[i] > 0.05 ? Math.min(EQ_SEGS - 1, Math.floor(eqPeaks[i] * EQ_SEGS)) : -1;
+    const x = i * (bandW + gapX);
+
+    for (let s = 0; s < EQ_SEGS; s++) {
+      const y = H - (s + 1) * segH - s * gapY;
+      const isPeak = (s === peakSeg);
+      if (isPeak && active) {
+        eqCtx.fillStyle = '#ffffff';
+      } else if (s < lit) {
+        if (s >= 10) eqCtx.fillStyle = '#ff2d78';
+        else if (s >= 8) eqCtx.fillStyle = '#f5c842';
+        else if (s >= 5) eqCtx.fillStyle = '#00f0ff';
+        else eqCtx.fillStyle = '#00e691';
+      } else {
+        eqCtx.fillStyle = 'rgba(255, 255, 255, 0.06)';
+      }
+      eqCtx.fillRect(x, y, bandW, segH);
+    }
+  }
+}
+requestAnimationFrame(drawDjEq);
 
 // ─── PLAYER ───────────────────────────────────────────────
 const audio  = document.getElementById('radio-audio');
@@ -981,31 +1186,49 @@ const streamInfo = document.getElementById('stream-info');
 const npTitle = document.getElementById('np-title');
 const npSub   = document.getElementById('np-sub');
 
+audio.crossOrigin = 'anonymous';
 audio.src = STREAM_URL;
 audio.volume = 0.8;
 streamInfo.textContent = '🔗 ' + STREAM_URL;
+
+function setPlayingUI(playing) {
+  isPlaying = playing;
+  playIcon.textContent = playing ? '⏸' : '▶';
+  if (playerCard) playerCard.classList.toggle('playing-rgb', playing);
+  if (playing) {
+    npSub.textContent = '🔴 Emitiendo en directo desde Barcelona';
+  } else {
+    npSub.textContent = 'Pulsa ▶ para escuchar en directo';
+  }
+}
+
+audio.addEventListener('playing', () => setPlayingUI(true));
+audio.addEventListener('pause', () => setPlayingUI(false));
+audio.addEventListener('ended', () => setPlayingUI(false));
 
 playBtn.addEventListener('click', () => {
   if (isPlaying) {
     audio.pause();
     audio.src = '';
-    isPlaying = false;
-    playIcon.textContent = '▶';
-    bars.forEach(b => { b.style.height = '4px'; b.classList.remove('active'); });
-    clearInterval(waveInterval);
-    npSub.textContent = 'Pulsa ▶ para escuchar en directo';
+    setPlayingUI(false);
   } else {
+    audio.crossOrigin = 'anonymous';
     audio.src = STREAM_URL;
     audio.load();
+    initAudioAnalyser();
     audio.play().then(() => {
-      isPlaying = true;
-      playIcon.textContent = '⏸';
-      bars.forEach(b => b.classList.add('active'));
-      waveInterval = setInterval(animateWave, 120);
-      npSub.textContent = '🔴 Emitiendo en directo desde Barcelona';
-    }).catch(e => {
-      npSub.textContent = '⚠ No se pudo conectar. Comprueba la señal.';
-      console.error(e);
+      setPlayingUI(true);
+    }).catch(() => {
+      // Reintento sin crossOrigin por si algún proxy bloquea CORS
+      audio.removeAttribute('crossorigin');
+      audio.crossOrigin = null;
+      useRealFft = false;
+      audio.src = STREAM_URL;
+      audio.load();
+      audio.play().then(() => setPlayingUI(true)).catch(err => {
+        npSub.textContent = '⚠ No se pudo conectar. Comprueba la señal.';
+        console.error(err);
+      });
     });
   }
 });
@@ -1259,9 +1482,10 @@ const observer = new IntersectionObserver((entries) => {
     if (e.isIntersecting) {
       e.target.style.opacity = '1';
       e.target.style.transform = 'translateY(0)';
+      observer.unobserve(e.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.05 });
 
 document.querySelectorAll('.event-card, .stat-card, .player-card, .sponsor-card').forEach(el => {
   el.style.opacity = '0';
