@@ -71,8 +71,8 @@ if ('serviceWorker' in navigator) {
   #particles {
     position: fixed;
     inset: 0;
-    z-index: 0;
-    pointer-events: none;
+    z-index: 2 !important;
+    pointer-events: none !important;
     transform: translate3d(0, 0, 0);
     will-change: transform;
   }
@@ -756,7 +756,7 @@ if ('serviceWorker' in navigator) {
     transition: opacity 0.8s ease;
   }
   @media (max-width: 900px) {
-    .disco-spot, #particles { display: none !important; }
+    .disco-spot { display: none !important; }
     .hero-title { animation: fadeUp 0.35s ease-out forwards !important; filter: none !important; }
     .event-card, .stat-card, .sponsor-card, .mg-video-card { animation: none !important; }
   }
