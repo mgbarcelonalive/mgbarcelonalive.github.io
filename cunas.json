@@ -25,12 +25,6 @@
       "activa": true
     },
     {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo_Braz_lez_-__Multilingual_pvc_s50_sim19_v4__1_.mp3",
-      "titulo": "14. Elevenlabs 2026-11-14T20 29 25 Guillermo Brazález -  Multilingual Pvc S50 Sim19 V4 (1)",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
       "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo_Braz_lez_-__Multilingual_pvc_s50_sim19_v4.mp3",
       "titulo": "15. Elevenlabs 2026-11-14T20 29 25 Guillermo Brazález -  Multilingual Pvc S50 Sim19 V4",
       "voz": "Audio PC",
@@ -39,12 +33,6 @@
     {
       "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo_Braz_lez_-__Multilingual_pvc_s50_sim19_v4.mp3",
       "titulo": "16. Elevenlabs 2026-11-14T20 29 25 Guillermo Braz Lez -  Multilingual Pvc S50 Sim19 V4",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/ElevenLabs_2026-11-14T20_29_25_Guillermo_Braz_lez_-__Multilingual_pvc_s50_sim19_v4__1_.mp3",
-      "titulo": "17. Elevenlabs 2026-11-14T20 29 25 Guillermo Braz Lez -  Multilingual Pvc S50 Sim19 V4  1",
       "voz": "Audio PC",
       "activa": true
     },
@@ -63,12 +51,6 @@
     {
       "archivo": "cunas/vivelo_en_directo.mp3",
       "titulo": "20. Vivelo En Directo",
-      "voz": "Audio PC",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/vivelo_en_directo.mp3",
-      "titulo": "21. Vivelo En Directo",
       "voz": "Audio PC",
       "activa": true
     }
