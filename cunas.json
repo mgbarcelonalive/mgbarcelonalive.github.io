@@ -7,36 +7,6 @@
   "studio_duck": true,
   "cunas": [
     {
-      "archivo": "cunas/cuna_01_bienvenida_mg.mp3",
-      "titulo": "01. Cuna 01 Bienvenida Mg",
-      "voz": "Audio Local",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/cuna_02_web_oficial.mp3",
-      "titulo": "02. Cuna 02 Web Oficial",
-      "voz": "Audio Local",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/cuna_03_anunciate_aqui.mp3",
-      "titulo": "03. Cuna 03 Anunciate Aqui",
-      "voz": "Audio Local",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/cuna_04_fiesta_barcelona.mp3",
-      "titulo": "04. Cuna 04 Fiesta Barcelona",
-      "voz": "Audio Local",
-      "activa": true
-    },
-    {
-      "archivo": "cunas/cuna_05_pide_cancion.mp3",
-      "titulo": "05. Cuna 05 Pide Cancion",
-      "voz": "Audio Local",
-      "activa": true
-    },
-    {
       "archivo": "cunas/ElevenLabs_2026-11-14T20_26_09_Cornelio - Persuasive, Clear and Rich_pvc_s50_sim75_v4 (1).mp3",
       "titulo": "06. Elevenlabs 2026-11-14T20 26 09 Cornelio - Persuasive, Clear And Rich Pvc S50 Sim75 V4 (1)",
       "voz": "Audio Local",
