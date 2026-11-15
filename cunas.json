@@ -2,8 +2,8 @@
   "activo": true,
   "intervalo_segundos": 50,
   "bajar_musica_pct": 50,
-  "studio_auto": true,
-  "studio_orden": "Aleatorio",
+  "studio_auto": false,
+  "studio_orden": "Secuencial",
   "studio_duck": true,
   "cunas": [
     {
