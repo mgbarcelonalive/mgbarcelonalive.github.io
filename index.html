@@ -1212,18 +1212,19 @@ playBtn.addEventListener('click', () => {
     audio.src = '';
     setPlayingUI(false);
   } else {
+    npSub.textContent = '⏳ Conectando con la radio...';
     audio.crossOrigin = 'anonymous';
-    audio.src = STREAM_URL;
+    audio.src = STREAM_URL + '?t=' + Date.now();
     audio.load();
-    initAudioAnalyser();
     audio.play().then(() => {
+      initAudioAnalyser();
       setPlayingUI(true);
     }).catch(() => {
       // Reintento sin crossOrigin por si algún proxy bloquea CORS
       audio.removeAttribute('crossorigin');
       audio.crossOrigin = null;
       useRealFft = false;
-      audio.src = STREAM_URL;
+      audio.src = STREAM_URL + '?t=' + Date.now();
       audio.load();
       audio.play().then(() => setPlayingUI(true)).catch(err => {
         npSub.textContent = '⚠ No se pudo conectar. Comprueba la señal.';
@@ -1626,6 +1627,6 @@ if (bgVid && bgList.length) {
 })();
 </script>
 <script src="stats-widget.js?v=6" defer></script>
-<script src="eventos-fotos.js?v=3" defer></script>
+<script src="eventos-fotos.js?v=4" defer></script>
 </body>
 </html>
