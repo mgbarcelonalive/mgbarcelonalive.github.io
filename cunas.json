@@ -1,17 +1,11 @@
 {
   "activo": false,
-  "intervalo_segundos": 200,
-  "bajar_musica_pct": 50,
+  "intervalo_segundos": 100,
+  "bajar_musica_pct": 100,
   "studio_auto": false,
   "studio_orden": "Secuencial",
   "studio_duck": true,
   "cunas": [
-    {
-      "archivo": "cunas/cuna_01_bienvenida_mg.mp3",
-      "titulo": "01. Cuna 01 Bienvenida Mg",
-      "voz": "Audio PC",
-      "activa": true
-    },
     {
       "archivo": "cunas/cuna_02_web_oficial.mp3",
       "titulo": "02. Cuna 02 Web Oficial",
