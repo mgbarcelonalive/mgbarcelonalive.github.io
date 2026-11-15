@@ -33,6 +33,50 @@
     overflow-x: hidden;
   }
 
+  /* ─── PROTECCIÓN ANTI-DESCARGA, COPYRIGHT Y PRIVACIDAD (MOISÉS GALLARDO) ─── */
+  img, video, .mg-lanzador-caja, #mgFotoLightbox, .event-card, .sponsor-card {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+    user-drag: none !important;
+    -webkit-touch-callout: none !important;
+  }
+  .mg-protect-shield {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    background: transparent;
+    cursor: pointer;
+  }
+  #mg-copy-toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: rgba(12, 7, 24, 0.94);
+    color: #fff;
+    border: 1px solid rgba(255, 45, 120, 0.7);
+    border-radius: 999px;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.7), 0 0 25px rgba(255,45,120,0.35);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    z-index: 999999;
+    text-align: center;
+    max-width: 90vw;
+  }
+  #mg-copy-toast.is-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
   /* ─── CANVAS PARTICLES ─── */
   #particles {
     position: fixed;
@@ -1103,11 +1147,13 @@
   <button type="button" class="mg-lb-close" id="mgLbClose" aria-label="Cerrar visor">✕</button>
   <button type="button" class="mg-lb-nav mg-lb-prev" id="mgLbPrev" aria-label="Foto anterior">‹</button>
 
-  <div class="mg-lb-content">
-    <img id="mgLbImg" src="" alt="Fotografía Moisés Gallardo" />
+  <div class="mg-lb-content" style="position:relative;">
+    <img id="mgLbImg" src="" alt="Fotografía Moisés Gallardo" draggable="false" oncontextmenu="return false;" />
+    <div class="mg-protect-shield" id="mgLbShield" title="© Fotógrafo Moisés Gallardo · Obra protegida por derechos de autor y privacidad"></div>
     <div class="mg-lb-caption">
       <div class="mg-lb-info" id="mgLbInfo">1 / 1 · Barcelona</div>
       <div class="mg-lb-rotulo">FOTÓGRAFO: MOISÉS GALLARDO - MG BARCELONA LIVE</div>
+      <div class="mg-lb-copy" style="font-size:0.7rem; color:rgba(255,255,255,0.48); margin-top:0.25rem; letter-spacing:0.04em;">🔒 Obra protegida por derechos de autor y derecho de imagen. Prohibida su copia, captura o descarga.</div>
     </div>
   </div>
 
@@ -1348,8 +1394,11 @@
     stageIdx = (idx + stageFotos.length) % stageFotos.length;
     var f = stageFotos[stageIdx];
     salida.innerHTML =
-      '<img class="mg-anim-slide" src="' + f.archivo + '" alt="' + (f.titulo || 'Moisés Gallardo') + '" />' +
-      '<div class="mg-foto-rotulo" style="width:100%; border-radius:10px;">FOTÓGRAFO: MOISÉS GALLARDO - MG BARCELONA LIVE</div>';
+      '<div style="position:relative; width:100%; display:flex; flex-direction:column; align-items:center;">' +
+      '<img class="mg-anim-slide" src="' + f.archivo + '" alt="' + (f.titulo || 'Moisés Gallardo') + '" draggable="false" oncontextmenu="return false;" />' +
+      '<div class="mg-protect-shield" title="© Fotógrafo Moisés Gallardo · Obra protegida por derechos de autor y privacidad"></div>' +
+      '</div>' +
+      '<div class="mg-foto-rotulo" style="width:100%; border-radius:10px;">🔒 FOTÓGRAFO: MOISÉS GALLARDO - MG BARCELONA LIVE · COPYRIGHT &amp; PRIVACIDAD</div>';
 
     if (barFill) {
       clearInterval(barTimer);
@@ -1402,7 +1451,7 @@
           <span class="tag tag-cyan" style="font-size:0.8rem; padding:0.35rem 0.9rem;">Moda &amp; House</span>
         </div>
         <div style="position:relative; aspect-ratio:16/9; background:#000; border-radius:16px; overflow:hidden; border:1px solid rgba(0,240,255,0.3); box-shadow:0 0 30px rgba(0,240,255,0.22);">
-          <video id="liveVideo" autoplay playsinline muted preload="auto" style="width:100%; height:100%; object-fit:contain; display:block;"></video>
+          <video id="liveVideo" autoplay playsinline muted preload="auto" controlslist="nodownload noplaybackrate nofullscreen" disablepictureinpicture oncontextmenu="return false;" draggable="false" style="width:100%; height:100%; object-fit:contain; display:block;"></video>
         </div>
       </div>
       <div>
@@ -1423,7 +1472,7 @@
           <span class="tag tag-pink" style="font-size:0.8rem; padding:0.35rem 0.9rem;">Anuncios MG</span>
         </div>
         <div style="position:relative; aspect-ratio:16/9; background:#000; border-radius:16px; overflow:hidden; border:1px solid rgba(255,45,120,0.3); box-shadow:0 0 30px rgba(255,45,120,0.22);">
-          <video id="adVideo" autoplay playsinline muted preload="auto" style="width:100%; height:100%; object-fit:contain; display:block;"></video>
+          <video id="adVideo" autoplay playsinline muted preload="auto" controlslist="nodownload noplaybackrate nofullscreen" disablepictureinpicture oncontextmenu="return false;" draggable="false" style="width:100%; height:100%; object-fit:contain; display:block;"></video>
         </div>
       </div>
       <div>
@@ -2020,5 +2069,79 @@ if (bgVid && bgList.length) {
 </script>
 <script src="stats-widget.js?v=6" defer></script>
 <script src="eventos-fotos.js?v=3" defer></script>
+
+<!-- =========================================================================
+     SISTEMA DE PROTECCIÓN DE DERECHOS DE AUTOR, IMAGEN Y PRIVACIDAD (MOISÉS GALLARDO)
+     ========================================================================= -->
+<div id="mg-copy-toast" role="alert" aria-live="polite">🔒 Obra protegida · Derechos de imagen y privacidad © Moisés Gallardo · Prohibida su descarga</div>
+
+<script id="mg-copyright-guard">
+(function(){
+  var toast = document.getElementById('mg-copy-toast');
+  var toastTimer = null;
+
+  function showNotice(msg) {
+    if (!toast) return;
+    if (msg) toast.textContent = msg;
+    toast.classList.add('is-visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){
+      toast.classList.remove('is-visible');
+    }, 2800);
+  }
+  window.mgShowCopyrightNotice = showNotice;
+
+  // Bloquear menú contextual (clic derecho) en fotos, vídeos y componentes visuales
+  document.addEventListener('contextmenu', function(e){
+    var t = e.target;
+    if (t.tagName === 'IMG' || t.tagName === 'VIDEO' || t.closest('#fotografia-mg') || t.closest('#mgFotoLightbox') || t.closest('#videos') || t.closest('.mg-protect-shield') || t.closest('.event-card')) {
+      e.preventDefault();
+      showNotice('🔒 Obra protegida por derechos de autor y privacidad. Prohibida su copia o descarga · Fotógrafo: Moisés Gallardo');
+      return false;
+    }
+  });
+
+  // Bloquear arrastre de imágenes y vídeos para evitar guardado por arrastre
+  document.addEventListener('dragstart', function(e){
+    var t = e.target;
+    if (t.tagName === 'IMG' || t.tagName === 'VIDEO' || t.closest('#fotografia-mg') || t.closest('#mgFotoLightbox') || t.closest('#videos') || t.closest('.mg-protect-shield')) {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  // Bloquear atajos comunes de guardado y captura de pantalla
+  document.addEventListener('keydown', function(e){
+    // Ctrl+S / Cmd+S (Guardar página)
+    if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+      e.preventDefault();
+      showNotice('🔒 Guardado deshabilitado · Contenido protegido © Moisés Gallardo');
+      return false;
+    }
+    // Ctrl+U / Cmd+U (Ver código fuente)
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 'U')) {
+      e.preventDefault();
+      return false;
+    }
+    // Tecla Impr Pant / PrintScreen
+    if (e.key === 'PrintScreen') {
+      showNotice('🔒 Obra protegida por derecho de imagen y privacidad © Moisés Gallardo');
+    }
+  });
+
+  // Bloquear selección y copia en la galería y vídeos
+  document.addEventListener('copy', function(e){
+    var sel = window.getSelection();
+    if (sel && sel.anchorNode) {
+      var el = sel.anchorNode.nodeType === 1 ? sel.anchorNode : sel.anchorNode.parentElement;
+      if (el && (el.closest('#fotografia-mg') || el.closest('#mgFotoLightbox') || el.closest('#videos'))) {
+        e.preventDefault();
+        showNotice('🔒 Copia no permitida · Derechos de imagen reservados © Moisés Gallardo');
+        return false;
+      }
+    }
+  });
+})();
+</script>
 </body>
 </html>
