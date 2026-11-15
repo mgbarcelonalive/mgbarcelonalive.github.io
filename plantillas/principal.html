@@ -2493,10 +2493,14 @@ if (bgVid) {
     // Si ya se aceptó EULA y el navegador requiere el toque final del menú nativo
     var ua = navigator.userAgent || '';
     var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    var isAndroid = /Android/i.test(ua);
     if (isIOS) {
-      txt.innerHTML = '✅ <b>Licencia EULA y Permisos Autorizados.</b><br>Ahora pulsa el botón azul <b>«📥 Descargar Perfil Instalable iPhone/iPad»</b> de aquí abajo, o toca <b>Compartir ⬆️ -> Añadir a pantalla de inicio ➕</b>.';
+      txt.innerHTML = '✅ <b>Licencia EULA y Permisos Autorizados.</b><br>Pulsa el botón azul <b>«📥 Descargar Perfil Instalable iPhone/iPad»</b> o toca <b>Compartir ⬆️ -> Añadir a pantalla de inicio ➕</b>.';
+    } else if (isAndroid) {
+      txt.innerHTML = '✅ <b>Licencia EULA y Permisos de Seguridad Activados.</b><br>👉 Toca el menú de <b>3 puntos (⋮) arriba a la derecha</b> de Chrome y pulsa <b>«Instalar aplicación»</b> (o usa el botón amarillo de arriba).';
     } else {
-      txt.innerHTML = '✅ <b>Licencia EULA y Permisos de Seguridad Activados correctamente.</b><br>👉 Para completar la creación del icono en tu Android: toca ahora el menú de <b>3 puntos (⋮) arriba a la derecha</b> de tu navegador y pulsa <b>«Instalar aplicación»</b> (o pulsa el botón amarillo de abajo para abrir el instalador en Chrome).';
+      txt.innerHTML = '✅ <b>Licencia EULA y Permisos de Seguridad Activados.</b><br>💻 En PC: pulsa el icono de instalación <b>📥</b> en la barra de direcciones arriba a la derecha de Chrome/Edge (si ya la tienes instalada, puedes cerrar esta ventana).';
+      setTimeout(function(){ if (window.__mgCloseInstallModal) window.__mgCloseInstallModal(); }, 4500);
     }
   };
 
