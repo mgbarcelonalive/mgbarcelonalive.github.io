@@ -137,6 +137,12 @@
       "titulo": "22. Cuna 01 Bienvenida Mg",
       "voz": "Audio PC",
       "activa": true
+    },
+    {
+      "archivo": "cunas/vivelo_en_directo.mp3",
+      "titulo": "23. Vivelo En Directo",
+      "voz": "Audio PC",
+      "activa": true
     }
   ]
 }
