@@ -1,6 +1,6 @@
 {
-  "activo": true,
-  "intervalo_segundos": 50,
+  "activo": false,
+  "intervalo_segundos": 200,
   "bajar_musica_pct": 50,
   "studio_auto": false,
   "studio_orden": "Secuencial",
