@@ -1245,6 +1245,8 @@ if ('serviceWorker' in navigator) {
   <a href="#" class="nav-logo">MG BCN Live</a>
   <ul class="nav-links">
     <li><a href="#player">Radio</a></li>
+    <li><a href="#podcast">Pódcast</a></li>
+    <li><a href="#" onclick="event.preventDefault(); window.__mgOpenReqModal && window.__mgOpenReqModal();">📞 Buzón</a></li>
     <li><a href="#videos">Vídeos</a></li>
     <li><a href="#events">Eventos</a></li>
     <li><a href="#sponsors">Sponsors</a></li>
@@ -1283,6 +1285,12 @@ if ('serviceWorker' in navigator) {
   <div class="hero-ctas">
     <button class="btn btn-primary" onclick="document.getElementById('player').scrollIntoView({behavior:'smooth'}); var au=document.getElementById('radio-audio'); var pb=document.getElementById('play-btn'); if(au && pb && au.paused){ pb.click(); }">
       🎧 Escuchar ahora
+    </button>
+    <button class="btn btn-outline" onclick="window.__mgOpenReqModal && window.__mgOpenReqModal();" style="border-color:rgba(255,77,166,0.78); background:linear-gradient(135deg, rgba(255,45,120,0.28), rgba(255,204,77,0.22)); color:#fff; box-shadow:0 0 22px rgba(255,77,166,0.32);">
+      📞 Buzón Radio
+    </button>
+    <button class="btn btn-outline" onclick="document.getElementById('podcast').scrollIntoView({behavior:'smooth'})" style="border-color:rgba(0,229,255,0.6); color:#fff;">
+      🎙️ Pódcasts
     </button>
     <button class="btn btn-outline" id="btnInstallApp" onclick="window.__mgInstallApp && window.__mgInstallApp()" style="border-color:rgba(245,200,66,0.75); background:linear-gradient(135deg, rgba(245,200,66,0.18), rgba(180,79,255,0.22)); color:#fff; box-shadow:0 0 22px rgba(245,200,66,0.25);">
       📲 Instalar App Móvil
@@ -1544,6 +1552,10 @@ if ('serviceWorker' in navigator) {
       </div>
     </div>
   </div>
+  <!-- Botón flotante rápido del Buzón (siempre visible en Web y App) -->
+  <button id="btn-float-req" type="button" onclick="window.__mgOpenReqModal && window.__mgOpenReqModal();" aria-label="Abrir Buzón de la Radio" style="position:fixed; bottom:18px; right:18px; z-index:9990; background:linear-gradient(135deg, #ff2d78, #ffcc4d); color:#0b0814; border:none; border-radius:999px; padding:0.65rem 1.15rem; font-size:0.84rem; font-weight:800; cursor:pointer; box-shadow:0 8px 28px rgba(255,45,120,0.55); display:flex; align-items:center; gap:0.4rem;">
+    📞 Buzón
+  </button>
 </section>
 <script>
 (function(){
@@ -1554,13 +1566,18 @@ if ('serviceWorker' in navigator) {
   var nameIn = document.getElementById('req-name');
   var msgIn = document.getElementById('req-msg');
   var st = document.getElementById('req-status');
+  function openReqModal() {
+    if (modal) modal.style.display = 'flex';
+    if (st) st.textContent = '';
+  }
+  window.__mgOpenReqModal = openReqModal;
   function buildText() {
     var t = (typeIn && typeIn.value) || '📞 Mensaje Radio';
     var n = (nameIn && nameIn.value.trim()) || 'Oyente Anónimo';
     var m = (msgIn && msgIn.value.trim()) || '¡Un saludo enorme a MG Barcelona Live!';
     return '📞 Teléfono Rojo · MG Barcelona Live\n📌 Tipo: ' + t + '\n👤 De: ' + n + '\n💬 Mensaje: ' + m;
   }
-  if (openBtn && modal) openBtn.onclick = function(){ modal.style.display = 'flex'; if (st) st.textContent = ''; };
+  if (openBtn) openBtn.onclick = openReqModal;
   if (closeBtn && modal) closeBtn.onclick = function(){ modal.style.display = 'none'; };
   if (modal) modal.addEventListener('click', function(e){ if (e.target === modal) modal.style.display = 'none'; });
   var btnMail = document.getElementById('req-send-mail');
