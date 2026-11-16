@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mg-bcn-live-v24';
+const CACHE_NAME = 'mg-bcn-live-v25';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
