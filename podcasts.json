@@ -144,6 +144,15 @@
       "imagen": "podcasts/covers/ep16.jpg",
       "voces": "Marta, Javier, Bea & Feminista en Directo · MG Barcelona Live",
       "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep17",
+      "titulo": "Ep. 17 · Niño Gamer Pide Música del Fortnite y lo Mandan con el Xokas y el Rubius",
+      "descripcion": "Un niño llama en directo pidiendo el baile de Fortnite y Marta y Javier se parten de risa explicándole que aquí solo suena House del Gaixample y que se vaya al canal de YouTube del Xokas o del Rubius.",
+      "archivo": "podcasts/ep17_nino_fortnite_xokas_rubius.mp3",
+      "imagen": "podcasts/covers/ep17.jpg",
+      "voces": "Marta, Javier & Niño Gamer en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16"
     }
   ]
 }
