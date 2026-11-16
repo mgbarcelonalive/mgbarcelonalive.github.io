@@ -2,11 +2,19 @@
   "horario": "Pódcast Virtual IA de tarde (17:00-00:00) · Radio House Classic 24/7 de noche",
   "episodios": [
     {
+      "id": "ep03",
+      "titulo": "Ep. 3 · Llamada desde BoysBar: Cómo Sobrevivir a la Fiesta en Barcelona",
+      "descripcion": "Marta y Javier hablan con Carlos desde el Gaixample sobre la ruta completa de copas y discotecas: BoysBar, Punto BCN, Bacon Bear, Night, Arena, Safari, POPair, Razzmatazz, Apolo y Circuit.",
+      "archivo": "podcasts/ep03_ruta_fiesta_barcelona.mp3",
+      "voces": "Marta, Javier & Carlos en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
       "id": "ep02",
       "titulo": "Ep. 2 · Llamada en Directo desde Camerinos: Chismes y Casting Drag Race España",
-      "descripcion": "Marta y Javier atienden la llamada en directo de una Drag Queen desde New Strass Barcelona contando cómo vive la noche y que sus compañeras se presentan al casting de Drag Race España.",
+      "descripcion": "Marta y Javier atienden la llamada en directo de Lola desde New Strass Barcelona contando cómo vive la noche y que sus compañeras se presentan al casting de Drag Race España.",
       "archivo": "podcasts/ep02_llamada_drag_casting.mp3",
-      "voces": "Marta, Javier & Llamada Drag en Directo · MG Barcelona Live",
+      "voces": "Marta, Javier & Lola (Drag en Directo) · MG Barcelona Live",
       "fecha": "2026-11-16"
     },
     {
