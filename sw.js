@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mg-bcn-live-v37';
+const CACHE_NAME = 'mg-bcn-live-v38';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -40,7 +40,9 @@ self.addEventListener('fetch', (event) => {
     url.pathname.endsWith('videos.json') ||
     url.pathname.endsWith('publicidad.json') ||
     url.pathname.endsWith('eventos_fotos.json') ||
-    url.pathname.endsWith('fondos.json')
+    url.pathname.endsWith('fondos.json') ||
+    url.pathname.endsWith('podcasts.json') ||
+    url.pathname.endsWith('cunas.json')
   ) {
     return;
   }
