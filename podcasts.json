@@ -198,6 +198,15 @@
       "imagen": "podcasts/covers/ep22.jpg",
       "voces": "Marta, Javier & Dos Reinas en Cabina · MG Barcelona Live",
       "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep23",
+      "titulo": "Ep. 23 · ¿Se Puede Vivir del Drag en España? Cuentas Reales y Humor",
+      "descripcion": "Marta, Javier y una reina invitada responden con humor la pregunta del millón: entre alquileres, pelucas, lentejuelas y promotores que pagan en 'visibilidad', ¿da el drag para vivir?",
+      "archivo": "podcasts/ep23_vivir_del_drag_espana.mp3",
+      "imagen": "podcasts/covers/ep23.jpg",
+      "voces": "Marta, Javier & Reina Invitada · MG Barcelona Live",
+      "fecha": "2026-11-16"
     }
   ]
 }
