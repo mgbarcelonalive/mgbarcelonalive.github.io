@@ -2,6 +2,14 @@
   "horario": "Pódcast Virtual IA de tarde (17:00-00:00) · Radio House Classic 24/7 de noche",
   "episodios": [
     {
+      "id": "ep05",
+      "titulo": "Ep. 5 · Parodia Gamer: Llama en Directo Pidiendo Música del LoL",
+      "descripcion": "Sketch de humor con Marta y Javier: un gamer en plena ranked del League of Legends llama desesperado a la radio pidiendo música del LoL y terminan convenciéndolo de salir de fiesta por Barcelona.",
+      "archivo": "podcasts/ep05_parodia_gamer_lol.mp3",
+      "voces": "Marta, Javier & Marcos (Parodia Gamer) · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
       "id": "ep04",
       "titulo": "Ep. 4 · Especial Reinas del Drag: Secretos de Carmen Farala, Sharonne y Supremme",
       "descripcion": "Marta, Javier y Estrella comentan y recrean con humor las anécdotas reales de las grandes reinas españolas: el autobronceador de Mercadona, los Masters del Universo y el salto de los garitos a la TV.",
