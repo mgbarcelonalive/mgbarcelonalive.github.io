@@ -2,6 +2,14 @@
   "horario": "Pódcast Virtual IA de tarde (17:00-00:00) · Radio House Classic 24/7 de noche",
   "episodios": [
     {
+      "id": "ep07",
+      "titulo": "Ep. 7 · Anécdota Surrealista: Las Llaves en el Cuarto Oscuro y el Doble de Sálvame",
+      "descripcion": "Lucía llama muerta de risa a Marta y Javier para contar cuando perdió sus llaves en el cuarto oscuro, encendieron el foco en pleno ligoteo y apareció un doble clavado a Jorge Javier Vázquez.",
+      "archivo": "podcasts/ep07_llaves_cuarto_oscuro.mp3",
+      "voces": "Marta, Javier & Lucía en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
       "id": "ep06",
       "titulo": "Ep. 6 · Sátira de Humor: Don Promesas vs. Don Tacaño Llaman por la Subvención",
       "descripcion": "Sketch ficticio de humor con Marta y Javier: dos políticos ficticios se cruzan al teléfono discutiendo sobre financiar bolas de discoteca de oro para el pódcast frente a no gastar ni un euro.",
