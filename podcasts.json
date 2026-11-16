@@ -180,6 +180,15 @@
       "imagen": "podcasts/covers/ep20.jpg",
       "voces": "Marta, Javier & Reina Cómica en Cabina · MG Barcelona Live",
       "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep21",
+      "titulo": "Ep. 21 · DRAG QUEEN: Secretos, Polémicas y Transformismo (Especial Orgullo)",
+      "descripcion": "Inspirado en el especial Orgullo: Marta, Javier y una reina invitada revelan los secretos reales del camerino, las polémicas en redes y el homenaje a las grandes transformistas históricas.",
+      "archivo": "podcasts/ep21_secretos_polemicas_transformismo.mp3",
+      "imagen": "podcasts/covers/ep21.jpg",
+      "voces": "Marta, Javier & Reina Invitada · MG Barcelona Live",
+      "fecha": "2026-11-16"
     }
   ]
 }
