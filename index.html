@@ -1392,31 +1392,48 @@ if ('serviceWorker' in navigator) {
 
 <!-- Podcast Virtual IA Section -->
 <section id="podcast" style="position:relative; z-index:2; padding: 3.5rem 1.5rem; display:flex; flex-direction:column; align-items:center;">
-  <p class="section-label">🔥🎙️ RADIO SHOW SIN FILTROS · TODOS LOS DÍAS 17:00H A 00:00H</p>
+  <p class="section-label">🌙🎙️ RADIO DE AMBIENTE PARA GENTE QUE NO DUERME · 17:00H A 00:00H</p>
   <h2 class="section-title">¡EL TELÉFONO ROJO DEL GAIXAMPLE!</h2>
 
-  <div id="pod-window" style="position:relative; width:100%; max-width:780px; border-radius:24px; overflow:hidden; border:1px solid rgba(255,204,77,0.3); box-shadow:0 24px 60px rgba(0,0,0,0.68); background:#0c0a14;">
-    <!-- Fondo temático dinámico por episodio -->
-    <div id="pod-bg" style="position:absolute; inset:0; background-size:cover; background-position:center; transition:background-image 0.6s ease; filter:brightness(0.48) saturate(1.2); z-index:0;"></div>
-    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,8,18,0.55) 0%, rgba(10,8,18,0.88) 70%, rgba(8,6,14,0.96) 100%); z-index:1;"></div>
+  <style>
+    @keyframes podPulseGlow {
+      0%, 100% { box-shadow: 0 20px 55px rgba(255,77,166,0.28), 0 0 25px rgba(0,229,255,0.18); border-color: rgba(255,77,166,0.55); }
+      50% { box-shadow: 0 24px 65px rgba(0,229,255,0.34), 0 0 32px rgba(255,204,77,0.28); border-color: rgba(0,229,255,0.65); }
+    }
+    @keyframes podDotBlink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.8); }
+    }
+    #pod-window.is-playing { animation: podPulseGlow 2.4s ease-in-out infinite; }
+    .pod-live-dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:#ff3b7f; margin-right:5px; animation:podDotBlink 1s infinite; }
+  </style>
 
-    <div style="position:relative; z-index:2; padding:1.5rem 1.4rem;">
+  <div id="pod-window" style="position:relative; width:100%; max-width:800px; border-radius:26px; overflow:hidden; border:1.5px solid rgba(255,204,77,0.38); box-shadow:0 24px 60px rgba(0,0,0,0.72); background:#0c0a14; transition:all 0.35s ease;">
+    <!-- Fondo temático dinámico por episodio -->
+    <div id="pod-bg" style="position:absolute; inset:0; background-size:cover; background-position:center; transition:background-image 0.6s ease, transform 0.8s ease; filter:brightness(0.52) saturate(1.28); z-index:0;"></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(14,8,24,0.48) 0%, rgba(10,8,20,0.85) 65%, rgba(8,6,14,0.97) 100%); z-index:1;"></div>
+
+    <!-- Luces de ambiente discoteca superiores -->
+    <div style="position:absolute; top:-40px; left:15%; width:180px; height:120px; background:radial-gradient(circle, rgba(255,77,166,0.32), transparent 70%); pointer-events:none; z-index:1;"></div>
+    <div style="position:absolute; top:-40px; right:15%; width:180px; height:120px; background:radial-gradient(circle, rgba(0,229,255,0.28), transparent 70%); pointer-events:none; z-index:1;"></div>
+
+    <div style="position:relative; z-index:2; padding:1.5rem 1.45rem;">
       <!-- Barra superior de la ventana -->
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem; margin-bottom:1.1rem;">
-        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-          <span class="tag tag-pink">📞 Salseo Drag · 17:00H</span>
-          <span id="pod-counter" class="tag tag-cyan">EP 1 / 12</span>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem; margin-bottom:1rem;">
+        <div style="display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap;">
+          <span class="tag tag-pink">🏳️‍🌈 Ambiente Gaixample</span>
+          <span id="pod-counter" class="tag tag-cyan">EP 1 / 15</span>
         </div>
-        <select id="pod-select" aria-label="Seleccionar episodio" style="background:rgba(15,12,26,0.85); color:var(--gold); border:1px solid rgba(255,204,77,0.35); border-radius:999px; padding:0.35rem 0.9rem; font-size:0.78rem; font-weight:600; max-width:260px; cursor:pointer; outline:none;"></select>
+        <select id="pod-select" aria-label="Seleccionar episodio" style="background:rgba(15,12,28,0.9); color:var(--gold); border:1px solid rgba(255,204,77,0.42); border-radius:999px; padding:0.38rem 0.95rem; font-size:0.78rem; font-weight:600; max-width:280px; cursor:pointer; outline:none;"></select>
       </div>
 
-      <!-- Cabina animada: Dos Locutores + Ecualizador de Voces -->
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:0.8rem; background:rgba(12,10,22,0.68); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:0.9rem 1rem; margin-bottom:1.1rem; backdrop-filter:blur(8px);">
+      <!-- Cabina virtual animada: Dos Locutores + Ecualizador de Voces + Botón Play Central -->
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:0.75rem; background:rgba(12,9,24,0.74); border:1px solid rgba(255,255,255,0.14); border-radius:20px; padding:0.95rem 1rem; margin-bottom:1.1rem; backdrop-filter:blur(10px); box-shadow:inset 0 0 24px rgba(255,77,166,0.08);">
         <!-- Locutora: Marta -->
-        <div id="pod-host-marta" style="display:flex; flex-direction:column; align-items:center; min-width:74px; transition:transform 0.15s ease;">
-          <svg width="66" height="66" viewBox="0 0 80 80" style="filter:drop-shadow(0 0 10px rgba(255,77,166,0.45));">
-            <circle cx="40" cy="40" r="36" fill="rgba(255,77,166,0.15)" stroke="#ff4da6" stroke-width="2"/>
-            <!-- Pelo y auriculares -->
+        <div id="pod-host-marta" style="display:flex; flex-direction:column; align-items:center; min-width:78px; transition:transform 0.12s ease;">
+          <svg width="72" height="72" viewBox="0 0 80 80" style="filter:drop-shadow(0 0 12px rgba(255,77,166,0.55));">
+            <circle id="marta-ring" cx="40" cy="40" r="36" fill="rgba(255,77,166,0.16)" stroke="#ff4da6" stroke-width="2.2"/>
+            <!-- Pelo y cara -->
             <path d="M18 42 C18 20, 62 20, 62 42 L64 56 C56 50, 24 50, 16 56 Z" fill="#2d142c"/>
             <circle cx="40" cy="42" r="18" fill="#f7c8a8"/>
             <path d="M22 36 C24 22, 56 22, 58 36 C50 28, 30 28, 22 36 Z" fill="#3d1c3a"/>
@@ -1429,20 +1446,26 @@ if ('serviceWorker' in navigator) {
             <circle cx="47" cy="39" r="2.2" fill="#1a0d1a"/>
             <!-- Boca animada Marta -->
             <ellipse id="marta-mouth" cx="40" cy="50" rx="5.5" ry="1.8" fill="#d92b6b" stroke="#8a103b" stroke-width="1"/>
+            <!-- Micro de estudio -->
+            <path d="M56 64 L46 57" stroke="#ffcc4d" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="45" cy="56" r="2.5" fill="#ffcc4d"/>
           </svg>
-          <span style="font-size:0.68rem; font-weight:700; letter-spacing:0.08em; color:#ff7ac2; margin-top:0.25rem;">MARTA</span>
+          <span style="font-size:0.68rem; font-weight:800; letter-spacing:0.1em; color:#ff7ac2; margin-top:0.2rem;">🎙️ MARTA</span>
         </div>
 
-        <!-- Ecualizador de Voces Central -->
-        <div style="flex:1; display:flex; flex-direction:column; align-items:center; min-width:120px;">
+        <!-- Ecualizador de Voces Central + Botón Play Llamativo -->
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; min-width:130px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; width:100%; max-width:340px; margin-bottom:0.25rem;">
+            <span id="pod-onair" style="font-size:0.64rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.6);">✨ DALE AL PLAY</span>
+            <button id="pod-big-play" type="button" style="background:linear-gradient(135deg, #ff4da6, #ffcc4d); color:#0b0814; border:none; border-radius:999px; padding:0.28rem 0.85rem; font-size:0.72rem; font-weight:800; letter-spacing:0.05em; cursor:pointer; box-shadow:0 0 14px rgba(255,77,166,0.5); transition:transform 0.15s ease;">▶ ESCUCHAR</button>
+          </div>
           <canvas id="pod-eq" width="320" height="72" style="width:100%; max-width:340px; height:72px; display:block;"></canvas>
-          <span id="pod-onair" style="font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-top:0.2rem;">LISTO PARA ESCUCHAR</span>
         </div>
 
         <!-- Locutor: Javier -->
-        <div id="pod-host-javier" style="display:flex; flex-direction:column; align-items:center; min-width:74px; transition:transform 0.15s ease;">
-          <svg width="66" height="66" viewBox="0 0 80 80" style="filter:drop-shadow(0 0 10px rgba(0,229,255,0.45));">
-            <circle cx="40" cy="40" r="36" fill="rgba(0,229,255,0.14)" stroke="#00e5ff" stroke-width="2"/>
+        <div id="pod-host-javier" style="display:flex; flex-direction:column; align-items:center; min-width:78px; transition:transform 0.12s ease;">
+          <svg width="72" height="72" viewBox="0 0 80 80" style="filter:drop-shadow(0 0 12px rgba(0,229,255,0.55));">
+            <circle id="javier-ring" cx="40" cy="40" r="36" fill="rgba(0,229,255,0.14)" stroke="#00e5ff" stroke-width="2.2"/>
             <!-- Cabeza y pelo -->
             <circle cx="40" cy="42" r="18" fill="#f0be9c"/>
             <path d="M22 36 C22 21, 58 21, 58 36 C52 27, 28 27, 22 36 Z" fill="#1e2436"/>
@@ -1457,14 +1480,17 @@ if ('serviceWorker' in navigator) {
             <circle cx="47" cy="39" r="2.2" fill="#0f172a"/>
             <!-- Boca animada Javier -->
             <ellipse id="javier-mouth" cx="40" cy="50" rx="5.5" ry="1.8" fill="#3a161c" stroke="#1f0b0e" stroke-width="1"/>
+            <!-- Micro de estudio -->
+            <path d="M24 64 L34 57" stroke="#00e5ff" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="35" cy="56" r="2.5" fill="#00e5ff"/>
           </svg>
-          <span style="font-size:0.68rem; font-weight:700; letter-spacing:0.08em; color:#5ce1ff; margin-top:0.25rem;">JAVIER</span>
+          <span style="font-size:0.68rem; font-weight:800; letter-spacing:0.1em; color:#5ce1ff; margin-top:0.2rem;">🎙️ JAVIER</span>
         </div>
       </div>
 
       <!-- Info del episodio actual -->
-      <h3 id="pod-title" style="font-family:'Bebas Neue',sans-serif; font-size:1.65rem; letter-spacing:0.04em; color:var(--gold); margin-bottom:0.35rem; line-height:1.15;">Cargando episodio...</h3>
-      <p id="pod-desc" style="color:rgba(255,255,255,0.82); font-size:0.88rem; line-height:1.5; margin-bottom:0.55rem;"></p>
+      <h3 id="pod-title" style="font-family:'Bebas Neue',sans-serif; font-size:1.72rem; letter-spacing:0.04em; color:var(--gold); margin-bottom:0.35rem; line-height:1.15; text-shadow:0 2px 12px rgba(0,0,0,0.8);">Cargando episodio...</h3>
+      <p id="pod-desc" style="color:rgba(255,255,255,0.88); font-size:0.9rem; line-height:1.52; margin-bottom:0.55rem;"></p>
       <p id="pod-voices" style="color:var(--cyan); font-size:0.74rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.9rem;"></p>
 
       <!-- Reproductor -->
@@ -1473,7 +1499,7 @@ if ('serviceWorker' in navigator) {
       <!-- Navegación de Ventana: Anterior / Píldoras Numéricas / Siguiente -->
       <div style="display:flex; align-items:center; justify-content:space-between; gap:0.6rem; flex-wrap:wrap;">
         <button id="pod-prev" class="btn btn-outline" style="padding:0.45rem 0.95rem; font-size:0.8rem;">◀ Anterior</button>
-        <div id="pod-pills" style="display:flex; gap:0.35rem; flex-wrap:wrap; justify-content:center; flex:1;"></div>
+        <div id="pod-pills" style="display:flex; gap:0.32rem; flex-wrap:wrap; justify-content:center; flex:1;"></div>
         <button id="pod-next" class="btn btn-primary" style="padding:0.45rem 1rem; font-size:0.8rem;">Siguiente ▶</button>
       </div>
     </div>
@@ -1481,7 +1507,9 @@ if ('serviceWorker' in navigator) {
 </section>
 <script>
 (function(){
+  var podWindow = document.getElementById('pod-window');
   var podAudio = document.getElementById('podcast-audio');
+  var podBigPlay = document.getElementById('pod-big-play');
   var podTitle = document.getElementById('pod-title');
   var podDesc = document.getElementById('pod-desc');
   var podVoices = document.getElementById('pod-voices');
@@ -1504,7 +1532,7 @@ if ('serviceWorker' in navigator) {
 
   // Web Audio API Equalizer & Talking Mouths
   var audioCtx = null, analyser = null, dataArray = null, srcNode = null;
-  var animId = null, tick = 0;
+  var tick = 0;
 
   function initAudioGraph() {
     if (audioCtx || !podAudio) return;
@@ -1524,7 +1552,7 @@ if ('serviceWorker' in navigator) {
   }
 
   function renderVisualizer() {
-    animId = requestAnimationFrame(renderVisualizer);
+    requestAnimationFrame(renderVisualizer);
     tick += 0.08;
     var isPlaying = podAudio && !podAudio.paused && !podAudio.ended;
 
@@ -1550,12 +1578,12 @@ if ('serviceWorker' in navigator) {
             var idx = Math.floor((i / bars) * (dataArray.length * 0.75));
             val = Math.max(0.1, dataArray[idx] / 255);
           } else {
-            val = 0.18 + 0.55 * Math.abs(Math.sin(tick * 1.9 + i * 0.55)) * Math.abs(Math.cos(tick * 0.9 + i * 0.25));
+            val = 0.18 + 0.58 * Math.abs(Math.sin(tick * 1.9 + i * 0.55)) * Math.abs(Math.cos(tick * 0.9 + i * 0.25));
           }
         } else {
           val = 0.07 + 0.04 * Math.sin(tick * 0.6 + i * 0.4);
         }
-        var bh = Math.max(4, val * (h - 10));
+        var bh = Math.max(4, val * (h - 8));
         var x = i * (barW + 3) + 2;
         var y = (h - bh) / 2;
         var grad = ctx.createLinearGradient(0, y, 0, y + bh);
@@ -1573,18 +1601,17 @@ if ('serviceWorker' in navigator) {
       if (isPlaying) {
         var mOpen, jOpen;
         if (analyser && (lowEnergy + highEnergy) > 0.03) {
-          mOpen = 1.8 + Math.min(7.5, highEnergy * 16);
-          jOpen = 1.8 + Math.min(7.5, lowEnergy * 13);
+          mOpen = 1.8 + Math.min(7.8, highEnergy * 16);
+          jOpen = 1.8 + Math.min(7.8, lowEnergy * 13);
         } else {
-          // Alternancia animada natural si el navegador no da espectro
           var wave = Math.sin(tick * 0.7);
-          mOpen = wave > -0.2 ? (2.2 + 5.0 * Math.abs(Math.sin(tick * 3.1))) : 1.8;
-          jOpen = wave <= 0.2 ? (2.2 + 5.0 * Math.abs(Math.cos(tick * 2.8))) : 1.8;
+          mOpen = wave > -0.2 ? (2.2 + 5.2 * Math.abs(Math.sin(tick * 3.1))) : 1.8;
+          jOpen = wave <= 0.2 ? (2.2 + 5.2 * Math.abs(Math.cos(tick * 2.8))) : 1.8;
         }
         if (martaMouth) martaMouth.setAttribute('ry', mOpen.toFixed(1));
         if (javierMouth) javierMouth.setAttribute('ry', jOpen.toFixed(1));
-        if (hostMarta) hostMarta.style.transform = mOpen > 3.5 ? 'scale(1.06)' : 'scale(1)';
-        if (hostJavier) hostJavier.style.transform = jOpen > 3.5 ? 'scale(1.06)' : 'scale(1)';
+        if (hostMarta) hostMarta.style.transform = mOpen > 3.5 ? 'scale(1.07)' : 'scale(1)';
+        if (hostJavier) hostJavier.style.transform = jOpen > 3.5 ? 'scale(1.07)' : 'scale(1)';
       } else {
         if (martaMouth) martaMouth.setAttribute('ry', '1.8');
         if (javierMouth) javierMouth.setAttribute('ry', '1.8');
@@ -1594,6 +1621,13 @@ if ('serviceWorker' in navigator) {
     }
   }
 
+  if (podBigPlay && podAudio) {
+    podBigPlay.onclick = function(){
+      if (podAudio.paused) podAudio.play().catch(function(){});
+      else podAudio.pause();
+    };
+  }
+
   if (podAudio) {
     podAudio.addEventListener('play', function(){
       var ra = document.getElementById('radio-audio');
@@ -1601,15 +1635,19 @@ if ('serviceWorker' in navigator) {
       if (ra && !ra.paused && pb) { pb.click(); }
       initAudioGraph();
       if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume().catch(function(){});
+      if (podWindow) podWindow.classList.add('is-playing');
+      if (podBigPlay) podBigPlay.textContent = '⏸ PAUSAR';
       if (podOnAir) {
-        podOnAir.textContent = '🔴 EN DIRECTO · HABLANDO';
+        podOnAir.innerHTML = '<span class="pod-live-dot"></span>EN DIRECTO · HABLANDO';
         podOnAir.style.color = '#ffcc4d';
       }
     });
     podAudio.addEventListener('pause', function(){
+      if (podWindow) podWindow.classList.remove('is-playing');
+      if (podBigPlay) podBigPlay.textContent = '▶ ESCUCHAR';
       if (podOnAir) {
         podOnAir.textContent = 'PAUSADO';
-        podOnAir.style.color = 'rgba(255,255,255,0.45)';
+        podOnAir.style.color = 'rgba(255,255,255,0.5)';
       }
     });
     podAudio.addEventListener('ended', function(){

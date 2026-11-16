@@ -105,9 +105,36 @@
       "titulo": "Ep. 12 · ¡Alerta Estafa de TikTok! El Masajeador Gay con Voz y el Cupón de la Sagrada Familia",
       "descripcion": "Un falso anuncio viral de TikTok patrocinado por IAs intenta estafar a mujeres solteras vendiendo un 'masajeador gay' con control por voz, carga rápida de 2 horas y un cupón trampa para la Sagrada Familia donde los chicos entran gratis y las chicas pagan.",
       "archivo": "podcasts/ep12_teletienda_masajeador.mp3",
+      "imagen": "podcasts/covers/ep12.jpg",
       "voces": "Marta, Javier & Teletienda Estafadora IA · MG Barcelona Live",
-      "fecha": "2026-11-16",
-      "imagen": "podcasts/covers/ep12.jpg"
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep13",
+      "titulo": "Ep. 13 · GTA 6: ¿Quién se Atreve a Jugarlo? Libertad Total Frente a la Vida Real",
+      "descripcion": "Marta y Javier debaten sobre el inminente lanzamiento de GTA 6 y por qué el juego da esa libertad que en tu casa y en tu barrio es imposible tener, ya que no puedes disparar armas ni robarle el coche al vecino.",
+      "archivo": "podcasts/ep13_gta6_libertad.mp3",
+      "imagen": "podcasts/covers/ep13.jpg",
+      "voces": "Marta & Javier · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep14",
+      "titulo": "Ep. 14 · Simuladores: Euro Truck Simulator 2 vs. Aparcar el Camión en el Gaixample",
+      "descripcion": "Debate sin filtros: ETS2 está bien para aprender a aparcar el camión, pero el verdadero simulador de riesgo es conducir y aparcar fácilmente por el Gaixample sintiéndote parte de la comunidad.",
+      "archivo": "podcasts/ep14_simuladores_ets2_gaixample.mp3",
+      "imagen": "podcasts/covers/ep14.jpg",
+      "voces": "Marta & Javier · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep15",
+      "titulo": "Ep. 15 · Navidad y Subida de Precios: Espárragos a 4€ en el Mercadona vs. Alfombra Roja en el Gaixample",
+      "descripcion": "Marta estalla por la subida de precios navideños y los espárragos a 4 euros con el IPC al 2%, y Javier le aconseja comprar en las tiendas del Gaixample con descuento, alfombra roja y espárragos recogidos haciendo cruising.",
+      "archivo": "podcasts/ep15_navidad_mercadona_gaixample.mp3",
+      "imagen": "podcasts/covers/ep15.jpg",
+      "voces": "Marta & Javier · MG Barcelona Live",
+      "fecha": "2026-11-16"
     }
   ]
 }
