@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mgbarcelonalive.github.io/sitemap.xml
