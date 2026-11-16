@@ -830,7 +830,7 @@ if ('serviceWorker' in navigator) {
   #player, #videos, #events, #sponsors, #about, #contact {
     position: relative;
     z-index: 1;
-    background: #07050f;
+    background: radial-gradient(ellipse at 50% 18%, rgba(58, 12, 163, 0.16) 0%, #07050f 70%);
   }
 
   /* ─── MARCOS RGB LUCES DE DISCOTECA ─── */
@@ -2121,15 +2121,15 @@ class Particle {
   reset() {
     this.x = Math.random() * (W || window.innerWidth);
     this.y = Math.random() * (H || window.innerHeight);
-    this.r = Math.random() * 2.8 + 0.8;
+    this.r = Math.random() * 3.0 + 0.9;
     this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-    this.alpha = Math.random() * 0.75 + 0.25;
-    this.isStar = Math.random() < 0.28;
-    this.vx = (Math.random() - 0.5) * 26;
-    this.vy = (Math.random() - 0.5) * 26;
-    this.life = Math.random() * 3.5 + 2.0;
+    this.alpha = Math.random() * 0.65 + 0.35;
+    this.isStar = Math.random() < 0.48;
+    this.vx = (Math.random() - 0.5) * 24;
+    this.vy = (Math.random() - 0.5) * 24;
+    this.life = Math.random() * 4.0 + 2.5;
     this.age = 0;
-    this.twinkleSpeed = Math.random() * 3.5 + 2.5;
+    this.twinkleSpeed = Math.random() * 4.0 + 2.5;
   }
   update(dt) {
     this.x += this.vx * dt;
@@ -2141,20 +2141,20 @@ class Particle {
     c.save();
     const progress = this.age / this.life;
     const fade = Math.sin(progress * Math.PI);
-    const twinkle = 0.7 + 0.3 * Math.sin(this.age * this.twinkleSpeed);
+    const twinkle = 0.65 + 0.35 * Math.sin(this.age * this.twinkleSpeed);
     const a = Math.max(0, Math.min(1, this.alpha * fade * twinkle));
     c.globalAlpha = a;
     c.fillStyle = this.color;
     c.strokeStyle = this.color;
 
     if (!isMobile) {
-      c.shadowBlur = 8;
+      c.shadowBlur = 9;
       c.shadowColor = this.color;
     }
 
     if (this.isStar) {
-      const arm = this.r * 2.6;
-      c.lineWidth = isMobile ? 1 : 1.5;
+      const arm = this.r * 2.8;
+      c.lineWidth = isMobile ? 1.1 : 1.6;
       c.beginPath();
       c.moveTo(this.x - arm, this.y);
       c.lineTo(this.x + arm, this.y);
@@ -2173,13 +2173,29 @@ class Particle {
   }
 }
 
+let shootingStar = null;
+function spawnShootingStar() {
+  if (!W || !H) return;
+  const fromLeft = Math.random() < 0.5;
+  shootingStar = {
+    x: fromLeft ? Math.random() * W * 0.4 : W * (0.6 + Math.random() * 0.4),
+    y: Math.random() * H * 0.45,
+    vx: (fromLeft ? 1 : -1) * (420 + Math.random() * 260),
+    vy: 180 + Math.random() * 140,
+    len: 75 + Math.random() * 55,
+    life: 0.75,
+    age: 0,
+    color: Math.random() < 0.5 ? '#f5c842' : '#00f0ff'
+  };
+}
+
 function resize() {
   W = canvas.width  = window.innerWidth;
   H = canvas.height = window.innerHeight;
 }
 
 function initParticles() {
-  const count = window.innerWidth < 768 ? 60 : 120;
+  const count = window.innerWidth < 768 ? 75 : 150;
   particles = Array.from({ length: count }, () => new Particle());
 }
 
@@ -2192,6 +2208,36 @@ function loop(nowMs) {
   for (let i = 0; i < particles.length; i++) {
     particles[i].update(dt);
     particles[i].draw(ctx, isMobile);
+  }
+
+  // Estrella fugaz ocasional cruzando los bloques de la web
+  if (!shootingStar && Math.random() < (isMobile ? 0.006 : 0.012)) {
+    spawnShootingStar();
+  }
+  if (shootingStar) {
+    shootingStar.x += shootingStar.vx * dt;
+    shootingStar.y += shootingStar.vy * dt;
+    shootingStar.age += dt;
+    const p = shootingStar.age / shootingStar.life;
+    if (p >= 1) {
+      shootingStar = null;
+    } else {
+      ctx.save();
+      ctx.globalAlpha = Math.sin(p * Math.PI) * 0.9;
+      const tailX = shootingStar.x - (shootingStar.vx / 600) * shootingStar.len;
+      const tailY = shootingStar.y - (shootingStar.vy / 600) * shootingStar.len;
+      const grad = ctx.createLinearGradient(shootingStar.x, shootingStar.y, tailX, tailY);
+      grad.addColorStop(0, '#ffffff');
+      grad.addColorStop(0.3, shootingStar.color);
+      grad.addColorStop(1, 'transparent');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = isMobile ? 1.8 : 2.5;
+      ctx.beginPath();
+      ctx.moveTo(shootingStar.x, shootingStar.y);
+      ctx.lineTo(tailX, tailY);
+      ctx.stroke();
+      ctx.restore();
+    }
   }
 
   // Destellos de discoteca (ambientales constantes y más intensos al sonar la radio)
