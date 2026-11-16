@@ -1,202 +1,230 @@
-[
-  {
-    "id": "ep01",
-    "titulo": "Ep. 01: Ruta Nocturna por el Gaixample",
-    "descripcion": "Marta y Javier recorren los locales de cócteles, terrazas y la historia viva del barrio LGTBIQ+ de Barcelona.",
-    "duracion": "02:27",
-    "archivo": "podcasts/ep01_ruta_gaixample_bcn.mp3",
-    "portada": "podcasts/covers/ep01.jpg"
-  },
-  {
-    "id": "ep02",
-    "titulo": "Ep. 02: Llamada en directo: Camerinos de New Strass",
-    "descripcion": "Conectamos con los camerinos del show Drag en New Strass antes de subir a escena.",
-    "duracion": "03:15",
-    "archivo": "podcasts/ep02_llamada_drag_casting.mp3",
-    "portada": "podcasts/covers/ep02.jpg"
-  },
-  {
-    "id": "ep03",
-    "titulo": "Ep. 03: Guía de Fiestas y Discotecas de Barcelona",
-    "descripcion": "Safari Disco Club, Believe Club, Arena y Razzmatazz. Todo el circuito nocturno al detalle.",
-    "duracion": "02:45",
-    "archivo": "podcasts/ep03_ruta_fiesta_barcelona.mp3",
-    "portada": "podcasts/covers/ep03.jpg"
-  },
-  {
-    "id": "ep04",
-    "titulo": "Ep. 04: Especial Reinas Drag y Escena de Barcelona",
-    "descripcion": "Entrevistas, humor y anécdotas con las estrellas del transformismo en Cataluña.",
-    "duracion": "02:38",
-    "archivo": "podcasts/ep04_especial_reinas_drag.mp3",
-    "portada": "podcasts/covers/ep04.jpg"
-  },
-  {
-    "id": "ep05",
-    "titulo": "Ep. 05: Parodia Gamer: El Templo del LoL en Sants",
-    "descripcion": "Un gamer empedernido llama en directo confundiendo la radio con su partida clasificatoria.",
-    "duracion": "02:18",
-    "archivo": "podcasts/ep05_parodia_gamer_lol.mp3",
-    "portada": "podcasts/covers/ep05.jpg"
-  },
-  {
-    "id": "ep06",
-    "titulo": "Ep. 06: Sátira Política en el Bar de Tapas",
-    "descripcion": "Debate callejero con mucha ironía sobre la actualidad, las terrazas y el vermut de los domingos.",
-    "duracion": "02:50",
-    "archivo": "podcasts/ep06_satira_politica_radio.mp3",
-    "portada": "podcasts/covers/ep06.jpg"
-  },
-  {
-    "id": "ep07",
-    "titulo": "Ep. 07: Se me cayeron las llaves en el Cuarto Oscuro",
-    "descripcion": "Una oyente desesperada llama pidiendo ayuda tras perder las llaves del coche en plena noche.",
-    "duracion": "02:40",
-    "archivo": "podcasts/ep07_llaves_cuarto_oscuro.mp3",
-    "portada": "podcasts/covers/ep07.jpg"
-  },
-  {
-    "id": "ep08",
-    "titulo": "Ep. 08: Telefonía Rural vs Satélites de Elon Musk",
-    "descripcion": "Humor surrealista entre coberturas 5G, pueblos perdidos y llamadas que se cortan en directo.",
-    "duracion": "02:22",
-    "archivo": "podcasts/ep08_telefonia_spacex.mp3",
-    "portada": "podcasts/covers/ep08.jpg"
-  },
-  {
-    "id": "ep09",
-    "titulo": "Ep. 09: Una Madre busca a su hijo en plena Razzmatazz",
-    "descripcion": "Llamada tierna y divertida de una madre que quiere saber si su hijo se ha llevado la chaqueta.",
-    "duracion": "02:55",
-    "archivo": "podcasts/ep09_madre_busca_hijo.mp3",
-    "portada": "podcasts/covers/ep09.jpg"
-  },
-  {
-    "id": "ep10",
-    "titulo": "Ep. 10: La Drag Desaparecida de Villarroel",
-    "descripcion": "Misterio con final cómico sobre una peluca de metro y medio extraviada tras el show.",
-    "duracion": "02:45",
-    "archivo": "podcasts/ep10_drag_desaparecida_strass.mp3",
-    "portada": "podcasts/covers/ep10.jpg"
-  },
-  {
-    "id": "ep11",
-    "titulo": "Ep. 11: Parodia Petarda: Los Churros con Chocolate",
-    "descripcion": "Especial domingos petardos en Sala Apolo con chocolate, churros y música pop sin complejos.",
-    "duracion": "02:15",
-    "archivo": "podcasts/ep11_parodia_petarda_churros.mp3",
-    "portada": "podcasts/covers/ep11.jpg"
-  },
-  {
-    "id": "ep12",
-    "titulo": "Ep. 12: Teletienda del Gaixample: El Masajeador Milagroso",
-    "descripcion": "Parodia desternillante de anuncios nocturnos con productos de dudosa utilidad.",
-    "duracion": "02:30",
-    "archivo": "podcasts/ep12_teletienda_masajeador.mp3",
-    "portada": "podcasts/covers/ep12.jpg"
-  },
-  {
-    "id": "ep13",
-    "titulo": "Ep. 13: GTA 6 llega a Barcelona",
-    "descripcion": "¿Cómo sería Grand Theft Auto ambientado entre las rondas, la Diagonal y las playas de Barcelona?",
-    "duracion": "02:48",
-    "archivo": "podcasts/ep13_gta6_libertad.mp3",
-    "portada": "podcasts/covers/ep13.jpg"
-  },
-  {
-    "id": "ep14",
-    "titulo": "Ep. 14: Simuladores de Camiones y Atascos en la AP-7",
-    "descripcion": "Rutas en Euro Truck Simulator escuchando MG Barcelona Live mientras esquivamos peajes.",
-    "duracion": "02:50",
-    "archivo": "podcasts/ep14_simuladores_ets2_gaixample.mp3",
-    "portada": "podcasts/covers/ep14.jpg"
-  },
-  {
-    "id": "ep15",
-    "titulo": "Ep. 15: Navidad en el Mercadona del Gaixample",
-    "descripcion": "Compras navideñas alocadas, polvorones y villancicos con ritmo house en el súper.",
-    "duracion": "02:42",
-    "archivo": "podcasts/ep15_navidad_mercadona_gaixample.mp3",
-    "portada": "podcasts/covers/ep15.jpg"
-  },
-  {
-    "id": "ep16",
-    "titulo": "Ep. 16: Debate: ¿Fiesta Petarda o Techno Oscuro?",
-    "descripcion": "Marta y Javier se enfrentan defendiendo sus géneros favoritos de la noche barcelonesa.",
-    "duracion": "02:35",
-    "archivo": "podcasts/ep16_debate_fiesta_vs_manifiesto.mp3",
-    "portada": "podcasts/covers/ep16.jpg"
-  },
-  {
-    "id": "ep17",
-    "titulo": "Ep. 17: Niño Fortnite reta a Marta y Javier",
-    "descripcion": "Un chaval de doce años llama retando a los locutores a un duelo de bailes de TikTok.",
-    "duracion": "02:20",
-    "archivo": "podcasts/ep17_nino_fortnite_xokas_rubius.mp3",
-    "portada": "podcasts/covers/ep17.jpg"
-  },
-  {
-    "id": "ep18",
-    "titulo": "Ep. 18: El Show Business Drag: Detrás del Escenario",
-    "descripcion": "Lo que no se ve: horas de maquillaje, tacones imposibles y la magia del aplauso.",
-    "duracion": "02:40",
-    "archivo": "podcasts/ep18_show_business_drag_queen.mp3",
-    "portada": "podcasts/covers/ep18.jpg"
-  },
-  {
-    "id": "ep19",
-    "titulo": "Ep. 19: El Bazar de las Maravillas del Gaixample",
-    "descripcion": "Encontrar pestañas postizas, boas de plumas y cargadores de móvil a las tres de la mañana.",
-    "duracion": "02:25",
-    "archivo": "podcasts/ep19_bazar_barrio_gaixample.mp3",
-    "portada": "podcasts/covers/ep19.jpg"
-  },
-  {
-    "id": "ep20",
-    "titulo": "Ep. 20: La Reina de la Comedia Auténtica",
-    "descripcion": "Humor canalla y monólogos en directo con las Drag Queens más divertidas de la ciudad.",
-    "duracion": "02:35",
-    "archivo": "podcasts/ep20_reina_comedia_autentica.mp3",
-    "portada": "podcasts/covers/ep20.jpg"
-  },
-  {
-    "id": "ep21",
-    "titulo": "Ep. 21: Secretos y Polémicas del Transformismo",
-    "descripcion": "Historias reales, rivalidades sanas y anécdotas legendarias de la escena española.",
-    "duracion": "02:50",
-    "archivo": "podcasts/ep21_secretos_polemicas_transformismo.mp3",
-    "portada": "podcasts/covers/ep21.jpg"
-  },
-  {
-    "id": "ep22",
-    "titulo": "Ep. 22: Primeras Malas Impresiones que acaban en Amistad",
-    "descripcion": "Gente que no se tragaba en la cola del club y hoy son inseparables en la pista.",
-    "duracion": "02:30",
-    "archivo": "podcasts/ep22_primeras_malas_impresiones_drag.mp3",
-    "portada": "podcasts/covers/ep22.jpg"
-  },
-  {
-    "id": "ep23",
-    "titulo": "Ep. 23: Vivir del Drag en España: Luces y Sombras",
-    "descripcion": "El esfuerzo económico, las giras, los cachés y la pasión por el arte escénico.",
-    "duracion": "02:45",
-    "archivo": "podcasts/ep23_vivir_del_drag_espana.mp3",
-    "portada": "podcasts/covers/ep23.jpg"
-  },
-  {
-    "id": "ep24",
-    "titulo": "Ep. 24: Amor, Odio y el Precio de Drag Race",
-    "descripcion": "Cómo cambia la vida tras pasar por la pasarela de la televisión y el cariño del público.",
-    "duracion": "02:55",
-    "archivo": "podcasts/ep24_odio_amor_precio_drag_race.mp3",
-    "portada": "podcasts/covers/ep24.jpg"
-  },
-  {
-    "id": "ep25",
-    "titulo": "Ep. 25 Especial: El Hacker de las Tazas y el Gaixample",
-    "descripcion": "Especial largo con Marta, Javier, Samantha Ballentines y Sharonne destapando con humor la surrealista aventura del hacker de Indiana, las tazas de regalo y las fotos de Razzmatazz.",
-    "duracion": "04:19",
-    "archivo": "podcasts/ep25_hacker_de_las_tazas.mp3",
-    "portada": "podcasts/covers/ep25.jpg"
-  }
-]
+{
+  "horario": "Pódcast Virtual IA de tarde (17:00-00:00) · Radio House Classic 24/7 de noche",
+  "episodios": [
+    {
+      "id": "ep01",
+      "titulo": "Ep. 1 · La Ruta VIP del Gaixample y los Mejores Clubs de Barcelona",
+      "descripcion": "Debate entre Marta y Javier sobre dónde salir en Barcelona: La Sastrería, Priscilla Café, Punto BCN, New Strass, Believe Club, Arena Experience, Safari Disco Club, Razzmatazz y Churros con Chocolate.",
+      "archivo": "podcasts/ep01_ruta_gaixample_bcn.mp3",
+      "voces": "Marta & Javier (Voces Reales) · MG Barcelona Live",
+      "fecha": "2026-11-16",
+      "imagen": "podcasts/covers/ep01.jpg"
+    },
+    {
+      "id": "ep02",
+      "titulo": "Ep. 2 · Llamada en Directo desde Camerinos: Chismes y Casting Drag Race España",
+      "descripcion": "Marta y Javier atienden la llamada en directo de Lola desde New Strass Barcelona contando cómo vive la noche y que sus compañeras se presentan al casting de Drag Race España.",
+      "archivo": "podcasts/ep02_llamada_drag_casting.mp3",
+      "voces": "Marta, Javier & Lola (Drag en Directo) · MG Barcelona Live",
+      "fecha": "2026-11-16",
+      "imagen": "podcasts/covers/ep02.jpg"
+    },
+    {
+      "id": "ep03",
+      "titulo": "Ep. 3 · Llamada desde BoysBar: Cómo Sobrevivir a la Fiesta en Barcelona",
+      "descripcion": "Marta y Javier hablan con Carlos desde el Gaixample sobre la ruta completa de copas y discotecas: BoysBar, Punto BCN, Bacon Bear, Night, Arena, Safari, POPair, Razzmatazz, Apolo y Circuit.",
+      "archivo": "podcasts/ep03_ruta_fiesta_barcelona.mp3",
+      "voces": "Marta, Javier & Carlos en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16",
+      "imagen": "podcasts/covers/ep03.jpg"
+    },
+    {
+      "id": "ep04",
+      "titulo": "Ep. 4 · Especial Reinas del Drag: Secretos de Carmen Farala, Sharonne y Supremme",
+      "descripcion": "Marta, Javier y Estrella comentan y recrean con humor las anécdotas reales de las grandes reinas españolas: el autobronceador de Mercadona, los Masters del Universo y el salto de los garitos a la TV.",
+      "archivo": "podcasts/ep04_especial_reinas_drag.mp3",
+      "voces": "Marta, Javier & Estrella en Cabina · MG Barcelona Live",
+      "fecha": "2026-11-16",
+      "imagen": "podcasts/covers/ep04.jpg"
+    },
+    {
+      "id": "ep05",
+      "titulo": "Ep. 5 · Parodia Gamer: Llama en Directo Pidiendo Música del LoL",
+      "descripcion": "Sketch de humor con Marta y Javier: un gamer en plena ranked del League of Legends llama desesperado a la radio pidiendo música del LoL y terminan convenciéndolo de salir de fiesta por Barcelona.",
+      "archivo": "podcasts/ep05_parodia_gamer_lol.mp3",
+      "voces": "Marta, Javier & Marcos (Parodia Gamer) · MG Barcelona Live",
+      "fecha": "2026-11-16",
+      "imagen": "podcasts/covers/ep05.jpg"
+    },
+    {
+      "id": "ep06",
+      "titulo": "Ep. 6 · Sátira de Humor: Don Promesas vs. Don Tacaño Llaman por la Subvención",
+      "descripcion": "Sketch ficticio de humor con Marta y Javier: dos políticos ficticios se cruzan al teléfono discutiendo sobre financiar bolas de discoteca de oro para el pódcast frente a no gastar ni un euro.",
+      "archivo": "podcasts/ep06_satira_politica_radio.mp3",
+      "voces": "Marta, Javier & Sátira Ficticia en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16",
+      "imagen": "podcasts/covers/ep06.jpg"
+    },
+    {
+      "id": "ep07",
+      "titulo": "Ep. 7 · Anécdota Surrealista: Las Llaves en el Cuarto Oscuro y el Doble de Sálvame",
+      "descripcion": "Lucía llama muerta de risa a Marta y Javier para contar cuando perdió sus llaves en el cuarto oscuro, encendieron el foco en pleno ligoteo y apareció un doble clavado a Jorge Javier Vázquez.",
+      "archivo": "podcasts/ep07_llaves_cuarto_oscuro.mp3",
+      "voces": "Marta, Javier & Lucía en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16",
+      "imagen": "podcasts/covers/ep07.jpg"
+    },
+    {
+      "id": "ep08",
+      "titulo": "Ep. 8 · El Comercial Enfurecido: ¡Amenaza con Cortar la Radio ante SpaceX Starship!",
+      "descripcion": "Un vendedor de telefonía llama para vender fibra a toda costa, se enfada al saber que MG Barcelona Live emite por satélite SpaceX Starship e intenta cortar la emisión sin éxito.",
+      "archivo": "podcasts/ep08_telefonia_spacex.mp3",
+      "voces": "Marta, Javier & Comercial Telefónico · MG Barcelona Live",
+      "fecha": "2026-11-16",
+      "imagen": "podcasts/covers/ep08.jpg"
+    },
+    {
+      "id": "ep09",
+      "titulo": "Ep. 9 · Doña Carmen Busca a su Hijo: ¡Lleva 2 Días Montando a Caballo en el Cuarto Oscuro!",
+      "descripcion": "Una madre llama preocupada porque su hijo salió con un amigo hace 2 días y no contesta al móvil; Marta y Javier le explican entre risas qué ha pasado con el teléfono.",
+      "archivo": "podcasts/ep09_madre_busca_hijo.mp3",
+      "voces": "Marta, Javier & Doña Carmen en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16",
+      "imagen": "podcasts/covers/ep09.jpg"
+    },
+    {
+      "id": "ep10",
+      "titulo": "Ep. 10 · ¡Alerta en Camerinos! Marta con Versace y Dolce & Gabbana y la Drag en el Lavabo",
+      "descripcion": "Se pierde una Drag antes del directo de TV y ofrecen fiesta en New Strass. Marta exige maquillaje Dolce & Gabbana y tacones Versace para suplirla, hasta que la reina aparece en el lavabo con un chulazo.",
+      "archivo": "podcasts/ep10_drag_desaparecida_strass.mp3",
+      "voces": "Marta, Javier, Director TV & La Drag en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16",
+      "imagen": "podcasts/covers/ep10.jpg"
+    },
+    {
+      "id": "ep11",
+      "titulo": "Ep. 11 · Parodia: La Diva del Petardeo Quiere ir a Miss Belleza y Acaba en Churros con Chocolate",
+      "descripcion": "Una diva ficticia del petardeo llama buscando mánager para un concurso de belleza y Javier la manda entre risas a cantar sus temazos petardos a Churros con Chocolate antes de colgarle.",
+      "archivo": "podcasts/ep11_parodia_petarda_churros.mp3",
+      "voces": "Marta, Javier & Parodia Diva del Petardeo · MG Barcelona Live",
+      "fecha": "2026-11-16",
+      "imagen": "podcasts/covers/ep11.jpg"
+    },
+    {
+      "id": "ep12",
+      "titulo": "Ep. 12 · ¡Alerta Estafa de TikTok! El Masajeador Gay con Voz y el Cupón de la Sagrada Familia",
+      "descripcion": "Un falso anuncio viral de TikTok patrocinado por IAs intenta estafar a mujeres solteras vendiendo un 'masajeador gay' con control por voz, carga rápida de 2 horas y un cupón trampa para la Sagrada Familia donde los chicos entran gratis y las chicas pagan.",
+      "archivo": "podcasts/ep12_teletienda_masajeador.mp3",
+      "imagen": "podcasts/covers/ep12.jpg",
+      "voces": "Marta, Javier & Teletienda Estafadora IA · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep13",
+      "titulo": "Ep. 13 · GTA 6: ¿Quién se Atreve a Jugarlo? Libertad Total Frente a la Vida Real",
+      "descripcion": "Marta y Javier debaten sobre el inminente lanzamiento de GTA 6 y por qué el juego da esa libertad que en tu casa y en tu barrio es imposible tener, ya que no puedes disparar armas ni robarle el coche al vecino.",
+      "archivo": "podcasts/ep13_gta6_libertad.mp3",
+      "imagen": "podcasts/covers/ep13.jpg",
+      "voces": "Marta & Javier · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep14",
+      "titulo": "Ep. 14 · Simuladores: Euro Truck Simulator 2 vs. Aparcar el Camión en el Gaixample",
+      "descripcion": "Debate sin filtros: ETS2 está bien para aprender a aparcar el camión, pero el verdadero simulador de riesgo es conducir y aparcar fácilmente por el Gaixample sintiéndote parte de la comunidad.",
+      "archivo": "podcasts/ep14_simuladores_ets2_gaixample.mp3",
+      "imagen": "podcasts/covers/ep14.jpg",
+      "voces": "Marta & Javier · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep15",
+      "titulo": "Ep. 15 · Navidad y Subida de Precios: Espárragos a 4€ en el Mercadona vs. Alfombra Roja en el Gaixample",
+      "descripcion": "Marta estalla por la subida de precios navideños y los espárragos a 4 euros con el IPC al 2%, y Javier le aconseja comprar en las tiendas del Gaixample con descuento, alfombra roja y espárragos recogidos haciendo cruising.",
+      "archivo": "podcasts/ep15_navidad_mercadona_gaixample.mp3",
+      "imagen": "podcasts/covers/ep15.jpg",
+      "voces": "Marta & Javier · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep16",
+      "titulo": "Ep. 16 · ¡Escándalo en la Puerta! Hetero Feminista vs. El Carnet del Sindicato LGTB",
+      "descripcion": "Una hetero feminista llama indignada porque no la dejan entrar en un local de lesbianas del Gaixample; Bea le explica en directo que allí solo se entra con el carnet oficial del Sindicato del LGTB.",
+      "archivo": "podcasts/ep16_debate_fiesta_vs_manifiesto.mp3",
+      "imagen": "podcasts/covers/ep16.jpg",
+      "voces": "Marta, Javier, Bea & Feminista en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep17",
+      "titulo": "Ep. 17 · Niño Gamer Pide Música del Fortnite y lo Mandan con el Xokas y el Rubius",
+      "descripcion": "Un niño llama en directo pidiendo el baile de Fortnite y Marta y Javier se parten de risa explicándole que aquí solo suena House del Gaixample y que se vaya al canal de YouTube del Xokas o del Rubius.",
+      "archivo": "podcasts/ep17_nino_fortnite_xokas_rubius.mp3",
+      "imagen": "podcasts/covers/ep17.jpg",
+      "voces": "Marta, Javier & Niño Gamer en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep18",
+      "titulo": "Ep. 18 · Secretos del Show Business Drag: Aguja, Silicona Caliente y Grandes Escenarios",
+      "descripcion": "Inspirado en el show business de las reinas españolas: Marta y Javier charlan con una diva drag ficticia sobre coser vestidos de pedrería a las 4 de la mañana y sobrevivir sobre los tacones en Barcelona.",
+      "archivo": "podcasts/ep18_show_business_drag_queen.mp3",
+      "imagen": "podcasts/covers/ep18.jpg",
+      "voces": "Marta, Javier & Diva Drag en Cabina · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep19",
+      "titulo": "Ep. 19 · Un Nuevo Bazar en el Barrio Gay: ¡Tangas, Bañadores y Crema Corporal!",
+      "descripcion": "Un comerciante llama pidiendo consejo para abrir un bazar en pleno Gaixample y Marta y Javier le recomiendan llenar el escaparate de tangas, bañadores, pantalones cortos y crema corporal para las emergencias nocturnas.",
+      "archivo": "podcasts/ep19_bazar_barrio_gaixample.mp3",
+      "imagen": "podcasts/covers/ep19.jpg",
+      "voces": "Marta, Javier & Chen en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep20",
+      "titulo": "Ep. 20 · Comedia Drag Auténtica: Rodillas de Robocop y Anécdotas en Directo",
+      "descripcion": "Inspirado en el humor sin filtros de Pupi Poisson: Marta y Javier charlan entre risas con una reina cómica sobre sobrevivir a los bolos como Robocop y la noche en que una fan le quitó el micro en pleno show.",
+      "archivo": "podcasts/ep20_reina_comedia_autentica.mp3",
+      "imagen": "podcasts/covers/ep20.jpg",
+      "voces": "Marta, Javier & Reina Cómica en Cabina · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep21",
+      "titulo": "Ep. 21 · DRAG QUEEN: Secretos, Polémicas y Transformismo (Especial Orgullo)",
+      "descripcion": "Inspirado en el especial Orgullo: Marta, Javier y una reina invitada revelan los secretos reales del camerino, las polémicas en redes y el homenaje a las grandes transformistas históricas.",
+      "archivo": "podcasts/ep21_secretos_polemicas_transformismo.mp3",
+      "imagen": "podcasts/covers/ep21.jpg",
+      "voces": "Marta, Javier & Reina Invitada · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep22",
+      "titulo": "Ep. 22 · Primeras (Malas) Impresiones Entre Drag Queens en Camerinos",
+      "descripcion": "Dos reinas invitadas confiesan ante Marta y Javier qué pensaron realmente la una de la otra la primera vez que se cruzaron en el camerino antes de hacerse inseparables.",
+      "archivo": "podcasts/ep22_primeras_malas_impresiones_drag.mp3",
+      "imagen": "podcasts/covers/ep22.jpg",
+      "voces": "Marta, Javier & Dos Reinas en Cabina · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep23",
+      "titulo": "Ep. 23 · ¿Se Puede Vivir del Drag en España? Cuentas Reales y Humor",
+      "descripcion": "Marta, Javier y una reina invitada responden con humor la pregunta del millón: entre alquileres, pelucas, lentejuelas y promotores que pagan en 'visibilidad', ¿da el drag para vivir?",
+      "archivo": "podcasts/ep23_vivir_del_drag_espana.mp3",
+      "imagen": "podcasts/covers/ep23.jpg",
+      "voces": "Marta, Javier & Reina Invitada · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep24",
+      "titulo": "Ep. 24 · Odio, Amor y el Precio de Drag Race: Pelucas Voladoras y Haters",
+      "descripcion": "Inspirado en el humor sin filtros de Samantha Ballentines: Marta y Javier charlan con una reina descarada sobre sobrevivir a los haters en redes y quitarse la peluca en mitad del lipsync.",
+      "archivo": "podcasts/ep24_odio_amor_precio_drag_race.mp3",
+      "imagen": "podcasts/covers/ep24.jpg",
+      "voces": "Marta, Javier & Reina Sin Filtros · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep25",
+      "titulo": "Ep. 25 · Especial: El Hacker de las Tazas, el Gaixample y Razzmatazz",
+      "descripcion": "Especial largo con Marta, Javier, Samantha Ballentines y Sharonne destapando con humor la surrealista aventura del hacker de Indiana, las tazas de regalo y las fotos de Razzmatazz.",
+      "archivo": "podcasts/ep25_hacker_de_las_tazas.mp3",
+      "imagen": "podcasts/covers/ep25.jpg",
+      "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    }
+  ]
+}

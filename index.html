@@ -1433,7 +1433,7 @@ if ('serviceWorker' in navigator) {
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem; margin-bottom:1rem;">
         <div style="display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap;">
           <span class="tag tag-pink">🏳️‍🌈 Ambiente Gaixample</span>
-          <span id="pod-counter" class="tag tag-cyan">EP 1 / 15</span>
+          <span id="pod-counter" class="tag tag-cyan">EP 1 / 25</span>
         </div>
         <select id="pod-select" aria-label="Seleccionar episodio" style="background:rgba(15,12,28,0.9); color:var(--gold); border:1px solid rgba(255,204,77,0.42); border-radius:999px; padding:0.38rem 0.95rem; font-size:0.78rem; font-weight:600; max-width:280px; cursor:pointer; outline:none;"></select>
       </div>
@@ -1705,7 +1705,7 @@ if ('serviceWorker' in navigator) {
     if (podDesc) podDesc.textContent = ep.descripcion || '';
     if (podVoices) podVoices.textContent = ep.voces ? ('🎙️ Voces: ' + ep.voces) : '';
     if (podBg) {
-      var cover = ep.imagen || ('podcasts/covers/' + ep.id + '.jpg');
+      var cover = ep.imagen || ep.portada || ('podcasts/covers/' + ep.id + '.jpg');
       podBg.style.backgroundImage = "url('" + cover + "')";
     }
     if (podAudio && ep.archivo) {
@@ -1722,8 +1722,10 @@ if ('serviceWorker' in navigator) {
   fetch('podcasts.json?t=' + Date.now(), { cache: 'no-store' })
     .then(function(r){ return r.ok ? r.json() : null; })
     .then(function(d){
-      if (!d || !Array.isArray(d.episodios) || !d.episodios.length) return;
-      episodes = d.episodios;
+      if (!d) return;
+      var list = Array.isArray(d.episodios) ? d.episodios : (Array.isArray(d) ? d : []);
+      if (!list.length) return;
+      episodes = list;
       if (podSelect) {
         podSelect.innerHTML = '';
         episodes.forEach(function(ep, i){
