@@ -827,7 +827,7 @@ if ('serviceWorker' in navigator) {
   .hero-eyebrow, .hero-title, .hero-sub, .live-badge, .hero-ctas {
     position: relative;
   }
-  #player, #videos, #events, #sponsors, #about, #contact {
+  #player, #podcast, #videos, #events, #sponsors, #about, #contact {
     position: relative;
     z-index: 1;
     background: radial-gradient(ellipse at 50% 18%, rgba(58, 12, 163, 0.16) 0%, #07050f 70%);
@@ -1389,6 +1389,66 @@ if ('serviceWorker' in navigator) {
     </div>
   </div>
 </section>
+
+<!-- Podcast Virtual IA Section -->
+<section id="podcast" style="position:relative; z-index:2; padding: 3.5rem 1.5rem; display:flex; flex-direction:column; align-items:center;">
+  <p class="section-label">🎙️ Pódcast Virtual IA · De Día en MG BCN</p>
+  <h2 class="section-title">Debates, Drag Queens &amp; Salseo BCN</h2>
+  <div class="player-card" style="max-width:740px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem; margin-bottom:1rem;">
+      <span class="tag tag-pink">☀️ Pódcast IA de Día</span>
+      <span class="tag tag-cyan">🌙 Radio House Classic de Noche</span>
+    </div>
+    <h3 id="pod-title" style="font-family:'Bebas Neue',sans-serif; font-size:1.75rem; letter-spacing:0.04em; color:var(--gold); margin-bottom:0.4rem;">Cargando episodio...</h3>
+    <p id="pod-desc" style="color:rgba(255,255,255,0.72); font-size:0.9rem; line-height:1.55; margin-bottom:1rem;">Debates entre nuestras dos IAs y entrevistas sobre la actualidad y salseos de los locales de Barcelona.</p>
+    <p id="pod-voices" style="color:var(--cyan); font-size:0.78rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1rem;"></p>
+    <audio id="podcast-audio" controls playsinline preload="metadata" style="width:100%; border-radius:12px; margin-bottom:1rem;"></audio>
+    <div id="pod-list" style="display:flex; flex-wrap:wrap; gap:0.5rem;"></div>
+  </div>
+</section>
+<script>
+(function(){
+  var podAudio = document.getElementById('podcast-audio');
+  var podTitle = document.getElementById('pod-title');
+  var podDesc = document.getElementById('pod-desc');
+  var podVoices = document.getElementById('pod-voices');
+  var podList = document.getElementById('pod-list');
+  if (podAudio) {
+    podAudio.addEventListener('play', function(){
+      var ra = document.getElementById('radio-audio');
+      var pb = document.getElementById('play-btn');
+      if (ra && !ra.paused && pb) { pb.click(); }
+    });
+  }
+  function loadEp(ep) {
+    if (!ep) return;
+    if (podTitle) podTitle.textContent = ep.titulo || 'Pódcast Virtual IA';
+    if (podDesc) podDesc.textContent = ep.descripcion || '';
+    if (podVoices) podVoices.textContent = ep.voces ? ('🎙️ Voces: ' + ep.voces) : '';
+    if (podAudio && ep.archivo) {
+      podAudio.src = encodeURI(ep.archivo) + '?t=' + Date.now();
+    }
+  }
+  fetch('podcasts.json?t=' + Date.now(), { cache: 'no-store' })
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if (!d || !Array.isArray(d.episodios) || !d.episodios.length) return;
+      loadEp(d.episodios[0]);
+      if (podList && d.episodios.length > 1) {
+        podList.innerHTML = '';
+        d.episodios.forEach(function(ep){
+          var b = document.createElement('button');
+          b.className = 'btn btn-outline';
+          b.style.padding = '0.45rem 0.9rem';
+          b.style.fontSize = '0.78rem';
+          b.textContent = '▶ ' + ep.titulo;
+          b.onclick = function(){ loadEp(ep); podAudio.play().catch(function(){}); };
+          podList.appendChild(b);
+        });
+      }
+    }).catch(function(){});
+})();
+</script>
 
 
 <!-- Video & Ads Section -->
