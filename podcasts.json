@@ -2,6 +2,14 @@
   "horario": "Pódcast Virtual IA de tarde (17:00-00:00) · Radio House Classic 24/7 de noche",
   "episodios": [
     {
+      "id": "ep08",
+      "titulo": "Ep. 8 · El Comercial Enfurecido: ¡Amenaza con Cortar la Radio ante SpaceX Starship!",
+      "descripcion": "Un vendedor de telefonía llama para vender fibra a toda costa, se enfada al saber que MG Barcelona Live emite por satélite SpaceX Starship e intenta cortar la emisión sin éxito.",
+      "archivo": "podcasts/ep08_telefonia_spacex.mp3",
+      "voces": "Marta, Javier & Comercial Telefónico · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
       "id": "ep07",
       "titulo": "Ep. 7 · Anécdota Surrealista: Las Llaves en el Cuarto Oscuro y el Doble de Sálvame",
       "descripcion": "Lucía llama muerta de risa a Marta y Javier para contar cuando perdió sus llaves en el cuarto oscuro, encendieron el foco en pleno ligoteo y apareció un doble clavado a Jorge Javier Vázquez.",
