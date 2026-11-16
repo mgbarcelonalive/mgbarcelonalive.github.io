@@ -207,6 +207,15 @@
       "imagen": "podcasts/covers/ep23.jpg",
       "voces": "Marta, Javier & Reina Invitada · MG Barcelona Live",
       "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep24",
+      "titulo": "Ep. 24 · Odio, Amor y el Precio de Drag Race: Pelucas Voladoras y Haters",
+      "descripcion": "Inspirado en el humor sin filtros de Samantha Ballentines: Marta y Javier charlan con una reina descarada sobre sobrevivir a los haters en redes y quitarse la peluca en mitad del lipsync.",
+      "archivo": "podcasts/ep24_odio_amor_precio_drag_race.mp3",
+      "imagen": "podcasts/covers/ep24.jpg",
+      "voces": "Marta, Javier & Reina Sin Filtros · MG Barcelona Live",
+      "fecha": "2026-11-16"
     }
   ]
 }
