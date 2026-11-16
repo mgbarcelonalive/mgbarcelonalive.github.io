@@ -2876,6 +2876,8 @@ if (bgVid) {
   window.__mgCloseInstallModal = function() {
     var modal = document.getElementById('mg-pwa-modal');
     if (modal) modal.style.display = 'none';
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
     ['bgVideo', 'liveVideo', 'adVideo'].forEach(function(id) {
       var v = document.getElementById(id);
       if (v && v.dataset.mgWasPlaying === '1') {
@@ -2893,6 +2895,8 @@ if (bgVid) {
     var btnIos = document.getElementById('mgBtnIosProfile');
     var btnMain = document.getElementById('mgBtnConfirmInstall');
     if (!modal || !txt) return;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
 
     // Pausar vídeos temporalmente mientras el modal está abierto para que Android no se cuelgue
     ['bgVideo', 'liveVideo', 'adVideo'].forEach(function(id) {
@@ -3071,6 +3075,13 @@ if (bgVid) {
   function openReqModal() {
     if (modal) modal.style.display = 'flex';
     if (st) st.textContent = '';
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeReqModal() {
+    if (modal) modal.style.display = 'none';
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
   }
   window.__mgOpenReqModal = openReqModal;
   function buildText() {
@@ -3079,8 +3090,8 @@ if (bgVid) {
     var m = (msgIn && msgIn.value.trim()) || '¡Un saludo enorme a MG Barcelona Live!';
     return '📞 Teléfono Rojo · MG Barcelona Live\n📌 Tipo: ' + t + '\n👤 De: ' + n + '\n💬 Mensaje: ' + m;
   }
-  if (closeBtn && modal) closeBtn.onclick = function(){ modal.style.display = 'none'; };
-  if (modal) modal.addEventListener('click', function(e){ if (e.target === modal) modal.style.display = 'none'; });
+  if (closeBtn && modal) closeBtn.onclick = closeReqModal;
+  if (modal) modal.addEventListener('click', function(e){ if (e.target === modal) closeReqModal(); });
   var btnMail = document.getElementById('req-send-mail');
   if (btnMail) btnMail.onclick = function(){
     var t = (typeIn && typeIn.value) || 'Mensaje';
