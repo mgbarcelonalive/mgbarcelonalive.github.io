@@ -735,13 +735,13 @@ if ('serviceWorker' in navigator) {
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .nav-ticket:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(180,79,255,0.5); }
-  /* ─── FONDO DE VÍDEO EN LA PORTADA (DETRÁS DE MG BARCELONA LIVE, A PANTALLA COMPLETA SIN BORDES) ─── */
+  /* ─── FONDO DE VÍDEO CONTINUO EN TODA LA WEB (DISCOTECA, LUCES Y AMBIENTE) ─── */
   .bg-video-wrap {
-    position: absolute;
+    position: fixed;
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 0 !important;
+    z-index: 0;
     overflow: hidden;
     pointer-events: none;
     background: #07050f;
@@ -751,29 +751,29 @@ if ('serviceWorker' in navigator) {
     height: 100%;
     object-fit: cover;
     object-position: center center;
-    opacity: 0.72;
-    filter: brightness(0.92) contrast(1.08) saturate(1.18);
+    opacity: 0.55;
+    filter: brightness(0.88) contrast(1.12) saturate(1.22);
     transition: opacity 0.8s ease;
   }
   @media (max-width: 900px) {
-    .disco-spot { display: none !important; }
+    .disco-beam { opacity: 0.22 !important; }
     .hero-title { animation: fadeUp 0.35s ease-out forwards !important; filter: none !important; }
-    .event-card, .stat-card, .sponsor-card, .mg-video-card { animation: none !important; }
+    .event-card, .stat-card, .sponsor-card, .mg-video-card { animation: rgbCardGlow 8s linear infinite !important; }
   }
   .bg-video-wrap::after {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 50% 45%, rgba(7,5,15,0.12) 0%, rgba(7,5,15,0.45) 75%, rgba(7,5,15,0.75) 100%),
-      linear-gradient(180deg, rgba(7,5,15,0.38) 0%, rgba(7,5,15,0.12) 45%, rgba(7,5,15,0.96) 100%);
+      radial-gradient(ellipse at 50% 35%, rgba(7,5,15,0.22) 0%, rgba(7,5,15,0.60) 65%, rgba(7,5,15,0.90) 100%),
+      linear-gradient(180deg, rgba(7,5,15,0.42) 0%, rgba(7,5,15,0.18) 35%, rgba(7,5,15,0.55) 75%, rgba(7,5,15,0.92) 100%);
   }
 
   #hero {
     position: relative;
     z-index: 1;
     overflow: hidden;
-    background: #07050f;
+    background: transparent;
   }
   #hero > *:not(.bg-video-wrap) {
     z-index: 2;
@@ -784,7 +784,7 @@ if ('serviceWorker' in navigator) {
   #player, #videos, #events, #sponsors, #about, #contact {
     position: relative;
     z-index: 1;
-    background: #07050f;
+    background: transparent;
   }
 
   /* ─── MARCOS RGB LUCES DE DISCOTECA ─── */
@@ -1205,14 +1205,16 @@ if ('serviceWorker' in navigator) {
   <a href="#events" class="nav-ticket">🎟 Eventos</a>
 </nav>
 
+<!-- Fondo de vídeo continuo en toda la web -->
+<div class="bg-video-wrap" id="bgVideoWrap">
+  <video id="bgVideo" autoplay muted playsinline webkit-playsinline preload="auto"></video>
+</div>
+
 <!-- Particle canvas -->
 <canvas id="particles"></canvas>
 
 <!-- Hero -->
 <section id="hero">
-  <div class="bg-video-wrap" id="bgVideoWrap">
-    <video id="bgVideo" autoplay muted playsinline webkit-playsinline preload="metadata"></video>
-  </div>
   <div id="rope"></div>
   <div id="disco-ball"></div>
   <div class="laser"></div>
@@ -2072,13 +2074,15 @@ class Particle {
   reset() {
     this.x = Math.random() * (W || window.innerWidth);
     this.y = Math.random() * (H || window.innerHeight);
-    this.r = Math.random() * 2 + 0.5;
+    this.r = Math.random() * 2.8 + 0.8;
     this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-    this.alpha = Math.random() * 0.6 + 0.1;
-    this.vx = (Math.random() - 0.5) * 22; // px por segundo
-    this.vy = (Math.random() - 0.5) * 22;
-    this.life = Math.random() * 3.5 + 2.0; // segundos
+    this.alpha = Math.random() * 0.75 + 0.25;
+    this.isStar = Math.random() < 0.28;
+    this.vx = (Math.random() - 0.5) * 26;
+    this.vy = (Math.random() - 0.5) * 26;
+    this.life = Math.random() * 3.5 + 2.0;
     this.age = 0;
+    this.twinkleSpeed = Math.random() * 3.5 + 2.5;
   }
   update(dt) {
     this.x += this.vx * dt;
@@ -2088,15 +2092,36 @@ class Particle {
   }
   draw(c, isMobile) {
     c.save();
-    c.globalAlpha = Math.max(0, this.alpha * (1 - this.age / this.life));
+    const progress = this.age / this.life;
+    const fade = Math.sin(progress * Math.PI);
+    const twinkle = 0.7 + 0.3 * Math.sin(this.age * this.twinkleSpeed);
+    const a = Math.max(0, Math.min(1, this.alpha * fade * twinkle));
+    c.globalAlpha = a;
     c.fillStyle = this.color;
+    c.strokeStyle = this.color;
+
     if (!isMobile) {
-      c.shadowBlur = 6;
+      c.shadowBlur = 8;
       c.shadowColor = this.color;
     }
-    c.beginPath();
-    c.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    c.fill();
+
+    if (this.isStar) {
+      const arm = this.r * 2.6;
+      c.lineWidth = isMobile ? 1 : 1.5;
+      c.beginPath();
+      c.moveTo(this.x - arm, this.y);
+      c.lineTo(this.x + arm, this.y);
+      c.moveTo(this.x, this.y - arm);
+      c.lineTo(this.x, this.y + arm);
+      c.stroke();
+      c.beginPath();
+      c.arc(this.x, this.y, this.r * 0.65, 0, Math.PI * 2);
+      c.fill();
+    } else {
+      c.beginPath();
+      c.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      c.fill();
+    }
     c.restore();
   }
 }
@@ -2107,7 +2132,7 @@ function resize() {
 }
 
 function initParticles() {
-  const count = window.innerWidth < 768 ? 28 : 65;
+  const count = window.innerWidth < 768 ? 60 : 120;
   particles = Array.from({ length: count }, () => new Particle());
 }
 
@@ -2122,13 +2147,15 @@ function loop(nowMs) {
     particles[i].draw(ctx, isMobile);
   }
 
-  // Disco-ball light flashes
-  if (isPlaying && Math.random() < (isMobile ? 0.02 : 0.04)) {
+  // Destellos de discoteca (ambientales constantes y más intensos al sonar la radio)
+  const flashChance = isPlaying ? (isMobile ? 0.04 : 0.07) : (isMobile ? 0.015 : 0.03);
+  if (Math.random() < flashChance) {
     const x = Math.random() * W;
-    const y = Math.random() * H * 0.7;
-    const g = ctx.createRadialGradient(x, y, 0, x, y, 60 + Math.random() * 60);
+    const y = Math.random() * H * 0.85;
+    const rad = 70 + Math.random() * (isMobile ? 70 : 130);
+    const g = ctx.createRadialGradient(x, y, 0, x, y, rad);
     const col = COLORS[Math.floor(Math.random() * COLORS.length)];
-    g.addColorStop(0, col + '44');
+    g.addColorStop(0, col + (isPlaying ? '55' : '33'));
     g.addColorStop(1, 'transparent');
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H);
