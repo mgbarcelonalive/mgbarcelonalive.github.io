@@ -12,10 +12,10 @@
     },
     {
       "id": "ep02",
-      "titulo": "Ep. 2 · Llamada en Directo desde Camerinos: Chismes y Casting Drag Race España",
-      "descripcion": "Marta y Javier atienden la llamada en directo de Lola desde New Strass Barcelona contando cómo vive la noche y que sus compañeras se presentan al casting de Drag Race España.",
+      "titulo": "Ep. 2 · Llamada desde Camerinos de New Strass: Samantha Ballentines y Sharonne",
+      "descripcion": "Marta y Javier conectan en directo con Samantha Ballentines y Sharonne desde el camerino de New Strass Barcelona contando el caos de laca y pelucas y los castings de Drag Race España.",
       "archivo": "podcasts/ep02_llamada_drag_casting.mp3",
-      "voces": "Marta, Javier & Lola (Drag en Directo) · MG Barcelona Live",
+      "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep02.jpg"
     },
@@ -30,10 +30,10 @@
     },
     {
       "id": "ep04",
-      "titulo": "Ep. 4 · Especial Reinas del Drag: Secretos de Carmen Farala, Sharonne y Supremme",
-      "descripcion": "Marta, Javier y Estrella comentan y recrean con humor las anécdotas reales de las grandes reinas españolas: el autobronceador de Mercadona, los Masters del Universo y el salto de los garitos a la TV.",
+      "titulo": "Ep. 4 · Especial Reinas del Drag con Samantha Ballentines y Sharonne",
+      "descripcion": "Marta y Javier reciben en cabina a Samantha Ballentines y Sharonne para revelar las anécdotas reales de pasarela: el autobronceador de Mercadona, los Masters del Universo y los garitos de Barcelona.",
       "archivo": "podcasts/ep04_especial_reinas_drag.mp3",
-      "voces": "Marta, Javier & Estrella en Cabina · MG Barcelona Live",
+      "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep04.jpg"
     },
@@ -84,19 +84,19 @@
     },
     {
       "id": "ep10",
-      "titulo": "Ep. 10 · ¡Alerta en Camerinos! Marta con Versace y Dolce & Gabbana y la Drag en el Lavabo",
-      "descripcion": "Se pierde una Drag antes del directo de TV y ofrecen fiesta en New Strass. Marta exige maquillaje Dolce & Gabbana y tacones Versace para suplirla, hasta que la reina aparece en el lavabo con un chulazo.",
+      "titulo": "Ep. 10 · ¡Alerta en Camerinos! Samantha en el Lavabo con Blanco España y Sharonne en Directo",
+      "descripcion": "Se pierde Samantha antes del directo de TV mientras Sharonne espera con el micro. Marta exige tacones Versace para suplirla hasta que Samantha aparece en el lavabo repasando las racholas con un chulazo.",
       "archivo": "podcasts/ep10_drag_desaparecida_strass.mp3",
-      "voces": "Marta, Javier, Director TV & La Drag en Directo · MG Barcelona Live",
+      "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep10.jpg"
     },
     {
       "id": "ep11",
-      "titulo": "Ep. 11 · Parodia: La Diva del Petardeo Quiere ir a Miss Belleza y Acaba en Churros con Chocolate",
-      "descripcion": "Una diva ficticia del petardeo llama buscando mánager para un concurso de belleza y Javier la manda entre risas a cantar sus temazos petardos a Churros con Chocolate antes de colgarle.",
+      "titulo": "Ep. 11 · Samantha Quiere ir a Miss Universo y Acaba con Sharonne en Churros con Chocolate",
+      "descripcion": "Samantha Ballentines y Sharonne llaman desde el taxi porque Samantha quiere presentarse a Miss Belleza Universo y Javier las manda entre risas a cantar temazos petardos a Churros con Chocolate en Apolo.",
       "archivo": "podcasts/ep11_parodia_petarda_churros.mp3",
-      "voces": "Marta, Javier & Parodia Diva del Petardeo · MG Barcelona Live",
+      "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep11.jpg"
     },
@@ -156,11 +156,11 @@
     },
     {
       "id": "ep18",
-      "titulo": "Ep. 18 · Secretos del Show Business Drag: Aguja, Silicona Caliente y Grandes Escenarios",
-      "descripcion": "Inspirado en el show business de las reinas españolas: Marta y Javier charlan con una diva drag ficticia sobre coser vestidos de pedrería a las 4 de la mañana y sobrevivir sobre los tacones en Barcelona.",
+      "titulo": "Ep. 18 · El Show Business Drag con Sharonne y Samantha: Silicona Caliente y Escenarios",
+      "descripcion": "Marta y Javier charlan en cabina con Sharonne y Samantha Ballentines sobre las maletas de 25 kilos, pegarse cristales con silicona caliente a las 4 de la mañana y las tablas del club nocturno.",
       "archivo": "podcasts/ep18_show_business_drag_queen.mp3",
       "imagen": "podcasts/covers/ep18.jpg",
-      "voces": "Marta, Javier & Diva Drag en Cabina · MG Barcelona Live",
+      "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
     },
     {
@@ -174,47 +174,47 @@
     },
     {
       "id": "ep20",
-      "titulo": "Ep. 20 · Comedia Drag Auténtica: Rodillas de Robocop y Anécdotas en Directo",
-      "descripcion": "Inspirado en el humor sin filtros de Pupi Poisson: Marta y Javier charlan entre risas con una reina cómica sobre sobrevivir a los bolos como Robocop y la noche en que una fan le quitó el micro en pleno show.",
+      "titulo": "Ep. 20 · Comedia Drag Auténtica con Samantha y Sharonne: Rodillas de Robocop en Directo",
+      "descripcion": "Marta y Javier se parten de risa con Samantha Ballentines y Sharonne contando sus batallas por las tarimas de España y la noche en que una fan les quitó el micrófono en pleno espectáculo.",
       "archivo": "podcasts/ep20_reina_comedia_autentica.mp3",
       "imagen": "podcasts/covers/ep20.jpg",
-      "voces": "Marta, Javier & Reina Cómica en Cabina · MG Barcelona Live",
+      "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
     },
     {
       "id": "ep21",
-      "titulo": "Ep. 21 · DRAG QUEEN: Secretos, Polémicas y Transformismo (Especial Orgullo)",
-      "descripcion": "Inspirado en el especial Orgullo: Marta, Javier y una reina invitada revelan los secretos reales del camerino, las polémicas en redes y el homenaje a las grandes transformistas históricas.",
+      "titulo": "Ep. 21 · Especial Orgullo con Sharonne y Samantha: Secretos de Camerino y Transformismo",
+      "descripcion": "Marta, Javier, Sharonne y Samantha Ballentines revelan qué pasa a las 5 de la mañana tras quitarse el corsé y rinden homenaje a las grandes pioneras del transformismo en Barcelona.",
       "archivo": "podcasts/ep21_secretos_polemicas_transformismo.mp3",
       "imagen": "podcasts/covers/ep21.jpg",
-      "voces": "Marta, Javier & Reina Invitada · MG Barcelona Live",
+      "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
     },
     {
       "id": "ep22",
-      "titulo": "Ep. 22 · Primeras (Malas) Impresiones Entre Drag Queens en Camerinos",
-      "descripcion": "Dos reinas invitadas confiesan ante Marta y Javier qué pensaron realmente la una de la otra la primera vez que se cruzaron en el camerino antes de hacerse inseparables.",
+      "titulo": "Ep. 22 · Primeras (Malas) Impresiones en el Camerino: Samantha Ballentines vs. Sharonne",
+      "descripcion": "Samantha Ballentines y Sharonne confiesan ante Marta y Javier qué pensaron realmente la una de la otra el primer día que coincidieron en un camerino antes de hacerse hermanas inseparables.",
       "archivo": "podcasts/ep22_primeras_malas_impresiones_drag.mp3",
       "imagen": "podcasts/covers/ep22.jpg",
-      "voces": "Marta, Javier & Dos Reinas en Cabina · MG Barcelona Live",
+      "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
     },
     {
       "id": "ep23",
-      "titulo": "Ep. 23 · ¿Se Puede Vivir del Drag en España? Cuentas Reales y Humor",
-      "descripcion": "Marta, Javier y una reina invitada responden con humor la pregunta del millón: entre alquileres, pelucas, lentejuelas y promotores que pagan en 'visibilidad', ¿da el drag para vivir?",
+      "titulo": "Ep. 23 · ¿Se Puede Vivir del Drag en España? Cuentas Reales con Samantha y Sharonne",
+      "descripcion": "Marta, Javier, Samantha Ballentines y Sharonne responden con humor: entre pelucas, vestidos a medida y promotores que pagan en 'visibilidad', ¿cómo se vive del espectáculo en España?",
       "archivo": "podcasts/ep23_vivir_del_drag_espana.mp3",
       "imagen": "podcasts/covers/ep23.jpg",
-      "voces": "Marta, Javier & Reina Invitada · MG Barcelona Live",
+      "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
     },
     {
       "id": "ep24",
-      "titulo": "Ep. 24 · Odio, Amor y el Precio de Drag Race: Pelucas Voladoras y Haters",
-      "descripcion": "Inspirado en el humor sin filtros de Samantha Ballentines: Marta y Javier charlan con una reina descarada sobre sobrevivir a los haters en redes y quitarse la peluca en mitad del lipsync.",
+      "titulo": "Ep. 24 · Amor, Haters y el Precio de Drag Race con Samantha Ballentines y Sharonne",
+      "descripcion": "Samantha Ballentines y Sharonne charlan sin filtros con Marta y Javier sobre las pelucas voladoras en el lipsync, el cariño del público y cómo mandar un abanico a los haters de internet.",
       "archivo": "podcasts/ep24_odio_amor_precio_drag_race.mp3",
       "imagen": "podcasts/covers/ep24.jpg",
-      "voces": "Marta, Javier & Reina Sin Filtros · MG Barcelona Live",
+      "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
     },
     {
