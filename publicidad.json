@@ -3,6 +3,26 @@
   "anuncios": [
     {
       "tipo": "video",
+      "nombre": "Fotos Eventos & Redes MG Barcelona Live",
+      "archivo": "publicidad/spot_fotos_redes_mgbcn.mp4"
+    },
+    {
+      "tipo": "video",
+      "nombre": "Pasarela MG Barcelona Live",
+      "archivo": "publicidad/pasarela_mg_barcelona.mp4"
+    },
+    {
+      "tipo": "video",
+      "nombre": "Promo Instagram @mgbarcelonalive",
+      "archivo": "publicidad/promo_instagram_mgbarcelonalive.mp4"
+    },
+    {
+      "tipo": "video",
+      "nombre": "Promo TikTok @mgbarcelonalive",
+      "archivo": "publicidad/promo_tiktok_mgbarcelonalive.mp4"
+    },
+    {
+      "tipo": "video",
       "nombre": "DJMG ANIMACION",
       "archivo": "publicidad/djmg_animacion_logo.mp4"
     },

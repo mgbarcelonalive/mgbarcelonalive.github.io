@@ -41,6 +41,7 @@
       "genre": ["House", "Electronic", "Classic House", "Clubbing"],
       "sameAs": [
         "https://www.instagram.com/mgbarcelonalive/",
+        "https://www.tiktok.com/@mgbarcelonalive7",
         "https://www.facebook.com/MGBarcelonaLIVE/"
       ]
     },
@@ -71,7 +72,9 @@ window.addEventListener('beforeinstallprompt', function(e) {
   window.__mgDeferredPrompt = e;
 });
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js', { scope: './' }).catch(function(){});
+  navigator.serviceWorker.register('sw.js?v=40', { scope: './', updateViaCache: 'none' }).then(function(reg) {
+    if (reg && reg.update) reg.update();
+  }).catch(function(){});
 }
 </script>
 <style>
@@ -100,8 +103,6 @@ if ('serviceWorker' in navigator) {
     color: #fff;
     font-family: 'Inter', sans-serif;
     overflow-x: clip;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
   }
 
   #events, #sponsors, #about {
@@ -1244,11 +1245,14 @@ if ('serviceWorker' in navigator) {
   <a href="#" class="nav-logo">MG BCN Live</a>
   <ul class="nav-links">
     <li><a href="#player">Radio</a></li>
+    <li><a href="#podcast">Pódcast</a></li>
+    <li><a href="#" onclick="event.preventDefault(); window.__mgOpenReqModal && window.__mgOpenReqModal();">📞 Buzón</a></li>
     <li><a href="#videos">Vídeos</a></li>
     <li><a href="#events">Eventos</a></li>
     <li><a href="#sponsors">Sponsors</a></li>
     <li><a href="#about">Nosotros</a></li>
     <li><a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://www.tiktok.com/@mgbarcelonalive7" target="_blank" rel="noopener">TikTok</a></li>
     <li><a href="https://www.facebook.com/MGBarcelonaLIVE/" target="_blank" rel="noopener">Facebook</a></li>
   </ul>
   <a href="#events" class="nav-ticket">🎟 Eventos</a>
@@ -1282,6 +1286,12 @@ if ('serviceWorker' in navigator) {
     <button class="btn btn-primary" onclick="document.getElementById('player').scrollIntoView({behavior:'smooth'}); var au=document.getElementById('radio-audio'); var pb=document.getElementById('play-btn'); if(au && pb && au.paused){ pb.click(); }">
       🎧 Escuchar ahora
     </button>
+    <button class="btn btn-outline" onclick="window.__mgOpenReqModal && window.__mgOpenReqModal();" style="border-color:rgba(255,77,166,0.78); background:linear-gradient(135deg, rgba(255,45,120,0.28), rgba(255,204,77,0.22)); color:#fff; box-shadow:0 0 22px rgba(255,77,166,0.32);">
+      📞 Buzón Radio
+    </button>
+    <button class="btn btn-outline" onclick="document.getElementById('podcast').scrollIntoView({behavior:'smooth'})" style="border-color:rgba(0,229,255,0.6); color:#fff;">
+      🎙️ Pódcasts
+    </button>
     <button class="btn btn-outline" id="btnInstallApp" onclick="window.__mgInstallApp && window.__mgInstallApp()" style="border-color:rgba(245,200,66,0.75); background:linear-gradient(135deg, rgba(245,200,66,0.18), rgba(180,79,255,0.22)); color:#fff; box-shadow:0 0 22px rgba(245,200,66,0.25);">
       📲 Instalar App Móvil
     </button>
@@ -1290,6 +1300,9 @@ if ('serviceWorker' in navigator) {
     </button>
     <a class="btn btn-outline" href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="text-decoration:none; border-color:rgba(255,45,120,0.55); color:#fff;">
       📸 @mgbarcelonalive
+    </a>
+    <a class="btn btn-outline" href="https://www.tiktok.com/@mgbarcelonalive7" target="_blank" rel="noopener" style="text-decoration:none; border-color:rgba(255,204,77,0.65); color:#fff;">
+      🎵 TikTok
     </a>
     <a class="btn btn-outline" href="https://www.facebook.com/MGBarcelonaLIVE/" target="_blank" rel="noopener" style="text-decoration:none; border-color:rgba(0,240,255,0.55); color:#fff;">
       📘 Facebook
@@ -1392,60 +1405,363 @@ if ('serviceWorker' in navigator) {
 
 <!-- Podcast Virtual IA Section -->
 <section id="podcast" style="position:relative; z-index:2; padding: 3.5rem 1.5rem; display:flex; flex-direction:column; align-items:center;">
-  <p class="section-label">🔥🎙️ RADIO SHOW SIN FILTROS · TODOS LOS DÍAS 17:00H A 00:00H</p>
+  <p class="section-label">🌙🎙️ RADIO DE AMBIENTE PARA GENTE QUE NO DUERME · 17:00H A 00:00H</p>
   <h2 class="section-title">¡EL TELÉFONO ROJO DEL GAIXAMPLE!</h2>
-  <div class="player-card" style="max-width:740px;">
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem; margin-bottom:1rem;">
-      <span class="tag tag-pink">📞 Llamadas Locas &amp; Salseo Drag · 17:00H</span>
-      <span class="tag tag-cyan">🌙 House Classic Non-Stop · 00:00H</span>
+
+  <style>
+    @keyframes podPulseGlow {
+      0%, 100% { box-shadow: 0 20px 55px rgba(255,77,166,0.28), 0 0 25px rgba(0,229,255,0.18); border-color: rgba(255,77,166,0.55); }
+      50% { box-shadow: 0 24px 65px rgba(0,229,255,0.34), 0 0 32px rgba(255,204,77,0.28); border-color: rgba(0,229,255,0.65); }
+    }
+    @keyframes podDotBlink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.8); }
+    }
+    #pod-window.is-playing { animation: podPulseGlow 2.4s ease-in-out infinite; }
+    .pod-live-dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:#ff3b7f; margin-right:5px; animation:podDotBlink 1s infinite; }
+  </style>
+
+  <div id="pod-window" style="position:relative; width:100%; max-width:800px; border-radius:26px; overflow:hidden; border:1.5px solid rgba(255,204,77,0.38); box-shadow:0 24px 60px rgba(0,0,0,0.72); background:#0c0a14; transition:all 0.35s ease;">
+    <!-- Fondo temático dinámico por episodio -->
+    <div id="pod-bg" style="position:absolute; inset:0; background-size:cover; background-position:center; transition:background-image 0.6s ease, transform 0.8s ease; filter:brightness(0.52) saturate(1.28); z-index:0;"></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(14,8,24,0.48) 0%, rgba(10,8,20,0.85) 65%, rgba(8,6,14,0.97) 100%); z-index:1;"></div>
+
+    <!-- Luces de ambiente discoteca superiores -->
+    <div style="position:absolute; top:-40px; left:15%; width:180px; height:120px; background:radial-gradient(circle, rgba(255,77,166,0.32), transparent 70%); pointer-events:none; z-index:1;"></div>
+    <div style="position:absolute; top:-40px; right:15%; width:180px; height:120px; background:radial-gradient(circle, rgba(0,229,255,0.28), transparent 70%); pointer-events:none; z-index:1;"></div>
+
+    <div style="position:relative; z-index:2; padding:1.5rem 1.45rem;">
+      <!-- Barra superior de la ventana -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem; margin-bottom:1rem;">
+        <div style="display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap;">
+          <span class="tag tag-pink">🏳️‍🌈 Ambiente Gaixample</span>
+          <span id="pod-counter" class="tag tag-cyan">EP 1 / 25</span>
+        </div>
+        <select id="pod-select" aria-label="Seleccionar episodio" style="background:rgba(15,12,28,0.9); color:var(--gold); border:1px solid rgba(255,204,77,0.42); border-radius:999px; padding:0.38rem 0.95rem; font-size:0.78rem; font-weight:600; max-width:280px; cursor:pointer; outline:none;"></select>
+      </div>
+
+      <!-- Cabina virtual animada: Dos Locutores + Ecualizador de Voces + Botón Play Central -->
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:0.75rem; background:rgba(12,9,24,0.74); border:1px solid rgba(255,255,255,0.14); border-radius:20px; padding:0.95rem 1rem; margin-bottom:1.1rem; backdrop-filter:blur(10px); box-shadow:inset 0 0 24px rgba(255,77,166,0.08);">
+        <!-- Locutora: Marta (Foto Real Rubia) -->
+        <div id="pod-host-marta" style="display:flex; flex-direction:column; align-items:center; min-width:86px; transition:transform 0.12s ease;">
+          <div id="marta-avatar-frame" style="width:76px; height:76px; border-radius:50%; padding:2.5px; background:linear-gradient(135deg, #ff4da6, #ffcc4d); box-shadow:0 0 16px rgba(255,77,166,0.65); transition:all 0.15s ease; position:relative;">
+            <img src="img/locutora_marta.jpg" alt="Marta - Locutora MG Barcelona Live" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; border:2px solid #0c0a14;" />
+            <span style="position:absolute; bottom:2px; right:2px; width:13px; height:13px; border-radius:50%; background:#22c55e; border:2px solid #0c0a14; box-shadow:0 0 6px #22c55e;" title="En cabina"></span>
+          </div>
+          <span style="font-size:0.7rem; font-weight:800; letter-spacing:0.1em; color:#ff7ac2; margin-top:0.3rem;">🎙️ MARTA</span>
+          <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="font-size:0.6rem; color:rgba(255,204,77,0.85); text-decoration:none; font-weight:600;">@marta.mgbcn</a>
+        </div>
+
+        <!-- Ecualizador de Voces Central + Botón Play Llamativo -->
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; min-width:130px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; width:100%; max-width:340px; margin-bottom:0.25rem;">
+            <span id="pod-onair" style="font-size:0.64rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.6);">✨ DALE AL PLAY</span>
+            <button id="pod-big-play" type="button" style="background:linear-gradient(135deg, #ff4da6, #ffcc4d); color:#0b0814; border:none; border-radius:999px; padding:0.28rem 0.85rem; font-size:0.72rem; font-weight:800; letter-spacing:0.05em; cursor:pointer; box-shadow:0 0 14px rgba(255,77,166,0.5); transition:transform 0.15s ease;">▶ ESCUCHAR</button>
+          </div>
+          <canvas id="pod-eq" width="320" height="72" style="width:100%; max-width:340px; height:72px; display:block;"></canvas>
+        </div>
+
+        <!-- Locutor: Javier (Foto Real Moreno) -->
+        <div id="pod-host-javier" style="display:flex; flex-direction:column; align-items:center; min-width:86px; transition:transform 0.12s ease;">
+          <div id="javier-avatar-frame" style="width:76px; height:76px; border-radius:50%; padding:2.5px; background:linear-gradient(135deg, #00e5ff, #3b82f6); box-shadow:0 0 16px rgba(0,229,255,0.65); transition:all 0.15s ease; position:relative;">
+            <img src="img/locutor_javier.jpg" alt="Javier - Locutor MG Barcelona Live" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; border:2px solid #0c0a14;" />
+            <span style="position:absolute; bottom:2px; right:2px; width:13px; height:13px; border-radius:50%; background:#22c55e; border:2px solid #0c0a14; box-shadow:0 0 6px #22c55e;" title="En cabina"></span>
+          </div>
+          <span style="font-size:0.7rem; font-weight:800; letter-spacing:0.1em; color:#5ce1ff; margin-top:0.3rem;">🎙️ JAVIER</span>
+          <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="font-size:0.6rem; color:rgba(0,229,255,0.85); text-decoration:none; font-weight:600;">@javier.mgbcn</a>
+        </div>
+      </div>
+
+      <!-- Info del episodio actual -->
+      <h3 id="pod-title" style="font-family:'Bebas Neue',sans-serif; font-size:1.72rem; letter-spacing:0.04em; color:var(--gold); margin-bottom:0.35rem; line-height:1.15; text-shadow:0 2px 12px rgba(0,0,0,0.8);">Cargando episodio...</h3>
+      <p id="pod-desc" style="color:rgba(255,255,255,0.88); font-size:0.9rem; line-height:1.52; margin-bottom:0.55rem;"></p>
+      <p id="pod-voices" style="color:var(--cyan); font-size:0.74rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.9rem;"></p>
+
+      <!-- Reproductor -->
+      <audio id="podcast-audio" controls playsinline preload="metadata" crossorigin="anonymous" style="width:100%; border-radius:12px; margin-bottom:0.95rem;"></audio>
+
+      <!-- Navegación de Ventana: Anterior / Píldoras Numéricas / Siguiente -->
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:0.6rem; flex-wrap:wrap; margin-bottom:0.9rem;">
+        <button id="pod-prev" class="btn btn-outline" style="padding:0.45rem 0.95rem; font-size:0.8rem;">◀ Anterior</button>
+        <div id="pod-pills" style="display:flex; gap:0.32rem; flex-wrap:wrap; justify-content:center; flex:1;"></div>
+        <button id="pod-next" class="btn btn-primary" style="padding:0.45rem 1rem; font-size:0.8rem;">Siguiente ▶</button>
+      </div>
+
+      <!-- Botón Teléfono Rojo: Buzón de Oyentes -->
+      <div style="text-align:center; padding-top:0.65rem; border-top:1px solid rgba(255,255,255,0.1);">
+        <button id="btn-open-req" type="button" onclick="window.__mgOpenReqModal && window.__mgOpenReqModal();" style="background:linear-gradient(135deg, rgba(255,45,120,0.22), rgba(255,204,77,0.22)); color:#fff; border:1px solid rgba(255,77,166,0.6); border-radius:999px; padding:0.55rem 1.25rem; font-size:0.82rem; font-weight:700; cursor:pointer; box-shadow:0 0 18px rgba(255,77,166,0.28); transition:transform 0.15s ease;">
+          📞 ¡Deja tu Mensaje! (Saludos, Cotilleos, Anécdotas, Quejas o Publicidad)
+        </button>
+      </div>
     </div>
-    <h3 id="pod-title" style="font-family:'Bebas Neue',sans-serif; font-size:1.75rem; letter-spacing:0.04em; color:var(--gold); margin-bottom:0.4rem;">Cargando episodio...</h3>
-    <p id="pod-desc" style="color:rgba(255,255,255,0.72); font-size:0.9rem; line-height:1.55; margin-bottom:1rem;">¡Dale al Play! Chismes de camerinos, llamadas surrealistas en directo y humor sin filtros por las tardes con Marta y Javier.</p>
-    <p id="pod-voices" style="color:var(--cyan); font-size:0.78rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1rem;"></p>
-    <audio id="podcast-audio" controls playsinline preload="metadata" style="width:100%; border-radius:12px; margin-bottom:1rem;"></audio>
-    <div id="pod-list" style="display:flex; flex-wrap:wrap; gap:0.5rem;"></div>
   </div>
 </section>
 <script>
 (function(){
+  var podWindow = document.getElementById('pod-window');
   var podAudio = document.getElementById('podcast-audio');
+  var podBigPlay = document.getElementById('pod-big-play');
   var podTitle = document.getElementById('pod-title');
   var podDesc = document.getElementById('pod-desc');
   var podVoices = document.getElementById('pod-voices');
-  var podList = document.getElementById('pod-list');
+  var podBg = document.getElementById('pod-bg');
+  var podCounter = document.getElementById('pod-counter');
+  var podSelect = document.getElementById('pod-select');
+  var podPills = document.getElementById('pod-pills');
+  var podPrev = document.getElementById('pod-prev');
+  var podNext = document.getElementById('pod-next');
+  var podOnAir = document.getElementById('pod-onair');
+  var canvas = document.getElementById('pod-eq');
+  var ctx = canvas ? canvas.getContext('2d') : null;
+  var martaMouth = document.getElementById('marta-mouth');
+  var javierMouth = document.getElementById('javier-mouth');
+  var hostMarta = document.getElementById('pod-host-marta');
+  var hostJavier = document.getElementById('pod-host-javier');
+
+  var episodes = [];
+  var currentIdx = 0;
+
+  // Web Audio API Equalizer & Talking Mouths
+  var audioCtx = null, analyser = null, dataArray = null, srcNode = null;
+  var tick = 0;
+
+  function initAudioGraph() {
+    if (audioCtx || !podAudio) return;
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      audioCtx = new AC();
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 64;
+      srcNode = audioCtx.createMediaElementSource(podAudio);
+      srcNode.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      dataArray = new Uint8Array(analyser.frequencyBinCount);
+    } catch (e) {
+      audioCtx = null;
+    }
+  }
+
+  function renderVisualizer() {
+    requestAnimationFrame(renderVisualizer);
+    tick += 0.08;
+    var isPlaying = podAudio && !podAudio.paused && !podAudio.ended;
+
+    if (ctx && canvas) {
+      var w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+      var bars = 28;
+      var barW = (w / bars) - 3;
+
+      var lowEnergy = 0, highEnergy = 0;
+      if (isPlaying && analyser && dataArray) {
+        analyser.getByteFrequencyData(dataArray);
+        for (var k = 0; k < 6; k++) lowEnergy += dataArray[k];
+        for (var k2 = 6; k2 < 16; k2++) highEnergy += dataArray[k2];
+        lowEnergy /= (6 * 255);
+        highEnergy /= (10 * 255);
+      }
+
+      for (var i = 0; i < bars; i++) {
+        var val = 0.08;
+        if (isPlaying) {
+          if (analyser && dataArray && (lowEnergy + highEnergy) > 0.02) {
+            var idx = Math.floor((i / bars) * (dataArray.length * 0.75));
+            val = Math.max(0.1, dataArray[idx] / 255);
+          } else {
+            val = 0.18 + 0.58 * Math.abs(Math.sin(tick * 1.9 + i * 0.55)) * Math.abs(Math.cos(tick * 0.9 + i * 0.25));
+          }
+        } else {
+          val = 0.07 + 0.04 * Math.sin(tick * 0.6 + i * 0.4);
+        }
+        var bh = Math.max(4, val * (h - 8));
+        var x = i * (barW + 3) + 2;
+        var y = (h - bh) / 2;
+        var grad = ctx.createLinearGradient(0, y, 0, y + bh);
+        grad.addColorStop(0, '#00e5ff');
+        grad.addColorStop(0.5, '#ffcc4d');
+        grad.addColorStop(1, '#ff4da6');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(x, y, barW, bh, 3);
+        else ctx.rect(x, y, barW, bh);
+        ctx.fill();
+      }
+
+      // Animar halo y pulso de Marta y Javier al hablar
+      var martaFrame = document.getElementById('marta-avatar-frame');
+      var javierFrame = document.getElementById('javier-avatar-frame');
+      if (isPlaying) {
+        var mOpen, jOpen;
+        if (analyser && (lowEnergy + highEnergy) > 0.03) {
+          mOpen = 1.8 + Math.min(7.8, highEnergy * 16);
+          jOpen = 1.8 + Math.min(7.8, lowEnergy * 13);
+        } else {
+          var wave = Math.sin(tick * 0.7);
+          mOpen = wave > -0.2 ? (2.2 + 5.2 * Math.abs(Math.sin(tick * 3.1))) : 1.8;
+          jOpen = wave <= 0.2 ? (2.2 + 5.2 * Math.abs(Math.cos(tick * 2.8))) : 1.8;
+        }
+        if (martaMouth) martaMouth.setAttribute('ry', mOpen.toFixed(1));
+        if (javierMouth) javierMouth.setAttribute('ry', jOpen.toFixed(1));
+        if (hostMarta) hostMarta.style.transform = mOpen > 3.5 ? 'scale(1.08)' : 'scale(1)';
+        if (hostJavier) hostJavier.style.transform = jOpen > 3.5 ? 'scale(1.08)' : 'scale(1)';
+        if (martaFrame) martaFrame.style.boxShadow = mOpen > 3.5 ? '0 0 26px rgba(255,77,166,0.95), 0 0 12px rgba(255,204,77,0.8)' : '0 0 14px rgba(255,77,166,0.5)';
+        if (javierFrame) javierFrame.style.boxShadow = jOpen > 3.5 ? '0 0 26px rgba(0,229,255,0.95), 0 0 12px rgba(59,130,246,0.8)' : '0 0 14px rgba(0,229,255,0.5)';
+      } else {
+        if (martaMouth) martaMouth.setAttribute('ry', '1.8');
+        if (javierMouth) javierMouth.setAttribute('ry', '1.8');
+        if (hostMarta) hostMarta.style.transform = 'scale(1)';
+        if (hostJavier) hostJavier.style.transform = 'scale(1)';
+        if (martaFrame) martaFrame.style.boxShadow = '0 0 16px rgba(255,77,166,0.65)';
+        if (javierFrame) javierFrame.style.boxShadow = '0 0 16px rgba(0,229,255,0.65)';
+      }
+    }
+  }
+
+  if (podBigPlay && podAudio) {
+    podBigPlay.onclick = function(){
+      if (podAudio.paused) podAudio.play().catch(function(){});
+      else podAudio.pause();
+    };
+  }
+
   if (podAudio) {
     podAudio.addEventListener('play', function(){
       var ra = document.getElementById('radio-audio');
       var pb = document.getElementById('play-btn');
       if (ra && !ra.paused && pb) { pb.click(); }
+      initAudioGraph();
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume().catch(function(){});
+      if (podWindow) podWindow.classList.add('is-playing');
+      if (podBigPlay) podBigPlay.textContent = '⏸ PAUSAR';
+      if (podOnAir) {
+        podOnAir.innerHTML = '<span class="pod-live-dot"></span>EN DIRECTO · HABLANDO';
+        podOnAir.style.color = '#ffcc4d';
+      }
+    });
+    podAudio.addEventListener('pause', function(){
+      if (podWindow) podWindow.classList.remove('is-playing');
+      if (podBigPlay) podBigPlay.textContent = '▶ ESCUCHAR';
+      if (podOnAir) {
+        podOnAir.textContent = 'PAUSADO';
+        podOnAir.style.color = 'rgba(255,255,255,0.5)';
+      }
+    });
+    podAudio.addEventListener('ended', function(){
+      if (episodes.length > 1) {
+        var nxt = (currentIdx + 1) % episodes.length;
+        loadEp(nxt, true);
+      }
     });
   }
-  function loadEp(ep) {
-    if (!ep) return;
+
+  function updateControls() {
+    if (podCounter) podCounter.textContent = 'EP ' + (currentIdx + 1) + ' / ' + episodes.length;
+    if (podSelect) podSelect.value = String(currentIdx);
+    if (podPills) {
+      var btns = podPills.querySelectorAll('button');
+      btns.forEach(function(b, i){
+        if (i === currentIdx) {
+          b.style.background = 'linear-gradient(135deg, #ffcc4d, #ff4da6)';
+          b.style.color = '#0b0914';
+          b.style.borderColor = '#ffcc4d';
+          b.style.fontWeight = '800';
+        } else {
+          b.style.background = 'rgba(255,255,255,0.06)';
+          b.style.color = 'rgba(255,255,255,0.75)';
+          b.style.borderColor = 'rgba(255,255,255,0.18)';
+          b.style.fontWeight = '600';
+        }
+      });
+    }
+  }
+
+  function loadEp(idx, autoPlay) {
+    if (!episodes.length) return;
+    currentIdx = ((idx % episodes.length) + episodes.length) % episodes.length;
+    var ep = episodes[currentIdx];
     if (podTitle) podTitle.textContent = ep.titulo || 'Pódcast Virtual IA';
     if (podDesc) podDesc.textContent = ep.descripcion || '';
     if (podVoices) podVoices.textContent = ep.voces ? ('🎙️ Voces: ' + ep.voces) : '';
+    if (podBg) {
+      var cover = ep.imagen || ep.portada || ('podcasts/covers/' + ep.id + '.jpg');
+      podBg.style.backgroundImage = "url('" + cover + "')";
+    }
     if (podAudio && ep.archivo) {
       podAudio.src = encodeURI(ep.archivo) + '?t=' + Date.now();
+      if (autoPlay) podAudio.play().catch(function(){});
     }
+    updateControls();
   }
+
+  if (podPrev) podPrev.onclick = function(){ loadEp(currentIdx - 1, true); };
+  if (podNext) podNext.onclick = function(){ loadEp(currentIdx + 1, true); };
+  if (podSelect) podSelect.onchange = function(){ loadEp(parseInt(podSelect.value, 10) || 0, true); };
+
+  var FALLBACK_EPISODES = [
+    {"id":"ep01","titulo":"Ep. 1 · La Ruta VIP del Gaixample y los Mejores Clubs de Barcelona","descripcion":"Debate entre Marta y Javier sobre dónde salir en Barcelona: La Sastrería, Priscilla Café, Punto BCN, New Strass, Believe Club, Arena Experience, Safari Disco Club, Razzmatazz y Churros con Chocolate.","archivo":"podcasts/ep01_ruta_gaixample_bcn.mp3","voces":"Marta & Javier (Voces Reales) · MG Barcelona Live","imagen":"podcasts/covers/ep01.jpg"},
+    {"id":"ep02","titulo":"Ep. 2 · Llamada desde Camerinos de New Strass: Samantha Ballentines y Sharonne","descripcion":"Marta y Javier conectan en directo con Samantha Ballentines y Sharonne desde el camerino de New Strass Barcelona contando el caos de laca y pelucas y los castings de Drag Race España.","archivo":"podcasts/ep02_llamada_drag_casting.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep02.jpg"},
+    {"id":"ep03","titulo":"Ep. 3 · Llamada desde BoysBar: Cómo Sobrevivir a la Fiesta en Barcelona","descripcion":"Marta y Javier hablan con Carlos desde el Gaixample sobre la ruta completa de copas y discotecas: BoysBar, Punto BCN, Bacon Bear, Night, Arena, Safari, POPair, Razzmatazz, Apolo y Circuit.","archivo":"podcasts/ep03_ruta_fiesta_barcelona.mp3","voces":"Marta, Javier & Carlos en Directo · MG Barcelona Live","imagen":"podcasts/covers/ep03.jpg"},
+    {"id":"ep04","titulo":"Ep. 4 · Especial Reinas del Drag con Samantha Ballentines y Sharonne","descripcion":"Marta y Javier reciben en cabina a Samantha Ballentines y Sharonne para revelar las anécdotas reales de pasarela: el autobronceador de Mercadona, los Masters del Universo y los garitos de Barcelona.","archivo":"podcasts/ep04_especial_reinas_drag.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep04.jpg"},
+    {"id":"ep05","titulo":"Ep. 5 · El Xokas Llama por Knoweats, Entradas de Ibai 2027 y su Club con Cuarto Oscuro sin Puerta","descripcion":"El Xokas llama en directo para anunciar su comida rápida Knoweats tras su enfado con Hacienda rumbo a Andorra, pide a Moisés Gallardo una sesión de fotos con su novia, regala entradas de Ibai 2027 y ficha a Samantha Ballentines y Sharonne como imagen de su nuevo club gay en Madrid y Barcelona.","archivo":"podcasts/ep05_parodia_gamer_lol.mp3","voces":"Marta, Javier, El Xokas, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep05.jpg"},
+    {"id":"ep06","titulo":"Ep. 6 · Sátira de Humor con Samantha y Sharonne: Don Promesas vs. Don Tacaño","descripcion":"Samantha Ballentines y Sharonne ponen firmes en directo a dos políticos ficticios (Don Promesas y Don Tacaño) que discuten sobre bolas de discoteca de oro y acaban pidiendo lista VIP en el Gaixample.","archivo":"podcasts/ep06_satira_politica_radio.mp3","voces":"Marta, Javier, Samantha, Sharonne & Sátira Ficticia · MG Barcelona Live","imagen":"podcasts/covers/ep06.jpg"},
+    {"id":"ep07","titulo":"Ep. 7 · Anécdota Surrealista: Las Llaves en el Cuarto Oscuro y el Doble de Sálvame","descripcion":"Lucía llama muerta de risa a Marta y Javier para contar cuando perdió sus llaves en el cuarto oscuro, encendieron el foco en pleno ligoteo y apareció un doble clavado a Jorge Javier Vázquez.","archivo":"podcasts/ep07_llaves_cuarto_oscuro.mp3","voces":"Marta, Javier & Lucía en Directo · MG Barcelona Live","imagen":"podcasts/covers/ep07.jpg"},
+    {"id":"ep08","titulo":"Ep. 8 · El Rubius Sin Internet en Andorra Pide el Módem de Elon Musk para el Estreno de GTA 6","descripcion":"El Rubius llama desesperado desde Andorra tras una nevada que le cortó la fibra y pide el módem satelital SpaceX Starship para emitir GTA 6 en directo poniendo MG Barcelona Live de fondo e invitando a Marta, Javier, Samantha Ballentines y Sharonne al Casino de Andorra.","archivo":"podcasts/ep08_telefonia_spacex.mp3","voces":"Marta, Javier, El Rubius, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep08.jpg"},
+    {"id":"ep09","titulo":"Ep. 9 · Doña Carmen Busca a su Hijo: ¡Lleva 2 Días Montando a Caballo en el Cuarto Oscuro!","descripcion":"Una madre llama preocupada porque su hijo salió con un amigo hace 2 días y no contesta al móvil; Marta y Javier le explican entre risas qué ha pasado con el teléfono.","archivo":"podcasts/ep09_madre_busca_hijo.mp3","voces":"Marta, Javier & Doña Carmen en Directo · MG Barcelona Live","imagen":"podcasts/covers/ep09.jpg"},
+    {"id":"ep10","titulo":"Ep. 10 · ¡Alerta en Camerinos! Samantha en el Lavabo con Blanco España y Sharonne en Directo","descripcion":"Se pierde Samantha antes del directo de TV mientras Sharonne espera con el micro. Marta exige tacones Versace para suplirla hasta que Samantha aparece en el lavabo repasando las racholas con un chulazo.","archivo":"podcasts/ep10_drag_desaparecida_strass.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep10.jpg"},
+    {"id":"ep11","titulo":"Ep. 11 · Samantha Quiere ir a Miss Universo y Acaba con Sharonne en Churros con Chocolate","descripcion":"Samantha Ballentines y Sharonne llaman desde el taxi porque Samantha quiere presentarse a Miss Belleza Universo y Javier las manda entre risas a cantar temazos petardos a Churros con Chocolate en Apolo.","archivo":"podcasts/ep11_parodia_petarda_churros.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep11.jpg"},
+    {"id":"ep12","titulo":"Ep. 12 · ¡Alerta Estafa de TikTok! El Masajeador Gay con Voz y el Cupón de la Sagrada Familia","descripcion":"Un falso anuncio viral de TikTok patrocinado por IAs intenta estafar a mujeres solteras vendiendo un 'masajeador gay' con control por voz, carga rápida de 2 horas y un cupón trampa para la Sagrada Familia donde los chicos entran gratis y las chicas pagan.","archivo":"podcasts/ep12_teletienda_masajeador.mp3","voces":"Marta, Javier & Teletienda Estafadora IA · MG Barcelona Live","imagen":"podcasts/covers/ep12.jpg"},
+    {"id":"ep13","titulo":"Ep. 13 · GTA 6 en Barcelona con El Xokas, Samantha y Sharonne: Libertad vs. Vida Real","descripcion":"Marta, Javier, El Xokas, Samantha Ballentines y Sharonne debaten sobre el lanzamiento de GTA 6, robar el coche al vecino con 5 estrellas de la Guardia Urbana y una misión secreta en el Gaixample.","archivo":"podcasts/ep13_gta6_libertad.mp3","voces":"Marta, Javier, El Xokas, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep13.jpg"},
+    {"id":"ep14","titulo":"Ep. 14 · Euro Truck Simulator 2 vs. Aparcar en el Gaixample con El Xokas, Samantha y Sharonne","descripcion":"Debate sin filtros con Marta, Javier, El Xokas, Samantha Ballentines y Sharonne: los mods 3D de camiones de Moisés Gallardo frente al riesgo extremo de aparcar en el Gaixample con pamela un sábado noche.","archivo":"podcasts/ep14_simuladores_ets2_gaixample.mp3","voces":"Marta, Javier, El Xokas, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep14.jpg"},
+    {"id":"ep15","titulo":"Ep. 15 · Navidad y Subida de Precios: Espárragos a 4€ en el Mercadona vs. Alfombra Roja en el Gaixample","descripcion":"Marta estalla por la subida de precios navideños y los espárragos a 4 euros con el IPC al 2%, y Javier le aconseja comprar en las tiendas del Gaixample con descuento, alfombra roja y espárragos recogidos haciendo cruising.","archivo":"podcasts/ep15_navidad_mercadona_gaixample.mp3","voces":"Marta & Javier · MG Barcelona Live","imagen":"podcasts/covers/ep15.jpg"},
+    {"id":"ep16","titulo":"Ep. 16 · ¡Escándalo en la Puerta! Hetero Feminista vs. El Carnet del Sindicato LGTB","descripcion":"Una hetero feminista llama indignada porque no la dejan entrar en un local de lesbianas del Gaixample; Bea le explica en directo que allí solo se entra con el carnet oficial del Sindicato del LGTB.","archivo":"podcasts/ep16_debate_fiesta_vs_manifiesto.mp3","voces":"Marta, Javier, Bea & Feminista en Directo · MG Barcelona Live","imagen":"podcasts/covers/ep16.jpg"},
+    {"id":"ep17","titulo":"Ep. 17 · El Rubius y El Xokas Llaman desde Andorra por el Fortnite con Samantha y Sharonne","descripcion":"El Rubius ('criaturitas del señor') y El Xokas llaman juntos en directo hablando de Andorra, el Fortnite, los tápers de Knoweats y bajar al Gaixample al show de Samantha Ballentines y Sharonne.","archivo":"podcasts/ep17_nino_fortnite_xokas_rubius.mp3","voces":"Marta, Javier, El Rubius, El Xokas, Samantha & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep17.jpg"},
+    {"id":"ep18","titulo":"Ep. 18 · El Show Business Drag con Sharonne y Samantha: Silicona Caliente y Escenarios","descripcion":"Marta y Javier charlan en cabina con Sharonne y Samantha Ballentines sobre las maletas de 25 kilos, pegarse cristales con silicona caliente a las 4 de la mañana y las tablas del club nocturno.","archivo":"podcasts/ep18_show_business_drag_queen.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep18.jpg"},
+    {"id":"ep19","titulo":"Ep. 19 · Un Nuevo Bazar en el Barrio Gay: ¡Tangas, Bañadores y Crema Corporal!","descripcion":"Un comerciante llama pidiendo consejo para abrir un bazar en pleno Gaixample y Marta y Javier le recomiendan llenar el escaparate de tangas, bañadores, pantalones cortos y crema corporal para las emergencias nocturnas.","archivo":"podcasts/ep19_bazar_barrio_gaixample.mp3","voces":"Marta, Javier & Chen en Directo · MG Barcelona Live","imagen":"podcasts/covers/ep19.jpg"},
+    {"id":"ep20","titulo":"Ep. 20 · Comedia Drag Auténtica con Samantha y Sharonne: Rodillas de Robocop en Directo","descripcion":"Marta y Javier se parten de risa con Samantha Ballentines y Sharonne contando sus batallas por las tarimas de España y la noche en que una fan les quitó el micrófono en pleno espectáculo.","archivo":"podcasts/ep20_reina_comedia_autentica.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep20.jpg"},
+    {"id":"ep21","titulo":"Ep. 21 · Especial Orgullo con Sharonne y Samantha: Secretos de Camerino y Transformismo","descripcion":"Marta, Javier, Sharonne y Samantha Ballentines revelan qué pasa a las 5 de la mañana tras quitarse el corsé y rinden homenaje a las grandes pioneras del transformismo en Barcelona.","archivo":"podcasts/ep21_secretos_polemicas_transformismo.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep21.jpg"},
+    {"id":"ep22","titulo":"Ep. 22 · Primeras (Malas) Impresiones en el Camerino: Samantha Ballentines vs. Sharonne","descripcion":"Samantha Ballentines y Sharonne confiesan ante Marta y Javier qué pensaron realmente la una de la otra el primer día que coincidieron en un camerino antes de hacerse hermanas inseparables.","archivo":"podcasts/ep22_primeras_malas_impresiones_drag.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep22.jpg"},
+    {"id":"ep23","titulo":"Ep. 23 · ¿Se Puede Vivir del Drag en España? Cuentas Reales con Samantha y Sharonne","descripcion":"Marta, Javier, Samantha Ballentines y Sharonne responden con humor: entre pelucas, vestidos a medida y promotores que pagan en 'visibilidad', ¿cómo se vive del espectáculo en España?","archivo":"podcasts/ep23_vivir_del_drag_espana.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep23.jpg"},
+    {"id":"ep24","titulo":"Ep. 24 · Amor, Haters y el Precio de Drag Race con Samantha Ballentines y Sharonne","descripcion":"Samantha Ballentines y Sharonne charlan sin filtros con Marta y Javier sobre las pelucas voladoras en el lipsync, el cariño del público y cómo mandar un abanico a los haters de internet.","archivo":"podcasts/ep24_odio_amor_precio_drag_race.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep24.jpg"},
+    {"id":"ep25","titulo":"Ep. 25 · Especial: El Hacker de las Tazas, el Gaixample y Razzmatazz","descripcion":"Especial largo con Marta, Javier, Samantha Ballentines y Sharonne destapando con humor la surrealista aventura del hacker de Indiana, las tazas de regalo y las fotos de Razzmatazz.","archivo":"podcasts/ep25_hacker_de_las_tazas.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep25.jpg"}
+  ];
+
+  function populateEpisodes(list) {
+    if (!Array.isArray(list) || !list.length) return;
+    episodes = list;
+    if (podSelect) {
+      podSelect.innerHTML = '';
+      episodes.forEach(function(ep, i){
+        var opt = document.createElement('option');
+        opt.value = String(i);
+        opt.textContent = ep.titulo;
+        podSelect.appendChild(opt);
+      });
+    }
+    if (podPills) {
+      podPills.innerHTML = '';
+      episodes.forEach(function(ep, i){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = String(i + 1);
+        b.title = ep.titulo;
+        b.style.cssText = 'width:28px; height:28px; border-radius:999px; border:1px solid rgba(255,255,255,0.2); cursor:pointer; font-size:0.75rem; transition:all 0.2s ease;';
+        b.onclick = function(){ loadEp(i, true); };
+        podPills.appendChild(b);
+      });
+    }
+    loadEp(currentIdx, false);
+  }
+
+  populateEpisodes(FALLBACK_EPISODES);
+  renderVisualizer();
+
   fetch('podcasts.json?t=' + Date.now(), { cache: 'no-store' })
     .then(function(r){ return r.ok ? r.json() : null; })
     .then(function(d){
-      if (!d || !Array.isArray(d.episodios) || !d.episodios.length) return;
-      loadEp(d.episodios[0]);
-      if (podList && d.episodios.length > 1) {
-        podList.innerHTML = '';
-        d.episodios.forEach(function(ep){
-          var b = document.createElement('button');
-          b.className = 'btn btn-outline';
-          b.style.padding = '0.45rem 0.9rem';
-          b.style.fontSize = '0.78rem';
-          b.textContent = '▶ ' + ep.titulo;
-          b.onclick = function(){ loadEp(ep); podAudio.play().catch(function(){}); };
-          podList.appendChild(b);
-        });
-      }
+      if (!d) return;
+      var list = Array.isArray(d.episodios) ? d.episodios : (Array.isArray(d) ? d : []);
+      if (list.length) populateEpisodes(list);
     }).catch(function(){});
 })();
 </script>
@@ -1656,6 +1972,16 @@ if ('serviceWorker' in navigator) {
       <p class="sponsor-desc">Realización audiovisual, fotografía de discoteca y visuales 4K en directo.</p>
     </div>
     <div class="sponsor-card">
+      <span class="sponsor-tier">3D Maps &amp; Next Gen · ETS2 / ATS</span>
+      <div class="sponsor-logo-wrap" style="background:linear-gradient(135deg, #00f0ff, #b44fff); box-shadow:0 0 20px rgba(0,240,255,0.45);"><img src="sponsors/mg_media_graphics.jpg" alt="MG Media Graphics" loading="lazy"></div>
+      <div class="sponsor-name">MG Media Graphics</div>
+      <p class="sponsor-desc">Iberia Expansión, monumentos 3D de Barcelona &amp; Madrid y packs Next Gen para ETS2/ATS.<br>
+        <a href="https://mgmediagraphics.gumroad.com/" target="_blank" rel="noopener">Gumroad</a> ·
+        <a href="https://mgmediagraphics.art.blog/" target="_blank" rel="noopener">Blog</a> ·
+        <a href="https://www.youtube.com/@MGMEDIAGRAPHICS" target="_blank" rel="noopener">YouTube</a>
+      </p>
+    </div>
+    <div class="sponsor-card">
       <span class="sponsor-tier">Espacio Disponible</span>
       <div class="sponsor-logo-wrap" style="background:linear-gradient(135deg, #f5c842, #ff7a00); box-shadow:0 0 20px rgba(245,200,66,0.5);"><img src="sponsors/tu_marca_aqui.jpg" alt="Tu Marca Aquí" loading="lazy"></div>
       <div class="sponsor-name">Tu Marca Aquí</div>
@@ -1733,7 +2059,7 @@ if ('serviceWorker' in navigator) {
 
 <footer>
   <div class="footer-logo">MG Barcelona Live</div>
-  <p>Radio · Eventos · Discoteca · Barcelona · <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="color:var(--gold); font-weight:700; text-decoration:none;">📸 @mgbarcelonalive</a> · <a href="https://www.facebook.com/MGBarcelonaLIVE/" target="_blank" rel="noopener" style="color:var(--cyan); font-weight:700; text-decoration:none;">📘 Facebook</a><br>
+  <p>Radio · Eventos · Discoteca · Barcelona · <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="color:var(--gold); font-weight:700; text-decoration:none;">📸 @mgbarcelonalive</a> · <a href="https://www.tiktok.com/@mgbarcelonalive7" target="_blank" rel="noopener" style="color:#fff; font-weight:700; text-decoration:none;">🎵 TikTok</a> · <a href="https://www.facebook.com/MGBarcelonaLIVE/" target="_blank" rel="noopener" style="color:var(--cyan); font-weight:700; text-decoration:none;">📘 Facebook</a> · <a href="mailto:mgbarcelonalive@gmail.com" style="color:var(--pink); font-weight:700; text-decoration:none;">✉️ mgbarcelonalive@gmail.com</a><br>
   <span style="color:rgba(255,255,255,0.15);">© 2026 MG Barcelona Live · Todos los derechos reservados</span></p>
 </footer>
 
@@ -2497,8 +2823,8 @@ if (bgVid) {
 <script src="stats-widget.js?v=7" defer></script>
 <script src="eventos-fotos.js?v=4" defer></script>
 <!-- Modal Oficial de Instalación de App Móvil con Licencia EULA + Permisos de Seguridad -->
-<div id="mg-pwa-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(7,5,15,0.96);align-items:flex-start;justify-content:center;padding:0.75rem;overflow-y:auto;-webkit-overflow-scrolling:touch;">
-  <div style="margin:auto;background:linear-gradient(145deg,#110d20,#1b1136);border:2px solid rgba(0,240,255,0.75);border-radius:20px;max-width:460px;width:100%;max-height:92dvh;overflow-y:auto;padding:1.15rem 1.1rem;text-align:left;box-shadow:0 0 35px rgba(180,79,255,0.5);color:#fff;font-family:'Inter',sans-serif;">
+<div id="mg-pwa-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(7,5,15,0.48);backdrop-filter:blur(3px);align-items:center;justify-content:center;padding:0.75rem;overflow-y:auto;-webkit-overflow-scrolling:touch;">
+  <div style="margin:auto;background:linear-gradient(145deg,#110d20,#1b1136);border:1.5px solid rgba(0,240,255,0.75);border-radius:18px;max-width:365px;width:100%;max-height:88dvh;overflow-y:auto;padding:0.95rem 0.95rem;text-align:left;box-shadow:0 0 32px rgba(180,79,255,0.5);color:#fff;font-family:'Inter',sans-serif;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;margin-bottom:0.75rem;">
       <div style="display:flex;align-items:center;gap:0.75rem;">
         <img src="icon-192.png" alt="MG BCN Live" style="width:52px;height:52px;border-radius:14px;border:2px solid #f5c842;flex-shrink:0;">
@@ -2573,6 +2899,8 @@ if (bgVid) {
   window.__mgCloseInstallModal = function() {
     var modal = document.getElementById('mg-pwa-modal');
     if (modal) modal.style.display = 'none';
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
     ['bgVideo', 'liveVideo', 'adVideo'].forEach(function(id) {
       var v = document.getElementById(id);
       if (v && v.dataset.mgWasPlaying === '1') {
@@ -2582,14 +2910,20 @@ if (bgVid) {
     });
   };
 
-  // Abrir el Instalador Oficial con Licencia EULA y Permisos
+  // Abrir / cerrar con el mismo clic (toggle) el Instalador Oficial
   window.__mgInstallApp = function() {
     var modal = document.getElementById('mg-pwa-modal');
+    if (modal && modal.style.display === 'flex') {
+      if (window.__mgCloseInstallModal) window.__mgCloseInstallModal();
+      return;
+    }
     var txt = document.getElementById('mg-pwa-instructions');
     var btnIntent = document.getElementById('mgBtnAndroidIntent');
     var btnIos = document.getElementById('mgBtnIosProfile');
     var btnMain = document.getElementById('mgBtnConfirmInstall');
     if (!modal || !txt) return;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
 
     // Pausar vídeos temporalmente mientras el modal está abierto para que Android no se cuelgue
     ['bgVideo', 'liveVideo', 'adVideo'].forEach(function(id) {
@@ -2721,6 +3055,97 @@ if (bgVid) {
   }
   setupMediaSession();
   document.addEventListener('click', function() { setTimeout(setupMediaSession, 300); }, { once: true });
+})();
+</script>
+
+<!-- Modal Teléfono Rojo: Peticiones de Oyentes (directo en body para centrar siempre en pantalla) -->
+<div id="req-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100dvh; z-index:99999; background:rgba(6,4,12,0.48); backdrop-filter:blur(3px); align-items:center; justify-content:center; padding:0.75rem; box-sizing:border-box; overflow-y:auto;">
+  <div style="position:relative; width:100%; max-width:365px; max-height:88dvh; overflow-y:auto; background:linear-gradient(160deg, #161026, #0b0814); border:1.5px solid rgba(255,77,166,0.65); border-radius:18px; padding:1.05rem 1rem; box-shadow:0 20px 50px rgba(0,0,0,0.9); color:#fff; margin:auto;">
+    <button id="btn-close-req" type="button" aria-label="Cerrar" style="position:absolute; top:10px; right:12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); border-radius:50%; width:28px; height:28px; color:#fff; font-size:0.9rem; cursor:pointer;">✕</button>
+    <p style="font-size:0.66rem; letter-spacing:0.12em; text-transform:uppercase; color:#ff7ac2; font-weight:700; margin-bottom:0.2rem;">📞 TELÉFONO ROJO</p>
+    <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem; color:var(--gold); margin-bottom:0.35rem; line-height:1.05;">Buzón de la Radio</h3>
+    <p style="font-size:0.78rem; color:rgba(255,255,255,0.78); margin-bottom:0.65rem; line-height:1.38;">Deja tu saludo, canción, cotilleo, anécdota, queja o promo para <strong style="color:#fff;">Marta y Javier</strong>.</p>
+    <select id="req-type" aria-label="Tipo de mensaje" style="width:100%; box-sizing:border-box; background:rgba(24,18,38,0.95); border:1px solid rgba(255,204,77,0.4); border-radius:10px; padding:0.48rem 0.75rem; color:var(--gold); font-size:0.8rem; font-weight:600; margin-bottom:0.55rem; outline:none; cursor:pointer;">
+      <option value="💌 Saludo o Dedicatoria">💌 Saludo o Dedicatoria</option>
+      <option value="🎧 Pedir Canción / Tema House">🎧 Pedir Canción / Tema House</option>
+      <option value="💋 Cotilleo / Salseo del Gaixample">💋 Cotilleo / Salseo del Gaixample</option>
+      <option value="😂 Anécdota Surrealista de Fiesta">😂 Anécdota Surrealista de Fiesta</option>
+      <option value="😤 Queja o Desahogo">😤 Queja o Desahogo</option>
+      <option value="📢 Publicidad / Patrocinar Local">📢 Publicidad / Patrocinar Local</option>
+    </select>
+    <input id="req-name" type="text" placeholder="Tu nombre o apodo" style="width:100%; box-sizing:border-box; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.2); border-radius:10px; padding:0.5rem 0.75rem; color:#fff; font-size:0.82rem; margin-bottom:0.55rem; outline:none;">
+    <textarea id="req-msg" rows="2" placeholder="Tu mensaje, canción, queja o promo..." style="width:100%; box-sizing:border-box; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.2); border-radius:10px; padding:0.5rem 0.75rem; color:#fff; font-size:0.82rem; margin-bottom:0.55rem; outline:none; resize:vertical;"></textarea>
+    <p id="req-status" style="font-size:0.74rem; color:var(--cyan); min-height:0.95rem; margin-bottom:0.45rem; text-align:center;"></p>
+    <div style="display:flex; flex-direction:column; gap:0.45rem;">
+      <button id="req-send-mail" type="button" class="btn btn-primary" style="width:100%; padding:0.55rem; font-size:0.8rem;">✉️ Enviar al Correo</button>
+      <div style="display:flex; gap:0.45rem;">
+        <button id="req-send-ig" type="button" class="btn btn-outline" style="flex:1; padding:0.45rem; font-size:0.74rem; border-color:rgba(255,77,166,0.6);">📸 Instagram</button>
+        <button id="req-send-tt" type="button" class="btn btn-outline" style="flex:1; padding:0.45rem; font-size:0.74rem; border-color:rgba(0,229,255,0.6);">🎵 TikTok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Botón flotante rápido del Buzón (directo en body) -->
+<button id="btn-float-req" type="button" onclick="window.__mgOpenReqModal && window.__mgOpenReqModal();" aria-label="Abrir Buzón de la Radio" style="position:fixed; bottom:18px; right:18px; z-index:9990; background:linear-gradient(135deg, #ff2d78, #ffcc4d); color:#0b0814; border:none; border-radius:999px; padding:0.65rem 1.15rem; font-size:0.84rem; font-weight:800; cursor:pointer; box-shadow:0 8px 28px rgba(255,45,120,0.55); display:flex; align-items:center; gap:0.4rem;">
+  📞 Buzón
+</button>
+
+<script>
+(function(){
+  var modal = document.getElementById('req-modal');
+  var closeBtn = document.getElementById('btn-close-req');
+  var typeIn = document.getElementById('req-type');
+  var nameIn = document.getElementById('req-name');
+  var msgIn = document.getElementById('req-msg');
+  var st = document.getElementById('req-status');
+  function openReqModal() {
+    if (modal && modal.style.display === 'flex') {
+      closeReqModal();
+      return;
+    }
+    if (modal) modal.style.display = 'flex';
+    if (st) st.textContent = '';
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }
+  var pwaModal = document.getElementById('mg-pwa-modal');
+  if (pwaModal) pwaModal.addEventListener('click', function(e){ if (e.target === pwaModal && window.__mgCloseInstallModal) window.__mgCloseInstallModal(); });
+  function closeReqModal() {
+    if (modal) modal.style.display = 'none';
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+  window.__mgOpenReqModal = openReqModal;
+  function buildText() {
+    var t = (typeIn && typeIn.value) || '📞 Mensaje Radio';
+    var n = (nameIn && nameIn.value.trim()) || 'Oyente Anónimo';
+    var m = (msgIn && msgIn.value.trim()) || '¡Un saludo enorme a MG Barcelona Live!';
+    return '📞 Teléfono Rojo · MG Barcelona Live\n📌 Tipo: ' + t + '\n👤 De: ' + n + '\n💬 Mensaje: ' + m;
+  }
+  if (closeBtn && modal) closeBtn.onclick = closeReqModal;
+  if (modal) modal.addEventListener('click', function(e){ if (e.target === modal) closeReqModal(); });
+  var btnMail = document.getElementById('req-send-mail');
+  if (btnMail) btnMail.onclick = function(){
+    var t = (typeIn && typeIn.value) || 'Mensaje';
+    var n = (nameIn && nameIn.value.trim()) || 'Oyente';
+    var sub = encodeURIComponent(t + ' de ' + n + ' · MG Barcelona Live');
+    var body = encodeURIComponent(buildText());
+    window.location.href = 'mailto:mgbarcelonalive@gmail.com?subject=' + sub + '&body=' + body;
+    if (st) st.textContent = '✅ Abriendo tu correo con el mensaje listo para enviar.';
+  };
+  function copyAndOpen(url, red) {
+    var txt = buildText();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).catch(function(){});
+    }
+    if (st) st.textContent = '✅ ¡Mensaje copiado! Pégalo en nuestro mensaje de ' + red + '.';
+    window.open(url, '_blank', 'noopener');
+  }
+  var btnIg = document.getElementById('req-send-ig');
+  if (btnIg) btnIg.onclick = function(){ copyAndOpen('https://www.instagram.com/mgbarcelonalive/', 'Instagram'); };
+  var btnTt = document.getElementById('req-send-tt');
+  if (btnTt) btnTt.onclick = function(){ copyAndOpen('https://www.tiktok.com/@mgbarcelonalive7', 'TikTok'); };
 })();
 </script>
 </body>
