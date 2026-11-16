@@ -189,6 +189,15 @@
       "imagen": "podcasts/covers/ep21.jpg",
       "voces": "Marta, Javier & Reina Invitada · MG Barcelona Live",
       "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep22",
+      "titulo": "Ep. 22 · Primeras (Malas) Impresiones Entre Drag Queens en Camerinos",
+      "descripcion": "Dos reinas invitadas confiesan ante Marta y Javier qué pensaron realmente la una de la otra la primera vez que se cruzaron en el camerino antes de hacerse inseparables.",
+      "archivo": "podcasts/ep22_primeras_malas_impresiones_drag.mp3",
+      "imagen": "podcasts/covers/ep22.jpg",
+      "voces": "Marta, Javier & Dos Reinas en Cabina · MG Barcelona Live",
+      "fecha": "2026-11-16"
     }
   ]
 }
