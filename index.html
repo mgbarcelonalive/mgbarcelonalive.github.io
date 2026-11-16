@@ -1440,28 +1440,14 @@ if ('serviceWorker' in navigator) {
 
       <!-- Cabina virtual animada: Dos Locutores + Ecualizador de Voces + Botón Play Central -->
       <div style="display:flex; align-items:center; justify-content:space-between; gap:0.75rem; background:rgba(12,9,24,0.74); border:1px solid rgba(255,255,255,0.14); border-radius:20px; padding:0.95rem 1rem; margin-bottom:1.1rem; backdrop-filter:blur(10px); box-shadow:inset 0 0 24px rgba(255,77,166,0.08);">
-        <!-- Locutora: Marta -->
-        <div id="pod-host-marta" style="display:flex; flex-direction:column; align-items:center; min-width:78px; transition:transform 0.12s ease;">
-          <svg width="72" height="72" viewBox="0 0 80 80" style="filter:drop-shadow(0 0 12px rgba(255,77,166,0.55));">
-            <circle id="marta-ring" cx="40" cy="40" r="36" fill="rgba(255,77,166,0.16)" stroke="#ff4da6" stroke-width="2.2"/>
-            <!-- Pelo y cara -->
-            <path d="M18 42 C18 20, 62 20, 62 42 L64 56 C56 50, 24 50, 16 56 Z" fill="#2d142c"/>
-            <circle cx="40" cy="42" r="18" fill="#f7c8a8"/>
-            <path d="M22 36 C24 22, 56 22, 58 36 C50 28, 30 28, 22 36 Z" fill="#3d1c3a"/>
-            <!-- Cascos -->
-            <path d="M19 40 C19 20, 61 20, 61 40" fill="none" stroke="#ffcc4d" stroke-width="3.5" stroke-linecap="round"/>
-            <rect x="14" y="34" width="7" height="14" rx="3.5" fill="#ff4da6" stroke="#ffcc4d" stroke-width="1.5"/>
-            <rect x="59" y="34" width="7" height="14" rx="3.5" fill="#ff4da6" stroke="#ffcc4d" stroke-width="1.5"/>
-            <!-- Ojos -->
-            <circle cx="33" cy="39" r="2.2" fill="#1a0d1a"/>
-            <circle cx="47" cy="39" r="2.2" fill="#1a0d1a"/>
-            <!-- Boca animada Marta -->
-            <ellipse id="marta-mouth" cx="40" cy="50" rx="5.5" ry="1.8" fill="#d92b6b" stroke="#8a103b" stroke-width="1"/>
-            <!-- Micro de estudio -->
-            <path d="M56 64 L46 57" stroke="#ffcc4d" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="45" cy="56" r="2.5" fill="#ffcc4d"/>
-          </svg>
-          <span style="font-size:0.68rem; font-weight:800; letter-spacing:0.1em; color:#ff7ac2; margin-top:0.2rem;">🎙️ MARTA</span>
+        <!-- Locutora: Marta (Foto Real Rubia) -->
+        <div id="pod-host-marta" style="display:flex; flex-direction:column; align-items:center; min-width:86px; transition:transform 0.12s ease;">
+          <div id="marta-avatar-frame" style="width:76px; height:76px; border-radius:50%; padding:2.5px; background:linear-gradient(135deg, #ff4da6, #ffcc4d); box-shadow:0 0 16px rgba(255,77,166,0.65); transition:all 0.15s ease; position:relative;">
+            <img src="img/locutora_marta.jpg" alt="Marta - Locutora MG Barcelona Live" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; border:2px solid #0c0a14;" />
+            <span style="position:absolute; bottom:2px; right:2px; width:13px; height:13px; border-radius:50%; background:#22c55e; border:2px solid #0c0a14; box-shadow:0 0 6px #22c55e;" title="En cabina"></span>
+          </div>
+          <span style="font-size:0.7rem; font-weight:800; letter-spacing:0.1em; color:#ff7ac2; margin-top:0.3rem;">🎙️ MARTA</span>
+          <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="font-size:0.6rem; color:rgba(255,204,77,0.85); text-decoration:none; font-weight:600;">@marta.mgbcn</a>
         </div>
 
         <!-- Ecualizador de Voces Central + Botón Play Llamativo -->
@@ -1473,29 +1459,14 @@ if ('serviceWorker' in navigator) {
           <canvas id="pod-eq" width="320" height="72" style="width:100%; max-width:340px; height:72px; display:block;"></canvas>
         </div>
 
-        <!-- Locutor: Javier -->
-        <div id="pod-host-javier" style="display:flex; flex-direction:column; align-items:center; min-width:78px; transition:transform 0.12s ease;">
-          <svg width="72" height="72" viewBox="0 0 80 80" style="filter:drop-shadow(0 0 12px rgba(0,229,255,0.55));">
-            <circle id="javier-ring" cx="40" cy="40" r="36" fill="rgba(0,229,255,0.14)" stroke="#00e5ff" stroke-width="2.2"/>
-            <!-- Cabeza y pelo -->
-            <circle cx="40" cy="42" r="18" fill="#f0be9c"/>
-            <path d="M22 36 C22 21, 58 21, 58 36 C52 27, 28 27, 22 36 Z" fill="#1e2436"/>
-            <!-- Barba estilizada -->
-            <path d="M23 45 C25 58, 55 58, 57 45 C52 53, 28 53, 23 45 Z" fill="#2a3042" opacity="0.65"/>
-            <!-- Cascos -->
-            <path d="M19 40 C19 20, 61 20, 61 40" fill="none" stroke="#00e5ff" stroke-width="3.5" stroke-linecap="round"/>
-            <rect x="14" y="34" width="7" height="14" rx="3.5" fill="#101828" stroke="#00e5ff" stroke-width="1.5"/>
-            <rect x="59" y="34" width="7" height="14" rx="3.5" fill="#101828" stroke="#00e5ff" stroke-width="1.5"/>
-            <!-- Ojos -->
-            <circle cx="33" cy="39" r="2.2" fill="#0f172a"/>
-            <circle cx="47" cy="39" r="2.2" fill="#0f172a"/>
-            <!-- Boca animada Javier -->
-            <ellipse id="javier-mouth" cx="40" cy="50" rx="5.5" ry="1.8" fill="#3a161c" stroke="#1f0b0e" stroke-width="1"/>
-            <!-- Micro de estudio -->
-            <path d="M24 64 L34 57" stroke="#00e5ff" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="35" cy="56" r="2.5" fill="#00e5ff"/>
-          </svg>
-          <span style="font-size:0.68rem; font-weight:800; letter-spacing:0.1em; color:#5ce1ff; margin-top:0.2rem;">🎙️ JAVIER</span>
+        <!-- Locutor: Javier (Foto Real Moreno) -->
+        <div id="pod-host-javier" style="display:flex; flex-direction:column; align-items:center; min-width:86px; transition:transform 0.12s ease;">
+          <div id="javier-avatar-frame" style="width:76px; height:76px; border-radius:50%; padding:2.5px; background:linear-gradient(135deg, #00e5ff, #3b82f6); box-shadow:0 0 16px rgba(0,229,255,0.65); transition:all 0.15s ease; position:relative;">
+            <img src="img/locutor_javier.jpg" alt="Javier - Locutor MG Barcelona Live" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; border:2px solid #0c0a14;" />
+            <span style="position:absolute; bottom:2px; right:2px; width:13px; height:13px; border-radius:50%; background:#22c55e; border:2px solid #0c0a14; box-shadow:0 0 6px #22c55e;" title="En cabina"></span>
+          </div>
+          <span style="font-size:0.7rem; font-weight:800; letter-spacing:0.1em; color:#5ce1ff; margin-top:0.3rem;">🎙️ JAVIER</span>
+          <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="font-size:0.6rem; color:rgba(0,229,255,0.85); text-decoration:none; font-weight:600;">@javier.mgbcn</a>
         </div>
       </div>
 
@@ -1615,7 +1586,9 @@ if ('serviceWorker' in navigator) {
         ctx.fill();
       }
 
-      // Animar bocas de Marta y Javier
+      // Animar halo y pulso de Marta y Javier al hablar
+      var martaFrame = document.getElementById('marta-avatar-frame');
+      var javierFrame = document.getElementById('javier-avatar-frame');
       if (isPlaying) {
         var mOpen, jOpen;
         if (analyser && (lowEnergy + highEnergy) > 0.03) {
@@ -1628,13 +1601,17 @@ if ('serviceWorker' in navigator) {
         }
         if (martaMouth) martaMouth.setAttribute('ry', mOpen.toFixed(1));
         if (javierMouth) javierMouth.setAttribute('ry', jOpen.toFixed(1));
-        if (hostMarta) hostMarta.style.transform = mOpen > 3.5 ? 'scale(1.07)' : 'scale(1)';
-        if (hostJavier) hostJavier.style.transform = jOpen > 3.5 ? 'scale(1.07)' : 'scale(1)';
+        if (hostMarta) hostMarta.style.transform = mOpen > 3.5 ? 'scale(1.08)' : 'scale(1)';
+        if (hostJavier) hostJavier.style.transform = jOpen > 3.5 ? 'scale(1.08)' : 'scale(1)';
+        if (martaFrame) martaFrame.style.boxShadow = mOpen > 3.5 ? '0 0 26px rgba(255,77,166,0.95), 0 0 12px rgba(255,204,77,0.8)' : '0 0 14px rgba(255,77,166,0.5)';
+        if (javierFrame) javierFrame.style.boxShadow = jOpen > 3.5 ? '0 0 26px rgba(0,229,255,0.95), 0 0 12px rgba(59,130,246,0.8)' : '0 0 14px rgba(0,229,255,0.5)';
       } else {
         if (martaMouth) martaMouth.setAttribute('ry', '1.8');
         if (javierMouth) javierMouth.setAttribute('ry', '1.8');
         if (hostMarta) hostMarta.style.transform = 'scale(1)';
         if (hostJavier) hostJavier.style.transform = 'scale(1)';
+        if (martaFrame) martaFrame.style.boxShadow = '0 0 16px rgba(255,77,166,0.65)';
+        if (javierFrame) javierFrame.style.boxShadow = '0 0 16px rgba(0,229,255,0.65)';
       }
     }
   }
