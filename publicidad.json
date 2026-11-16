@@ -3,6 +3,11 @@
   "anuncios": [
     {
       "tipo": "video",
+      "nombre": "Fotos Eventos & Redes MG Barcelona Live",
+      "archivo": "publicidad/spot_fotos_redes_mgbcn.mp4"
+    },
+    {
+      "tipo": "video",
       "nombre": "Pasarela MG Barcelona Live",
       "archivo": "publicidad/pasarela_mg_barcelona.mp4"
     },
