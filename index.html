@@ -751,8 +751,8 @@ if ('serviceWorker' in navigator) {
     height: 100%;
     object-fit: cover;
     object-position: center center;
-    opacity: 0.55;
-    filter: brightness(0.88) contrast(1.12) saturate(1.22);
+    opacity: 0.60;
+    filter: brightness(0.92) contrast(1.15) saturate(1.28);
     transition: opacity 0.8s ease;
   }
   @media (max-width: 900px) {
@@ -1033,27 +1033,31 @@ if ('serviceWorker' in navigator) {
       margin-bottom: 1.6rem;
     }
 
-    /* Fondo de vídeo en móvil: se restringe a la cabecera/hero, evitando zoom excesivo y manchas */
+    /* Fondo de vídeo continuo adaptado a móvil: fijo a pantalla completa, luminoso y sin cortes */
     .bg-video-wrap {
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      height: 65vh !important;
-      max-height: 520px !important;
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      height: 100svh !important;
       overflow: hidden !important;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%) !important;
-      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%) !important;
+      mask-image: none !important;
+      -webkit-mask-image: none !important;
       z-index: 0 !important;
     }
     .bg-video-wrap video {
       width: 100% !important;
       height: 100% !important;
       object-fit: cover !important;
-      object-position: center 20% !important;
-      opacity: 0.25 !important;
-      filter: brightness(0.48) contrast(1.1) saturate(1.15) !important;
+      object-position: center center !important;
+      opacity: 0.46 !important;
+      filter: brightness(0.80) contrast(1.1) saturate(1.18) !important;
       transform: translate3d(0,0,0) !important;
+    }
+    .disco-beam {
+      width: 95vw !important;
+      height: 18vh !important;
+      opacity: 0.20 !important;
     }
 
     /* Tarjetas de vídeo en móvil: adaptadas a pantalla móvil completa sin recortar */
