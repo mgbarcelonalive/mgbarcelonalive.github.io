@@ -118,6 +118,16 @@
     var base = getIcecastBase();
     if (!base) return;
     try {
+      var rApi = await fetch(base + '/api/status?_=' + Date.now(), { cache: 'no-store' });
+      if (rApi.ok) {
+        var dApi = await rApi.json();
+        if (dApi && typeof dApi.listeners === 'number') {
+          el.textContent = String(Math.max(0, dApi.listeners));
+          return;
+        }
+      }
+    } catch (e) {}
+    try {
       var r = await fetch(base + '/status-json.xsl?_=' + Date.now(), { cache: 'no-store' });
       if (!r.ok) return;
       var data = await r.json();

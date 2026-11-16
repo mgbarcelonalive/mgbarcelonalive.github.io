@@ -835,11 +835,11 @@ if ('serviceWorker' in navigator) {
 
   /* ─── MARCOS RGB LUCES DE DISCOTECA ─── */
   .event-card, .stat-card, .sponsor-card, .mg-video-card {
-    border: 2px solid rgba(0, 240, 255, 0.45) !important;
-    animation: rgbCardGlow 6s linear infinite;
+    border: 2px solid rgba(0, 240, 255, 0.55);
+    animation: rgbCardGlow 5.5s linear infinite;
   }
-  .event-card:nth-child(2n), .stat-card:nth-child(2n), .sponsor-card:nth-child(2n), .mg-video-card:nth-child(2n) { animation-delay: -1.5s; }
-  .event-card:nth-child(3n), .stat-card:nth-child(3n), .sponsor-card:nth-child(3n) { animation-delay: -3.2s; }
+  .event-card:nth-child(2n), .stat-card:nth-child(2n), .sponsor-card:nth-child(2n), .mg-video-card:nth-child(2n) { animation-delay: -1.4s; }
+  .event-card:nth-child(3n), .stat-card:nth-child(3n), .sponsor-card:nth-child(3n) { animation-delay: -2.8s; }
 
   /* ─── FOCOS VIRTUALES TIPO LÁSER EN LAS ESQUINAS ─── */
   .disco-spot {
@@ -1767,6 +1767,7 @@ function drawDjEq(nowMs) {
 
   const t = nowMs * 0.001;
   const beat = Math.pow(0.5 + 0.5 * Math.sin(t * 2.07 * Math.PI * 2), 2.2); // ~124 BPM house groove
+  window.__mgBeatEnergy = active ? Math.min(1, (eqLevels[0] + eqLevels[1] + eqLevels[2] + beat) * 0.35) : 0;
 
   const gapX = 4;
   const bandW = Math.max(4, (W - (EQ_BANDS - 1) * gapX) / EQ_BANDS);
@@ -2205,8 +2206,9 @@ function loop(nowMs) {
 
   ctx.clearRect(0, 0, W, H);
   const isMobile = (W < 768);
+  const beatE = window.__mgBeatEnergy || 0;
   for (let i = 0; i < particles.length; i++) {
-    particles[i].update(dt);
+    particles[i].update(dt * (1 + beatE * 0.7));
     particles[i].draw(ctx, isMobile);
   }
 
@@ -2240,15 +2242,16 @@ function loop(nowMs) {
     }
   }
 
-  // Destellos de discoteca (ambientales constantes y más intensos al sonar la radio)
-  const flashChance = isPlaying ? (isMobile ? 0.04 : 0.07) : (isMobile ? 0.015 : 0.03);
-  if (Math.random() < flashChance) {
+  // Destellos de discoteca (ambientales constantes y al ritmo de la música)
+  const beatFlash = isPlaying && beatE > 0.45 && Math.random() < (isMobile ? 0.14 : 0.22);
+  const flashChance = isPlaying ? (isMobile ? 0.05 : 0.09) : (isMobile ? 0.02 : 0.035);
+  if (beatFlash || Math.random() < flashChance) {
     const x = Math.random() * W;
     const y = Math.random() * H * 0.85;
-    const rad = 70 + Math.random() * (isMobile ? 70 : 130);
+    const rad = 85 + Math.random() * (isMobile ? 80 : 150) + beatE * 60;
     const g = ctx.createRadialGradient(x, y, 0, x, y, rad);
     const col = COLORS[Math.floor(Math.random() * COLORS.length)];
-    g.addColorStop(0, col + (isPlaying ? '55' : '33'));
+    g.addColorStop(0, col + (isPlaying ? '66' : '38'));
     g.addColorStop(1, 'transparent');
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H);
@@ -2431,7 +2434,7 @@ if (bgVid) {
   }, 2000);
 })();
 </script>
-<script src="stats-widget.js?v=6" defer></script>
+<script src="stats-widget.js?v=7" defer></script>
 <script src="eventos-fotos.js?v=4" defer></script>
 <!-- Modal Oficial de Instalación de App Móvil con Licencia EULA + Permisos de Seguridad -->
 <div id="mg-pwa-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(7,5,15,0.96);align-items:flex-start;justify-content:center;padding:0.75rem;overflow-y:auto;-webkit-overflow-scrolling:touch;">
