@@ -2,6 +2,14 @@
   "horario": "Pódcast Virtual IA de tarde (17:00-00:00) · Radio House Classic 24/7 de noche",
   "episodios": [
     {
+      "id": "ep11",
+      "titulo": "Ep. 11 · Parodia: La Diva del Petardeo Quiere ir a Miss Belleza y Acaba en Churros con Chocolate",
+      "descripcion": "Una diva ficticia del petardeo llama buscando mánager para un concurso de belleza y Javier la manda entre risas a cantar sus temazos petardos a Churros con Chocolate antes de colgarle.",
+      "archivo": "podcasts/ep11_parodia_petarda_churros.mp3",
+      "voces": "Marta, Javier & Parodia Diva del Petardeo · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
       "id": "ep10",
       "titulo": "Ep. 10 · ¡Alerta en Camerinos! Marta con Versace y Dolce & Gabbana y la Drag en el Lavabo",
       "descripcion": "Se pierde una Drag antes del directo de TV y ofrecen fiesta en New Strass. Marta exige maquillaje Dolce & Gabbana y tacones Versace para suplirla, hasta que la reina aparece en el lavabo con un chulazo.",
