@@ -135,6 +135,15 @@
       "imagen": "podcasts/covers/ep15.jpg",
       "voces": "Marta & Javier · MG Barcelona Live",
       "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep16",
+      "titulo": "Ep. 16 · ¡Escándalo en la Puerta! Hetero Feminista vs. El Carnet del Sindicato LGTB",
+      "descripcion": "Una hetero feminista llama indignada porque no la dejan entrar en un local de lesbianas del Gaixample; Bea le explica en directo que allí solo se entra con el carnet oficial del Sindicato del LGTB.",
+      "archivo": "podcasts/ep16_debate_fiesta_vs_manifiesto.mp3",
+      "imagen": "podcasts/covers/ep16.jpg",
+      "voces": "Marta, Javier, Bea & Feminista en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16"
     }
   ]
 }
