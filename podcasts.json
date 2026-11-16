@@ -2,6 +2,14 @@
   "horario": "Pódcast Virtual IA de tarde (17:00-00:00) · Radio House Classic 24/7 de noche",
   "episodios": [
     {
+      "id": "ep04",
+      "titulo": "Ep. 4 · Especial Reinas del Drag: Secretos de Carmen Farala, Sharonne y Supremme",
+      "descripcion": "Marta, Javier y Estrella comentan y recrean con humor las anécdotas reales de las grandes reinas españolas: el autobronceador de Mercadona, los Masters del Universo y el salto de los garitos a la TV.",
+      "archivo": "podcasts/ep04_especial_reinas_drag.mp3",
+      "voces": "Marta, Javier & Estrella en Cabina · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
       "id": "ep03",
       "titulo": "Ep. 3 · Llamada desde BoysBar: Cómo Sobrevivir a la Fiesta en Barcelona",
       "descripcion": "Marta y Javier hablan con Carlos desde el Gaixample sobre la ruta completa de copas y discotecas: BoysBar, Punto BCN, Bacon Bear, Night, Arena, Safari, POPair, Razzmatazz, Apolo y Circuit.",
