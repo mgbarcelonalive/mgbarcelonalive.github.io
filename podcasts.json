@@ -2,6 +2,14 @@
   "horario": "Pódcast Virtual IA de tarde (17:00-00:00) · Radio House Classic 24/7 de noche",
   "episodios": [
     {
+      "id": "ep06",
+      "titulo": "Ep. 6 · Sátira de Humor: Don Promesas vs. Don Tacaño Llaman por la Subvención",
+      "descripcion": "Sketch ficticio de humor con Marta y Javier: dos políticos ficticios se cruzan al teléfono discutiendo sobre financiar bolas de discoteca de oro para el pódcast frente a no gastar ni un euro.",
+      "archivo": "podcasts/ep06_satira_politica_radio.mp3",
+      "voces": "Marta, Javier & Sátira Ficticia en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
       "id": "ep05",
       "titulo": "Ep. 5 · Parodia Gamer: Llama en Directo Pidiendo Música del LoL",
       "descripcion": "Sketch de humor con Marta y Javier: un gamer en plena ranked del League of Legends llama desesperado a la radio pidiendo música del LoL y terminan convenciéndolo de salir de fiesta por Barcelona.",
