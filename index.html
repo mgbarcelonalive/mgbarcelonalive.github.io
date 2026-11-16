@@ -1502,14 +1502,79 @@ if ('serviceWorker' in navigator) {
       <audio id="podcast-audio" controls playsinline preload="metadata" crossorigin="anonymous" style="width:100%; border-radius:12px; margin-bottom:0.95rem;"></audio>
 
       <!-- Navegación de Ventana: Anterior / Píldoras Numéricas / Siguiente -->
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:0.6rem; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:0.6rem; flex-wrap:wrap; margin-bottom:0.9rem;">
         <button id="pod-prev" class="btn btn-outline" style="padding:0.45rem 0.95rem; font-size:0.8rem;">◀ Anterior</button>
         <div id="pod-pills" style="display:flex; gap:0.32rem; flex-wrap:wrap; justify-content:center; flex:1;"></div>
         <button id="pod-next" class="btn btn-primary" style="padding:0.45rem 1rem; font-size:0.8rem;">Siguiente ▶</button>
       </div>
+
+      <!-- Botón Teléfono Rojo: Pedir Canción o Saludo -->
+      <div style="text-align:center; padding-top:0.65rem; border-top:1px solid rgba(255,255,255,0.1);">
+        <button id="btn-open-req" type="button" style="background:linear-gradient(135deg, rgba(255,45,120,0.22), rgba(255,204,77,0.22)); color:#fff; border:1px solid rgba(255,77,166,0.6); border-radius:999px; padding:0.55rem 1.25rem; font-size:0.82rem; font-weight:700; cursor:pointer; box-shadow:0 0 18px rgba(255,77,166,0.28); transition:transform 0.15s ease;">
+          📞 ¿Quieres Pedir una Canción o Saludo en Directo? ¡Escríbenos!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Teléfono Rojo: Peticiones de Oyentes -->
+  <div id="req-modal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(6,4,12,0.84); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:1rem;">
+    <div style="position:relative; width:100%; max-width:460px; background:linear-gradient(160deg, #161026, #0b0814); border:1.5px solid rgba(255,77,166,0.55); border-radius:22px; padding:1.6rem 1.4rem; box-shadow:0 24px 60px rgba(0,0,0,0.85); color:#fff;">
+      <button id="btn-close-req" type="button" aria-label="Cerrar" style="position:absolute; top:14px; right:16px; background:none; border:none; color:rgba(255,255,255,0.65); font-size:1.35rem; cursor:pointer;">✕</button>
+      <p style="font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:#ff7ac2; font-weight:700; margin-bottom:0.3rem;">📞 EL TELÉFONO ROJO EN DIRECTO</p>
+      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.75rem; color:var(--gold); margin-bottom:0.45rem; line-height:1.1;">Pide tu Canción o Saludo</h3>
+      <p style="font-size:0.84rem; color:rgba(255,255,255,0.78); margin-bottom:1rem; line-height:1.45;">Deja tu nombre y dedicatoria: <strong style="color:#fff;">Marta y Javier</strong> la anunciarán con su voz en la radio o sonará tu tema House.</p>
+      <input id="req-name" type="text" placeholder="Tu nombre o apodo (ej. Carlos de Sitges)" style="width:100%; box-sizing:border-box; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:0.65rem 0.9rem; color:#fff; font-size:0.88rem; margin-bottom:0.75rem; outline:none;">
+      <textarea id="req-msg" rows="3" placeholder="¿Qué canción quieres o a quién mandas un saludo?" style="width:100%; box-sizing:border-box; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:0.65rem 0.9rem; color:#fff; font-size:0.88rem; margin-bottom:0.85rem; outline:none; resize:vertical;"></textarea>
+      <p id="req-status" style="font-size:0.78rem; color:var(--cyan); min-height:1.1rem; margin-bottom:0.65rem; text-align:center;"></p>
+      <div style="display:flex; flex-direction:column; gap:0.55rem;">
+        <button id="req-send-mail" type="button" class="btn btn-primary" style="width:100%; padding:0.65rem;">✉️ Enviar al Buzón (mgbarcelonalive@gmail.com)</button>
+        <div style="display:flex; gap:0.5rem;">
+          <button id="req-send-ig" type="button" class="btn btn-outline" style="flex:1; padding:0.55rem; font-size:0.78rem; border-color:rgba(255,77,166,0.6);">📸 Copiar e ir a Instagram</button>
+          <button id="req-send-tt" type="button" class="btn btn-outline" style="flex:1; padding:0.55rem; font-size:0.78rem; border-color:rgba(0,229,255,0.6);">🎵 Copiar e ir a TikTok</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  var modal = document.getElementById('req-modal');
+  var openBtn = document.getElementById('btn-open-req');
+  var closeBtn = document.getElementById('btn-close-req');
+  var nameIn = document.getElementById('req-name');
+  var msgIn = document.getElementById('req-msg');
+  var st = document.getElementById('req-status');
+  function buildText() {
+    var n = (nameIn && nameIn.value.trim()) || 'Oyente Anónimo';
+    var m = (msgIn && msgIn.value.trim()) || '¡Un saludo enorme a MG Barcelona Live!';
+    return '📞 Petición Radio MG Barcelona Live\n👤 De: ' + n + '\n💬 Mensaje / Canción: ' + m;
+  }
+  if (openBtn && modal) openBtn.onclick = function(){ modal.style.display = 'flex'; if (st) st.textContent = ''; };
+  if (closeBtn && modal) closeBtn.onclick = function(){ modal.style.display = 'none'; };
+  if (modal) modal.addEventListener('click', function(e){ if (e.target === modal) modal.style.display = 'none'; });
+  var btnMail = document.getElementById('req-send-mail');
+  if (btnMail) btnMail.onclick = function(){
+    var n = (nameIn && nameIn.value.trim()) || 'Oyente';
+    var sub = encodeURIComponent('📞 Petición en directo de ' + n + ' - MG Barcelona Live');
+    var body = encodeURIComponent(buildText());
+    window.location.href = 'mailto:mgbarcelonalive@gmail.com?subject=' + sub + '&body=' + body;
+    if (st) st.textContent = '✅ Abriendo tu correo con la petición lista para enviar.';
+  };
+  function copyAndOpen(url, red) {
+    var txt = buildText();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).catch(function(){});
+    }
+    if (st) st.textContent = '✅ ¡Mensaje copiado! Pégalo en nuestro mensaje de ' + red + '.';
+    window.open(url, '_blank', 'noopener');
+  }
+  var btnIg = document.getElementById('req-send-ig');
+  if (btnIg) btnIg.onclick = function(){ copyAndOpen('https://www.instagram.com/mgbarcelonalive/', 'Instagram'); };
+  var btnTt = document.getElementById('req-send-tt');
+  if (btnTt) btnTt.onclick = function(){ copyAndOpen('https://www.tiktok.com/@mgbarcelonalive7', 'TikTok'); };
+})();
+</script>
 <script>
 (function(){
   var podWindow = document.getElementById('pod-window');
