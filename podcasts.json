@@ -2,6 +2,14 @@
   "horario": "Pódcast Virtual IA de tarde (17:00-00:00) · Radio House Classic 24/7 de noche",
   "episodios": [
     {
+      "id": "ep10",
+      "titulo": "Ep. 10 · ¡Alerta en Camerinos! Marta con Versace y Dolce & Gabbana y la Drag en el Lavabo",
+      "descripcion": "Se pierde una Drag antes del directo de TV y ofrecen fiesta en New Strass. Marta exige maquillaje Dolce & Gabbana y tacones Versace para suplirla, hasta que la reina aparece en el lavabo con un chulazo.",
+      "archivo": "podcasts/ep10_drag_desaparecida_strass.mp3",
+      "voces": "Marta, Javier, Director TV & La Drag en Directo · MG Barcelona Live",
+      "fecha": "2026-11-16"
+    },
+    {
       "id": "ep09",
       "titulo": "Ep. 9 · Doña Carmen Busca a su Hijo: ¡Lleva 2 Días Montando a Caballo en el Cuarto Oscuro!",
       "descripcion": "Una madre llama preocupada porque su hijo salió con un amigo hace 2 días y no contesta al móvil; Marta y Javier le explican entre risas qué ha pasado con el teléfono.",
