@@ -1,93 +1,93 @@
-{
-  "horario": "Pódcast Virtual IA de tarde (17:00-00:00) · Radio House Classic 24/7 de noche",
-  "episodios": [
-    {
-      "id": "ep11",
-      "titulo": "Ep. 11 · Parodia: La Diva del Petardeo Quiere ir a Miss Belleza y Acaba en Churros con Chocolate",
-      "descripcion": "Una diva ficticia del petardeo llama buscando mánager para un concurso de belleza y Javier la manda entre risas a cantar sus temazos petardos a Churros con Chocolate antes de colgarle.",
-      "archivo": "podcasts/ep11_parodia_petarda_churros.mp3",
-      "voces": "Marta, Javier & Parodia Diva del Petardeo · MG Barcelona Live",
-      "fecha": "2026-11-16"
-    },
-    {
-      "id": "ep10",
-      "titulo": "Ep. 10 · ¡Alerta en Camerinos! Marta con Versace y Dolce & Gabbana y la Drag en el Lavabo",
-      "descripcion": "Se pierde una Drag antes del directo de TV y ofrecen fiesta en New Strass. Marta exige maquillaje Dolce & Gabbana y tacones Versace para suplirla, hasta que la reina aparece en el lavabo con un chulazo.",
-      "archivo": "podcasts/ep10_drag_desaparecida_strass.mp3",
-      "voces": "Marta, Javier, Director TV & La Drag en Directo · MG Barcelona Live",
-      "fecha": "2026-11-16"
-    },
-    {
-      "id": "ep09",
-      "titulo": "Ep. 9 · Doña Carmen Busca a su Hijo: ¡Lleva 2 Días Montando a Caballo en el Cuarto Oscuro!",
-      "descripcion": "Una madre llama preocupada porque su hijo salió con un amigo hace 2 días y no contesta al móvil; Marta y Javier le explican entre risas qué ha pasado con el teléfono.",
-      "archivo": "podcasts/ep09_madre_busca_hijo.mp3",
-      "voces": "Marta, Javier & Doña Carmen en Directo · MG Barcelona Live",
-      "fecha": "2026-11-16"
-    },
-    {
-      "id": "ep08",
-      "titulo": "Ep. 8 · El Comercial Enfurecido: ¡Amenaza con Cortar la Radio ante SpaceX Starship!",
-      "descripcion": "Un vendedor de telefonía llama para vender fibra a toda costa, se enfada al saber que MG Barcelona Live emite por satélite SpaceX Starship e intenta cortar la emisión sin éxito.",
-      "archivo": "podcasts/ep08_telefonia_spacex.mp3",
-      "voces": "Marta, Javier & Comercial Telefónico · MG Barcelona Live",
-      "fecha": "2026-11-16"
-    },
-    {
-      "id": "ep07",
-      "titulo": "Ep. 7 · Anécdota Surrealista: Las Llaves en el Cuarto Oscuro y el Doble de Sálvame",
-      "descripcion": "Lucía llama muerta de risa a Marta y Javier para contar cuando perdió sus llaves en el cuarto oscuro, encendieron el foco en pleno ligoteo y apareció un doble clavado a Jorge Javier Vázquez.",
-      "archivo": "podcasts/ep07_llaves_cuarto_oscuro.mp3",
-      "voces": "Marta, Javier & Lucía en Directo · MG Barcelona Live",
-      "fecha": "2026-11-16"
-    },
-    {
-      "id": "ep06",
-      "titulo": "Ep. 6 · Sátira de Humor: Don Promesas vs. Don Tacaño Llaman por la Subvención",
-      "descripcion": "Sketch ficticio de humor con Marta y Javier: dos políticos ficticios se cruzan al teléfono discutiendo sobre financiar bolas de discoteca de oro para el pódcast frente a no gastar ni un euro.",
-      "archivo": "podcasts/ep06_satira_politica_radio.mp3",
-      "voces": "Marta, Javier & Sátira Ficticia en Directo · MG Barcelona Live",
-      "fecha": "2026-11-16"
-    },
-    {
-      "id": "ep05",
-      "titulo": "Ep. 5 · Parodia Gamer: Llama en Directo Pidiendo Música del LoL",
-      "descripcion": "Sketch de humor con Marta y Javier: un gamer en plena ranked del League of Legends llama desesperado a la radio pidiendo música del LoL y terminan convenciéndolo de salir de fiesta por Barcelona.",
-      "archivo": "podcasts/ep05_parodia_gamer_lol.mp3",
-      "voces": "Marta, Javier & Marcos (Parodia Gamer) · MG Barcelona Live",
-      "fecha": "2026-11-16"
-    },
-    {
-      "id": "ep04",
-      "titulo": "Ep. 4 · Especial Reinas del Drag: Secretos de Carmen Farala, Sharonne y Supremme",
-      "descripcion": "Marta, Javier y Estrella comentan y recrean con humor las anécdotas reales de las grandes reinas españolas: el autobronceador de Mercadona, los Masters del Universo y el salto de los garitos a la TV.",
-      "archivo": "podcasts/ep04_especial_reinas_drag.mp3",
-      "voces": "Marta, Javier & Estrella en Cabina · MG Barcelona Live",
-      "fecha": "2026-11-16"
-    },
-    {
-      "id": "ep03",
-      "titulo": "Ep. 3 · Llamada desde BoysBar: Cómo Sobrevivir a la Fiesta en Barcelona",
-      "descripcion": "Marta y Javier hablan con Carlos desde el Gaixample sobre la ruta completa de copas y discotecas: BoysBar, Punto BCN, Bacon Bear, Night, Arena, Safari, POPair, Razzmatazz, Apolo y Circuit.",
-      "archivo": "podcasts/ep03_ruta_fiesta_barcelona.mp3",
-      "voces": "Marta, Javier & Carlos en Directo · MG Barcelona Live",
-      "fecha": "2026-11-16"
-    },
-    {
-      "id": "ep02",
-      "titulo": "Ep. 2 · Llamada en Directo desde Camerinos: Chismes y Casting Drag Race España",
-      "descripcion": "Marta y Javier atienden la llamada en directo de Lola desde New Strass Barcelona contando cómo vive la noche y que sus compañeras se presentan al casting de Drag Race España.",
-      "archivo": "podcasts/ep02_llamada_drag_casting.mp3",
-      "voces": "Marta, Javier & Lola (Drag en Directo) · MG Barcelona Live",
-      "fecha": "2026-11-16"
-    },
-    {
-      "id": "ep01",
-      "titulo": "Ep. 1 · La Ruta VIP del Gaixample y los Mejores Clubs de Barcelona",
-      "descripcion": "Debate entre Marta y Javier sobre dónde salir en Barcelona: La Sastrería, Priscilla Café, Punto BCN, New Strass, Believe Club, Arena Experience, Safari Disco Club, Razzmatazz y Churros con Chocolate.",
-      "archivo": "podcasts/ep01_ruta_gaixample_bcn.mp3",
-      "voces": "Marta & Javier (Voces Reales) · MG Barcelona Live",
-      "fecha": "2026-11-16"
-    }
-  ]
+﻿{
+    "horario":  "Pódcast Virtual IA de tarde (17:00-00:00) · Radio House Classic 24/7 de noche",
+    "episodios":  [
+                      {
+                          "id":  "ep01",
+                          "titulo":  "Ep. 1 · La Ruta VIP del Gaixample y los Mejores Clubs de Barcelona",
+                          "descripcion":  "Debate entre Marta y Javier sobre dónde salir en Barcelona: La Sastrería, Priscilla Café, Punto BCN, New Strass, Believe Club, Arena Experience, Safari Disco Club, Razzmatazz y Churros con Chocolate.",
+                          "archivo":  "podcasts/ep01_ruta_gaixample_bcn.mp3",
+                          "voces":  "Marta \u0026 Javier (Voces Reales) · MG Barcelona Live",
+                          "fecha":  "2026-11-16"
+                      },
+                      {
+                          "id":  "ep02",
+                          "titulo":  "Ep. 2 · Llamada en Directo desde Camerinos: Chismes y Casting Drag Race España",
+                          "descripcion":  "Marta y Javier atienden la llamada en directo de Lola desde New Strass Barcelona contando cómo vive la noche y que sus compañeras se presentan al casting de Drag Race España.",
+                          "archivo":  "podcasts/ep02_llamada_drag_casting.mp3",
+                          "voces":  "Marta, Javier \u0026 Lola (Drag en Directo) · MG Barcelona Live",
+                          "fecha":  "2026-11-16"
+                      },
+                      {
+                          "id":  "ep03",
+                          "titulo":  "Ep. 3 · Llamada desde BoysBar: Cómo Sobrevivir a la Fiesta en Barcelona",
+                          "descripcion":  "Marta y Javier hablan con Carlos desde el Gaixample sobre la ruta completa de copas y discotecas: BoysBar, Punto BCN, Bacon Bear, Night, Arena, Safari, POPair, Razzmatazz, Apolo y Circuit.",
+                          "archivo":  "podcasts/ep03_ruta_fiesta_barcelona.mp3",
+                          "voces":  "Marta, Javier \u0026 Carlos en Directo · MG Barcelona Live",
+                          "fecha":  "2026-11-16"
+                      },
+                      {
+                          "id":  "ep04",
+                          "titulo":  "Ep. 4 · Especial Reinas del Drag: Secretos de Carmen Farala, Sharonne y Supremme",
+                          "descripcion":  "Marta, Javier y Estrella comentan y recrean con humor las anécdotas reales de las grandes reinas españolas: el autobronceador de Mercadona, los Masters del Universo y el salto de los garitos a la TV.",
+                          "archivo":  "podcasts/ep04_especial_reinas_drag.mp3",
+                          "voces":  "Marta, Javier \u0026 Estrella en Cabina · MG Barcelona Live",
+                          "fecha":  "2026-11-16"
+                      },
+                      {
+                          "id":  "ep05",
+                          "titulo":  "Ep. 5 · Parodia Gamer: Llama en Directo Pidiendo Música del LoL",
+                          "descripcion":  "Sketch de humor con Marta y Javier: un gamer en plena ranked del League of Legends llama desesperado a la radio pidiendo música del LoL y terminan convenciéndolo de salir de fiesta por Barcelona.",
+                          "archivo":  "podcasts/ep05_parodia_gamer_lol.mp3",
+                          "voces":  "Marta, Javier \u0026 Marcos (Parodia Gamer) · MG Barcelona Live",
+                          "fecha":  "2026-11-16"
+                      },
+                      {
+                          "id":  "ep06",
+                          "titulo":  "Ep. 6 · Sátira de Humor: Don Promesas vs. Don Tacaño Llaman por la Subvención",
+                          "descripcion":  "Sketch ficticio de humor con Marta y Javier: dos políticos ficticios se cruzan al teléfono discutiendo sobre financiar bolas de discoteca de oro para el pódcast frente a no gastar ni un euro.",
+                          "archivo":  "podcasts/ep06_satira_politica_radio.mp3",
+                          "voces":  "Marta, Javier \u0026 Sátira Ficticia en Directo · MG Barcelona Live",
+                          "fecha":  "2026-11-16"
+                      },
+                      {
+                          "id":  "ep07",
+                          "titulo":  "Ep. 7 · Anécdota Surrealista: Las Llaves en el Cuarto Oscuro y el Doble de Sálvame",
+                          "descripcion":  "Lucía llama muerta de risa a Marta y Javier para contar cuando perdió sus llaves en el cuarto oscuro, encendieron el foco en pleno ligoteo y apareció un doble clavado a Jorge Javier Vázquez.",
+                          "archivo":  "podcasts/ep07_llaves_cuarto_oscuro.mp3",
+                          "voces":  "Marta, Javier \u0026 Lucía en Directo · MG Barcelona Live",
+                          "fecha":  "2026-11-16"
+                      },
+                      {
+                          "id":  "ep08",
+                          "titulo":  "Ep. 8 · El Comercial Enfurecido: ¡Amenaza con Cortar la Radio ante SpaceX Starship!",
+                          "descripcion":  "Un vendedor de telefonía llama para vender fibra a toda costa, se enfada al saber que MG Barcelona Live emite por satélite SpaceX Starship e intenta cortar la emisión sin éxito.",
+                          "archivo":  "podcasts/ep08_telefonia_spacex.mp3",
+                          "voces":  "Marta, Javier \u0026 Comercial Telefónico · MG Barcelona Live",
+                          "fecha":  "2026-11-16"
+                      },
+                      {
+                          "id":  "ep09",
+                          "titulo":  "Ep. 9 · Doña Carmen Busca a su Hijo: ¡Lleva 2 Días Montando a Caballo en el Cuarto Oscuro!",
+                          "descripcion":  "Una madre llama preocupada porque su hijo salió con un amigo hace 2 días y no contesta al móvil; Marta y Javier le explican entre risas qué ha pasado con el teléfono.",
+                          "archivo":  "podcasts/ep09_madre_busca_hijo.mp3",
+                          "voces":  "Marta, Javier \u0026 Doña Carmen en Directo · MG Barcelona Live",
+                          "fecha":  "2026-11-16"
+                      },
+                      {
+                          "id":  "ep10",
+                          "titulo":  "Ep. 10 · ¡Alerta en Camerinos! Marta con Versace y Dolce \u0026 Gabbana y la Drag en el Lavabo",
+                          "descripcion":  "Se pierde una Drag antes del directo de TV y ofrecen fiesta en New Strass. Marta exige maquillaje Dolce \u0026 Gabbana y tacones Versace para suplirla, hasta que la reina aparece en el lavabo con un chulazo.",
+                          "archivo":  "podcasts/ep10_drag_desaparecida_strass.mp3",
+                          "voces":  "Marta, Javier, Director TV \u0026 La Drag en Directo · MG Barcelona Live",
+                          "fecha":  "2026-11-16"
+                      },
+                      {
+                          "id":  "ep11",
+                          "titulo":  "Ep. 11 · Parodia: La Diva del Petardeo Quiere ir a Miss Belleza y Acaba en Churros con Chocolate",
+                          "descripcion":  "Una diva ficticia del petardeo llama buscando mánager para un concurso de belleza y Javier la manda entre risas a cantar sus temazos petardos a Churros con Chocolate antes de colgarle.",
+                          "archivo":  "podcasts/ep11_parodia_petarda_churros.mp3",
+                          "voces":  "Marta, Javier \u0026 Parodia Diva del Petardeo · MG Barcelona Live",
+                          "fecha":  "2026-11-16"
+                      }
+                  ]
 }
