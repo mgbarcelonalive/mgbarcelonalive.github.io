@@ -3,6 +3,11 @@
   "anuncios": [
     {
       "tipo": "video",
+      "nombre": "Pasarela MG Barcelona Live",
+      "archivo": "publicidad/pasarela_mg_barcelona.mp4"
+    },
+    {
+      "tipo": "video",
       "nombre": "Promo Instagram @mgbarcelonalive",
       "archivo": "publicidad/promo_instagram_mgbarcelonalive.mp4"
     },
