@@ -101,8 +101,6 @@ if ('serviceWorker' in navigator) {
     color: #fff;
     font-family: 'Inter', sans-serif;
     overflow-x: clip;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
   }
 
   #events, #sponsors, #about {
@@ -2887,9 +2885,13 @@ if (bgVid) {
     });
   };
 
-  // Abrir el Instalador Oficial con Licencia EULA y Permisos
+  // Abrir / cerrar con el mismo clic (toggle) el Instalador Oficial
   window.__mgInstallApp = function() {
     var modal = document.getElementById('mg-pwa-modal');
+    if (modal && modal.style.display === 'flex') {
+      if (window.__mgCloseInstallModal) window.__mgCloseInstallModal();
+      return;
+    }
     var txt = document.getElementById('mg-pwa-instructions');
     var btnIntent = document.getElementById('mgBtnAndroidIntent');
     var btnIos = document.getElementById('mgBtnIosProfile');
@@ -3073,11 +3075,17 @@ if (bgVid) {
   var msgIn = document.getElementById('req-msg');
   var st = document.getElementById('req-status');
   function openReqModal() {
+    if (modal && modal.style.display === 'flex') {
+      closeReqModal();
+      return;
+    }
     if (modal) modal.style.display = 'flex';
     if (st) st.textContent = '';
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
   }
+  var pwaModal = document.getElementById('mg-pwa-modal');
+  if (pwaModal) pwaModal.addEventListener('click', function(e){ if (e.target === pwaModal && window.__mgCloseInstallModal) window.__mgCloseInstallModal(); });
   function closeReqModal() {
     if (modal) modal.style.display = 'none';
     document.documentElement.style.overflow = '';
