@@ -4,913 +4,3158 @@
 <meta name="mg-tpl" content="dragrace">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MG Barcelona Live · Drag Race España All Stars · Reinas del Drag</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<title>MG Barcelona Live · Drag Race Diva Edition</title>
+<meta name="description" content="MG Barcelona Live (mgbarcelonalive) — Emisora oficial de radio 24/7 en directo, house classic, eventos nocturnos, vídeos musicales y sesiones de Moisés Gallardo desde Barcelona.">
+<meta name="keywords" content="mgbarcelonalive, mg barcelona live, radio mg barcelona, moises gallardo, saturgays, radio barcelona 24/7, discoteca barcelona, radio house classic">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://mgbarcelonalive.github.io/">
+
+<!-- OpenGraph / Redes Sociales -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mgbarcelonalive.github.io/">
+<meta property="og:title" content="MG Barcelona Live · Radio & Eventos 24/7">
+<meta property="og:description" content="Sintoniza en directo la radio oficial de MG Barcelona Live. House classic, eventos y sesiones non-stop.">
+<meta property="og:image" content="https://mgbarcelonalive.github.io/icon-512.png">
+<meta property="og:locale" content="es_ES">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MG Barcelona Live · Radio 24/7">
+<meta name="twitter:description" content="Radio en directo, eventos y vídeos de MG Barcelona Live.">
+<meta name="twitter:image" content="https://mgbarcelonalive.github.io/icon-512.png">
+
+<!-- Datos estructurados Schema.org para Google (RadioStation & WebSite) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "RadioStation",
+      "@id": "https://mgbarcelonalive.github.io/#radiostation",
+      "name": "MG Barcelona Live",
+      "alternateName": ["mgbarcelonalive", "MG BCN Live"],
+      "url": "https://mgbarcelonalive.github.io/",
+      "logo": "https://mgbarcelonalive.github.io/icon-512.png",
+      "image": "https://mgbarcelonalive.github.io/icon-512.png",
+      "description": "Emisora oficial de radio 24/7 en directo desde Barcelona. House classic, sesiones y eventos.",
+      "genre": ["House", "Electronic", "Classic House", "Clubbing"],
+      "sameAs": [
+        "https://www.instagram.com/mgbarcelonalive/",
+        "https://www.tiktok.com/@mgbarcelonalive7",
+        "https://www.facebook.com/MGBarcelonaLIVE/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mgbarcelonalive.github.io/#website",
+      "url": "https://mgbarcelonalive.github.io/",
+      "name": "MG Barcelona Live",
+      "alternateName": "mgbarcelonalive",
+      "inLanguage": "es"
+    }
+  ]
+}
+</script>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#07050f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MG BCN Live">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<script>
+// Captura temprana del instalador nativo Android/Chrome y registro inmediato del Service Worker
+window.__mgDeferredPrompt = window.__mgDeferredPrompt || null;
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  window.__mgDeferredPrompt = e;
+});
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js?v=40', { scope: './', updateViaCache: 'none' }).then(function(reg) {
+    if (reg && reg.update) reg.update();
+  }).catch(function(){});
+}
+</script>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap');
+
   :root {
-    --bg: #090110;
-    --bg-card: rgba(26, 3, 38, 0.78);
-    --gold: #fbd561;
-    --gold-glow: rgba(251, 213, 97, 0.55);
-    --pink: #ff1493;
-    --pink-glow: rgba(255, 20, 147, 0.6);
-    --purple: #8a2be2;
-    --cyan: #00f0ff;
-    --border: rgba(251, 213, 97, 0.35);
+    --gold:   #f5c842;
+    --neon:   #b44fff;
+    --cyan:   #00f0ff;
+    --pink:   #ff2d78;
+    --bg:     #07050f;
+    --glass:  rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
   }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior: smooth; }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+    -webkit-overflow-scrolling: touch;
+  }
+
   body {
     background: var(--bg);
     color: #fff;
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+    overflow-x: clip;
+  }
+
+  #events, #sponsors, #about {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
+  }
+  .player-card, .event-card, .sponsor-card, .stat-card {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+  }
+
+  /* ─── CANVAS PARTICLES ─── */
+  #particles {
+    position: fixed;
+    inset: 0;
+    z-index: 50 !important;
+    pointer-events: none !important;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+
+  /* ─── HERO ─── */
+  #hero {
     position: relative;
-    min-height: 100vh;
-  }
-
-  /* Animated Night Runway Atmosphere */
-  #runwayCanvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  /* Runway Top Gold/Magenta Crown Ribbon */
-  .drag-top-bar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 6px;
-    background: linear-gradient(90deg, #ff1493, #ffd700, #9d4edd, #ff1493);
-    background-size: 300% 100%;
-    animation: barShine 4s linear infinite;
-    z-index: 1000;
-  }
-  @keyframes barShine {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 300% 50%; }
-  }
-
-  /* Navigation Bar */
-  nav {
-    position: fixed;
-    top: 6px; left: 0; right: 0;
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.85rem 2.5rem;
-    background: rgba(9, 1, 16, 0.88);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(251, 213, 97, 0.25);
-  }
-  .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    text-decoration: none;
-  }
-  .nav-crown {
-    font-size: 1.6rem;
-    filter: drop-shadow(0 0 10px #ffd700);
-    animation: crownFloat 3s ease-in-out infinite;
-  }
-  @keyframes crownFloat {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-3px) rotate(4deg); }
-  }
-  .nav-title {
-    font-family: 'Cinzel', serif;
-    font-size: 1.25rem;
-    font-weight: 900;
-    letter-spacing: 0.15em;
-    background: linear-gradient(135deg, #ffd700 0%, #ff80bf 50%, #ffffff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .nav-links {
-    display: flex;
-    gap: 1.8rem;
-    list-style: none;
-  }
-  .nav-links a {
-    color: rgba(255,255,255,0.78);
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: color 0.3s, text-shadow 0.3s;
-  }
-  .nav-links a:hover {
-    color: var(--gold);
-    text-shadow: 0 0 12px var(--gold-glow);
-  }
-  .nav-allstars-btn {
-    padding: 0.55rem 1.4rem;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #ff1493, #8a2be2);
-    border: 1px solid rgba(255,215,0,0.6);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-decoration: none;
-    box-shadow: 0 0 20px rgba(255,20,147,0.45);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .nav-allstars-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(251,213,97,0.7);
-  }
-
-  /* Main Sections */
-  main {
-    position: relative;
-    z-index: 10;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 6.5rem 1.5rem 4rem;
-  }
-
-  /* Hero Section */
-  .drag-hero {
-    min-height: 85vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 3rem 1rem;
-    position: relative;
-  }
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.45rem 1.4rem;
-    border-radius: 999px;
-    background: rgba(255, 20, 147, 0.18);
-    border: 1px solid rgba(251, 213, 97, 0.5);
-    color: var(--gold);
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    margin-bottom: 1.8rem;
-    box-shadow: 0 0 25px rgba(255,20,147,0.3);
-  }
-  .hero-logo-wrap {
-    max-width: 480px;
-    width: 90%;
-    margin: 0 auto 1.5rem;
-    filter: drop-shadow(0 0 35px rgba(255, 20, 147, 0.6)) drop-shadow(0 0 15px rgba(251, 213, 97, 0.5));
-    animation: logoPulse 4s ease-in-out infinite;
-  }
-  @keyframes logoPulse {
-    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(255, 20, 147, 0.6)); }
-    50% { transform: scale(1.02); filter: drop-shadow(0 0 45px rgba(251, 213, 97, 0.8)); }
-  }
-  .hero-logo-wrap img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .hero-slogan-box {
-    max-width: 820px;
-    margin: 0 auto 2.2rem;
-  }
-  .hero-slogan-main {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.6rem, 4vw, 2.8rem);
-    font-weight: 900;
-    line-height: 1.25;
-    background: linear-gradient(135deg, #ffffff 0%, #ffd700 35%, #ff4da6 70%, #ffd700 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 25px rgba(255,215,0,0.3);
-    margin-bottom: 0.8rem;
-  }
-  .hero-slogan-sub {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: clamp(1.1rem, 2.4vw, 1.6rem);
-    color: #f7e6ff;
-    text-shadow: 0 0 15px rgba(255,20,147,0.7);
-    line-height: 1.4;
-  }
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.2rem;
-    justify-content: center;
-  }
-  .btn-runway {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 1rem 2.4rem;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #ffd700 0%, #ff1493 50%, #9d4edd 100%);
-    color: #000;
-    font-weight: 900;
-    font-size: 0.95rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    box-shadow: 0 0 35px rgba(255, 20, 147, 0.6);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .btn-runway:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 0 50px rgba(251, 213, 97, 0.8);
+    padding: 2rem;
+    overflow: hidden;
+    z-index: 1;
   }
 
-  /* Player Card */
-  .player-section {
-    padding: 3rem 0;
+  /* Disco ball */
+  #disco-ball {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff 0%, #aaa 30%, #555 70%, #111 100%);
+    box-shadow:
+      0 0 60px rgba(255,255,255,0.3),
+      inset -10px -10px 30px rgba(0,0,0,0.6);
+    animation: swing 6s ease-in-out infinite;
+    overflow: hidden;
   }
-  .player-card {
-    background: var(--bg-card);
-    border: 2px solid var(--border);
-    border-radius: 28px;
-    padding: 2.4rem;
-    max-width: 820px;
-    margin: 0 auto;
-    box-shadow: 0 0 50px rgba(255, 20, 147, 0.25), inset 0 0 30px rgba(251, 213, 97, 0.1);
-    backdrop-filter: blur(25px);
+  #disco-ball::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 8px, rgba(255,255,255,0.15) 8px, rgba(255,255,255,0.15) 9px
+    ), repeating-linear-gradient(
+      90deg, transparent, transparent 8px, rgba(255,255,255,0.15) 8px, rgba(255,255,255,0.15) 9px
+    );
+    border-radius: 50%;
+    animation: rotate 3s linear infinite;
   }
-  .player-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.8rem;
-    flex-wrap: wrap;
-    gap: 1rem;
+  @keyframes swing {
+    0%,100% { transform: translateX(-50%) rotate(-8deg); }
+    50%      { transform: translateX(-50%) rotate(8deg); }
   }
-  .player-live-badge {
+  @keyframes rotate { to { transform: rotate(360deg); } }
+
+  /* Rope */
+  #rope {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 70px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+    transform: translateX(-50%);
+    transform-origin: top center;
+    animation: swing 6s ease-in-out infinite;
+  }
+
+  /* Lasers */
+  .laser {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    width: 2px;
+    height: 55vh;
+    transform-origin: top center;
+    opacity: 0.6;
+    border-radius: 2px;
+    animation: laserPulse 2s ease-in-out infinite alternate;
+  }
+  .laser:nth-child(1) { background: linear-gradient(to bottom, var(--neon), transparent); transform: rotate(-35deg); animation-delay: 0s; }
+  .laser:nth-child(2) { background: linear-gradient(to bottom, var(--cyan), transparent); transform: rotate(-20deg); animation-delay: 0.3s; }
+  .laser:nth-child(3) { background: linear-gradient(to bottom, var(--pink), transparent); transform: rotate(20deg); animation-delay: 0.6s; }
+  .laser:nth-child(4) { background: linear-gradient(to bottom, var(--gold), transparent); transform: rotate(35deg); animation-delay: 0.9s; }
+  @keyframes laserPulse { from { opacity: 0.3; } to { opacity: 0.8; } }
+
+  /* Skyline SVG */
+  #skyline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    pointer-events: none;
+  }
+
+  /* Ground glow */
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 180px;
+    background: linear-gradient(to top, rgba(180,79,255,0.18), transparent);
+    pointer-events: none;
+  }
+
+  /* Title */
+  .hero-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 1;
+    animation: fadeUp 0.35s ease-out forwards;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 14vw, 11rem);
+    line-height: 0.9;
+    letter-spacing: 0.03em;
+    background: linear-gradient(135deg, #fff 0%, var(--gold) 40%, var(--neon) 80%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(180,79,255,0.5));
+    opacity: 1;
+    animation: fadeUp 0.4s ease-out forwards, titleGlow 4s 0.5s ease-in-out infinite alternate;
+  }
+  @keyframes titleGlow {
+    from { filter: drop-shadow(0 0 30px rgba(180,79,255,0.4)); }
+    to   { filter: drop-shadow(0 0 70px rgba(0,240,255,0.6)); }
+  }
+
+  .hero-sub {
+    margin-top: 1.2rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+    opacity: 1;
+    animation: fadeUp 0.45s ease-out forwards;
+  }
+
+  /* Live badge */
+  .live-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.35rem 1rem;
-    border-radius: 999px;
-    background: rgba(255, 20, 147, 0.25);
+    margin-top: 2rem;
+    padding: 0.5rem 1.2rem;
+    background: rgba(255,45,120,0.15);
     border: 1px solid var(--pink);
-    color: #ff66b2;
-    font-size: 0.75rem;
-    font-weight: 800;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
+    color: var(--pink);
+    opacity: 1;
+    animation: fadeUp 0.5s ease-out forwards;
   }
   .live-dot {
     width: 8px; height: 8px;
     border-radius: 50%;
-    background: #ff1493;
-    box-shadow: 0 0 10px #ff1493;
-    animation: livePulse 1.4s infinite;
+    background: var(--pink);
+    animation: blink 1s ease-in-out infinite;
   }
-  @keyframes livePulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
-  }
-  .player-body {
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  /* CTA buttons */
+  .hero-ctas {
     display: flex;
-    align-items: center;
-    gap: 1.8rem;
+    gap: 1rem;
+    margin-top: 2.5rem;
     flex-wrap: wrap;
-  }
-  .play-circle-btn {
-    width: 82px; height: 82px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    background: linear-gradient(135deg, #ffd700, #ff1493);
-    color: #0a0112;
-    font-size: 1.8rem;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    box-shadow: 0 0 30px rgba(255, 20, 147, 0.6);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .play-circle-btn:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 45px rgba(251, 213, 97, 0.8);
-  }
-  .track-meta {
-    flex: 1;
-    min-width: 220px;
-  }
-  .track-title {
-    font-family: 'Cinzel', serif;
-    font-size: 1.35rem;
-    font-weight: 900;
-    color: var(--gold);
-    margin-bottom: 0.35rem;
-  }
-  .track-sub {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.7);
-    letter-spacing: 0.08em;
+    opacity: 1;
+    animation: fadeUp 0.5s ease-out forwards;
   }
 
-  /* Queens Tribute Grid */
-  .queens-section {
-    padding: 5rem 0;
+  .btn {
+    padding: 0.85rem 2rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .section-badge {
-    text-align: center;
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 0.25em;
+  .btn:hover { transform: translateY(-3px); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--neon), var(--pink));
+    color: #fff;
+    box-shadow: 0 0 30px rgba(180,79,255,0.4);
+  }
+  .btn-primary:hover { box-shadow: 0 0 50px rgba(180,79,255,0.7); }
+  .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Scroll arrow */
+  .scroll-arrow {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    animation: fadeUp 1s 2s forwards;
+  }
+  .scroll-arrow span {
+    display: block;
+    width: 20px; height: 20px;
+    border-right: 2px solid rgba(255,255,255,0.4);
+    border-bottom: 2px solid rgba(255,255,255,0.4);
+    transform: rotate(45deg);
+    animation: arrowBounce 1.5s ease-in-out infinite;
+  }
+  .scroll-arrow span:nth-child(2) { animation-delay: 0.15s; opacity: 0.6; }
+  .scroll-arrow span:nth-child(3) { animation-delay: 0.3s; opacity: 0.3; }
+  @keyframes arrowBounce { 0%,100%{transform:rotate(45deg) translate(0,0)} 50%{transform:rotate(45deg) translate(5px,5px)} }
+
+  /* ─── RADIO PLAYER ─── */
+  #player {
+    position: relative;
+    z-index: 2;
+    padding: 5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-  }
-  .section-heading {
-    text-align: center;
-    font-family: 'Cinzel', serif;
-    font-size: clamp(2rem, 5vw, 3.4rem);
-    font-weight: 900;
-    background: linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #ff1493 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--neon);
     margin-bottom: 1rem;
   }
-  .section-desc {
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 5rem);
     text-align: center;
-    max-width: 700px;
-    margin: 0 auto 3rem;
-    color: rgba(255,255,255,0.75);
-    font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1;
+    margin-bottom: 3rem;
+    background: linear-gradient(90deg, #fff, var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  .queens-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.8rem;
+
+  @keyframes rgbCardGlow {
+    0%   { border-color: #00f0ff; box-shadow: 0 0 28px rgba(0,240,255,0.45), 0 0 70px rgba(180,79,255,0.22), 0 24px 55px rgba(0,0,0,0.65); }
+    25%  { border-color: #b44fff; box-shadow: 0 0 32px rgba(180,79,255,0.52), 0 0 75px rgba(255,45,120,0.25), 0 24px 55px rgba(0,0,0,0.65); }
+    50%  { border-color: #ff2d78; box-shadow: 0 0 32px rgba(255,45,120,0.52), 0 0 75px rgba(245,200,66,0.25), 0 24px 55px rgba(0,0,0,0.65); }
+    75%  { border-color: #00e691; box-shadow: 0 0 30px rgba(0,230,145,0.48), 0 0 75px rgba(0,240,255,0.25), 0 24px 55px rgba(0,0,0,0.65); }
+    100% { border-color: #00f0ff; box-shadow: 0 0 28px rgba(0,240,255,0.45), 0 0 70px rgba(180,79,255,0.22), 0 24px 55px rgba(0,0,0,0.65); }
   }
-  .queen-card {
-    background: rgba(26, 3, 38, 0.65);
-    border: 1px solid rgba(251, 213, 97, 0.3);
-    border-radius: 20px;
-    padding: 1.8rem 1.4rem;
-    text-align: center;
+
+  .player-card {
+    width: 100%;
+    max-width: 640px;
+    background: rgba(12, 9, 24, 0.88);
+    border: 2px solid rgba(0, 240, 255, 0.45);
+    border-radius: 24px;
+    padding: 2.5rem;
+    animation: rgbCardGlow 7s linear infinite;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-    backdrop-filter: blur(15px);
+    box-sizing: border-box;
   }
-  .queen-card:hover {
-    transform: translateY(-8px);
-    border-color: #ffd700;
-    box-shadow: 0 15px 35px rgba(255,20,147,0.35), 0 0 25px rgba(251,213,97,0.4);
+  @media (max-width: 640px) {
+    .player-card {
+      padding: 1.6rem 1.1rem;
+      border-radius: 20px;
+    }
   }
-  .queen-card::before {
+  .player-card.playing-rgb {
+    animation-duration: 3.2s;
+  }
+  .player-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #ff1493, #ffd700, #9d4edd);
-  }
-  .queen-badge {
-    display: inline-block;
-    padding: 0.25rem 0.8rem;
-    border-radius: 999px;
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    background: rgba(251, 213, 97, 0.15);
-    color: var(--gold);
-    border: 1px solid rgba(251, 213, 97, 0.35);
-    margin-bottom: 1rem;
-  }
-  .queen-icon {
-    font-size: 2.8rem;
-    margin-bottom: 0.6rem;
-    filter: drop-shadow(0 0 12px rgba(255, 20, 147, 0.6));
-  }
-  .queen-name {
-    font-family: 'Cinzel', serif;
-    font-size: 1.3rem;
-    font-weight: 900;
-    color: #fff;
-    margin-bottom: 0.4rem;
-  }
-  .queen-quote {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 0.9rem;
-    color: #ffb3d9;
-    margin-bottom: 0.8rem;
-  }
-  .queen-desc {
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.5;
+    height: 2px;
+    background: linear-gradient(90deg, #00e691, #00f0ff, #b44fff, #ff2d78, #f5c842, #00e691);
   }
 
-  /* Sponsors Grid in Template */
-  .sponsors-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.6rem;
-    margin-top: 2rem;
+  /* Ecualizador LED estilo BUTT / Controlador DJ */
+  #waveform {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 88px;
+    margin-bottom: 1.8rem;
+    padding: 8px 12px;
+    background: rgba(5, 4, 12, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 14px;
+    box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.75);
   }
-  .sponsor-card {
-    background: rgba(18, 2, 28, 0.7);
-    border: 1px solid rgba(255, 20, 147, 0.4);
-    border-radius: 20px;
-    padding: 1.8rem 1.4rem;
+  #dj-eq-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .now-playing {
     text-align: center;
+    margin-bottom: 1.8rem;
+  }
+  .np-label { font-size: 0.65rem; letter-spacing: 0.3em; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 0.4rem; }
+  .np-title { font-size: 1.2rem; font-weight: 700; color: #fff; }
+  .np-sub   { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+
+  .player-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.35rem;
+    width: 100%;
+  }
+
+  #play-btn {
+    width: 82px;
+    height: 82px;
+    min-width: 82px;
+    min-height: 82px;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, var(--neon), var(--pink));
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.9rem;
+    color: #fff;
+    box-shadow: 0 0 35px rgba(180,79,255,0.55);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #play-btn:hover { transform: scale(1.08); box-shadow: 0 0 55px rgba(180,79,255,0.85); }
+  #play-btn:active { transform: scale(0.95); }
+  #play-btn .ripple {
+    position: absolute; inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(180,79,255,0.4);
+    animation: ripple 2s ease-out infinite;
+    pointer-events: none;
+  }
+  #play-btn .ripple:nth-child(2) { animation-delay: 0.6s; }
+  @keyframes ripple { 0%{transform:scale(1);opacity:0.6} 100%{transform:scale(1.6);opacity:0} }
+
+  .vol-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    color: rgba(255,255,255,0.65);
+    font-size: 1rem;
+    width: 100%;
+    max-width: 260px;
+  }
+  #volume {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.18);
+    outline: none;
+    cursor: pointer;
+  }
+  #volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--neon);
+    box-shadow: 0 0 10px var(--neon);
+    cursor: pointer;
+  }
+
+  .stream-url {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    font-size: 0.75rem;
+    color: var(--cyan);
+    word-break: break-all;
+    text-align: center;
+    border: 1px solid rgba(0,240,255,0.15);
+  }
+
+  /* ─── EVENTS ─── */
+  #events {
+    position: relative;
+    z-index: 2;
+    padding: 5rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .event-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+  .event-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(180,79,255,0.2);
+  }
+  .event-thumb {
+    height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(15px);
-    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  }
+  .event-thumb::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(7,5,15,0.9) 100%);
+  }
+  .e1 .event-thumb { background: linear-gradient(135deg, #1a0533, #b44fff44); }
+  .e2 .event-thumb { background: linear-gradient(135deg, #05151f, #00f0ff44); }
+
+  /* ─── SPONSORS ─── */
+  #sponsors {
+    position: relative;
+    z-index: 2;
+    padding: 5rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.4rem;
+    margin-top: 1.5rem;
+  }
+  .sponsor-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.8rem 1.4rem;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
   }
   .sponsor-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(251, 213, 97, 0.7);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 25px rgba(255,20,147,0.4);
+    border-color: rgba(245,200,66,0.45);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.45), 0 0 24px rgba(180,79,255,0.2);
   }
-  .sponsor-tier {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    padding: 0.25rem 0.7rem;
-    border-radius: 999px;
-    background: rgba(251, 213, 97, 0.12);
-    color: var(--gold);
-    border: 1px solid rgba(251, 213, 97, 0.3);
-    margin-bottom: 0.9rem;
+  .sponsor-logo-wrap {
+    width: 96px;
+    height: 96px;
+    margin: 0.85rem auto 0.65rem;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, #ff2d78, #b44fff);
+    box-shadow: 0 0 20px rgba(255,45,120,0.55);
   }
-  .sponsor-name {
-    font-family: 'Cinzel', serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.5rem;
-  }
-  .sponsor-desc {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.68);
-    line-height: 1.55;
+  .sponsor-logo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
   }
   .sponsor-desc a {
     color: var(--gold);
     font-weight: 700;
     text-decoration: none;
   }
+  .sponsor-desc a:hover { text-decoration: underline; }
+  .sponsor-tier {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(245,200,66,0.12);
+    color: var(--gold);
+    border: 1px solid rgba(245,200,66,0.3);
+    margin-bottom: 0.9rem;
+  }
+  .sponsor-icon {
+    font-size: 2.6rem;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  .sponsor-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    color: #fff;
+    margin-bottom: 0.35rem;
+  }
+  .sponsor-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+  }
+  .sponsor-cta {
+    margin-top: 2.2rem;
+    text-align: center;
+  }
+  .e3 .event-thumb { background: linear-gradient(135deg, #200a0a, #ff2d7844); }
 
+  .event-body { padding: 1.2rem; }
+  .event-date { font-size: 0.65rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.4rem; }
+  .event-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; line-height: 1.1; margin-bottom: 0.5rem; }
+  .event-venue { font-size: 0.8rem; color: rgba(255,255,255,0.45); display: flex; align-items: center; gap: 0.3rem; }
+  .event-tags { margin-top: 0.8rem; display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .tag {
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .tag-neon  { background: rgba(180,79,255,0.15); color: var(--neon); border: 1px solid rgba(180,79,255,0.3); }
+  .tag-cyan  { background: rgba(0,240,255,0.1);   color: var(--cyan); border: 1px solid rgba(0,240,255,0.25); }
+  .tag-pink  { background: rgba(255,45,120,0.12); color: var(--pink); border: 1px solid rgba(255,45,120,0.3); }
+  .tag-gold  { background: rgba(245,200,66,0.1);  color: var(--gold); border: 1px solid rgba(245,200,66,0.3); }
+
+  /* ─── ABOUT ─── */
+  #about {
+    position: relative;
+    z-index: 2;
+    padding: 5rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  @media(max-width:600px) { .about-grid { grid-template-columns: 1fr; } }
+
+  .stat-card {
+    padding: 2rem 1rem;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    transition: transform 0.3s;
+  }
+  .stat-card:hover { transform: translateY(-5px); }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--gold), var(--neon));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-top: 0.5rem; }
+
+  /* ─── FOOTER ─── */
   footer {
     position: relative;
-    z-index: 10;
-    text-align: center;
+    z-index: 2;
     padding: 3rem 1.5rem;
-    border-top: 1px solid rgba(251, 213, 97, 0.2);
-    background: rgba(9, 1, 16, 0.92);
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.55);
+    text-align: center;
+    border-top: 1px solid var(--border);
   }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    background: linear-gradient(90deg, var(--gold), var(--neon));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.8rem;
+  }
+  footer p { font-size: 0.75rem; color: rgba(255,255,255,0.3); line-height: 1.8; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(7,5,15,0.92);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transform: translate3d(0,0,0);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  @media(max-width:500px) { .nav-links { display: none; } }
+
+  /* Ticket button */
+  .nav-ticket {
+    padding: 0.5rem 1.2rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--neon), var(--pink));
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-ticket:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(180,79,255,0.5); }
+  /* ─── FONDO DE VÍDEO SOLO DETRÁS DE MG BARCELONA LIVE (PORTADA #hero) ─── */
+  .bg-video-wrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0 !important;
+    overflow: hidden;
+    pointer-events: none;
+    background: #07050f;
+  }
+  .bg-video-wrap video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    opacity: 0.56;
+    filter: brightness(0.90) contrast(1.08) saturate(1.18);
+    transition: opacity 0.8s ease;
+  }
+  @media (max-width: 900px) {
+    .disco-beam { opacity: 0.22 !important; }
+    .hero-title { animation: fadeUp 0.35s ease-out forwards !important; filter: none !important; }
+    .event-card, .stat-card, .sponsor-card, .mg-video-card { animation: rgbCardGlow 8s linear infinite !important; }
+  }
+  .bg-video-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 45%, rgba(7,5,15,0.12) 0%, rgba(7,5,15,0.45) 75%, rgba(7,5,15,0.75) 100%),
+      linear-gradient(180deg, rgba(7,5,15,0.38) 0%, rgba(7,5,15,0.12) 45%, rgba(7,5,15,0.96) 100%);
+  }
+
+  #hero {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    background: #07050f;
+  }
+  #hero > *:not(.bg-video-wrap) {
+    z-index: 2;
+  }
+  .hero-eyebrow, .hero-title, .hero-sub, .live-badge, .hero-ctas {
+    position: relative;
+  }
+  #player, #podcast, #videos, #events, #sponsors, #about, #contact {
+    position: relative;
+    z-index: 1;
+    background: radial-gradient(ellipse at 50% 18%, rgba(58, 12, 163, 0.16) 0%, #07050f 70%);
+  }
+
+  /* ─── MARCOS RGB LUCES DE DISCOTECA ─── */
+  .event-card, .stat-card, .sponsor-card, .mg-video-card {
+    border: 2px solid rgba(0, 240, 255, 0.55);
+    animation: rgbCardGlow 5.5s linear infinite;
+  }
+  .event-card:nth-child(2n), .stat-card:nth-child(2n), .sponsor-card:nth-child(2n), .mg-video-card:nth-child(2n) { animation-delay: -1.4s; }
+  .event-card:nth-child(3n), .stat-card:nth-child(3n), .sponsor-card:nth-child(3n) { animation-delay: -2.8s; }
+
+  /* ─── FOCOS VIRTUALES TIPO LÁSER EN LAS ESQUINAS ─── */
+  .disco-spot {
+    position: fixed;
+    top: -10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    z-index: 90;
+    pointer-events: none;
+    transform: translate3d(0,0,0);
+  }
+  .disco-spot.left  { left: -6px; }
+  .disco-spot.right { right: -6px; }
+
+  .disco-spot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffffff 0%, #00f0ff 45%, transparent 75%);
+    animation: laserColorBulb 5s linear infinite;
+  }
+  .disco-spot.right::before { animation-delay: -2.5s; }
+
+  .disco-beam {
+    position: absolute;
+    top: 14px;
+    width: 110vmax;
+    height: 22vmax;
+    pointer-events: none;
+    transform-origin: 0% 50%;
+    will-change: transform;
+    opacity: 0.28;
+    mix-blend-mode: screen;
+    clip-path: polygon(0% 48%, 100% 0%, 100% 100%, 0% 52%);
+    background: linear-gradient(90deg, rgba(0,240,255,0.95) 0%, rgba(180,79,255,0.42) 45%, rgba(255,45,120,0.0) 100%);
+    animation: sweepLeft 7s ease-in-out infinite, laserHue 6s linear infinite;
+  }
+  .disco-spot.left .disco-beam { left: 16px; }
+  .disco-spot.right .disco-beam {
+    right: 16px;
+    transform-origin: 100% 50%;
+    clip-path: polygon(100% 48%, 0% 0%, 0% 100%, 100% 52%);
+    background: linear-gradient(270deg, rgba(255,45,120,0.95) 0%, rgba(245,200,66,0.42) 45%, rgba(0,240,255,0.0) 100%);
+    animation: sweepRight 7.5s ease-in-out infinite, laserHue 6s linear infinite reverse;
+  }
+
+  @keyframes sweepLeft {
+    0%, 100% { transform: rotate(14deg) translate3d(0,0,0); }
+    50%      { transform: rotate(64deg) translate3d(0,0,0); }
+  }
+  @keyframes sweepRight {
+    0%, 100% { transform: rotate(-14deg) translate3d(0,0,0); }
+    50%      { transform: rotate(-64deg) translate3d(0,0,0); }
+  }
+  @keyframes laserHue {
+    0%   { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+  @keyframes laserColorBulb {
+    0%, 100% { box-shadow: 0 0 24px 8px rgba(0,240,255,0.85); }
+    33%      { box-shadow: 0 0 24px 8px rgba(255,45,120,0.85); }
+    66%      { box-shadow: 0 0 24px 8px rgba(0,230,145,0.85); }
+  }
+  /* ─── PANTALLAS DE VÍDEO & PUBLICIDAD (ADAPTADO A MÓVILES Y MONITORES PC) ─── */
+  .mg-video-section {
+    position: relative;
+    z-index: 2;
+    padding: 5rem 2rem;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .mg-video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    width: 100%;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+
+  .mg-video-card {
+    background: var(--glass);
+    border: 2px solid rgba(0, 240, 255, 0.45);
+    border-radius: 26px;
+    padding: 2.2rem;
+    box-shadow: 0 0 35px rgba(0, 240, 255, 0.12), 0 20px 50px rgba(0,0,0,0.65);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    overflow: hidden;
+    animation: rgbCardGlow 7s linear infinite;
+    transform: translate3d(0, 0, 0);
+  }
+  .mg-video-card.ad-card {
+    border-color: rgba(255, 45, 120, 0.45);
+    box-shadow: 0 0 35px rgba(255, 45, 120, 0.12), 0 20px 50px rgba(0,0,0,0.65);
+    animation-delay: -2s;
+  }
+
+  .mg-video-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .mg-video-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    letter-spacing: 0.05em;
+    color: #fff;
+    margin: 0;
+    line-height: 1;
+  }
+  .mg-video-title.cyan { color: var(--cyan); }
+  .mg-video-title.pink { color: var(--pink); }
+
+  .mg-video-screen {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.85), 0 8px 30px rgba(0, 0, 0, 0.5);
+  }
+  .mg-video-screen video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000;
+  }
+
+  .mg-video-controls {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1.3rem;
+  }
+  .mg-video-btn {
+    padding: 0.7rem 1.6rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: transparent;
+    color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mg-video-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .mg-video-btn.primary {
+    background: linear-gradient(135deg, var(--neon), var(--pink));
+    border: none;
+    box-shadow: 0 0 24px rgba(180, 79, 255, 0.45);
+  }
+  .mg-video-btn.primary:hover {
+    box-shadow: 0 0 45px rgba(180, 79, 255, 0.75);
+    color: #fff;
+  }
+
+  .mg-video-status {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1rem;
+    line-height: 1.5;
+  }
+
+  /* ─── OPTIMIZACIÓN MÓVIL (PANTALLAS SMARTPHONES <= 768px) ─── */
+  @media (max-width: 768px) {
+    #hero {
+      padding: 1rem 0.9rem 2.8rem;
+      min-height: auto;
+      padding-top: 4.6rem;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 12vw, 4.5rem);
+      line-height: 0.95;
+      margin-top: 0.2rem;
+    }
+    .hero-sub {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      margin-top: 0.6rem;
+    }
+    .live-badge {
+      margin-top: 1rem;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.7rem;
+    }
+    .hero-ctas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem;
+      width: 100%;
+      max-width: 360px;
+      margin-top: 1.4rem;
+    }
+    .hero-ctas .btn {
+      padding: 0.65rem 0.5rem;
+      font-size: 0.78rem;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .scroll-arrow {
+      position: static;
+      margin-top: 1.6rem;
+      transform: none;
+    }
+
+    #player, #videos, #events, #sponsors, #about {
+      padding: 2.8rem 0.9rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 8.5vw, 3rem);
+      margin-bottom: 1.6rem;
+    }
+
+    /* Fondo de vídeo adaptado en móvil: detrás de MG BARCELONA LIVE en la portada, nítido y sin cortes */
+    .bg-video-wrap {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      overflow: hidden !important;
+      mask-image: none !important;
+      -webkit-mask-image: none !important;
+      z-index: 0 !important;
+    }
+    .bg-video-wrap video {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center center !important;
+      opacity: 0.52 !important;
+      filter: brightness(0.88) contrast(1.08) saturate(1.16) !important;
+      transform: translate3d(0,0,0) !important;
+    }
+    .disco-beam {
+      width: 95vw !important;
+      height: 18vh !important;
+      opacity: 0.20 !important;
+    }
+
+    /* Tarjetas de vídeo en móvil: adaptadas a pantalla móvil completa sin recortar */
+    .mg-video-section {
+      padding: 2.8rem 0.85rem;
+    }
+    .mg-video-grid {
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+    }
+    .mg-video-card {
+      padding: 1.1rem 0.85rem;
+      border-radius: 18px;
+    }
+    .mg-video-header {
+      margin-bottom: 0.75rem;
+    }
+    .mg-video-title {
+      font-size: 1.45rem;
+    }
+    .mg-video-screen {
+      border-radius: 12px;
+      aspect-ratio: 16 / 9;
+      min-height: unset !important;
+    }
+    /* En móvil, contain para que no corte caras, siluetas ni textos */
+    .mg-video-screen video {
+      object-fit: contain;
+      background: #000;
+    }
+    .mg-video-controls {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4rem;
+      width: 100%;
+      margin-top: 0.85rem;
+    }
+    .mg-video-btn {
+      padding: 0.55rem 0.3rem;
+      font-size: 0.72rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .mg-video-status {
+      font-size: 0.74rem;
+      margin-top: 0.65rem;
+      line-height: 1.4;
+    }
+
+    /* Reproductor en móvil: botón circular perfecto, sin estiramientos */
+    .player-card {
+      padding: 1.25rem 0.9rem !important;
+      border-radius: 18px !important;
+      max-width: 95% !important;
+      margin: 0 auto !important;
+    }
+    #waveform {
+      height: 50px !important;
+      margin-bottom: 0.9rem !important;
+    }
+    .now-playing {
+      margin-bottom: 1rem !important;
+    }
+    .player-controls {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 1rem !important;
+      width: 100% !important;
+    }
+    #play-btn {
+      width: 76px !important;
+      height: 76px !important;
+      min-width: 76px !important;
+      min-height: 76px !important;
+      aspect-ratio: 1 / 1 !important;
+      border-radius: 50% !important;
+      flex-shrink: 0 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 1.75rem !important;
+      box-shadow: 0 0 30px rgba(180,79,255,0.65) !important;
+    }
+    .vol-control {
+      width: 100% !important;
+      max-width: 250px !important;
+      justify-content: center !important;
+      gap: 0.6rem !important;
+    }
+    .stream-url {
+      font-size: 0.72rem !important;
+      padding: 0.5rem 0.75rem !important;
+      margin-top: 0.9rem !important;
+      word-break: break-all !important;
+    }
+  }
+
+  /* ─── OPTIMIZACIÓN MONITORES PC Y PANTALLAS ANCHAS (>= 1200px) ─── */
+  @media (min-width: 1200px) {
+    .mg-video-section {
+      max-width: 1480px;
+      padding: 5rem 2rem;
+    }
+    .mg-video-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.8rem;
+    }
+    .mg-video-card {
+      padding: 2.4rem;
+      border-radius: 28px;
+    }
+    .mg-video-title {
+      font-size: 2.2rem;
+    }
+    .mg-video-screen {
+      border-radius: 20px;
+    }
+    .mg-video-screen video {
+      object-fit: cover;
+    }
+    .player-card {
+      max-width: 740px;
+      padding: 2.8rem;
+      border-radius: 28px;
+    }
+  }
+</style>
+<style id="mg-theme-skin">
+:root { --bg: #12021a; --pink: #ff1493; --neon: #ff69b4; --cyan: #00f5d4; --gold: #fbd561; --glass: rgba(38, 4, 52, 0.75); }
+
+body::before {
+  content: ''; position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 9999;
+  background: linear-gradient(90deg, #ff1493, #fbd561, #ff69b4, #fbd561, #ff1493);
+}
+
 </style>
 </head>
 <body>
-<div class="drag-top-bar"></div>
-<canvas id="runwayCanvas"></canvas>
+
+<!-- Focos virtuales tipo láser en las esquinas -->
+<div class="disco-spot left"><div class="disco-beam"></div></div>
+<div class="disco-spot right"><div class="disco-beam"></div></div>
 
 <!-- Navigation -->
 <nav>
-  <a href="#" class="nav-brand">
-    <span class="nav-crown">👑</span>
-    <span class="nav-title">MG BARCELONA LIVE</span>
-  </a>
+  <a href="#" class="nav-logo">MG BCN Live</a>
   <ul class="nav-links">
-    <li><a href="#hero">Inicio</a></li>
-    <li><a href="#radio">Radio 24H</a></li>
-    <li><a href="#reinas">Reinas</a></li>
+    <li><a href="#player">Radio</a></li>
+    <li><a href="#podcast">Pódcast</a></li>
+    <li><a href="#" onclick="event.preventDefault(); window.__mgOpenReqModal && window.__mgOpenReqModal();">📞 Buzón</a></li>
+    <li><a href="#videos">Vídeos</a></li>
+    <li><a href="#events">Eventos</a></li>
     <li><a href="#sponsors">Sponsors</a></li>
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://www.tiktok.com/@mgbarcelonalive7" target="_blank" rel="noopener">TikTok</a></li>
+    <li><a href="https://www.facebook.com/MGBarcelonaLIVE/" target="_blank" rel="noopener">Facebook</a></li>
   </ul>
-  <a href="#reinas" class="nav-allstars-btn">⭐ All Stars</a>
+  <a href="#events" class="nav-ticket">🎟 Eventos</a>
 </nav>
 
-<main>
-  <!-- Hero Section -->
-  <section class="drag-hero" id="hero">
-    <div class="hero-tag">
-      <span>👑</span>
-      <span>Homenaje Oficial · Drag Queens de España · All Stars</span>
+<!-- Particle canvas -->
+<canvas id="particles"></canvas>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="bg-video-wrap" id="bgVideoWrap">
+    <video id="bgVideo" autoplay muted playsinline webkit-playsinline preload="auto"></video>
+  </div>
+  <div id="rope"></div>
+  <div id="disco-ball"></div>
+  <div class="laser"></div>
+  <div class="laser"></div>
+  <div class="laser"></div>
+  <div class="laser"></div>
+
+  <p class="hero-eyebrow">🔴 Emitiendo desde Barcelona</p>
+  <h1 class="hero-title">MG<br>Barcelona<br>Live</h1>
+  <p class="hero-sub">Radio · Eventos · Discoteca</p>
+
+  <div class="live-badge">
+    <span class="live-dot"></span>
+    En directo ahora
+  </div>
+
+  <div class="hero-ctas">
+    <button class="btn btn-primary" onclick="document.getElementById('player').scrollIntoView({behavior:'smooth'}); var au=document.getElementById('radio-audio'); var pb=document.getElementById('play-btn'); if(au && pb && au.paused){ pb.click(); }">
+      🎧 Escuchar ahora
+    </button>
+    <button class="btn btn-outline" onclick="window.__mgOpenReqModal && window.__mgOpenReqModal();" style="border-color:rgba(255,77,166,0.78); background:linear-gradient(135deg, rgba(255,45,120,0.28), rgba(255,204,77,0.22)); color:#fff; box-shadow:0 0 22px rgba(255,77,166,0.32);">
+      📞 Buzón Radio
+    </button>
+    <button class="btn btn-outline" onclick="document.getElementById('podcast').scrollIntoView({behavior:'smooth'})" style="border-color:rgba(0,229,255,0.6); color:#fff;">
+      🎙️ Pódcasts
+    </button>
+    <button class="btn btn-outline" id="btnInstallApp" onclick="window.__mgInstallApp && window.__mgInstallApp()" style="border-color:rgba(245,200,66,0.75); background:linear-gradient(135deg, rgba(245,200,66,0.18), rgba(180,79,255,0.22)); color:#fff; box-shadow:0 0 22px rgba(245,200,66,0.25);">
+      📲 Instalar App Móvil
+    </button>
+    <button class="btn btn-outline" onclick="document.getElementById('videos').scrollIntoView({behavior:'smooth'})">
+      🎬 Vídeos & Publicidad
+    </button>
+    <a class="btn btn-outline" href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="text-decoration:none; border-color:rgba(255,45,120,0.55); color:#fff;">
+      📸 @mgbarcelonalive
+    </a>
+    <a class="btn btn-outline" href="https://www.tiktok.com/@mgbarcelonalive7" target="_blank" rel="noopener" style="text-decoration:none; border-color:rgba(255,204,77,0.65); color:#fff;">
+      🎵 TikTok
+    </a>
+    <a class="btn btn-outline" href="https://www.facebook.com/MGBarcelonaLIVE/" target="_blank" rel="noopener" style="text-decoration:none; border-color:rgba(0,240,255,0.55); color:#fff;">
+      📘 Facebook
+    </a>
+  </div>
+
+  <!-- Barcelona skyline SVG -->
+  <svg id="skyline" viewBox="0 0 1440 220" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <!-- City blocks -->
+    <rect x="0"   y="140" width="80"  height="80"  fill="rgba(255,255,255,0.03)"/>
+    <rect x="10"  y="110" width="20"  height="30"  fill="rgba(255,255,255,0.04)"/>
+    <rect x="40"  y="100" width="25"  height="40"  fill="rgba(255,255,255,0.05)"/>
+    <rect x="80"  y="130" width="60"  height="90"  fill="rgba(255,255,255,0.03)"/>
+    <rect x="90"  y="90"  width="15"  height="40"  fill="rgba(255,255,255,0.05)"/>
+    <!-- Sagrada Familia silhouette -->
+    <g transform="translate(200,0)">
+      <polygon points="40,220 40,60 55,20 70,60 70,220" fill="rgba(180,79,255,0.12)"/>
+      <polygon points="20,220 20,80 35,45 50,80 50,220" fill="rgba(180,79,255,0.1)"/>
+      <polygon points="60,220 60,80 75,45 90,80 90,220" fill="rgba(180,79,255,0.1)"/>
+      <polygon points="80,220 80,90 90,65 100,90 100,220" fill="rgba(180,79,255,0.08)"/>
+      <polygon points="0,220  0,90  10,65  20,90  20,220" fill="rgba(180,79,255,0.08)"/>
+      <!-- Star of Sagrada -->
+      <polygon points="55,8 57,14 63,14 58,18 60,24 55,20 50,24 52,18 47,14 53,14" fill="rgba(245,200,66,0.6)"/>
+    </g>
+    <!-- Buildings mid -->
+    <rect x="320" y="120" width="50" height="100" fill="rgba(255,255,255,0.03)"/>
+    <rect x="330" y="85"  width="20" height="35"  fill="rgba(255,255,255,0.05)"/>
+    <rect x="380" y="130" width="70" height="90"  fill="rgba(255,255,255,0.03)"/>
+    <rect x="460" y="100" width="40" height="120" fill="rgba(255,255,255,0.04)"/>
+    <rect x="510" y="120" width="60" height="100" fill="rgba(255,255,255,0.03)"/>
+    <!-- Torre Agbar / Torre Glories -->
+    <g transform="translate(600,0)">
+      <ellipse cx="25" cy="195" rx="22" ry="8" fill="rgba(0,240,255,0.08)"/>
+      <path d="M5,220 Q5,70 25,30 Q45,70 45,220Z" fill="rgba(0,240,255,0.1)"/>
+      <ellipse cx="25" cy="30" rx="8" ry="12" fill="rgba(0,240,255,0.2)"/>
+      <!-- windows glow -->
+      <rect x="12" y="80"  width="6" height="4" fill="rgba(0,240,255,0.3)" rx="1"/>
+      <rect x="20" y="80"  width="6" height="4" fill="rgba(0,240,255,0.3)" rx="1"/>
+      <rect x="12" y="100" width="6" height="4" fill="rgba(0,240,255,0.25)" rx="1"/>
+      <rect x="20" y="100" width="6" height="4" fill="rgba(0,240,255,0.25)" rx="1"/>
+      <rect x="14" y="120" width="5" height="4" fill="rgba(0,240,255,0.2)" rx="1"/>
+      <rect x="21" y="120" width="5" height="4" fill="rgba(0,240,255,0.2)" rx="1"/>
+    </g>
+    <!-- More buildings right -->
+    <rect x="660" y="110" width="80" height="110" fill="rgba(255,255,255,0.03)"/>
+    <rect x="670" y="75"  width="30" height="35"  fill="rgba(255,255,255,0.04)"/>
+    <rect x="750" y="130" width="60" height="90"  fill="rgba(255,255,255,0.03)"/>
+    <rect x="820" y="90"  width="45" height="130" fill="rgba(255,255,255,0.04)"/>
+    <rect x="870" y="115" width="70" height="105" fill="rgba(255,255,255,0.03)"/>
+    <rect x="950" y="100" width="90" height="120" fill="rgba(255,255,255,0.03)"/>
+    <rect x="960" y="60"  width="20" height="40"  fill="rgba(255,255,255,0.05)"/>
+    <rect x="1050" y="120" width="80" height="100" fill="rgba(255,255,255,0.03)"/>
+    <rect x="1140" y="100" width="60" height="120" fill="rgba(255,255,255,0.03)"/>
+    <rect x="1210" y="130" width="90" height="90"  fill="rgba(255,255,255,0.03)"/>
+    <rect x="1310" y="110" width="130" height="110" fill="rgba(255,255,255,0.03)"/>
+    <!-- Ground -->
+    <rect x="0" y="210" width="1440" height="10" fill="rgba(180,79,255,0.1)"/>
+  </svg>
+
+  <div class="scroll-arrow">
+    <span></span><span></span><span></span>
+  </div>
+</section>
+
+<!-- Radio Player -->
+<section id="player">
+  <p class="section-label">📡 Radio en Directo</p>
+  <h2 class="section-title">Escúchanos Ahora</h2>
+
+  <div class="player-card">
+    <div id="waveform">
+      <!-- bars generated by JS -->
     </div>
-    
-    <div class="hero-logo-wrap">
-      <img src="../img/drag_race_allstars_logo.png" alt="Drag Race España All Stars" onerror="this.src='../img/drag_race_espana.jpg'">
+
+    <div class="now-playing">
+      <p class="np-label">En emisión</p>
+      <p class="np-title" id="np-title">MG Barcelona Live</p>
+      <p class="np-sub" id="np-sub">Radio · Eventos · Música Non-Stop</p>
     </div>
 
-    <div class="hero-slogan-box">
-      <h1 class="hero-slogan-main">REINAS DEL GLAMOUR, EL ARTE Y LA PASARELA</h1>
-      <p class="hero-slogan-sub">"Porque en España el Drag no se explica... ¡se corona!"</p>
-    </div>
+    <div class="player-controls">
+      <button id="play-btn" aria-label="Play/Pause">
+        <div class="ripple"></div>
+        <div class="ripple"></div>
+        <span id="play-icon">▶</span>
+      </button>
 
-    <div class="hero-actions">
-      <a href="#radio" class="btn-runway">📻 Escuchar Radio 24H</a>
-      <a href="#reinas" class="btn-runway" style="background:rgba(255,20,147,0.2); border:1px solid var(--pink); color:#fff;">✨ Pasarela All Stars</a>
-    </div>
-  </section>
-
-  <!-- Radio Player Section -->
-  <section class="player-section" id="radio">
-    <div class="player-card">
-      <div class="player-header">
-        <div class="player-live-badge">
-          <div class="live-dot"></div>
-          <span>Emisión Oficial 24H · Sonido Estudio</span>
-        </div>
-        <span style="font-size:0.8rem; color:var(--gold); font-weight:700;">Barcelona · Música & Noche</span>
-      </div>
-      <div class="player-body">
-        <button class="play-circle-btn" id="livePlayBtn" onclick="togglePlay()">▶</button>
-        <div class="track-meta">
-          <div class="track-title" id="trackTitle">MG Barcelona Live Radio</div>
-          <div class="track-sub" id="trackStatus">Sesión non-stop · Pop, Hits, Remixed & Drag Runway Anthems</div>
-        </div>
-      </div>
-      <audio id="radio-audio" preload="none" src="https://stream.zeno.fm/f3wvbbq18nhvv"></audio>
-    </div>
-  </section>
-
-  <!-- Drag Queens Tribute Runway Grid -->
-  <section class="queens-section" id="reinas">
-    <div class="section-badge">✨ Pasarela de Leyendas</div>
-    <h2 class="section-heading">LAS REINAS QUE HICIERON HISTORIA</h2>
-    <p class="section-desc">Un homenaje apasionado a las artistas, diseñadoras y drag queens que elevan el arte drag español a nivel mundial con talento, comedia y glamour infinito.</p>
-
-    <div class="queens-grid">
-      <!-- Carmen Farala -->
-      <div class="queen-card">
-        <span class="queen-badge">Ganadora Temporada 1</span>
-        <div class="queen-icon">💎</div>
-        <div class="queen-name">Carmen Farala</div>
-        <div class="queen-quote">"Moda, perfección y alta costura."</div>
-        <p class="queen-desc">La reina absoluta de la confección en tiempo récord, elegancia suprema y corazón generoso. Un estándar internacional de excelencia.</p>
-      </div>
-
-      <!-- Sharonne -->
-      <div class="queen-card">
-        <span class="queen-badge">Ganadora Temporada 2</span>
-        <div class="queen-icon">🌟</div>
-        <div class="queen-name">Sharonne</div>
-        <div class="queen-quote">"Voz, carisma y leyenda del escenario."</div>
-        <p class="queen-desc">Maestra del directo, el canto y la comedia. Una artista completa que deslumbró con talento clásico y modernidad arrolladora.</p>
-      </div>
-
-      <!-- Pitita -->
-      <div class="queen-card">
-        <span class="queen-badge">Ganadora Temporada 3</span>
-        <div class="queen-icon">👑</div>
-        <div class="queen-name">Pitita</div>
-        <div class="queen-quote">"Moda conceptual, garbo y arte catalán."</div>
-        <p class="queen-desc">Alta moda, siluetas deslumbrantes y creatividad sin límites. Un orgullo de la escena drag de Barcelona con personalidad única.</p>
-      </div>
-
-      <!-- Drag Sethlas -->
-      <div class="queen-card">
-        <span class="queen-badge">Ganadora All Stars</span>
-        <div class="queen-icon">🔥</div>
-        <div class="queen-name">Drag Sethlas</div>
-        <div class="queen-quote">"Fuerza canaria, plataformas y espectáculo."</div>
-        <p class="queen-desc">Poderío, acrobacia, plataformas infinitas y la esencia del carnaval drag canario llevada a su máximo esplendor mundial.</p>
-      </div>
-
-      <!-- Supremme de Luxe -->
-      <div class="queen-card">
-        <span class="queen-badge">Nuestra Presentadora & Madre</span>
-        <div class="queen-icon">💖</div>
-        <div class="queen-name">Supremme de Luxe</div>
-        <div class="queen-quote">"Cariño, empatía y puro amor al Drag."</div>
-        <p class="queen-desc">La voz, la elegancia y la ternura que une a todas las reinas. Presentadora mítica e icono indispensable de la cultura en España.</p>
-      </div>
-
-      <!-- Pupi Poisson -->
-      <div class="queen-card">
-        <span class="queen-badge">Miss Simpatía & Show</span>
-        <div class="queen-icon">🎭</div>
-        <div class="queen-name">Pupi Poisson</div>
-        <div class="queen-quote">"Risa, espontaneidad y picardía pura."</div>
-        <p class="queen-desc">El alma de la comedia, el desenfado y la ternura. Capaz de conquistar a cualquier público con solo una sonrisa y una frase ingeniosa.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sponsors Section -->
-  <section id="sponsors" style="padding: 4rem 0;">
-    <div class="section-badge">📢 Red de Ocio y Noche</div>
-    <h2 class="section-heading">NUESTROS SPONSORS OFICIALES</h2>
-    <p class="section-desc">Las salas, clubes y eventos imprescindibles que impulsan el arte, la música y la noche LGTBIQ+ de Barcelona.</p>
-
-    <div class="sponsors-grid">
-      <!-- New Strass Barcelona -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Local Recomendado · Gaixample</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/new_strass_barcelona.jpg" alt="New Strass Barcelona" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">New Strass Barcelona</div>
-        <p class="sponsor-desc">Shows Drag en vivo (23:30h), Drag Bingo los domingos y pop/remix.<br>📍 C/ de Villarroel, 68 · Barcelona<br><a href="https://www.instagram.com/strass_bcn/" target="_blank" rel="noopener">@strass_bcn</a></p>
-      </div>
-
-      <!-- La Sastrería Barcelona -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Local Recomendado · Gaixample</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/la_sastreria_bcn.jpg" alt="La Sastrería Barcelona" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">La Sastrería</div>
-        <p class="sponsor-desc">Bar y ocio LGTBIQ+, cócteles y ambientazo.<br>📍 C/ del Consell de Cent, 245 bis · Barcelona<br><a href="https://www.instagram.com/lasastreriacafebcn/" target="_blank" rel="noopener">@lasastreriacafebcn</a></p>
-      </div>
-
-      <!-- BCN Sound Pro -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Sponsor Oficial</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #00f0ff, #0072ff); box-shadow:0 0 20px rgba(0,240,255,0.5);">
-          <img src="../sponsors/bcn_sound_pro.jpg" alt="BCN Sound Pro" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">BCN Sound Pro</div>
-        <p class="sponsor-desc">Sonido, iluminación LED y producción para cabinas y discotecas.</p>
-      </div>
-
-      <!-- Night Barcelona -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Local Recomendado · Gaixample</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/night_barcelona.jpg" alt="Night Barcelona" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Night Barcelona</div>
-        <p class="sponsor-desc">Mítico bar y club cruising para hombres en el Gaixample.<br>📍 C/ de la Diputació, 161 · Barcelona<br><a href="https://www.instagram.com/nightbcngay/?hl=es" target="_blank" rel="noopener">@nightbcngay</a></p>
-      </div>
-
-      <!-- Safari Disco Club -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Discoteca Recomendada · Sants</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/safari_club_bcn.jpg" alt="Safari Disco Club" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Safari Disco Club</div>
-        <p class="sponsor-desc">Emblemática discoteca LGTBIQ+ de Barcelona. Pop, techno y fiesta.<br>📍 C/ de Tarragona, 141 · Barcelona<br><a href="https://www.instagram.com/safari_club_bcn/?hl=es" target="_blank" rel="noopener">@safari_club_bcn</a></p>
-      </div>
-
-      <!-- Believe Club Barcelona -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Club & Shows · Gaixample</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/believe_club_bcn.jpg" alt="Believe Club Barcelona" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Believe Club</div>
-        <p class="sponsor-desc">Shows Drag en vivo, pop y cócteles en el Gaixample.<br>📍 C/ de Balmes, 56 · Barcelona<br><a href="https://www.instagram.com/believeclubbcn/?hl=es" target="_blank" rel="noopener">@believeclubbcn</a></p>
-      </div>
-
-      <!-- Arena Experience Barcelona -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Grupo & Discotecas · Gaixample</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/arena_experience_bcn.jpg" alt="Arena Experience Barcelona" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Arena Experience</div>
-        <p class="sponsor-desc">El referente histórico de la noche LGTBIQ+ en Barcelona.<br>📍 C/ de la Diputació, 233 · Barcelona<br><a href="https://www.instagram.com/arenaexperience.bcn/" target="_blank" rel="noopener">@arenaexperience.bcn</a></p>
-      </div>
-
-      <!-- Circuit Festival Barcelona -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Macrofestival Mundial · Barcelona</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/circuit_festival_bcn.jpg" alt="Circuit Festival Barcelona" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Circuit Festival</div>
-        <p class="sponsor-desc">El mayor festival LGTBIQ+ del planeta producido por Matinée Group.<br>📍 Barcelona (Agosto 2026)<br><a href="https://www.instagram.com/circuitfestival/" target="_blank" rel="noopener">@circuitfestival</a></p>
-      </div>
-
-      <!-- Sala Razzmatazz -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Discoteca & Fiestas · Poblenou</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/razzmatazz_bcn.jpg" alt="Sala Razzmatazz Barcelona" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Sala Razzmatazz</div>
-        <p class="sponsor-desc">5 salas míticas, conciertos y las sesiones más libres de Barcelona.<br>📍 C/ dels Almogàvers, 122 · Barcelona<br><a href="https://www.instagram.com/razzmatazzclubs/" target="_blank" rel="noopener">@razzmatazzclubs</a></p>
-      </div>
-
-      <!-- Churros con Chocolate -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Fiesta Icónica · Sala Apolo</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/apolo_churros_bcn.jpg" alt="Churros con Chocolate" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Churros con Chocolate</div>
-        <p class="sponsor-desc">Petardeo dominical en Sala Apolo. Shows, disfraces y chocolate con churros.<br>📍 C/ Nou de la Rambla, 113<br><a href="https://www.instagram.com/churrosconchocolatefiesta/" target="_blank" rel="noopener">@churrosconchocolatefiesta</a></p>
-      </div>
-
-      <!-- Dirty Disco Barcelona -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Fiesta Recomendada · Barcelona</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/dirty_disco_barcelona.jpg" alt="Dirty Disco Barcelona" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Dirty Disco Barcelona</div>
-        <p class="sponsor-desc">Mítica sesión de electrónica, house y techno LGTBIQ+ en Barcelona.<br>📍 Barcelona<br><a href="https://www.instagram.com/dirtydiscobarcelona/?hl=es" target="_blank" rel="noopener">@dirtydiscobarcelona</a></p>
-      </div>
-
-      <!-- POPair Party -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Fiesta Pop · Safari Disco Club</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/popair_party_bcn.jpg" alt="POPair Party" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">POPair Party</div>
-        <p class="sponsor-desc">La fiesta pop más divertida para bears, barbas, amigos y amantes del pop.<br>📍 C/ de Tarragona, 141 (Safari)<br><a href="https://www.instagram.com/popairparty/" target="_blank" rel="noopener">@popairparty</a></p>
-      </div>
-
-      <!-- Priscilla Café Barcelona -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Café & Copas · Gaixample</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/priscilla_cafe_bcn.jpg" alt="Priscilla Café Barcelona" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Priscilla Café</div>
-        <p class="sponsor-desc">Icono camp y drag en pleno eje peatonal. Cócteles, terraza y drag shows.<br>📍 C/ del Consell de Cent, 273<br><a href="https://www.instagram.com/priscillacafe/" target="_blank" rel="noopener">@priscillacafe</a></p>
-      </div>
-
-      <!-- Punto BCN -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Bar Histórico · Gaixample</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/punto_bcn.jpg" alt="Punto BCN" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Punto BCN</div>
-        <p class="sponsor-desc">El bar gay más veterano y emblemático de Barcelona (desde 1993).<br>📍 C/ de Muntaner, 64<br><a href="https://www.instagram.com/punto_bcn/" target="_blank" rel="noopener">@punto_bcn</a></p>
-      </div>
-
-      <!-- BoysBar BCN -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Bar de Copas · Gaixample</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/boysbar_bcn.jpg" alt="BoysBar BCN" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">BoysBar BCN</div>
-        <p class="sponsor-desc">Copas previas, terraza y ambientazo en el Gaixample.<br>📍 C/ de la Diputació, 174<br><a href="https://www.instagram.com/boysbarbcn/" target="_blank" rel="noopener">@boysbarbcn</a></p>
-      </div>
-
-      <!-- Bacon Bear Bar -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Bear Club · Gaixample</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/bacon_bear_bcn.jpg" alt="Bacon Bear Bar" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Bacon Bear Bar</div>
-        <p class="sponsor-desc">Club de referencia para el público bear, chasers y amigos en Barcelona.<br>📍 C/ de Casanova, 64<br><a href="https://www.instagram.com/baconbearbar/" target="_blank" rel="noopener">@baconbearbar</a></p>
-      </div>
-
-      <!-- Matinée Group -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Productora Global · Barcelona</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #ff2d78, #b44fff); box-shadow:0 0 20px rgba(255,45,120,0.55);">
-          <img src="../sponsors/matinee_group_bcn.jpg" alt="Matinée Group" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Matinée Group</div>
-        <p class="sponsor-desc">Líder mundial en festivales, giras de club y macroeventos LGTBIQ+.<br>📍 Barcelona · Ibiza · World Tour<br><a href="https://www.instagram.com/matineegroup/" target="_blank" rel="noopener">@matineegroup</a></p>
-      </div>
-
-      <!-- MG Visual Studio -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Media Partner</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #b44fff, #ff2d78); box-shadow:0 0 20px rgba(180,79,255,0.5);">
-          <img src="../sponsors/mg_visual_studio.jpg" alt="MG Visual Studio" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">MG Visual Studio</div>
-        <p class="sponsor-desc">Realización audiovisual y visuales 4K en directo.</p>
-      </div>
-
-      <!-- Tu Marca Aquí -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier">Espacio Disponible</span>
-        <div style="width:96px; height:96px; margin:0.85rem auto 0.65rem; border-radius:50%; padding:3px; background:linear-gradient(135deg, #f5c842, #ff7a00); box-shadow:0 0 20px rgba(245,200,66,0.5);">
-          <img src="../sponsors/tu_marca_aqui.jpg" alt="Tu Marca Aquí" loading="lazy" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;" />
-        </div>
-        <div class="sponsor-name">Tu Marca Aquí</div>
-        <p class="sponsor-desc">Patrocina y anúnciate en nuestra web y radio oficial.</p>
+      <div class="vol-control">
+        <span>🔈</span>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.8" aria-label="Volumen">
+        <span>🔊</span>
       </div>
     </div>
-  </section>
-</main>
 
-<footer>
-  <p>MG Barcelona Live · Plantilla Drag Race España All Stars · Fotografía Oficial Moisés Gallardo · Barcelona 2026</p>
-</footer>
+    <div class="stream-url" id="stream-info">
+      🔗 Cargando enlace de emisión...
+    </div>
+  </div>
+</section>
 
-<!-- Interactive Night Runway Canvas Animation -->
+<!-- Podcast Virtual IA Section -->
+<section id="podcast" style="position:relative; z-index:2; padding: 3.5rem 1.5rem; display:flex; flex-direction:column; align-items:center;">
+  <p class="section-label">🌙🎙️ RADIO DE AMBIENTE PARA GENTE QUE NO DUERME · 17:00H A 00:00H</p>
+  <h2 class="section-title">¡EL TELÉFONO ROJO DEL GAIXAMPLE!</h2>
+
+  <style>
+    @keyframes podPulseGlow {
+      0%, 100% { box-shadow: 0 20px 55px rgba(255,77,166,0.28), 0 0 25px rgba(0,229,255,0.18); border-color: rgba(255,77,166,0.55); }
+      50% { box-shadow: 0 24px 65px rgba(0,229,255,0.34), 0 0 32px rgba(255,204,77,0.28); border-color: rgba(0,229,255,0.65); }
+    }
+    @keyframes podDotBlink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.8); }
+    }
+    #pod-window.is-playing { animation: podPulseGlow 2.4s ease-in-out infinite; }
+    .pod-live-dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:#ff3b7f; margin-right:5px; animation:podDotBlink 1s infinite; }
+  </style>
+
+  <div id="pod-window" style="position:relative; width:100%; max-width:800px; border-radius:26px; overflow:hidden; border:1.5px solid rgba(255,204,77,0.38); box-shadow:0 24px 60px rgba(0,0,0,0.72); background:#0c0a14; transition:all 0.35s ease;">
+    <!-- Fondo temático dinámico por episodio -->
+    <div id="pod-bg" style="position:absolute; inset:0; background-size:cover; background-position:center; transition:background-image 0.6s ease, transform 0.8s ease; filter:brightness(0.52) saturate(1.28); z-index:0;"></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(14,8,24,0.48) 0%, rgba(10,8,20,0.85) 65%, rgba(8,6,14,0.97) 100%); z-index:1;"></div>
+
+    <!-- Luces de ambiente discoteca superiores -->
+    <div style="position:absolute; top:-40px; left:15%; width:180px; height:120px; background:radial-gradient(circle, rgba(255,77,166,0.32), transparent 70%); pointer-events:none; z-index:1;"></div>
+    <div style="position:absolute; top:-40px; right:15%; width:180px; height:120px; background:radial-gradient(circle, rgba(0,229,255,0.28), transparent 70%); pointer-events:none; z-index:1;"></div>
+
+    <div style="position:relative; z-index:2; padding:1.5rem 1.45rem;">
+      <!-- Barra superior de la ventana -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem; margin-bottom:1rem;">
+        <div style="display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap;">
+          <span class="tag tag-pink">🏳️‍🌈 Ambiente Gaixample</span>
+          <span id="pod-counter" class="tag tag-cyan">EP 1 / 25</span>
+        </div>
+        <select id="pod-select" aria-label="Seleccionar episodio" style="background:rgba(15,12,28,0.9); color:var(--gold); border:1px solid rgba(255,204,77,0.42); border-radius:999px; padding:0.38rem 0.95rem; font-size:0.78rem; font-weight:600; max-width:280px; cursor:pointer; outline:none;"></select>
+      </div>
+
+      <!-- Cabina virtual animada: Dos Locutores + Ecualizador de Voces + Botón Play Central -->
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:0.75rem; background:rgba(12,9,24,0.74); border:1px solid rgba(255,255,255,0.14); border-radius:20px; padding:0.95rem 1rem; margin-bottom:1.1rem; backdrop-filter:blur(10px); box-shadow:inset 0 0 24px rgba(255,77,166,0.08);">
+        <!-- Locutora: Marta (Foto Real Rubia) -->
+        <div id="pod-host-marta" style="display:flex; flex-direction:column; align-items:center; min-width:86px; transition:transform 0.12s ease;">
+          <div id="marta-avatar-frame" style="width:76px; height:76px; border-radius:50%; padding:2.5px; background:linear-gradient(135deg, #ff4da6, #ffcc4d); box-shadow:0 0 16px rgba(255,77,166,0.65); transition:all 0.15s ease; position:relative;">
+            <img src="img/locutora_marta.jpg" alt="Marta - Locutora MG Barcelona Live" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; border:2px solid #0c0a14;" />
+            <span style="position:absolute; bottom:2px; right:2px; width:13px; height:13px; border-radius:50%; background:#22c55e; border:2px solid #0c0a14; box-shadow:0 0 6px #22c55e;" title="En cabina"></span>
+          </div>
+          <span style="font-size:0.7rem; font-weight:800; letter-spacing:0.1em; color:#ff7ac2; margin-top:0.3rem;">🎙️ MARTA</span>
+          <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="font-size:0.6rem; color:rgba(255,204,77,0.85); text-decoration:none; font-weight:600;">@marta.mgbcn</a>
+        </div>
+
+        <!-- Ecualizador de Voces Central + Botón Play Llamativo -->
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; min-width:130px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; width:100%; max-width:340px; margin-bottom:0.25rem;">
+            <span id="pod-onair" style="font-size:0.64rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.6);">✨ DALE AL PLAY</span>
+            <button id="pod-big-play" type="button" style="background:linear-gradient(135deg, #ff4da6, #ffcc4d); color:#0b0814; border:none; border-radius:999px; padding:0.28rem 0.85rem; font-size:0.72rem; font-weight:800; letter-spacing:0.05em; cursor:pointer; box-shadow:0 0 14px rgba(255,77,166,0.5); transition:transform 0.15s ease;">▶ ESCUCHAR</button>
+          </div>
+          <canvas id="pod-eq" width="320" height="72" style="width:100%; max-width:340px; height:72px; display:block;"></canvas>
+        </div>
+
+        <!-- Locutor: Javier (Foto Real Moreno) -->
+        <div id="pod-host-javier" style="display:flex; flex-direction:column; align-items:center; min-width:86px; transition:transform 0.12s ease;">
+          <div id="javier-avatar-frame" style="width:76px; height:76px; border-radius:50%; padding:2.5px; background:linear-gradient(135deg, #00e5ff, #3b82f6); box-shadow:0 0 16px rgba(0,229,255,0.65); transition:all 0.15s ease; position:relative;">
+            <img src="img/locutor_javier.jpg" alt="Javier - Locutor MG Barcelona Live" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; border:2px solid #0c0a14;" />
+            <span style="position:absolute; bottom:2px; right:2px; width:13px; height:13px; border-radius:50%; background:#22c55e; border:2px solid #0c0a14; box-shadow:0 0 6px #22c55e;" title="En cabina"></span>
+          </div>
+          <span style="font-size:0.7rem; font-weight:800; letter-spacing:0.1em; color:#5ce1ff; margin-top:0.3rem;">🎙️ JAVIER</span>
+          <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="font-size:0.6rem; color:rgba(0,229,255,0.85); text-decoration:none; font-weight:600;">@javier.mgbcn</a>
+        </div>
+      </div>
+
+      <!-- Info del episodio actual -->
+      <h3 id="pod-title" style="font-family:'Bebas Neue',sans-serif; font-size:1.72rem; letter-spacing:0.04em; color:var(--gold); margin-bottom:0.35rem; line-height:1.15; text-shadow:0 2px 12px rgba(0,0,0,0.8);">Cargando episodio...</h3>
+      <p id="pod-desc" style="color:rgba(255,255,255,0.88); font-size:0.9rem; line-height:1.52; margin-bottom:0.55rem;"></p>
+      <p id="pod-voices" style="color:var(--cyan); font-size:0.74rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.9rem;"></p>
+
+      <!-- Reproductor -->
+      <audio id="podcast-audio" controls playsinline preload="metadata" crossorigin="anonymous" style="width:100%; border-radius:12px; margin-bottom:0.95rem;"></audio>
+
+      <!-- Navegación de Ventana: Anterior / Píldoras Numéricas / Siguiente -->
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:0.6rem; flex-wrap:wrap; margin-bottom:0.9rem;">
+        <button id="pod-prev" class="btn btn-outline" style="padding:0.45rem 0.95rem; font-size:0.8rem;">◀ Anterior</button>
+        <div id="pod-pills" style="display:flex; gap:0.32rem; flex-wrap:wrap; justify-content:center; flex:1;"></div>
+        <button id="pod-next" class="btn btn-primary" style="padding:0.45rem 1rem; font-size:0.8rem;">Siguiente ▶</button>
+      </div>
+
+      <!-- Botón Teléfono Rojo: Buzón de Oyentes -->
+      <div style="text-align:center; padding-top:0.65rem; border-top:1px solid rgba(255,255,255,0.1);">
+        <button id="btn-open-req" type="button" onclick="window.__mgOpenReqModal && window.__mgOpenReqModal();" style="background:linear-gradient(135deg, rgba(255,45,120,0.22), rgba(255,204,77,0.22)); color:#fff; border:1px solid rgba(255,77,166,0.6); border-radius:999px; padding:0.55rem 1.25rem; font-size:0.82rem; font-weight:700; cursor:pointer; box-shadow:0 0 18px rgba(255,77,166,0.28); transition:transform 0.15s ease;">
+          📞 ¡Deja tu Mensaje! (Saludos, Cotilleos, Anécdotas, Quejas o Publicidad)
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 <script>
-(function() {
-  const canvas = document.getElementById('runwayCanvas');
-  const ctx = canvas.getContext('2d');
-  let W, H;
-  let particles = [];
-  let spotlights = [];
+(function(){
+  var podWindow = document.getElementById('pod-window');
+  var podAudio = document.getElementById('podcast-audio');
+  var podBigPlay = document.getElementById('pod-big-play');
+  var podTitle = document.getElementById('pod-title');
+  var podDesc = document.getElementById('pod-desc');
+  var podVoices = document.getElementById('pod-voices');
+  var podBg = document.getElementById('pod-bg');
+  var podCounter = document.getElementById('pod-counter');
+  var podSelect = document.getElementById('pod-select');
+  var podPills = document.getElementById('pod-pills');
+  var podPrev = document.getElementById('pod-prev');
+  var podNext = document.getElementById('pod-next');
+  var podOnAir = document.getElementById('pod-onair');
+  var canvas = document.getElementById('pod-eq');
+  var ctx = canvas ? canvas.getContext('2d') : null;
+  var martaMouth = document.getElementById('marta-mouth');
+  var javierMouth = document.getElementById('javier-mouth');
+  var hostMarta = document.getElementById('pod-host-marta');
+  var hostJavier = document.getElementById('pod-host-javier');
 
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
+  var episodes = [];
+  var currentIdx = 0;
+
+  // Web Audio API Equalizer & Talking Mouths
+  var audioCtx = null, analyser = null, dataArray = null, srcNode = null;
+  var tick = 0;
+
+  function initAudioGraph() {
+    if (audioCtx || !podAudio) return;
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      audioCtx = new AC();
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 64;
+      srcNode = audioCtx.createMediaElementSource(podAudio);
+      srcNode.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      dataArray = new Uint8Array(analyser.frequencyBinCount);
+    } catch (e) {
+      audioCtx = null;
+    }
   }
 
-  function init() {
-    resize();
-    particles = [];
-    for (let i = 0; i < 90; i++) {
-      particles.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        r: Math.random() * 2.2 + 0.6,
-        vy: -Math.random() * 0.45 - 0.15,
-        c: ['#ffd700', '#ff1493', '#ffffff', '#9d4edd', '#ff80bf'][Math.floor(Math.random() * 5)],
-        a: Math.random() * 0.8 + 0.2
+  function renderVisualizer() {
+    requestAnimationFrame(renderVisualizer);
+    tick += 0.08;
+    var isPlaying = podAudio && !podAudio.paused && !podAudio.ended;
+
+    if (ctx && canvas) {
+      var w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+      var bars = 28;
+      var barW = (w / bars) - 3;
+
+      var lowEnergy = 0, highEnergy = 0;
+      if (isPlaying && analyser && dataArray) {
+        analyser.getByteFrequencyData(dataArray);
+        for (var k = 0; k < 6; k++) lowEnergy += dataArray[k];
+        for (var k2 = 6; k2 < 16; k2++) highEnergy += dataArray[k2];
+        lowEnergy /= (6 * 255);
+        highEnergy /= (10 * 255);
+      }
+
+      for (var i = 0; i < bars; i++) {
+        var val = 0.08;
+        if (isPlaying) {
+          if (analyser && dataArray && (lowEnergy + highEnergy) > 0.02) {
+            var idx = Math.floor((i / bars) * (dataArray.length * 0.75));
+            val = Math.max(0.1, dataArray[idx] / 255);
+          } else {
+            val = 0.18 + 0.58 * Math.abs(Math.sin(tick * 1.9 + i * 0.55)) * Math.abs(Math.cos(tick * 0.9 + i * 0.25));
+          }
+        } else {
+          val = 0.07 + 0.04 * Math.sin(tick * 0.6 + i * 0.4);
+        }
+        var bh = Math.max(4, val * (h - 8));
+        var x = i * (barW + 3) + 2;
+        var y = (h - bh) / 2;
+        var grad = ctx.createLinearGradient(0, y, 0, y + bh);
+        grad.addColorStop(0, '#00e5ff');
+        grad.addColorStop(0.5, '#ffcc4d');
+        grad.addColorStop(1, '#ff4da6');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(x, y, barW, bh, 3);
+        else ctx.rect(x, y, barW, bh);
+        ctx.fill();
+      }
+
+      // Animar halo y pulso de Marta y Javier al hablar
+      var martaFrame = document.getElementById('marta-avatar-frame');
+      var javierFrame = document.getElementById('javier-avatar-frame');
+      if (isPlaying) {
+        var mOpen, jOpen;
+        if (analyser && (lowEnergy + highEnergy) > 0.03) {
+          mOpen = 1.8 + Math.min(7.8, highEnergy * 16);
+          jOpen = 1.8 + Math.min(7.8, lowEnergy * 13);
+        } else {
+          var wave = Math.sin(tick * 0.7);
+          mOpen = wave > -0.2 ? (2.2 + 5.2 * Math.abs(Math.sin(tick * 3.1))) : 1.8;
+          jOpen = wave <= 0.2 ? (2.2 + 5.2 * Math.abs(Math.cos(tick * 2.8))) : 1.8;
+        }
+        if (martaMouth) martaMouth.setAttribute('ry', mOpen.toFixed(1));
+        if (javierMouth) javierMouth.setAttribute('ry', jOpen.toFixed(1));
+        if (hostMarta) hostMarta.style.transform = mOpen > 3.5 ? 'scale(1.08)' : 'scale(1)';
+        if (hostJavier) hostJavier.style.transform = jOpen > 3.5 ? 'scale(1.08)' : 'scale(1)';
+        if (martaFrame) martaFrame.style.boxShadow = mOpen > 3.5 ? '0 0 26px rgba(255,77,166,0.95), 0 0 12px rgba(255,204,77,0.8)' : '0 0 14px rgba(255,77,166,0.5)';
+        if (javierFrame) javierFrame.style.boxShadow = jOpen > 3.5 ? '0 0 26px rgba(0,229,255,0.95), 0 0 12px rgba(59,130,246,0.8)' : '0 0 14px rgba(0,229,255,0.5)';
+      } else {
+        if (martaMouth) martaMouth.setAttribute('ry', '1.8');
+        if (javierMouth) javierMouth.setAttribute('ry', '1.8');
+        if (hostMarta) hostMarta.style.transform = 'scale(1)';
+        if (hostJavier) hostJavier.style.transform = 'scale(1)';
+        if (martaFrame) martaFrame.style.boxShadow = '0 0 16px rgba(255,77,166,0.65)';
+        if (javierFrame) javierFrame.style.boxShadow = '0 0 16px rgba(0,229,255,0.65)';
+      }
+    }
+  }
+
+  if (podBigPlay && podAudio) {
+    podBigPlay.onclick = function(){
+      if (podAudio.paused) podAudio.play().catch(function(){});
+      else podAudio.pause();
+    };
+  }
+
+  if (podAudio) {
+    podAudio.addEventListener('play', function(){
+      var ra = document.getElementById('radio-audio');
+      var pb = document.getElementById('play-btn');
+      if (ra && !ra.paused && pb) { pb.click(); }
+      initAudioGraph();
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume().catch(function(){});
+      if (podWindow) podWindow.classList.add('is-playing');
+      if (podBigPlay) podBigPlay.textContent = '⏸ PAUSAR';
+      if (podOnAir) {
+        podOnAir.innerHTML = '<span class="pod-live-dot"></span>EN DIRECTO · HABLANDO';
+        podOnAir.style.color = '#ffcc4d';
+      }
+    });
+    podAudio.addEventListener('pause', function(){
+      if (podWindow) podWindow.classList.remove('is-playing');
+      if (podBigPlay) podBigPlay.textContent = '▶ ESCUCHAR';
+      if (podOnAir) {
+        podOnAir.textContent = 'PAUSADO';
+        podOnAir.style.color = 'rgba(255,255,255,0.5)';
+      }
+    });
+    podAudio.addEventListener('ended', function(){
+      if (episodes.length > 1) {
+        var nxt = (currentIdx + 1) % episodes.length;
+        loadEp(nxt, true);
+      }
+    });
+  }
+
+  function updateControls() {
+    if (podCounter) podCounter.textContent = 'EP ' + (currentIdx + 1) + ' / ' + episodes.length;
+    if (podSelect) podSelect.value = String(currentIdx);
+    if (podPills) {
+      var btns = podPills.querySelectorAll('button');
+      btns.forEach(function(b, i){
+        if (i === currentIdx) {
+          b.style.background = 'linear-gradient(135deg, #ffcc4d, #ff4da6)';
+          b.style.color = '#0b0914';
+          b.style.borderColor = '#ffcc4d';
+          b.style.fontWeight = '800';
+        } else {
+          b.style.background = 'rgba(255,255,255,0.06)';
+          b.style.color = 'rgba(255,255,255,0.75)';
+          b.style.borderColor = 'rgba(255,255,255,0.18)';
+          b.style.fontWeight = '600';
+        }
       });
     }
-
-    spotlights = [
-      { x: W * 0.2, angle: -0.3, speed: 0.005, color: 'rgba(255, 20, 147, 0.08)' },
-      { x: W * 0.8, angle: 0.3, speed: -0.004, color: 'rgba(251, 213, 97, 0.07)' },
-      { x: W * 0.5, angle: 0.1, speed: 0.003, color: 'rgba(157, 78, 221, 0.08)' }
-    ];
   }
 
-  function loop() {
-    ctx.clearRect(0, 0, W, H);
-
-    // Draw spotlights sweeping across the night runway
-    spotlights.forEach(s => {
-      s.angle += s.speed;
-      if (s.angle > 0.45 || s.angle < -0.45) s.speed = -s.speed;
-
-      ctx.save();
-      const grad = ctx.createRadialGradient(s.x, H, 10, s.x + Math.sin(s.angle) * 350, 0, W * 0.45);
-      grad.addColorStop(0, s.color);
-      grad.addColorStop(1, 'transparent');
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.moveTo(s.x, H);
-      ctx.lineTo(s.x + Math.sin(s.angle) * W - W * 0.25, 0);
-      ctx.lineTo(s.x + Math.sin(s.angle) * W + W * 0.25, 0);
-      ctx.closePath();
-      ctx.fill();
-      ctx.restore();
-    });
-
-    // Draw glitter particles
-    particles.forEach(p => {
-      p.y += p.vy;
-      if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
-      ctx.save();
-      ctx.globalAlpha = p.a;
-      ctx.fillStyle = p.c;
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = p.c;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    });
-
-    requestAnimationFrame(loop);
+  function loadEp(idx, autoPlay) {
+    if (!episodes.length) return;
+    currentIdx = ((idx % episodes.length) + episodes.length) % episodes.length;
+    var ep = episodes[currentIdx];
+    if (podTitle) podTitle.textContent = ep.titulo || 'Pódcast Virtual IA';
+    if (podDesc) podDesc.textContent = ep.descripcion || '';
+    if (podVoices) podVoices.textContent = ep.voces ? ('🎙️ Voces: ' + ep.voces) : '';
+    if (podBg) {
+      var cover = ep.imagen || ep.portada || ('podcasts/covers/' + ep.id + '.jpg');
+      podBg.style.backgroundImage = "url('" + cover + "')";
+    }
+    if (podAudio && ep.archivo) {
+      podAudio.src = encodeURI(ep.archivo) + '?t=' + Date.now();
+      if (autoPlay) podAudio.play().catch(function(){});
+    }
+    updateControls();
   }
 
-  window.addEventListener('resize', init);
-  init();
-  loop();
+  if (podPrev) podPrev.onclick = function(){ loadEp(currentIdx - 1, true); };
+  if (podNext) podNext.onclick = function(){ loadEp(currentIdx + 1, true); };
+  if (podSelect) podSelect.onchange = function(){ loadEp(parseInt(podSelect.value, 10) || 0, true); };
+
+  var FALLBACK_EPISODES = [
+    {"id":"ep01","titulo":"Ep. 1 · La Ruta VIP del Gaixample y los Mejores Clubs de Barcelona","descripcion":"Debate entre Marta y Javier sobre dónde salir en Barcelona: La Sastrería, Priscilla Café, Punto BCN, New Strass, Believe Club, Arena Experience, Safari Disco Club, Razzmatazz y Churros con Chocolate.","archivo":"podcasts/ep01_ruta_gaixample_bcn.mp3","voces":"Marta & Javier (Voces Reales) · MG Barcelona Live","imagen":"podcasts/covers/ep01.jpg"},
+    {"id":"ep02","titulo":"Ep. 2 · Llamada desde Camerinos de New Strass: Samantha Ballentines y Sharonne","descripcion":"Marta y Javier conectan en directo con Samantha Ballentines y Sharonne desde el camerino de New Strass Barcelona contando el caos de laca y pelucas y los castings de Drag Race España.","archivo":"podcasts/ep02_llamada_drag_casting.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep02.jpg"},
+    {"id":"ep03","titulo":"Ep. 3 · Llamada desde BoysBar: Cómo Sobrevivir a la Fiesta en Barcelona","descripcion":"Marta y Javier hablan con Carlos desde el Gaixample sobre la ruta completa de copas y discotecas: BoysBar, Punto BCN, Bacon Bear, Night, Arena, Safari, POPair, Razzmatazz, Apolo y Circuit.","archivo":"podcasts/ep03_ruta_fiesta_barcelona.mp3","voces":"Marta, Javier & Carlos en Directo · MG Barcelona Live","imagen":"podcasts/covers/ep03.jpg"},
+    {"id":"ep04","titulo":"Ep. 4 · Especial Reinas del Drag con Samantha Ballentines y Sharonne","descripcion":"Marta y Javier reciben en cabina a Samantha Ballentines y Sharonne para revelar las anécdotas reales de pasarela: el autobronceador de Mercadona, los Masters del Universo y los garitos de Barcelona.","archivo":"podcasts/ep04_especial_reinas_drag.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep04.jpg"},
+    {"id":"ep05","titulo":"Ep. 5 · El Xokas Llama por Knoweats, Entradas de Ibai 2027 y su Club con Cuarto Oscuro sin Puerta","descripcion":"El Xokas llama en directo para anunciar su comida rápida Knoweats tras su enfado con Hacienda rumbo a Andorra, pide a Moisés Gallardo una sesión de fotos con su novia, regala entradas de Ibai 2027 y ficha a Samantha Ballentines y Sharonne como imagen de su nuevo club gay en Madrid y Barcelona.","archivo":"podcasts/ep05_parodia_gamer_lol.mp3","voces":"Marta, Javier, El Xokas, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep05.jpg"},
+    {"id":"ep06","titulo":"Ep. 6 · Sátira de Humor con Samantha y Sharonne: Don Promesas vs. Don Tacaño","descripcion":"Samantha Ballentines y Sharonne ponen firmes en directo a dos políticos ficticios (Don Promesas y Don Tacaño) que discuten sobre bolas de discoteca de oro y acaban pidiendo lista VIP en el Gaixample.","archivo":"podcasts/ep06_satira_politica_radio.mp3","voces":"Marta, Javier, Samantha, Sharonne & Sátira Ficticia · MG Barcelona Live","imagen":"podcasts/covers/ep06.jpg"},
+    {"id":"ep07","titulo":"Ep. 7 · Anécdota Surrealista: Las Llaves en el Cuarto Oscuro y el Doble de Sálvame","descripcion":"Lucía llama muerta de risa a Marta y Javier para contar cuando perdió sus llaves en el cuarto oscuro, encendieron el foco en pleno ligoteo y apareció un doble clavado a Jorge Javier Vázquez.","archivo":"podcasts/ep07_llaves_cuarto_oscuro.mp3","voces":"Marta, Javier & Lucía en Directo · MG Barcelona Live","imagen":"podcasts/covers/ep07.jpg"},
+    {"id":"ep08","titulo":"Ep. 8 · El Rubius Sin Internet en Andorra Pide el Módem de Elon Musk para el Estreno de GTA 6","descripcion":"El Rubius llama desesperado desde Andorra tras una nevada que le cortó la fibra y pide el módem satelital SpaceX Starship para emitir GTA 6 en directo poniendo MG Barcelona Live de fondo e invitando a Marta, Javier, Samantha Ballentines y Sharonne al Casino de Andorra.","archivo":"podcasts/ep08_telefonia_spacex.mp3","voces":"Marta, Javier, El Rubius, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep08.jpg"},
+    {"id":"ep09","titulo":"Ep. 9 · Doña Carmen Busca a su Hijo: ¡Lleva 2 Días Montando a Caballo en el Cuarto Oscuro!","descripcion":"Una madre llama preocupada porque su hijo salió con un amigo hace 2 días y no contesta al móvil; Marta y Javier le explican entre risas qué ha pasado con el teléfono.","archivo":"podcasts/ep09_madre_busca_hijo.mp3","voces":"Marta, Javier & Doña Carmen en Directo · MG Barcelona Live","imagen":"podcasts/covers/ep09.jpg"},
+    {"id":"ep10","titulo":"Ep. 10 · ¡Alerta en Camerinos! Samantha en el Lavabo con Blanco España y Sharonne en Directo","descripcion":"Se pierde Samantha antes del directo de TV mientras Sharonne espera con el micro. Marta exige tacones Versace para suplirla hasta que Samantha aparece en el lavabo repasando las racholas con un chulazo.","archivo":"podcasts/ep10_drag_desaparecida_strass.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep10.jpg"},
+    {"id":"ep11","titulo":"Ep. 11 · Samantha Quiere ir a Miss Universo y Acaba con Sharonne en Churros con Chocolate","descripcion":"Samantha Ballentines y Sharonne llaman desde el taxi porque Samantha quiere presentarse a Miss Belleza Universo y Javier las manda entre risas a cantar temazos petardos a Churros con Chocolate en Apolo.","archivo":"podcasts/ep11_parodia_petarda_churros.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep11.jpg"},
+    {"id":"ep12","titulo":"Ep. 12 · ¡Alerta Estafa de TikTok! El Masajeador Gay con Voz y el Cupón de la Sagrada Familia","descripcion":"Un falso anuncio viral de TikTok patrocinado por IAs intenta estafar a mujeres solteras vendiendo un 'masajeador gay' con control por voz, carga rápida de 2 horas y un cupón trampa para la Sagrada Familia donde los chicos entran gratis y las chicas pagan.","archivo":"podcasts/ep12_teletienda_masajeador.mp3","voces":"Marta, Javier & Teletienda Estafadora IA · MG Barcelona Live","imagen":"podcasts/covers/ep12.jpg"},
+    {"id":"ep13","titulo":"Ep. 13 · GTA 6 en Barcelona con El Xokas, Samantha y Sharonne: Libertad vs. Vida Real","descripcion":"Marta, Javier, El Xokas, Samantha Ballentines y Sharonne debaten sobre el lanzamiento de GTA 6, robar el coche al vecino con 5 estrellas de la Guardia Urbana y una misión secreta en el Gaixample.","archivo":"podcasts/ep13_gta6_libertad.mp3","voces":"Marta, Javier, El Xokas, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep13.jpg"},
+    {"id":"ep14","titulo":"Ep. 14 · Euro Truck Simulator 2 vs. Aparcar en el Gaixample con El Xokas, Samantha y Sharonne","descripcion":"Debate sin filtros con Marta, Javier, El Xokas, Samantha Ballentines y Sharonne: los mods 3D de camiones de Moisés Gallardo frente al riesgo extremo de aparcar en el Gaixample con pamela un sábado noche.","archivo":"podcasts/ep14_simuladores_ets2_gaixample.mp3","voces":"Marta, Javier, El Xokas, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep14.jpg"},
+    {"id":"ep15","titulo":"Ep. 15 · Navidad y Subida de Precios: Espárragos a 4€ en el Mercadona vs. Alfombra Roja en el Gaixample","descripcion":"Marta estalla por la subida de precios navideños y los espárragos a 4 euros con el IPC al 2%, y Javier le aconseja comprar en las tiendas del Gaixample con descuento, alfombra roja y espárragos recogidos haciendo cruising.","archivo":"podcasts/ep15_navidad_mercadona_gaixample.mp3","voces":"Marta & Javier · MG Barcelona Live","imagen":"podcasts/covers/ep15.jpg"},
+    {"id":"ep16","titulo":"Ep. 16 · ¡Escándalo en la Puerta! Hetero Feminista vs. El Carnet del Sindicato LGTB","descripcion":"Una hetero feminista llama indignada porque no la dejan entrar en un local de lesbianas del Gaixample; Bea le explica en directo que allí solo se entra con el carnet oficial del Sindicato del LGTB.","archivo":"podcasts/ep16_debate_fiesta_vs_manifiesto.mp3","voces":"Marta, Javier, Bea & Feminista en Directo · MG Barcelona Live","imagen":"podcasts/covers/ep16.jpg"},
+    {"id":"ep17","titulo":"Ep. 17 · El Rubius y El Xokas Llaman desde Andorra por el Fortnite con Samantha y Sharonne","descripcion":"El Rubius ('criaturitas del señor') y El Xokas llaman juntos en directo hablando de Andorra, el Fortnite, los tápers de Knoweats y bajar al Gaixample al show de Samantha Ballentines y Sharonne.","archivo":"podcasts/ep17_nino_fortnite_xokas_rubius.mp3","voces":"Marta, Javier, El Rubius, El Xokas, Samantha & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep17.jpg"},
+    {"id":"ep18","titulo":"Ep. 18 · El Show Business Drag con Sharonne y Samantha: Silicona Caliente y Escenarios","descripcion":"Marta y Javier charlan en cabina con Sharonne y Samantha Ballentines sobre las maletas de 25 kilos, pegarse cristales con silicona caliente a las 4 de la mañana y las tablas del club nocturno.","archivo":"podcasts/ep18_show_business_drag_queen.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep18.jpg"},
+    {"id":"ep19","titulo":"Ep. 19 · Un Nuevo Bazar en el Barrio Gay: ¡Tangas, Bañadores y Crema Corporal!","descripcion":"Un comerciante llama pidiendo consejo para abrir un bazar en pleno Gaixample y Marta y Javier le recomiendan llenar el escaparate de tangas, bañadores, pantalones cortos y crema corporal para las emergencias nocturnas.","archivo":"podcasts/ep19_bazar_barrio_gaixample.mp3","voces":"Marta, Javier & Chen en Directo · MG Barcelona Live","imagen":"podcasts/covers/ep19.jpg"},
+    {"id":"ep20","titulo":"Ep. 20 · Comedia Drag Auténtica con Samantha y Sharonne: Rodillas de Robocop en Directo","descripcion":"Marta y Javier se parten de risa con Samantha Ballentines y Sharonne contando sus batallas por las tarimas de España y la noche en que una fan les quitó el micrófono en pleno espectáculo.","archivo":"podcasts/ep20_reina_comedia_autentica.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep20.jpg"},
+    {"id":"ep21","titulo":"Ep. 21 · Especial Orgullo con Sharonne y Samantha: Secretos de Camerino y Transformismo","descripcion":"Marta, Javier, Sharonne y Samantha Ballentines revelan qué pasa a las 5 de la mañana tras quitarse el corsé y rinden homenaje a las grandes pioneras del transformismo en Barcelona.","archivo":"podcasts/ep21_secretos_polemicas_transformismo.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep21.jpg"},
+    {"id":"ep22","titulo":"Ep. 22 · Primeras (Malas) Impresiones en el Camerino: Samantha Ballentines vs. Sharonne","descripcion":"Samantha Ballentines y Sharonne confiesan ante Marta y Javier qué pensaron realmente la una de la otra el primer día que coincidieron en un camerino antes de hacerse hermanas inseparables.","archivo":"podcasts/ep22_primeras_malas_impresiones_drag.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep22.jpg"},
+    {"id":"ep23","titulo":"Ep. 23 · ¿Se Puede Vivir del Drag en España? Cuentas Reales con Samantha y Sharonne","descripcion":"Marta, Javier, Samantha Ballentines y Sharonne responden con humor: entre pelucas, vestidos a medida y promotores que pagan en 'visibilidad', ¿cómo se vive del espectáculo en España?","archivo":"podcasts/ep23_vivir_del_drag_espana.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep23.jpg"},
+    {"id":"ep24","titulo":"Ep. 24 · Amor, Haters y el Precio de Drag Race con Samantha Ballentines y Sharonne","descripcion":"Samantha Ballentines y Sharonne charlan sin filtros con Marta y Javier sobre las pelucas voladoras en el lipsync, el cariño del público y cómo mandar un abanico a los haters de internet.","archivo":"podcasts/ep24_odio_amor_precio_drag_race.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep24.jpg"},
+    {"id":"ep25","titulo":"Ep. 25 · Especial: El Hacker de las Tazas, el Gaixample y Razzmatazz","descripcion":"Especial largo con Marta, Javier, Samantha Ballentines y Sharonne destapando con humor la surrealista aventura del hacker de Indiana, las tazas de regalo y las fotos de Razzmatazz.","archivo":"podcasts/ep25_hacker_de_las_tazas.mp3","voces":"Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live","imagen":"podcasts/covers/ep25.jpg"}
+  ];
+
+  function populateEpisodes(list) {
+    if (!Array.isArray(list) || !list.length) return;
+    episodes = list;
+    if (podSelect) {
+      podSelect.innerHTML = '';
+      episodes.forEach(function(ep, i){
+        var opt = document.createElement('option');
+        opt.value = String(i);
+        opt.textContent = ep.titulo;
+        podSelect.appendChild(opt);
+      });
+    }
+    if (podPills) {
+      podPills.innerHTML = '';
+      episodes.forEach(function(ep, i){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = String(i + 1);
+        b.title = ep.titulo;
+        b.style.cssText = 'width:28px; height:28px; border-radius:999px; border:1px solid rgba(255,255,255,0.2); cursor:pointer; font-size:0.75rem; transition:all 0.2s ease;';
+        b.onclick = function(){ loadEp(i, true); };
+        podPills.appendChild(b);
+      });
+    }
+    loadEp(currentIdx, false);
+  }
+
+  populateEpisodes(FALLBACK_EPISODES);
+  renderVisualizer();
+
+  fetch('podcasts.json?t=' + Date.now(), { cache: 'no-store' })
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if (!d) return;
+      var list = Array.isArray(d.episodios) ? d.episodios : (Array.isArray(d) ? d : []);
+      if (list.length) populateEpisodes(list);
+    }).catch(function(){});
 })();
+</script>
 
-// Radio Play/Pause
-const audio = document.getElementById('radio-audio');
-const playBtn = document.getElementById('livePlayBtn');
-const statusText = document.getElementById('trackStatus');
 
-function togglePlay() {
-  if (audio.paused) {
-    audio.play().then(() => {
-      playBtn.textContent = '⏸';
-      statusText.textContent = 'En antena · Sonando en vivo por MG Barcelona Live';
-    }).catch(e => {
-      statusText.textContent = 'Haz clic para permitir audio en directo.';
-    });
-  } else {
-    audio.pause();
-    playBtn.textContent = '▶';
-    statusText.textContent = 'Pausado · Pulsa para reanudar';
+<!-- Video & Ads Section -->
+<section id="videos" class="mg-video-section">
+  <p class="section-label" style="text-align:center;">🎬 En Pantalla</p>
+  <h2 class="section-title" style="text-align:center;">Vídeos Musicales &amp; Publicidad</h2>
+
+  <div class="mg-video-grid">
+    <!-- Tarjeta Vídeos Musicales -->
+    <div class="mg-video-card">
+      <div class="mg-video-header">
+        <h3 class="mg-video-title cyan">Vídeos Musicales</h3>
+        <span class="tag tag-cyan">Moda &amp; House</span>
+      </div>
+      <div class="mg-video-screen">
+        <video id="liveVideo" autoplay playsinline muted preload="metadata"></video>
+      </div>
+      <div class="mg-video-controls">
+        <button id="liveVideoButton" class="mg-video-btn primary">Pausar</button>
+        <button id="liveVideoNext" class="mg-video-btn">Siguiente</button>
+        <button id="liveVideoSound" class="mg-video-btn">Escuchar vídeo</button>
+      </div>
+      <p id="liveVideoStatus" class="mg-video-status">Cargando vídeos musicales...</p>
+    </div>
+
+    <!-- Tarjeta Publicidad de la Radio -->
+    <div class="mg-video-card ad-card">
+      <div class="mg-video-header">
+        <h3 class="mg-video-title pink">Publicidad de la Radio</h3>
+        <span class="tag tag-pink">Anuncios MG</span>
+      </div>
+      <div class="mg-video-screen">
+        <video id="adVideo" autoplay playsinline muted preload="metadata"></video>
+      </div>
+      <div class="mg-video-controls">
+        <button id="adPause" class="mg-video-btn">Pausar</button>
+        <button id="adNext" class="mg-video-btn">Siguiente</button>
+        <button id="adSound" class="mg-video-btn">Escuchar anuncio</button>
+      </div>
+      <p id="adStatus" class="mg-video-status">Anuncios y autopromociones en directo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Events -->
+<section id="events">
+  <p class="section-label" style="text-align:center">📅 Próximos Eventos</p>
+  <h2 class="section-title" style="text-align:center">Noches de Barcelona</h2>
+
+  <div class="events-grid">
+    <div class="event-card e1">
+      <div class="event-thumb">🎧</div>
+      <div class="event-body">
+        <p class="event-date">Próximamente</p>
+        <p class="event-name">Noche Electrónica BCN</p>
+        <p class="event-venue">📍 Club Moog · El Raval</p>
+        <div class="event-tags">
+          <span class="tag tag-neon">Techno</span>
+          <span class="tag tag-cyan">House</span>
+        </div>
+      </div>
+    </div>
+    <div class="event-card e2">
+      <div class="event-thumb">🌊</div>
+      <div class="event-body">
+        <p class="event-date">Próximamente</p>
+        <p class="event-name">Rooftop Ibiza Vibes</p>
+        <p class="event-venue">📍 W Barcelona · La Barceloneta</p>
+        <div class="event-tags">
+          <span class="tag tag-pink">Dance</span>
+          <span class="tag tag-gold">Summer</span>
+        </div>
+      </div>
+    </div>
+    <div class="event-card e3">
+      <div class="event-thumb">🔥</div>
+      <div class="event-body">
+        <p class="event-date">Próximamente</p>
+        <p class="event-name">MG Live Showcase</p>
+        <p class="event-venue">📍 Razzmatazz · Poblenou</p>
+        <div class="event-tags">
+          <span class="tag tag-neon">Live</span>
+          <span class="tag tag-pink">DJ Set</span>
+          <span class="tag tag-cyan">VIP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sponsors -->
+<section id="sponsors">
+  <p class="section-label" style="text-align:center">📢 Red de Ocio y Noche</p>
+  <h2 class="section-title" style="text-align:center">Nuestros Sponsors Oficiales</h2>
+  <p style="text-align:center; color:rgba(255,255,255,0.55); max-width:660px; margin:0 auto;">
+    Las salas, clubes y eventos imprescindibles que impulsan el arte, la música y la noche de Barcelona.
+  </p>
+  <div class="sponsors-grid">
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Local Recomendado · Gaixample</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/new_strass_barcelona.jpg" alt="New Strass Barcelona" loading="lazy"></div>
+      <div class="sponsor-name">New Strass Barcelona</div>
+      <p class="sponsor-desc">Shows Drag en vivo (23:30h), Drag Bingo los domingos y pop/remix.<br>📍 C/ de Villarroel, 68 · Barcelona<br><a href="https://www.instagram.com/strass_bcn/" target="_blank" rel="noopener">@strass_bcn</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Local Recomendado · Gaixample</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/la_sastreria_bcn.jpg" alt="La Sastrería Barcelona" loading="lazy"></div>
+      <div class="sponsor-name">La Sastrería</div>
+      <p class="sponsor-desc">Bar y ocio LGTBIQ+, cócteles y ambientazo.<br>📍 C/ del Consell de Cent, 245 bis · Barcelona<br><a href="https://www.instagram.com/lasastreriacafebcn/" target="_blank" rel="noopener">@lasastreriacafebcn</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Sponsor Oficial</span>
+      <div class="sponsor-logo-wrap" style="background:linear-gradient(135deg, #00f0ff, #0072ff); box-shadow:0 0 20px rgba(0,240,255,0.5);"><img src="sponsors/bcn_sound_pro.jpg" alt="BCN Sound Pro" loading="lazy"></div>
+      <div class="sponsor-name">BCN Sound Pro</div>
+      <p class="sponsor-desc">Sonido, iluminación LED y producción para cabinas y discotecas.</p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Local Recomendado · Gaixample</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/night_barcelona.jpg" alt="Night Barcelona" loading="lazy"></div>
+      <div class="sponsor-name">Night Barcelona</div>
+      <p class="sponsor-desc">Mítico bar y club cruising para hombres en el Gaixample.<br>📍 C/ de la Diputació, 161 · Barcelona<br><a href="https://www.instagram.com/nightbcngay/?hl=es" target="_blank" rel="noopener">@nightbcngay</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Discoteca Recomendada · Sants</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/safari_club_bcn.jpg" alt="Safari Disco Club" loading="lazy"></div>
+      <div class="sponsor-name">Safari Disco Club</div>
+      <p class="sponsor-desc">Emblemática discoteca LGTBIQ+ de Barcelona. Pop, techno y fiesta.<br>📍 C/ de Tarragona, 141 · Barcelona<br><a href="https://www.instagram.com/safari_club_bcn/?hl=es" target="_blank" rel="noopener">@safari_club_bcn</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Club &amp; Shows · Gaixample</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/believe_club_bcn.jpg" alt="Believe Club Barcelona" loading="lazy"></div>
+      <div class="sponsor-name">Believe Club</div>
+      <p class="sponsor-desc">Shows Drag en vivo, pop y cócteles en el Gaixample.<br>📍 C/ de Balmes, 56 · Barcelona<br><a href="https://www.instagram.com/believeclubbcn/?hl=es" target="_blank" rel="noopener">@believeclubbcn</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Grupo &amp; Discotecas · Gaixample</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/arena_experience_bcn.jpg" alt="Arena Experience Barcelona" loading="lazy"></div>
+      <div class="sponsor-name">Arena Experience</div>
+      <p class="sponsor-desc">El referente histórico de la noche LGTBIQ+ en Barcelona.<br>📍 C/ de la Diputació, 233 · Barcelona<br><a href="https://www.instagram.com/arenaexperience.bcn/" target="_blank" rel="noopener">@arenaexperience.bcn</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Macrofestival Mundial · Barcelona</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/circuit_festival_bcn.jpg" alt="Circuit Festival Barcelona" loading="lazy"></div>
+      <div class="sponsor-name">Circuit Festival</div>
+      <p class="sponsor-desc">El mayor festival LGTBIQ+ del planeta producido por Matinée Group.<br>📍 Barcelona (Agosto 2026)<br><a href="https://www.instagram.com/circuitfestival/" target="_blank" rel="noopener">@circuitfestival</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Discoteca &amp; Fiestas · Poblenou</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/razzmatazz_bcn.jpg" alt="Sala Razzmatazz Barcelona" loading="lazy"></div>
+      <div class="sponsor-name">Sala Razzmatazz</div>
+      <p class="sponsor-desc">5 salas míticas, conciertos y las sesiones más libres de Barcelona.<br>📍 C/ dels Almogàvers, 122 · Barcelona<br><a href="https://www.instagram.com/razzmatazzclubs/" target="_blank" rel="noopener">@razzmatazzclubs</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Fiesta Icónica · Sala Apolo</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/apolo_churros_bcn.jpg" alt="Churros con Chocolate" loading="lazy"></div>
+      <div class="sponsor-name">Churros con Chocolate</div>
+      <p class="sponsor-desc">Petardeo dominical en Sala Apolo. Shows, disfraces y chocolate con churros.<br>📍 C/ Nou de la Rambla, 113<br><a href="https://www.instagram.com/churros_bcn_fiesta/" target="_blank" rel="noopener">@churros_bcn_fiesta</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Fiesta Recomendada · Barcelona</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/dirty_disco_barcelona.jpg" alt="Dirty Disco Barcelona" loading="lazy"></div>
+      <div class="sponsor-name">Dirty Disco Barcelona</div>
+      <p class="sponsor-desc">Mítica sesión de electrónica, house y techno LGTBIQ+ en Barcelona.<br>📍 Barcelona<br><a href="https://www.instagram.com/dirtydiscobarcelona/?hl=es" target="_blank" rel="noopener">@dirtydiscobarcelona</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Fiesta Pop · Safari Disco Club</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/popair_party_bcn.jpg" alt="POPair Party" loading="lazy"></div>
+      <div class="sponsor-name">POPair Party</div>
+      <p class="sponsor-desc">La fiesta pop más divertida para bears, barbas, amigos y amantes del pop.<br>📍 C/ de Tarragona, 141 (Safari)<br><a href="https://www.instagram.com/popairparty/" target="_blank" rel="noopener">@popairparty</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Café &amp; Copas · Gaixample</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/priscilla_cafe_bcn.jpg" alt="Priscilla Café Barcelona" loading="lazy"></div>
+      <div class="sponsor-name">Priscilla Café</div>
+      <p class="sponsor-desc">Icono camp y drag en pleno eje peatonal. Cócteles, terraza y drag shows.<br>📍 C/ del Consell de Cent, 273<br><a href="https://www.instagram.com/priscillacafe/" target="_blank" rel="noopener">@priscillacafe</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Bar Histórico · Gaixample</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/punto_bcn.jpg" alt="Punto BCN" loading="lazy"></div>
+      <div class="sponsor-name">Punto BCN</div>
+      <p class="sponsor-desc">El bar gay más veterano y emblemático de Barcelona (desde 1993).<br>📍 C/ de Muntaner, 64<br><a href="https://www.instagram.com/punto_bcn/" target="_blank" rel="noopener">@punto_bcn</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Bar de Copas · Gaixample</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/boysbar_bcn.jpg" alt="BoysBar BCN" loading="lazy"></div>
+      <div class="sponsor-name">BoysBar BCN</div>
+      <p class="sponsor-desc">Copas previas, terraza y ambientazo en el Gaixample.<br>📍 C/ de la Diputació, 174<br><a href="https://www.instagram.com/boysbarbcnnew/" target="_blank" rel="noopener">@boysbarbcnnew</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Bear Club · Gaixample</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/bacon_bear_bcn.jpg" alt="Bacon Bear Bar" loading="lazy"></div>
+      <div class="sponsor-name">Bacon Bear Bar</div>
+      <p class="sponsor-desc">Club de referencia para el público bear, chasers y amigos en Barcelona.<br>📍 C/ de Casanova, 64<br><a href="https://www.instagram.com/baconbearbar/" target="_blank" rel="noopener">@baconbearbar</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Productora Global · Barcelona</span>
+      <div class="sponsor-logo-wrap"><img src="sponsors/matinee_group_bcn.jpg" alt="Matinée Group" loading="lazy"></div>
+      <div class="sponsor-name">Matinée Group</div>
+      <p class="sponsor-desc">Líder mundial en festivales, giras de club y macroeventos LGTBIQ+.<br>📍 Barcelona · Ibiza · World Tour<br><a href="https://www.instagram.com/matineegroup/" target="_blank" rel="noopener">@matineegroup</a></p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Media Partner</span>
+      <div class="sponsor-logo-wrap" style="background:linear-gradient(135deg, #b44fff, #ff2d78); box-shadow:0 0 20px rgba(180,79,255,0.5);"><img src="sponsors/mg_visual_studio.jpg" alt="MG Visual Studio" loading="lazy"></div>
+      <div class="sponsor-name">MG Visual Studio</div>
+      <p class="sponsor-desc">Realización audiovisual, fotografía de discoteca y visuales 4K en directo.</p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">3D Maps &amp; Next Gen · ETS2 / ATS</span>
+      <div class="sponsor-logo-wrap" style="background:linear-gradient(135deg, #00f0ff, #b44fff); box-shadow:0 0 20px rgba(0,240,255,0.45);"><img src="sponsors/mg_media_graphics.jpg" alt="MG Media Graphics" loading="lazy"></div>
+      <div class="sponsor-name">MG Media Graphics</div>
+      <p class="sponsor-desc">Iberia Expansión, monumentos 3D de Barcelona &amp; Madrid y packs Next Gen para ETS2/ATS.<br>
+        <a href="https://mgmediagraphics.gumroad.com/" target="_blank" rel="noopener">Gumroad</a> ·
+        <a href="https://mgmediagraphics.art.blog/" target="_blank" rel="noopener">Blog</a> ·
+        <a href="https://www.youtube.com/@MGMEDIAGRAPHICS" target="_blank" rel="noopener">YouTube</a>
+      </p>
+    </div>
+    <div class="sponsor-card">
+      <span class="sponsor-tier">Espacio Disponible</span>
+      <div class="sponsor-logo-wrap" style="background:linear-gradient(135deg, #f5c842, #ff7a00); box-shadow:0 0 20px rgba(245,200,66,0.5);"><img src="sponsors/tu_marca_aqui.jpg" alt="Tu Marca Aquí" loading="lazy"></div>
+      <div class="sponsor-name">Tu Marca Aquí</div>
+      <p class="sponsor-desc">Anúnciate en nuestra radio 24H, en el reproductor y en la web oficial.</p>
+    </div>
+  </div>
+  <div class="sponsor-cta">
+    <a href="#player" class="btn-secondary">📢 Patrocina MG Barcelona Live</a>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <p class="section-label">✨ Sobre Nosotros</p>
+  <h2 class="section-title">La Voz de Barcelona</h2>
+  <p style="color:rgba(255,255,255,0.5); font-size:1rem; line-height:1.8; max-width:600px; margin:0 auto;">
+    MG Barcelona Live es más que una radio — somos la banda sonora de la ciudad. 
+    Música, cultura y eventos en directo desde el corazón de Barcelona. 
+    Sintonízanos y vive la noche.
+  </p>
+
+  <div class="mg-video-grid" style="margin-top:2.2rem;">
+    <div class="mg-video-card">
+      <div class="mg-video-header">
+        <div>
+          <p style="font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--cyan); font-weight:700; margin:0 0 0.25rem;">🎬 Entrevista · iclubbing.tv</p>
+          <h3 class="mg-video-title">Moisés Gallardo en Saturgays</h3>
+        </div>
+        <span class="tag tag-pink">Saturgays BCN</span>
+      </div>
+      <div class="mg-video-screen">
+        <video controls playsinline preload="metadata">
+          <source src="videos/entrevista_moises_saturgays.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="mg-video-status">
+        Reportaje en <strong style="color:#fff;">Saturgays</strong> (Barcelona) junto a <strong style="color:var(--gold);">iclubbing.tv</strong>, presentando a Moisés como fotógrafo oficial de la noche de Barcelona.
+      </p>
+    </div>
+
+    <div class="mg-video-card ad-card">
+      <div class="mg-video-header">
+        <div>
+          <p style="font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--pink); font-weight:700; margin:0 0 0.25rem;">🎬 Entrevista · iclubbing.tv</p>
+          <h3 class="mg-video-title">Sara Gallardo en Saturgays</h3>
+        </div>
+        <span class="tag tag-cyan">Familia MG</span>
+      </div>
+      <div class="mg-video-screen">
+        <video controls playsinline preload="metadata">
+          <source src="videos/entrevista_sara_saturgays.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="mg-video-status">
+        La hermana de Moisés en la misma noche de <strong style="color:#fff;">Saturgays</strong> junto a <strong style="color:var(--gold);">iclubbing.tv</strong>: <em>&laquo;Mi hermano es el fotógrafo, el más queridito del ambiente&raquo;</em>.
+      </p>
+    </div>
+  </div>
+
+  <div class="about-grid">
+    <div class="stat-card">
+      <div class="stat-num">24H</div>
+      <div class="stat-label">En Directo</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">BCN</div>
+      <div class="stat-label">Desde Barcelona</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Música Non-Stop</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">MG Barcelona Live</div>
+  <p>Radio · Eventos · Discoteca · Barcelona · <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="color:var(--gold); font-weight:700; text-decoration:none;">📸 @mgbarcelonalive</a> · <a href="https://www.tiktok.com/@mgbarcelonalive7" target="_blank" rel="noopener" style="color:#fff; font-weight:700; text-decoration:none;">🎵 TikTok</a> · <a href="https://www.facebook.com/MGBarcelonaLIVE/" target="_blank" rel="noopener" style="color:var(--cyan); font-weight:700; text-decoration:none;">📘 Facebook</a> · <a href="mailto:mgbarcelonalive@gmail.com" style="color:var(--pink); font-weight:700; text-decoration:none;">✉️ mgbarcelonalive@gmail.com</a><br>
+  <span style="color:rgba(255,255,255,0.15);">© 2026 MG Barcelona Live · Todos los derechos reservados</span></p>
+</footer>
+
+<audio id="radio-audio" preload="none"></audio>
+
+<script>
+// ─── CONFIG ───────────────────────────────────────────────
+const STREAM_URL = 'https://mgbarcelonalive-radio.onrender.com/stream';
+
+// ─── ECUALIZADOR LED ESTILO BUTT / CONTROLADOR DJ ──────────
+const waveform = document.getElementById('waveform');
+const playerCard = document.querySelector('.player-card');
+const eqCanvas = document.createElement('canvas');
+eqCanvas.id = 'dj-eq-canvas';
+waveform.innerHTML = '';
+waveform.appendChild(eqCanvas);
+const eqCtx = eqCanvas.getContext('2d', { alpha: true });
+
+const EQ_BANDS = 28;
+const EQ_SEGS = 12;
+const eqLevels = new Float32Array(EQ_BANDS);
+const eqPeaks = new Float32Array(EQ_BANDS);
+const eqHold = new Float32Array(EQ_BANDS);
+
+let isPlaying = false;
+let audioCtx = null;
+let analyser = null;
+let freqData = null;
+let mediaSrc = null;
+let useRealFft = false;
+let lastEqTime = 0;
+
+function initAudioAnalyser() {
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    if (!audioCtx) {
+      audioCtx = new AC();
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 128;
+      analyser.smoothingTimeConstant = 0.72;
+      freqData = new Uint8Array(analyser.frequencyBinCount);
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume().catch(() => {});
+    }
+    if (!mediaSrc && audio.crossOrigin === 'anonymous') {
+      mediaSrc = audioCtx.createMediaElementSource(audio);
+      mediaSrc.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      useRealFft = true;
+    }
+  } catch (e) {
+    useRealFft = false;
   }
 }
+
+function resizeEqCanvas() {
+  const r = waveform.getBoundingClientRect();
+  if (r.width > 0 && r.height > 0) {
+    eqCanvas.width = Math.floor(r.width - 24);
+    eqCanvas.height = Math.floor(r.height - 16);
+  }
+}
+window.addEventListener('resize', resizeEqCanvas);
+setTimeout(resizeEqCanvas, 50);
+
+function drawDjEq(nowMs) {
+  requestAnimationFrame(drawDjEq);
+  if (!eqCtx || !eqCanvas.width || !eqCanvas.height) {
+    resizeEqCanvas();
+    return;
+  }
+  const dt = lastEqTime ? Math.min(0.05, (nowMs - lastEqTime) * 0.001) : 0.016;
+  lastEqTime = nowMs;
+  const decayScale = dt * 60; // Normalizado para 60, 90 y 120 FPS
+
+  const W = eqCanvas.width;
+  const H = eqCanvas.height;
+  eqCtx.clearRect(0, 0, W, H);
+
+  const active = isPlaying && !audio.paused;
+  let hasFftEnergy = false;
+
+  if (active && useRealFft && analyser && freqData) {
+    analyser.getByteFrequencyData(freqData);
+    for (let k = 0; k < freqData.length; k++) {
+      if (freqData[k] > 2) { hasFftEnergy = true; break; }
+    }
+  }
+
+  const t = nowMs * 0.001;
+  const beat = Math.pow(0.5 + 0.5 * Math.sin(t * 2.07 * Math.PI * 2), 2.2); // ~124 BPM house groove
+  window.__mgBeatEnergy = active ? Math.min(1, (eqLevels[0] + eqLevels[1] + eqLevels[2] + beat) * 0.35) : 0;
+
+  const gapX = 4;
+  const bandW = Math.max(4, (W - (EQ_BANDS - 1) * gapX) / EQ_BANDS);
+  const gapY = 2;
+  const segH = Math.max(2, (H - (EQ_SEGS - 1) * gapY) / EQ_SEGS);
+
+  for (let i = 0; i < EQ_BANDS; i++) {
+    let target = 0.0;
+    if (active) {
+      if (hasFftEnergy) {
+        const bin = Math.min(freqData.length - 1, Math.floor((i / EQ_BANDS) * (freqData.length * 0.78)));
+        target = Math.min(1.0, (freqData[bin] / 230.0) * (1.0 + i * 0.012));
+      } else {
+        // Fallback reactivo estilo cabina DJ si el stream no permite FFT directo
+        const bassWeight = Math.max(0, 1 - i / 10);
+        const midWeight = Math.exp(-Math.pow((i - 12) / 6, 2));
+        const highWeight = Math.max(0, (i - 16) / 12);
+        const jitter = 0.35 + 0.65 * Math.abs(Math.sin(t * (5.3 + i * 0.7) + i * 1.9));
+        target = Math.min(1.0, 0.22 + beat * 0.52 * bassWeight + jitter * (0.45 * midWeight + 0.42 * highWeight + 0.22));
+      }
+    }
+
+    if (target >= eqLevels[i]) {
+      const lerp = Math.min(1.0, 0.65 * decayScale);
+      eqLevels[i] = eqLevels[i] + (target - eqLevels[i]) * lerp;
+    } else {
+      eqLevels[i] = Math.max(0, eqLevels[i] - 0.045 * decayScale);
+    }
+
+    if (eqLevels[i] >= eqPeaks[i]) {
+      eqPeaks[i] = eqLevels[i];
+      eqHold[i] = 18;
+    } else if (eqHold[i] > 0) {
+      eqHold[i] = Math.max(0, eqHold[i] - decayScale);
+    } else {
+      eqPeaks[i] = Math.max(0, eqPeaks[i] - 0.025 * decayScale);
+    }
+
+    const lit = Math.round(eqLevels[i] * EQ_SEGS);
+    const peakSeg = eqPeaks[i] > 0.05 ? Math.min(EQ_SEGS - 1, Math.floor(eqPeaks[i] * EQ_SEGS)) : -1;
+    const x = i * (bandW + gapX);
+
+    for (let s = 0; s < EQ_SEGS; s++) {
+      const y = H - (s + 1) * segH - s * gapY;
+      const isPeak = (s === peakSeg);
+      if (isPeak && active) {
+        eqCtx.fillStyle = '#ffffff';
+      } else if (s < lit) {
+        if (s >= 10) eqCtx.fillStyle = '#ff2d78';
+        else if (s >= 8) eqCtx.fillStyle = '#f5c842';
+        else if (s >= 5) eqCtx.fillStyle = '#00f0ff';
+        else eqCtx.fillStyle = '#00e691';
+      } else {
+        eqCtx.fillStyle = 'rgba(255, 255, 255, 0.06)';
+      }
+      eqCtx.fillRect(x, y, bandW, segH);
+    }
+  }
+}
+requestAnimationFrame(drawDjEq);
+
+// ─── PLAYER ───────────────────────────────────────────────
+const audio  = document.getElementById('radio-audio');
+const playBtn = document.getElementById('play-btn');
+const playIcon = document.getElementById('play-icon');
+const volSlider = document.getElementById('volume');
+const streamInfo = document.getElementById('stream-info');
+const npTitle = document.getElementById('np-title');
+const npSub   = document.getElementById('np-sub');
+
+audio.crossOrigin = 'anonymous';
+audio.src = STREAM_URL;
+audio.volume = 0.8;
+streamInfo.textContent = '🔗 ' + STREAM_URL;
+
+function setPlayingUI(playing) {
+  isPlaying = playing;
+  playIcon.textContent = playing ? '⏸' : '▶';
+  if (playerCard) playerCard.classList.toggle('playing-rgb', playing);
+  if (playing) {
+    npSub.textContent = '🔴 Emitiendo en directo desde Barcelona';
+  } else {
+    npSub.textContent = 'Pulsa ▶ para escuchar en directo';
+  }
+}
+
+let userWantsPlay = false;
+let reconnectTimer = null;
+
+function reconnectRadioStream() {
+  if (!userWantsPlay) return;
+  clearTimeout(reconnectTimer);
+  npSub.textContent = '🔄 Reconectando señal en directo...';
+  reconnectTimer = setTimeout(() => {
+    if (!userWantsPlay) return;
+    audio.src = STREAM_URL + '?t=' + Date.now();
+    audio.load();
+    audio.play().then(() => {
+      setPlayingUI(true);
+    }).catch(() => {
+      audio.removeAttribute('crossorigin');
+      audio.crossOrigin = null;
+      useRealFft = false;
+      audio.src = STREAM_URL + '?t=' + Date.now();
+      audio.load();
+      audio.play().then(() => setPlayingUI(true)).catch(() => {
+        if (userWantsPlay) reconnectTimer = setTimeout(reconnectRadioStream, 2500);
+      });
+    });
+  }, 1200);
+}
+
+audio.addEventListener('playing', () => setPlayingUI(true));
+audio.addEventListener('pause', () => {
+  if (!userWantsPlay) setPlayingUI(false);
+  else reconnectRadioStream();
+});
+audio.addEventListener('ended', () => {
+  if (userWantsPlay) reconnectRadioStream();
+  else setPlayingUI(false);
+});
+audio.addEventListener('error', () => {
+  if (userWantsPlay) reconnectRadioStream();
+});
+audio.addEventListener('stalled', () => {
+  if (userWantsPlay) reconnectRadioStream();
+});
+
+// Vigilante continuo cada 5s por si el túnel o la red sufren un micro-corte
+setInterval(() => {
+  if (userWantsPlay && (audio.paused || audio.ended)) {
+    reconnectRadioStream();
+  }
+}, 5000);
+
+playBtn.addEventListener('click', () => {
+  if (userWantsPlay || isPlaying) {
+    userWantsPlay = false;
+    clearTimeout(reconnectTimer);
+    audio.pause();
+    audio.src = '';
+    setPlayingUI(false);
+  } else {
+    userWantsPlay = true;
+    npSub.textContent = '⏳ Conectando con la radio...';
+    audio.crossOrigin = 'anonymous';
+    audio.src = STREAM_URL + '?t=' + Date.now();
+    audio.load();
+    audio.play().then(() => {
+      initAudioAnalyser();
+      setPlayingUI(true);
+    }).catch(() => {
+      // Reintento sin crossOrigin por si algún proxy bloquea CORS
+      audio.removeAttribute('crossorigin');
+      audio.crossOrigin = null;
+      useRealFft = false;
+      audio.src = STREAM_URL + '?t=' + Date.now();
+      audio.load();
+      audio.play().then(() => setPlayingUI(true)).catch(err => {
+        console.error(err);
+        reconnectRadioStream();
+      });
+    });
+  }
+});
+
+volSlider.addEventListener('input', () => { applyDucking(); });
+
+// ─── DUCKING DE AUDIO ──────────────────────────────────────
+let liveVideoMuted = true;
+let adVideoMuted = true;
+
+function radioBaseVol() {
+  var _v = parseFloat(volSlider.value); return isNaN(_v) ? 0.8 : _v;
+}
+
+function applyDucking() {
+  const lv = document.getElementById('liveVideo');
+  const av = document.getElementById('adVideo');
+  const lvSound = !liveVideoMuted && lv && !lv.paused;
+  const avSound = !adVideoMuted && av && !av.paused;
+  if (lvSound || avSound) {
+    audio.volume = radioBaseVol() * 0.15;
+  } else {
+    audio.volume = radioBaseVol();
+  }
+}
+
+// ─── VIDEOS MUSICALES (31 CLIPS) ───────────────────────────
+(function() {
+  
+    const musicList = [
+    "videos/moda_01.mp4","videos/moda_02.mp4","videos/moda_03.mp4","videos/moda_04.mp4","videos/moda_05.mp4","videos/moda_06.mp4","videos/moda_07.mp4","videos/moda_08.mp4","videos/moda_09.mp4","videos/moda_10.mp4","videos/moda_11.mp4","videos/moda_12.mp4","videos/moda_13.mp4","videos/moda_14.mp4","videos/moda_15.mp4","videos/moda_16.mp4","videos/moda_17.mp4","videos/moda_18.mp4","videos/moda_19.mp4","videos/moda_20.mp4","videos/moda_21.mp4","videos/moda_22.mp4","videos/moda_23.mp4","videos/moda_24.mp4","videos/moda_25.mp4","videos/moda_26.mp4","videos/moda_27.mp4","videos/moda_28.mp4","videos/moda_29.mp4","videos/moda_30.mp4","videos/moda_31.mp4"
+  ];
+  const video = document.getElementById('liveVideo');
+  const btn = document.getElementById('liveVideoButton');
+  const nextBtn = document.getElementById('liveVideoNext');
+  const soundBtn = document.getElementById('liveVideoSound');
+  const status = document.getElementById('liveVideoStatus');
+  if (!video || !musicList.length) return;
+
+  let index = 0;
+
+  function setStatus(t) { if (status) status.textContent = t; }
+
+  function setMute(muted) {
+    liveVideoMuted = muted;
+    video.muted = muted;
+    video.defaultMuted = muted;
+    if (muted) video.setAttribute('muted', '');
+    else video.removeAttribute('muted');
+    if (soundBtn) soundBtn.textContent = muted ? 'Escuchar vídeo' : 'Silenciar vídeo';
+    applyDucking();
+  }
+
+  function playIdx(i) {
+    index = (i + musicList.length) % musicList.length;
+    video.src = musicList[index];
+    setMute(liveVideoMuted);
+    video.play().then(() => {
+      btn.textContent = 'Pausar';
+      setStatus('Reproduciendo vídeo ' + (index + 1) + ' / ' + musicList.length + (liveVideoMuted ? ' (sin sonido)' : ' (con sonido)'));
+    }).catch(() => {
+      btn.textContent = 'Reproducir';
+      setStatus('Vídeo ' + (index + 1) + ' listo. Pulsa reproducir.');
+    });
+  }
+
+  btn.addEventListener('click', () => {
+    if (video.paused) {
+      video.play().then(() => { btn.textContent = 'Pausar'; applyDucking(); }).catch(() => {});
+    } else {
+      video.pause();
+      btn.textContent = 'Reproducir';
+      applyDucking();
+    }
+  });
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => { playIdx(index + 1); });
+  }
+
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      setMute(!liveVideoMuted);
+      setStatus(liveVideoMuted ? 'Vídeo silenciado. Radio al 100%.' : 'Sonido del vídeo activo. Radio atenuada.');
+    });
+  }
+
+  video.addEventListener('ended', () => { playIdx(index + 1); });
+  video.addEventListener('error', () => {
+    setStatus('Cargando siguiente clip...');
+    setTimeout(() => { playIdx(index + 1); }, 1500);
+  });
+
+  playIdx(0);
+})();
+
+// ─── ANUNCIOS DE LA RADIO (8 ANUNCIOS) ─────────────────────
+(function() {
+  const adList = [
+    "publicidad/43c25109d82e3217bbaab925bf064effc319b1956df84da3300949ef4455a9aa.mp4",
+    "publicidad/18f581807f965a1759b6eee38f05afba215c3be2f092f8a796d3d33ad53b6452.mp4",
+    "publicidad/061d9443f15357c0533bfb2ea80de13d7c64966f061b6bce49033f13858effec.mp4",
+    "publicidad/169210a336c7a964f8756d6256932952e7ccec6dc3afb8085e2bf20a6f722b73.mp4",
+    "publicidad/67c4a67950d1b55b7b5eb9a1285161f202d2c57f27cbd13d83a195e0d31fcda2.mp4",
+    "publicidad/6c4e0da8254a8d072e34ff5603d063dd1eef1101e7e575898dad4170608c5c98.mp4",
+    "publicidad/0835946073709b32799fd3cd95581d8d0610045de354985d8c498de8bc0a3b3e.mp4",
+    "publicidad/4ad6da39e24923ea1d8f875d55ba99ac11662d5838dac37cdd5e008b2c0e1e6f.mp4"
+  ];
+  const video = document.getElementById('adVideo');
+  const btn = document.getElementById('adPause');
+  const nextBtn = document.getElementById('adNext');
+  const soundBtn = document.getElementById('adSound');
+  const status = document.getElementById('adStatus');
+  if (!video || !adList.length) return;
+
+  let index = 0;
+
+  function setStatus(t) { if (status) status.textContent = t; }
+
+  function setMute(muted) {
+    adVideoMuted = muted;
+    video.muted = muted;
+    video.defaultMuted = muted;
+    if (muted) video.setAttribute('muted', '');
+    else video.removeAttribute('muted');
+    if (soundBtn) soundBtn.textContent = muted ? 'Escuchar anuncio' : 'Silenciar anuncio';
+    applyDucking();
+  }
+
+  function playIdx(i) {
+    index = (i + adList.length) % adList.length;
+    video.src = adList[index];
+    setMute(adVideoMuted);
+    video.play().then(() => {
+      btn.textContent = 'Pausar';
+      setStatus('Publicidad ' + (index + 1) + ' / ' + adList.length + (adVideoMuted ? ' (sin sonido)' : ' (con sonido)'));
+    }).catch(() => {
+      btn.textContent = 'Reproducir';
+      setStatus('Anuncio ' + (index + 1) + ' listo. Pulsa reproducir.');
+    });
+  }
+
+  btn.addEventListener('click', () => {
+    if (video.paused) {
+      video.play().then(() => { btn.textContent = 'Pausar'; applyDucking(); }).catch(() => {});
+    } else {
+      video.pause();
+      btn.textContent = 'Reproducir';
+      applyDucking();
+    }
+  });
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => { playIdx(index + 1); });
+  }
+
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      setMute(!adVideoMuted);
+      setStatus(adVideoMuted ? 'Anuncio silenciado. Radio al 100%.' : 'Sonido del anuncio activo. Radio atenuada.');
+    });
+  }
+
+  video.addEventListener('ended', () => { playIdx(index + 1); });
+  video.addEventListener('error', () => {
+    setStatus('Cargando siguiente anuncio...');
+    setTimeout(() => { playIdx(index + 1); }, 1500);
+  });
+
+  playIdx(0);
+})();
+
+audio.addEventListener('error', () => {
+  if (isPlaying) {
+    npSub.textContent = '⚠ Señal interrumpida. Reintentando...';
+    setTimeout(() => { if (isPlaying) { audio.load(); audio.play(); } }, 3000);
+  }
+});
+
+// ─── PARTICLES (disco lights - 60/90/120 FPS FLUIDEZ MÓVIL) ───
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d', { alpha: true });
+let W, H, particles;
+let lastLoopTime = 0;
+
+const COLORS = ['#b44fff','#00f0ff','#ff2d78','#f5c842','#ffffff'];
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * (W || window.innerWidth);
+    this.y = Math.random() * (H || window.innerHeight);
+    this.r = Math.random() * 3.0 + 0.9;
+    this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    this.alpha = Math.random() * 0.65 + 0.35;
+    this.isStar = Math.random() < 0.48;
+    this.vx = (Math.random() - 0.5) * 24;
+    this.vy = (Math.random() - 0.5) * 24;
+    this.life = Math.random() * 4.0 + 2.5;
+    this.age = 0;
+    this.twinkleSpeed = Math.random() * 4.0 + 2.5;
+  }
+  update(dt) {
+    this.x += this.vx * dt;
+    this.y += this.vy * dt;
+    this.age += dt;
+    if (this.age > this.life || this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+  }
+  draw(c, isMobile) {
+    c.save();
+    const progress = this.age / this.life;
+    const fade = Math.sin(progress * Math.PI);
+    const twinkle = 0.65 + 0.35 * Math.sin(this.age * this.twinkleSpeed);
+    const a = Math.max(0, Math.min(1, this.alpha * fade * twinkle));
+    c.globalAlpha = a;
+    c.fillStyle = this.color;
+    c.strokeStyle = this.color;
+
+    if (!isMobile) {
+      c.shadowBlur = 9;
+      c.shadowColor = this.color;
+    }
+
+    if (this.isStar) {
+      const arm = this.r * 2.8;
+      c.lineWidth = isMobile ? 1.1 : 1.6;
+      c.beginPath();
+      c.moveTo(this.x - arm, this.y);
+      c.lineTo(this.x + arm, this.y);
+      c.moveTo(this.x, this.y - arm);
+      c.lineTo(this.x, this.y + arm);
+      c.stroke();
+      c.beginPath();
+      c.arc(this.x, this.y, this.r * 0.65, 0, Math.PI * 2);
+      c.fill();
+    } else {
+      c.beginPath();
+      c.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      c.fill();
+    }
+    c.restore();
+  }
+}
+
+let shootingStar = null;
+function spawnShootingStar() {
+  if (!W || !H) return;
+  const fromLeft = Math.random() < 0.5;
+  shootingStar = {
+    x: fromLeft ? Math.random() * W * 0.4 : W * (0.6 + Math.random() * 0.4),
+    y: Math.random() * H * 0.45,
+    vx: (fromLeft ? 1 : -1) * (420 + Math.random() * 260),
+    vy: 180 + Math.random() * 140,
+    len: 75 + Math.random() * 55,
+    life: 0.75,
+    age: 0,
+    color: Math.random() < 0.5 ? '#f5c842' : '#00f0ff'
+  };
+}
+
+function resize() {
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+
+function initParticles() {
+  const count = window.innerWidth < 768 ? 75 : 150;
+  particles = Array.from({ length: count }, () => new Particle());
+}
+
+function loop(nowMs) {
+  const dt = lastLoopTime ? Math.min(0.05, (nowMs - lastLoopTime) * 0.001) : 0.016;
+  lastLoopTime = nowMs;
+
+  ctx.clearRect(0, 0, W, H);
+  const isMobile = (W < 768);
+  const beatE = window.__mgBeatEnergy || 0;
+  for (let i = 0; i < particles.length; i++) {
+    particles[i].update(dt * (1 + beatE * 0.7));
+    particles[i].draw(ctx, isMobile);
+  }
+
+  // Estrella fugaz ocasional cruzando los bloques de la web
+  if (!shootingStar && Math.random() < (isMobile ? 0.006 : 0.012)) {
+    spawnShootingStar();
+  }
+  if (shootingStar) {
+    shootingStar.x += shootingStar.vx * dt;
+    shootingStar.y += shootingStar.vy * dt;
+    shootingStar.age += dt;
+    const p = shootingStar.age / shootingStar.life;
+    if (p >= 1) {
+      shootingStar = null;
+    } else {
+      ctx.save();
+      ctx.globalAlpha = Math.sin(p * Math.PI) * 0.9;
+      const tailX = shootingStar.x - (shootingStar.vx / 600) * shootingStar.len;
+      const tailY = shootingStar.y - (shootingStar.vy / 600) * shootingStar.len;
+      const grad = ctx.createLinearGradient(shootingStar.x, shootingStar.y, tailX, tailY);
+      grad.addColorStop(0, '#ffffff');
+      grad.addColorStop(0.3, shootingStar.color);
+      grad.addColorStop(1, 'transparent');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = isMobile ? 1.8 : 2.5;
+      ctx.beginPath();
+      ctx.moveTo(shootingStar.x, shootingStar.y);
+      ctx.lineTo(tailX, tailY);
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  // Destellos de discoteca (ambientales constantes y al ritmo de la música)
+  const beatFlash = isPlaying && beatE > 0.45 && Math.random() < (isMobile ? 0.14 : 0.22);
+  const flashChance = isPlaying ? (isMobile ? 0.05 : 0.09) : (isMobile ? 0.02 : 0.035);
+  if (beatFlash || Math.random() < flashChance) {
+    const x = Math.random() * W;
+    const y = Math.random() * H * 0.85;
+    const rad = 85 + Math.random() * (isMobile ? 80 : 150) + beatE * 60;
+    const g = ctx.createRadialGradient(x, y, 0, x, y, rad);
+    const col = COLORS[Math.floor(Math.random() * COLORS.length)];
+    g.addColorStop(0, col + (isPlaying ? '66' : '38'));
+    g.addColorStop(1, 'transparent');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  requestAnimationFrame(loop);
+}
+
+window.addEventListener('resize', () => { resize(); initParticles(); });
+resize(); initParticles(); requestAnimationFrame(loop);
+
+// ─── SCROLL REVEAL ────────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.event-card, .stat-card, .player-card, .sponsor-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'opacity 0.6s, transform 0.6s';
+  observer.observe(el);
+});
+</script>
+<script>
+// ─── TEMPLATE BACKGROUND VIDEO ROTATION ────────────────────
+let bgList = [
+  "fondos_principal/Men_dancing_in_nightclub_7b9fab85_1080p.mp4",
+  "fondos_principal/Drag_queens_with_Torre_Agbar_446b9a94_1080p.mp4",
+  "fondos_principal/bailarines_2bf7b7b0_1080p.mp4",
+  "fondos_principal/Models_walking_on_fashion_runway_a05633b0_1080p.mp4",
+  "fondos_principal/Male_models_walking_on_runway_8c9947bb_1080p.mp4",
+  "fondos_principal/People_walking_at_hotel_background_f19269fd_1080p.mp4",
+  "fondos_principal/animalos_1d71ba7c_1080p.mp4",
+  "fondos_principal/animar_la_imagen_bf58aa98_1080p.mp4",
+  "fondos_principal/draq queen.mp4",
+  "videos/fondos_principal/saturgays_cantante_bg.mp4",
+  "videos/fondos_principal/saturgays_gogos_bg.mp4",
+  "videos/fondos_principal/saturgays_vestuarios_bg.mp4"
+];
+const bgVid = document.getElementById('bgVideo');
+const bgWrap = document.getElementById('bgVideoWrap');
+let bgIdx = 0;
+function loadBgVideo(i) {
+  if (!bgVid || !bgList.length) { if (bgWrap) bgWrap.style.display = 'none'; return; }
+  if (bgWrap) bgWrap.style.display = 'flex';
+  bgIdx = (i + bgList.length) % bgList.length;
+  bgVid.src = encodeURI(bgList[bgIdx]);
+  bgVid.muted = true;
+  bgVid.playsInline = true;
+  bgVid.play().catch(() => {});
+}
+if (bgVid) {
+  bgVid.addEventListener('ended', () => loadBgVideo(bgIdx + 1));
+  bgVid.addEventListener('error', () => setTimeout(() => loadBgVideo(bgIdx + 1), 2500));
+  fetch('fondos.json?t=' + Date.now(), { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : null)
+    .then(d => {
+      if (d && Array.isArray(d.fondos) && d.fondos.length) {
+        bgList = d.fondos;
+      }
+      loadBgVideo(0);
+    })
+    .catch(() => loadBgVideo(0));
+}
+</script>
+<script type="application/json" id="publicidad-config">{"intervalo":8,"anuncios":[]}</script>
+<script id="mg-live-sync">
+(function(){
+  if (window.__mgLiveSyncInstalled) return;
+  window.__mgLiveSyncInstalled = true;
+  var metaEl = document.querySelector('meta[name="mg-tpl"]');
+  var currentTpl = metaEl ? metaEl.getAttribute('content') : '';
+  var currentTs = 0;
+  var switching = false;
+
+  // Keep a single persistent audio element across live template swaps
+  function getLiveAudio() {
+    if (!window.__mgPersistentAudio) {
+      var existing = document.getElementById('radio-audio');
+      window.__mgPersistentAudio = existing || document.createElement('audio');
+      window.__mgPersistentAudio.id = 'radio-audio';
+    }
+    return window.__mgPersistentAudio;
+  }
+  getLiveAudio();
+
+  async function applyTemplateLive(tpl, ts) {
+    if (switching) return;
+    switching = true;
+    try {
+      var res = await fetch('plantillas/' + encodeURIComponent(tpl) + '.html?t=' + ts, { cache: 'no-store' });
+      if (!res.ok) return;
+      var html = await res.text();
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      if (!doc || !doc.body) return;
+
+      // Preserve playing audio element
+      var liveAudio = getLiveAudio();
+      var wasPlaying = !liveAudio.paused && !!liveAudio.src;
+      var savedVol = liveAudio.volume;
+      if (liveAudio.parentNode) liveAudio.parentNode.removeChild(liveAudio);
+
+      // Clean up old animation loops if any
+      if (window.__mgRafIds) { window.__mgRafIds.forEach(cancelAnimationFrame); }
+      window.__mgRafIds = [];
+
+      // Swap <title> and <style> tags
+      document.title = doc.title || document.title;
+      document.head.querySelectorAll('style').forEach(function(s){ s.remove(); });
+      doc.head.querySelectorAll('style').forEach(function(s){
+        var ns = document.createElement('style');
+        ns.textContent = s.textContent;
+        document.head.appendChild(ns);
+      });
+
+      // Swap body HTML (excluding scripts & audio)
+      var newAudio = doc.body.querySelector('#radio-audio');
+      if (newAudio) newAudio.remove();
+      var scripts = Array.from(doc.body.querySelectorAll('script'));
+      scripts.forEach(function(s){ s.remove(); });
+      document.body.innerHTML = doc.body.innerHTML;
+      document.body.appendChild(liveAudio);
+
+      currentTpl = tpl;
+      currentTs = ts;
+      if (metaEl) metaEl.setAttribute('content', tpl);
+
+      // Execute new template scripts
+      for (var i = 0; i < scripts.length; i++) {
+        var oldS = scripts[i];
+        if (oldS.id === 'mg-live-sync' || oldS.type === 'application/json') {
+          if (oldS.type === 'application/json') {
+            var cloneJson = document.createElement('script');
+            cloneJson.type = 'application/json';
+            cloneJson.id = oldS.id;
+            cloneJson.textContent = oldS.textContent;
+            document.body.appendChild(cloneJson);
+          }
+          continue;
+        }
+        var ns = document.createElement('script');
+        if (oldS.src) ns.src = oldS.src;
+        else ns.textContent = oldS.textContent;
+        document.body.appendChild(ns);
+      }
+
+      // Restore live audio UI state seamlessly
+      if (wasPlaying) {
+        liveAudio.volume = savedVol;
+        var pb = document.getElementById('play-btn');
+        var st = document.getElementById('status-text');
+        if (pb) pb.textContent = '⏸';
+        if (st) st.textContent = '● EN DIRECTO · MG BARCELONA LIVE';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) {
+    } finally {
+      switching = false;
+    }
+  }
+
+  setInterval(async function(){
+    if (switching) return;
+    try {
+      var r = await fetch('plantilla_live.json?t=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) return;
+      var d = await r.json();
+      if (!d || !d.plantilla) return;
+      if (!currentTs) currentTs = d.ts || 0;
+      if (d.plantilla !== currentTpl || (d.ts && d.ts !== currentTs)) {
+        await applyTemplateLive(d.plantilla, d.ts || Date.now());
+      }
+    } catch (e) {}
+  }, 2000);
+})();
+</script>
+<script src="stats-widget.js?v=7" defer></script>
+<script src="eventos-fotos.js?v=4" defer></script>
+<!-- Modal Oficial de Instalación de App Móvil con Licencia EULA + Permisos de Seguridad -->
+<div id="mg-pwa-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(7,5,15,0.48);backdrop-filter:blur(3px);align-items:center;justify-content:center;padding:0.75rem;overflow-y:auto;-webkit-overflow-scrolling:touch;">
+  <div style="margin:auto;background:linear-gradient(145deg,#110d20,#1b1136);border:1.5px solid rgba(0,240,255,0.75);border-radius:18px;max-width:365px;width:100%;max-height:88dvh;overflow-y:auto;padding:0.95rem 0.95rem;text-align:left;box-shadow:0 0 32px rgba(180,79,255,0.5);color:#fff;font-family:'Inter',sans-serif;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;margin-bottom:0.75rem;">
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <img src="icon-192.png" alt="MG BCN Live" style="width:52px;height:52px;border-radius:14px;border:2px solid #f5c842;flex-shrink:0;">
+        <div>
+          <div style="font-size:0.68rem;color:#00ff99;font-weight:700;letter-spacing:0.05em;">🛡️ VERIFICADA · SSL / EULA</div>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:0.05em;color:#f5c842;margin:0;line-height:1.05;">MG Barcelona Live · App</h3>
+          <div style="font-size:0.7rem;color:rgba(255,255,255,0.72);">Android, iPhone/iPad y PC</div>
+        </div>
+      </div>
+      <button onclick="window.__mgCloseInstallModal && window.__mgCloseInstallModal()" aria-label="Cerrar" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:#fff;border-radius:50%;width:34px;height:34px;font-size:1rem;cursor:pointer;flex-shrink:0;">✕</button>
+    </div>
+
+    <!-- Botones de Instalación y Descarga Directa ARRIBA para acceso inmediato en Android -->
+    <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:0.75rem;">
+      <button id="mgBtnConfirmInstall" onclick="window.__mgExecuteInstall()" style="width:100%;padding:0.85rem 1rem;border-radius:999px;border:none;background:linear-gradient(135deg,#00ff99,#00c3ff);color:#07050f;font-weight:800;cursor:pointer;font-size:0.92rem;box-shadow:0 0 20px rgba(0,255,153,0.45);">
+        📲 ACEPTAR EULA E INSTALAR APP AHORA
+      </button>
+      <a id="mgBtnAndroidIntent" href="intent://mgbarcelonalive.github.io/?autoinstall=1#Intent;scheme=https;package=com.android.chrome;end" style="display:none;text-align:center;text-decoration:none;width:100%;padding:0.72rem 1rem;border-radius:999px;border:1px solid #f5c842;background:rgba(245,200,66,0.16);color:#f5c842;font-weight:700;font-size:0.82rem;">
+        🚀 Abrir Instalador Directo en Google Chrome (Android)
+      </a>
+      <a id="mgBtnIosProfile" href="MG_Barcelona_Live.mobileconfig" download="MG_Barcelona_Live.mobileconfig" style="display:none;text-align:center;text-decoration:none;width:100%;padding:0.72rem 1rem;border-radius:999px;border:1px solid #00f0ff;background:rgba(0,240,255,0.15);color:#00f0ff;font-weight:700;font-size:0.82rem;">
+        📥 Descargar Perfil Instalable iPhone/iPad (con EULA)
+      </a>
+    </div>
+
+    <!-- Estado e instrucciones dinámicas -->
+    <div id="mg-pwa-instructions" style="font-size:0.78rem;line-height:1.4;color:#fff;background:rgba(245,200,66,0.12);border:1px solid rgba(245,200,66,0.4);border-radius:10px;padding:0.55rem 0.65rem;margin-bottom:0.65rem;"></div>
+
+    <!-- Casillas de Aceptación EULA y Permisos de Seguridad -->
+    <label style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.74rem;margin-bottom:0.4rem;cursor:pointer;background:rgba(0,255,153,0.08);padding:0.45rem 0.6rem;border-radius:9px;border:1px solid rgba(0,255,153,0.3);">
+      <input type="checkbox" id="mgEulaAccept" checked style="margin-top:0.1rem;accent-color:#00ff99;width:16px;height:16px;flex-shrink:0;">
+      <span><b>Acepto la Licencia EULA</b> de MG Barcelona Live y los Términos de Uso.</span>
+    </label>
+    <label style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.74rem;margin-bottom:0.6rem;cursor:pointer;background:rgba(0,240,255,0.08);padding:0.45rem 0.6rem;border-radius:9px;border:1px solid rgba(0,240,255,0.3);">
+      <input type="checkbox" id="mgPermAccept" checked style="margin-top:0.1rem;accent-color:#00f0ff;width:16px;height:16px;flex-shrink:0;">
+      <span><b>Permisos de Seguridad:</b> Audio en 2º plano, pantalla bloqueada y reconexión continua.</span>
+    </label>
+
+    <!-- Cuadro de Licencia EULA compacto -->
+    <details style="background:#080512;border:1px solid rgba(255,255,255,0.16);border-radius:10px;padding:0.5rem 0.65rem;font-size:0.7rem;line-height:1.4;color:rgba(255,255,255,0.82);margin-bottom:0.6rem;">
+      <summary style="cursor:pointer;color:#00f0ff;font-weight:700;">📜 Ver Acuerdo de Licencia EULA y Seguridad</summary>
+      <div style="margin-top:0.4rem;">
+        <b>1. Licencia Oficial EULA:</b> MG Barcelona Live (Moisés Gallardo) concede licencia gratuita y segura para instalar esta app oficial.<br>
+        <b>2. Permisos:</b> Audio en 2º plano (MediaSession / WakeLock) y conexión cifrada HTTPS 24/7. Libre de virus, sin acceso a contactos ni cámara. (<a href="EULA_LICENCIA.txt" target="_blank" style="color:#f5c842;">Texto completo</a>)
+      </div>
+    </details>
+
+    <button onclick="window.__mgCloseInstallModal && window.__mgCloseInstallModal()" style="width:100%;padding:0.5rem;border-radius:999px;border:1px solid rgba(255,255,255,0.2);background:transparent;color:rgba(255,255,255,0.75);font-weight:600;cursor:pointer;font-size:0.76rem;">
+      Cerrar ventana
+    </button>
+  </div>
+</div>
+<script id="mg-pwa-setup">
+(function(){
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js', { scope: './' }).catch(function(){});
+  }
+
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    window.__mgDeferredPrompt = e;
+    var btn = document.getElementById('btnInstallApp');
+    if (btn) btn.style.display = 'inline-flex';
+  });
+
+  window.addEventListener('appinstalled', function() {
+    window.__mgDeferredPrompt = null;
+    var txt = document.getElementById('mg-pwa-instructions');
+    if (txt) txt.innerHTML = '✅ <b>¡App MG Barcelona Live instalada con éxito!</b> Ya tienes el icono oficial en la pantalla principal de tu móvil con la Licencia EULA activada.';
+  });
+
+  window.__mgCloseInstallModal = function() {
+    var modal = document.getElementById('mg-pwa-modal');
+    if (modal) modal.style.display = 'none';
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    ['bgVideo', 'liveVideo', 'adVideo'].forEach(function(id) {
+      var v = document.getElementById(id);
+      if (v && v.dataset.mgWasPlaying === '1') {
+        v.dataset.mgWasPlaying = '';
+        v.play().catch(function(){});
+      }
+    });
+  };
+
+  // Abrir / cerrar con el mismo clic (toggle) el Instalador Oficial
+  window.__mgInstallApp = function() {
+    var modal = document.getElementById('mg-pwa-modal');
+    if (modal && modal.style.display === 'flex') {
+      if (window.__mgCloseInstallModal) window.__mgCloseInstallModal();
+      return;
+    }
+    var txt = document.getElementById('mg-pwa-instructions');
+    var btnIntent = document.getElementById('mgBtnAndroidIntent');
+    var btnIos = document.getElementById('mgBtnIosProfile');
+    var btnMain = document.getElementById('mgBtnConfirmInstall');
+    if (!modal || !txt) return;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+
+    // Pausar vídeos temporalmente mientras el modal está abierto para que Android no se cuelgue
+    ['bgVideo', 'liveVideo', 'adVideo'].forEach(function(id) {
+      var v = document.getElementById(id);
+      if (v && !v.paused) {
+        v.dataset.mgWasPlaying = '1';
+        try { v.pause(); } catch (e) {}
+      }
+    });
+
+    var ua = navigator.userAgent || '';
+    var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    var isAndroid = /Android/i.test(ua);
+    var isInAppBrowser = /Instagram|FBAN|FBAV|WhatsApp|Line|TikTok/i.test(ua);
+
+    if (window.__mgDeferredPrompt) {
+      btnMain.textContent = '📲 ACEPTAR EULA E INSTALAR APP (1 CLIC)';
+      txt.innerHTML = '✅ <b>Instalador Nativo Listo:</b> Pulsa el botón verde de arriba para instalar la App directamente en tu móvil.';
+      if (btnIntent) btnIntent.style.display = 'none';
+      if (btnIos) btnIos.style.display = 'none';
+    } else if (isIOS) {
+      btnMain.textContent = '✅ ACEPTAR EULA Y ACTIVAR PERMISOS iOS';
+      txt.innerHTML = '📱 <b>Instalación en iPhone / iPad:</b> Pulsa el botón verde o descarga el <b>Perfil Instalable</b> azul; también puedes usar <b>Compartir ⬆️ → Añadir a pantalla de inicio</b>.';
+      if (btnIos) btnIos.style.display = 'block';
+      if (btnIntent) btnIntent.style.display = 'none';
+    } else if (isAndroid) {
+      btnMain.textContent = '📲 ACEPTAR EULA E INSTALAR APP';
+      if (isInAppBrowser) {
+        txt.innerHTML = '⚠️ Estás en el navegador interno de una red social. Pulsa <b>«🚀 Abrir Instalador Directo en Google Chrome»</b> para instalar la App sin bloqueos.';
+      } else {
+        txt.innerHTML = '📱 <b>Instalación en Android:</b> Pulsa el botón verde arriba. Si no salta la ventana sola, toca los <b>3 puntos (⋮)</b> arriba a la derecha en Chrome y pulsa <b>«Instalar aplicación»</b>.';
+      }
+      if (btnIntent) btnIntent.style.display = 'block';
+      if (btnIos) btnIos.style.display = 'none';
+    } else {
+      btnMain.textContent = '📲 ACEPTAR EULA E INSTALAR APP';
+      txt.innerHTML = '💻 <b>Instalación verificada:</b> Pulsa el botón verde arriba (o el icono 📥 en la barra de direcciones).';
+    }
+    modal.style.display = 'flex';
+    modal.scrollTop = 0;
+  };
+
+  // Ejecutar la aceptación de EULA + Permisos + Disparo de instalación nativa
+  window.__mgExecuteInstall = async function() {
+    var eulaOk = document.getElementById('mgEulaAccept');
+    var permOk = document.getElementById('mgPermAccept');
+    var txt = document.getElementById('mg-pwa-instructions');
+    if (eulaOk && !eulaOk.checked) {
+      txt.innerHTML = '⚠️ <b>Requisito obligatorio:</b> Debes marcar la casilla <b>«Acepto la Licencia EULA»</b> para que el sistema permita instalar la aplicación.';
+      return;
+    }
+    if (permOk && !permOk.checked) {
+      txt.innerHTML = '⚠️ <b>Requisito de seguridad:</b> Activa la casilla de <b>Permisos de Seguridad</b> para que el audio no se corte.';
+      return;
+    }
+
+    // Guardar certificado local de aceptación EULA y permisos
+    try {
+      localStorage.setItem('mg_eula_accepted_v25', new Date().toISOString());
+      localStorage.setItem('mg_security_perms_v25', 'granted');
+    } catch (e) {}
+
+    // Solicitar WakeLock (evitar suspensión del móvil mientras suena la radio)
+    try {
+      if ('wakeLock' in navigator && navigator.wakeLock.request) {
+        await navigator.wakeLock.request('screen').catch(function(){});
+      }
+    } catch (e) {}
+
+    // Si el navegador Android/Chrome/Edge tiene listo el paquete nativo WebAPK, lanzarlo ahora mismo
+    if (window.__mgDeferredPrompt) {
+      try {
+        window.__mgDeferredPrompt.prompt();
+        var choice = await window.__mgDeferredPrompt.userChoice;
+        window.__mgDeferredPrompt = null;
+        if (choice && choice.outcome === 'accepted') {
+          txt.innerHTML = '✅ <b>¡Instalando App MG Barcelona Live!</b> Revisa tu pantalla de inicio en unos segundos.';
+          setTimeout(function(){ if (window.__mgCloseInstallModal) window.__mgCloseInstallModal(); }, 2500);
+          return;
+        }
+      } catch (err) {}
+    }
+
+    // Si ya se aceptó EULA y el navegador requiere el toque final del menú nativo
+    var ua = navigator.userAgent || '';
+    var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    var isAndroid = /Android/i.test(ua);
+    if (isIOS) {
+      txt.innerHTML = '✅ <b>Licencia EULA y Permisos Autorizados.</b><br>Pulsa el botón azul <b>«📥 Descargar Perfil Instalable iPhone/iPad»</b> o toca <b>Compartir ⬆️ -> Añadir a pantalla de inicio ➕</b>.';
+    } else if (isAndroid) {
+      txt.innerHTML = '✅ <b>Licencia EULA y Permisos de Seguridad Activados.</b><br>👉 Toca el menú de <b>3 puntos (⋮) arriba a la derecha</b> de Chrome y pulsa <b>«Instalar aplicación»</b> (o usa el botón amarillo de arriba).';
+    } else {
+      txt.innerHTML = '✅ <b>Licencia EULA y Permisos de Seguridad Activados.</b><br>💻 En PC: pulsa el icono de instalación <b>📥</b> en la barra de direcciones arriba a la derecha de Chrome/Edge (si ya la tienes instalada, puedes cerrar esta ventana).';
+      setTimeout(function(){ if (window.__mgCloseInstallModal) window.__mgCloseInstallModal(); }, 4500);
+    }
+  };
+
+  // Si viene desde el Intent directo (?autoinstall=1), abrir la ventana de instalación automáticamente
+  if (window.location.search.indexOf('autoinstall=1') !== -1) {
+    setTimeout(function() {
+      if (window.__mgInstallApp) window.__mgInstallApp();
+    }, 900);
+  }
+
+  // 3. MediaSession API: Controles en pantalla de bloqueo, barra de notificaciones y Bluetooth/Coche
+  function setupMediaSession() {
+    if (!('mediaSession' in navigator)) return;
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: 'MG Barcelona Live',
+        artist: 'Radio · Eventos · Música Non-Stop',
+        album: 'Emitiendo en Directo · Barcelona',
+        artwork: [
+          { src: 'https://mgbarcelonalive.github.io/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'https://mgbarcelonalive.github.io/icon-512.png', sizes: '512x512', type: 'image/png' }
+        ]
+      });
+      var playBtn = document.getElementById('play-btn');
+      navigator.mediaSession.setActionHandler('play', function() {
+        if (playBtn && audio && audio.paused) playBtn.click();
+      });
+      navigator.mediaSession.setActionHandler('pause', function() {
+        if (playBtn && audio && !audio.paused) playBtn.click();
+      });
+      navigator.mediaSession.setActionHandler('stop', function() {
+        if (playBtn && audio && !audio.paused) playBtn.click();
+      });
+    } catch (e) {}
+  }
+  setupMediaSession();
+  document.addEventListener('click', function() { setTimeout(setupMediaSession, 300); }, { once: true });
+})();
+</script>
+
+<!-- Modal Teléfono Rojo: Peticiones de Oyentes (directo en body para centrar siempre en pantalla) -->
+<div id="req-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100dvh; z-index:99999; background:rgba(6,4,12,0.48); backdrop-filter:blur(3px); align-items:center; justify-content:center; padding:0.75rem; box-sizing:border-box; overflow-y:auto;">
+  <div style="position:relative; width:100%; max-width:365px; max-height:88dvh; overflow-y:auto; background:linear-gradient(160deg, #161026, #0b0814); border:1.5px solid rgba(255,77,166,0.65); border-radius:18px; padding:1.05rem 1rem; box-shadow:0 20px 50px rgba(0,0,0,0.9); color:#fff; margin:auto;">
+    <button id="btn-close-req" type="button" aria-label="Cerrar" style="position:absolute; top:10px; right:12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); border-radius:50%; width:28px; height:28px; color:#fff; font-size:0.9rem; cursor:pointer;">✕</button>
+    <p style="font-size:0.66rem; letter-spacing:0.12em; text-transform:uppercase; color:#ff7ac2; font-weight:700; margin-bottom:0.2rem;">📞 TELÉFONO ROJO</p>
+    <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem; color:var(--gold); margin-bottom:0.35rem; line-height:1.05;">Buzón de la Radio</h3>
+    <p style="font-size:0.78rem; color:rgba(255,255,255,0.78); margin-bottom:0.65rem; line-height:1.38;">Deja tu saludo, canción, cotilleo, anécdota, queja o promo para <strong style="color:#fff;">Marta y Javier</strong>.</p>
+    <select id="req-type" aria-label="Tipo de mensaje" style="width:100%; box-sizing:border-box; background:rgba(24,18,38,0.95); border:1px solid rgba(255,204,77,0.4); border-radius:10px; padding:0.48rem 0.75rem; color:var(--gold); font-size:0.8rem; font-weight:600; margin-bottom:0.55rem; outline:none; cursor:pointer;">
+      <option value="💌 Saludo o Dedicatoria">💌 Saludo o Dedicatoria</option>
+      <option value="🎧 Pedir Canción / Tema House">🎧 Pedir Canción / Tema House</option>
+      <option value="💋 Cotilleo / Salseo del Gaixample">💋 Cotilleo / Salseo del Gaixample</option>
+      <option value="😂 Anécdota Surrealista de Fiesta">😂 Anécdota Surrealista de Fiesta</option>
+      <option value="😤 Queja o Desahogo">😤 Queja o Desahogo</option>
+      <option value="📢 Publicidad / Patrocinar Local">📢 Publicidad / Patrocinar Local</option>
+    </select>
+    <input id="req-name" type="text" placeholder="Tu nombre o apodo" style="width:100%; box-sizing:border-box; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.2); border-radius:10px; padding:0.5rem 0.75rem; color:#fff; font-size:0.82rem; margin-bottom:0.55rem; outline:none;">
+    <textarea id="req-msg" rows="2" placeholder="Tu mensaje, canción, queja o promo..." style="width:100%; box-sizing:border-box; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.2); border-radius:10px; padding:0.5rem 0.75rem; color:#fff; font-size:0.82rem; margin-bottom:0.55rem; outline:none; resize:vertical;"></textarea>
+    <p id="req-status" style="font-size:0.74rem; color:var(--cyan); min-height:0.95rem; margin-bottom:0.45rem; text-align:center;"></p>
+    <div style="display:flex; flex-direction:column; gap:0.45rem;">
+      <button id="req-send-mail" type="button" class="btn btn-primary" style="width:100%; padding:0.55rem; font-size:0.8rem;">✉️ Enviar al Correo</button>
+      <div style="display:flex; gap:0.45rem;">
+        <button id="req-send-ig" type="button" class="btn btn-outline" style="flex:1; padding:0.45rem; font-size:0.74rem; border-color:rgba(255,77,166,0.6);">📸 Instagram</button>
+        <button id="req-send-tt" type="button" class="btn btn-outline" style="flex:1; padding:0.45rem; font-size:0.74rem; border-color:rgba(0,229,255,0.6);">🎵 TikTok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Botón flotante rápido del Buzón (directo en body) -->
+<button id="btn-float-req" type="button" onclick="window.__mgOpenReqModal && window.__mgOpenReqModal();" aria-label="Abrir Buzón de la Radio" style="position:fixed; bottom:18px; right:18px; z-index:9990; background:linear-gradient(135deg, #ff2d78, #ffcc4d); color:#0b0814; border:none; border-radius:999px; padding:0.65rem 1.15rem; font-size:0.84rem; font-weight:800; cursor:pointer; box-shadow:0 8px 28px rgba(255,45,120,0.55); display:flex; align-items:center; gap:0.4rem;">
+  📞 Buzón
+</button>
+
+<script>
+(function(){
+  var modal = document.getElementById('req-modal');
+  var closeBtn = document.getElementById('btn-close-req');
+  var typeIn = document.getElementById('req-type');
+  var nameIn = document.getElementById('req-name');
+  var msgIn = document.getElementById('req-msg');
+  var st = document.getElementById('req-status');
+  function openReqModal() {
+    if (modal && modal.style.display === 'flex') {
+      closeReqModal();
+      return;
+    }
+    if (modal) modal.style.display = 'flex';
+    if (st) st.textContent = '';
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }
+  var pwaModal = document.getElementById('mg-pwa-modal');
+  if (pwaModal) pwaModal.addEventListener('click', function(e){ if (e.target === pwaModal && window.__mgCloseInstallModal) window.__mgCloseInstallModal(); });
+  function closeReqModal() {
+    if (modal) modal.style.display = 'none';
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+  window.__mgOpenReqModal = openReqModal;
+  function buildText() {
+    var t = (typeIn && typeIn.value) || '📞 Mensaje Radio';
+    var n = (nameIn && nameIn.value.trim()) || 'Oyente Anónimo';
+    var m = (msgIn && msgIn.value.trim()) || '¡Un saludo enorme a MG Barcelona Live!';
+    return '📞 Teléfono Rojo · MG Barcelona Live\n📌 Tipo: ' + t + '\n👤 De: ' + n + '\n💬 Mensaje: ' + m;
+  }
+  if (closeBtn && modal) closeBtn.onclick = closeReqModal;
+  if (modal) modal.addEventListener('click', function(e){ if (e.target === modal) closeReqModal(); });
+  var btnMail = document.getElementById('req-send-mail');
+  if (btnMail) btnMail.onclick = function(){
+    var t = (typeIn && typeIn.value) || 'Mensaje';
+    var n = (nameIn && nameIn.value.trim()) || 'Oyente';
+    var sub = encodeURIComponent(t + ' de ' + n + ' · MG Barcelona Live');
+    var body = encodeURIComponent(buildText());
+    window.location.href = 'mailto:mgbarcelonalive@gmail.com?subject=' + sub + '&body=' + body;
+    if (st) st.textContent = '✅ Abriendo tu correo con el mensaje listo para enviar.';
+  };
+  function copyAndOpen(url, red) {
+    var txt = buildText();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).catch(function(){});
+    }
+    if (st) st.textContent = '✅ ¡Mensaje copiado! Pégalo en nuestro mensaje de ' + red + '.';
+    window.open(url, '_blank', 'noopener');
+  }
+  var btnIg = document.getElementById('req-send-ig');
+  if (btnIg) btnIg.onclick = function(){ copyAndOpen('https://www.instagram.com/mgbarcelonalive/', 'Instagram'); };
+  var btnTt = document.getElementById('req-send-tt');
+  if (btnTt) btnTt.onclick = function(){ copyAndOpen('https://www.tiktok.com/@mgbarcelonalive7', 'TikTok'); };
+})();
 </script>
 </body>
 </html>
