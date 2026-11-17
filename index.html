@@ -2740,6 +2740,24 @@ if (bgVid) {
       var doc = new DOMParser().parseFromString(html, 'text/html');
       if (!doc || !doc.body) return;
 
+      // Fast seamless skin swap when both current page and target template share the full radio+podcast DOM
+      if (document.getElementById('pod-window') && doc.getElementById('pod-window')) {
+        document.title = doc.title || document.title;
+        var oldSkin = document.getElementById('mg-theme-skin');
+        if (oldSkin) oldSkin.remove();
+        var newSkin = doc.head.querySelector('#mg-theme-skin');
+        if (newSkin) {
+          var nsSkin = document.createElement('style');
+          nsSkin.id = 'mg-theme-skin';
+          nsSkin.textContent = newSkin.textContent;
+          document.head.appendChild(nsSkin);
+        }
+        currentTpl = tpl;
+        currentTs = ts;
+        if (metaEl) metaEl.setAttribute('content', tpl);
+        return;
+      }
+
       // Preserve playing audio element
       var liveAudio = getLiveAudio();
       var wasPlaying = !liveAudio.paused && !!liveAudio.src;
@@ -2793,6 +2811,7 @@ if (bgVid) {
       // Restore live audio UI state seamlessly
       if (wasPlaying) {
         liveAudio.volume = savedVol;
+        liveAudio.play().catch(function(){});
         var pb = document.getElementById('play-btn');
         var st = document.getElementById('status-text');
         if (pb) pb.textContent = '⏸';
