@@ -1,5 +1,5 @@
 {
-  "horario": "Pódcast Virtual IA de tarde (17:00-00:00) · Radio House Classic 24/7 de noche",
+  "horario": "Programación automática por franjas: MAÑANAS (06:00-14:00) · TARDE (14:00-23:00) · MADRUGADA (23:00-06:00)",
   "episodios": [
     {
       "id": "ep01",
@@ -225,6 +225,114 @@
       "imagen": "podcasts/covers/ep25.jpg",
       "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
+    },
+    {
+      "id": "ep26",
+      "titulo": "Ep. 26 · Llamadas, saludos y temazos",
+      "descripcion": "Marta y Javier abren la tarde con llamadas de oyentes, saludos, dedicatorias y peticiones musicales. Humor, cariño y buena música para acompañar la vuelta a casa.",
+      "archivo": "podcasts/ep26_llamadas_saludos_temazos.mp3",
+      "voces": "Marta & Javier · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
+    },
+    {
+      "id": "ep27",
+      "titulo": "Ep. 27 · El contestador nocturno",
+      "descripcion": "Marta y Javier repasan los mensajes que deja la audiencia en el contestador: historias de madrugada, confidencias, risas y algún que otro drama con final feliz.",
+      "archivo": "podcasts/ep27_contestador_nocturno.mp3",
+      "voces": "Marta & Javier · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
+    },
+    {
+      "id": "ep28",
+      "titulo": "Ep. 28 · Buenos días Barcelona · Elena y Pablo",
+      "descripcion": "El arranque de las mañanas con Elena y Pablo: café, buen humor, mensajes de oyentes y las primeras historias del día en MG Barcelona Live.",
+      "archivo": "podcasts/ep28_manana_elena_pablo.mp3",
+      "voces": "Elena & Pablo · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
+    },
+    {
+      "id": "ep29",
+      "titulo": "Ep. 29 · Buenos días Barcelona con Lola",
+      "descripcion": "Versión especial del despertador con Lola: energía, saludos y conversación para empezar la mañana con buen pie.",
+      "archivo": "podcasts/ep28_buenos_dias_barcelona_lola.mp3",
+      "voces": "Lola · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
+    },
+    {
+      "id": "ep30",
+      "titulo": "Ep. 30 · Buenos días Barcelona con Kiko",
+      "descripcion": "Otra mirada del programa de mañanas, con Kiko al frente: cercanía, humor y la actualidad contada sin prisas.",
+      "archivo": "podcasts/ep28_buenos_dias_barcelona_kiko.mp3",
+      "voces": "Kiko · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
+    },
+    {
+      "id": "ep31",
+      "titulo": "Ep. 31 · La Noche te Escucha · Nicolás",
+      "descripcion": "Nicolás acompaña la madrugada con historias de oyentes que trabajan de noche, confidencias y música tranquila. Un refugio para los que siguen despiertos.",
+      "archivo": "podcasts/ep32_nicolas_la_noche_te_escucha.mp3",
+      "voces": "Nicolás · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
+    },
+    {
+      "id": "ep32",
+      "titulo": "Ep. 32 · Despierta Barcelona 07:00",
+      "descripcion": "Elena y Pablo arrancan las mañanas de MG Barcelona Live: café, negociación con el despertador, tiempo, tráfico y mensajes para empezar el día con una sonrisa.",
+      "archivo": "podcasts/ep33_despierta_barcelona_07_00.mp3",
+      "voces": "Elena & Pablo · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
+    },
+    {
+      "id": "ep33",
+      "titulo": "Ep. 33 · Noticias 08:00",
+      "descripcion": "Boletín de actualidad de las mañanas: movilidad, cultura, tiempo, tráfico y consejos prácticos contados con calma y conversación.",
+      "archivo": "podcasts/ep34_noticias_08_00_manana.mp3",
+      "voces": "Elena & Pablo · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
+    },
+    {
+      "id": "ep34",
+      "titulo": "Ep. 34 · Debate 08:10 · Mensajes de madrugada",
+      "descripcion": "Tertulia de Elena y Pablo sobre los mensajes de madrugada, el scroll infinito y cómo llegar al despertador sin perder el humor.",
+      "archivo": "podcasts/ep35_debate_08_10_09_00_manana.mp3",
+      "voces": "Elena & Pablo · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
+    },
+    {
+      "id": "ep35",
+      "titulo": "Ep. 35 · Entrevista 10:10 · Luna Brillante",
+      "descripcion": "Elena y Pablo charlan con Luna Brillante, drag queen y creadora de contenido: arte, redes, salud mental y el brillo de las mañanas. Personaje de ficción.",
+      "archivo": "podcasts/ep37_entrevista_drag_influencer_manana.mp3",
+      "voces": "Elena, Pablo & Luna Brillante (ficción) · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
+    },
+    {
+      "id": "ep36",
+      "titulo": "Ep. 36 · Monólogo y sátira 11:00 · Cameos",
+      "descripcion": "Monólogo con cameos y parodia: la noche, la mañana, las llaves perdidas, el café frío y personajes ficticios del desayuno. Humor con cariño.",
+      "archivo": "podcasts/ep36_monologo_satira_cameos_11_12.mp3",
+      "voces": "Elena & Pablo + cameos (ficción) · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
+    },
+    {
+      "id": "ep37",
+      "titulo": "Ep. 37 · Llamadas y peticiones 12:00-14:00",
+      "descripcion": "El tramo más participativo de las mañanas: saludos, dedicatorias, cumpleaños, ánimos y peticiones musicales de la audiencia.",
+      "archivo": "podcasts/ep38_llamadas_peticiones_12_14_manana.mp3",
+      "voces": "Elena & Pablo + oyentes · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
     }
   ]
 }
