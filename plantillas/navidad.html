@@ -1245,7 +1245,42 @@ body::after {
   background: radial-gradient(circle at 20% 20%, rgba(230, 57, 70, 0.13), transparent 48%),
               radial-gradient(circle at 80% 30%, rgba(255, 209, 102, 0.11), transparent 48%);
 }
-
+html::before {
+  content: ''; position: fixed; right: 2vw; bottom: 28px; width: 160px; height: 200px; z-index: 40; pointer-events: none;
+  clip-path: polygon(50% 0%, 66% 30%, 57% 30%, 80% 58%, 68% 58%, 96% 100%, 4% 100%, 32% 58%, 20% 58%, 43% 30%, 34% 30%);
+  background:
+    radial-gradient(circle at 50% 22%, #ffd166 0 4px, transparent 5px),
+    radial-gradient(circle at 42% 42%, #e63946 0 5px, transparent 6px),
+    radial-gradient(circle at 60% 48%, #ffd166 0 4px, transparent 5px),
+    radial-gradient(circle at 34% 68%, #ffd166 0 5px, transparent 6px),
+    radial-gradient(circle at 54% 70%, #e63946 0 5px, transparent 6px),
+    radial-gradient(circle at 74% 82%, #ffd166 0 5px, transparent 6px),
+    radial-gradient(circle at 24% 90%, #e63946 0 5px, transparent 6px),
+    radial-gradient(circle at 48% 92%, #2ec4b6 0 5px, transparent 6px),
+    linear-gradient(180deg, #1f9d55 0%, #14733d 55%, #0d5a2f 100%);
+  animation: mgTreeGlow 1.6s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 10px rgba(255, 209, 102, 0.45));
+}
+html::after {
+  content: '°5'; position: fixed; right: 2vw; bottom: 0; width: 160px; height: 228px; z-index: 41; pointer-events: none;
+  text-align: center; font-size: 34px; line-height: 34px; color: #ffd166; text-shadow: 0 0 14px #ffd166, 0 0 28px #ff9f1c;
+  background: linear-gradient(#6b3f1d, #4a2a12) no-repeat center bottom / 26px 30px;
+}
+body::before {
+  height: 34px !important; z-index: 9999;
+  background:
+    radial-gradient(circle at 14px 18px, #e63946 0 6px, transparent 7px),
+    radial-gradient(circle at 38px 22px, #ffd166 0 6px, transparent 7px),
+    radial-gradient(circle at 62px 18px, #2ec4b6 0 6px, transparent 7px),
+    radial-gradient(circle at 86px 22px, #ffd166 0 6px, transparent 7px),
+    linear-gradient(#0a2a14, #0a2a14) 0 6px / 100% 2px no-repeat !important;
+  background-size: 96px 34px, 96px 34px, 96px 34px, 96px 34px, 100% 100% !important;
+  background-repeat: repeat-x, repeat-x, repeat-x, repeat-x, no-repeat !important;
+  filter: drop-shadow(0 0 5px rgba(255,209,102,0.9));
+  animation: mgLightsBlink 1.2s steps(2, jump-none) infinite;
+}
+@keyframes mgLightsBlink { 0% { opacity: 1; } 100% { opacity: 0.45; } }@keyframes mgTreeGlow { from { filter: drop-shadow(0 0 6px rgba(255,209,102,0.25)) brightness(0.95); } to { filter: drop-shadow(0 0 16px rgba(255,209,102,0.7)) brightness(1.25); } }
+@media (max-width: 700px) { html::before, html::after { transform: scale(0.6); transform-origin: bottom right; } }
 </style>
 </head>
 <body>
