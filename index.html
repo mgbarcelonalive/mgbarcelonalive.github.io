@@ -2827,11 +2827,27 @@ if (bgVid) {
   setInterval(async function(){
     if (switching) return;
     try {
-      var r = await fetch('plantilla_live.json?t=' + Date.now(), { cache: 'no-store' });
-      if (!r.ok) return;
-      var d = await r.json();
+      var d = null;
+      // 1) Servidor Render: cambio instantaneo al pulsar el boton
+      try {
+        var ctl = new AbortController();
+        var to = setTimeout(function(){ ctl.abort(); }, 4000);
+        var rs = await fetch('https://mgbarcelonalive-radio.onrender.com/api/status?t=' + Date.now(), { cache: 'no-store', signal: ctl.signal });
+        clearTimeout(to);
+        if (rs.ok) {
+          var st = await rs.json();
+          if (st && st.current_template) d = { plantilla: st.current_template, ts: 0 };
+        }
+      } catch (e0) {}
+      // 2) Respaldo: GitHub Pages
+      if (!d) {
+        var r = await fetch('plantilla_live.json?t=' + Date.now(), { cache: 'no-store' });
+        if (!r.ok) return;
+        d = await r.json();
+      }
       if (!d || !d.plantilla) return;
       if (!currentTs) currentTs = d.ts || 0;
+      if (!d.ts) d.ts = currentTs;
       if (d.plantilla !== currentTpl || (d.ts && d.ts !== currentTs)) {
         await applyTemplateLive(d.plantilla, d.ts || Date.now());
       }
