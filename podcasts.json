@@ -1,4 +1,4 @@
-{
+﻿{
   "horario": "Programación automática por franjas: MAÑANAS (06:00-14:00) · TARDE (14:00-23:00) · MADRUGADA (23:00-06:00)",
   "episodios": [
     {
@@ -309,10 +309,10 @@
     },
     {
       "id": "ep35",
-      "titulo": "Ep. 35 · Entrevista 10:10 · Luna Brillante",
-      "descripcion": "Elena y Pablo charlan con Luna Brillante, drag queen y creadora de contenido: arte, redes, salud mental y el brillo de las mañanas. Personaje de ficción.",
+      "titulo": "Ep. 35 · The MG Project · La entrevista con Luna Brillante",
+      "descripcion": "The MG Project: Elena y el locutor Pablo reciben a Luna Brillante, drag queen y creadora de contenido. La entrevista sin filtros de las mañanas de MG Barcelona Live. Personaje de ficción.",
       "archivo": "podcasts/ep37_entrevista_drag_influencer_manana.mp3",
-      "voces": "Elena, Pablo & Luna Brillante (ficción) · MG Barcelona Live",
+      "voces": "Elena, Pablo (voz Jordi Wild) & Luna Brillante (ficción) · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
     },
