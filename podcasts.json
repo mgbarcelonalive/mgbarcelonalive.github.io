@@ -333,6 +333,15 @@
       "voces": "Elena & Pablo + oyentes · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
+    },
+    {
+      "id": "ep38",
+      "titulo": "Ep. 38 · Debate · Libertad de expresión y redes sociales",
+      "descripcion": "Elena y Pablo debaten con Rubén, abogado y analista geopolítico liberal (ficticio), sobre libertad de expresión, nuevas leyes de redes sociales, políticas de YouTube y control gubernamental de plataformas.",
+      "archivo": "podcasts/ep39_debate_libertad_expresion_redes.mp3",
+      "voces": "Elena, Pablo (voz Jordi Wild) & Rubén (ficción) · MG Barcelona Live",
+      "fecha": "2026-11-17",
+      "imagen": "logo.png"
     }
   ]
 }
