@@ -2036,6 +2036,7 @@ if ('serviceWorker' in navigator) {
 <footer>
   <div class="footer-logo">MG Barcelona Live</div>
   <p>Radio · Eventos · Discoteca · Barcelona · <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="color:var(--gold); font-weight:700; text-decoration:none;">📸 @mgbarcelonalive</a> · <a href="https://www.tiktok.com/@mgbarcelonalive7" target="_blank" rel="noopener" style="color:#fff; font-weight:700; text-decoration:none;">🎵 TikTok</a> · <a href="https://www.facebook.com/MGBarcelonaLIVE/" target="_blank" rel="noopener" style="color:var(--cyan); font-weight:700; text-decoration:none;">📘 Facebook</a> · <a href="mailto:mgbarcelonalive@gmail.com" style="color:var(--pink); font-weight:700; text-decoration:none;">✉️ mgbarcelonalive@gmail.com</a><br>
+  <a href="aviso-legal.html" style="color:rgba(255,255,255,0.55);text-decoration:none;">Aviso legal</a> · <a href="privacidad.html" style="color:rgba(255,255,255,0.55);text-decoration:none;">Privacidad</a> · <a href="cookies.html" style="color:rgba(255,255,255,0.55);text-decoration:none;">Cookies</a><br>
   <span style="color:rgba(255,255,255,0.15);">© 2026 MG Barcelona Live · Todos los derechos reservados</span></p>
 </footer>
 
@@ -3163,5 +3164,13 @@ if (bgVid) {
   if (btnTt) btnTt.onclick = function(){ copyAndOpen('https://www.tiktok.com/@mgbarcelonalive7', 'TikTok'); };
 })();
 </script>
+<div id="mg-cookie-banner" style="display:none;position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:9990;background:rgba(12,9,24,0.95);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:0.75rem 1rem;max-width:520px;width:92vw;color:#e9e4f5;font-size:0.8rem;box-shadow:0 8px 28px rgba(0,0,0,0.6);">
+  <span>Usamos cookies técnicas y de terceros. Consulta la <a href="cookies.html" style="color:#00f0ff;">Política de Cookies</a>.</span>
+  <div style="margin-top:0.5rem;display:flex;gap:0.5rem;justify-content:flex-end;">
+    <button type="button" onclick="localStorage.setItem('mg_cookies_ok','0');this.closest('#mg-cookie-banner').style.display='none';" style="background:transparent;border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:999px;padding:0.3rem 0.75rem;cursor:pointer;font-size:0.75rem;">Rechazar</button>
+    <button type="button" onclick="localStorage.setItem('mg_cookies_ok','1');this.closest('#mg-cookie-banner').style.display='none';" style="background:#00f0ff;border:none;color:#07050f;border-radius:999px;padding:0.3rem 0.85rem;font-weight:700;cursor:pointer;font-size:0.75rem;">Aceptar</button>
+  </div>
+</div>
+<script>try{if(!localStorage.getItem('mg_cookies_ok'))document.getElementById('mg-cookie-banner').style.display='block';}catch(e){}</script>
 </body>
 </html>
