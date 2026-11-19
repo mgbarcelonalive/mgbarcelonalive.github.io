@@ -133,7 +133,7 @@ if ('serviceWorker' in navigator) {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 2rem;
+    padding: 4.5rem 2rem 1.5rem;
     overflow: hidden;
     z-index: 1;
   }
@@ -335,10 +335,8 @@ if ('serviceWorker' in navigator) {
 
   /* Scroll arrow */
   .scroll-arrow {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    position: static;
+    margin-top: 1.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1031,7 +1029,7 @@ if ('serviceWorker' in navigator) {
     #hero {
       padding: 1rem 0.9rem 2.8rem;
       min-height: auto;
-      padding-top: 4.6rem;
+      padding-top: 6.4rem;
     }
     .hero-title {
       font-size: clamp(2.8rem, 12vw, 4.5rem);
@@ -1039,8 +1037,10 @@ if ('serviceWorker' in navigator) {
       margin-top: 0.2rem;
     }
     .hero-sub {
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.82);
+      white-space: nowrap;
       margin-top: 0.6rem;
     }
     .live-badge {
@@ -1277,9 +1277,9 @@ if ('serviceWorker' in navigator) {
   <h1 class="hero-title">MG<br>Barcelona<br>Live</h1>
   <p class="hero-sub">Radio · Eventos · Discoteca</p>
 
-  <div class="live-badge">
-    <span class="live-dot"></span>
-    En directo ahora
+  <div class="live-badge" id="live-badge">
+    <span class="live-dot" id="live-dot"></span>
+    <span id="live-badge-text">En directo ahora</span>
   </div>
 
   <div class="hero-ctas">
@@ -1400,6 +1400,7 @@ if ('serviceWorker' in navigator) {
     <div class="stream-url" id="stream-info">
       🔗 Cargando enlace de emisión...
     </div>
+    <div id="stream-retry-wrap" style="display:none;margin-top:0.65rem;text-align:center;"><button type="button" class="btn btn-outline" id="stream-retry-btn" style="padding:0.4rem 1rem;font-size:0.8rem;">🔄 Reintentar</button></div>
   </div>
   <p style="text-align:center; color:rgba(255,255,255,0.68); max-width:680px; margin:1rem auto 0; font-size:0.86rem; line-height:1.5;">
     Parte de la programación (guiones, voces, anuncios y boletines) se crea con inteligencia artificial y es revisada por nuestro equipo.<br>
@@ -2251,8 +2252,15 @@ audio.addEventListener('ended', () => {
   else setPlayingUI(false);
 });
 audio.addEventListener('error', () => {
-  if (userWantsPlay) reconnectRadioStream();
+  var lbt = document.getElementById('live-badge-text'); if (lbt) lbt.textContent = 'Fuera de emisión';
+  var rw = document.getElementById('stream-retry-wrap'); if (rw) rw.style.display = 'block';
+  if (userWantsPlay) { npSub.textContent = '⚠️ No se pudo conectar con la emisión'; reconnectRadioStream(); }
 });
+audio.addEventListener('playing', () => {
+  var lbt = document.getElementById('live-badge-text'); if (lbt) lbt.textContent = 'En directo ahora';
+  var rw = document.getElementById('stream-retry-wrap'); if (rw) rw.style.display = 'none';
+});
+(function(){ var rb = document.getElementById('stream-retry-btn'); if (rb) rb.onclick = function(){ userWantsPlay = true; reconnectRadioStream(); }; })();
 audio.addEventListener('stalled', () => {
   if (userWantsPlay) reconnectRadioStream();
 });
