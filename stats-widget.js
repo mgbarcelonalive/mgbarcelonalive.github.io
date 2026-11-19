@@ -63,8 +63,8 @@
     card.id = 'mg-stats-card';
     card.className = 'mg-top-pill';
     card.innerHTML = [
-      '<span class="mg-tp-item"><span class="mg-tp-dot"></span><span class="mg-tp-lbl">Oyentes</span><span class="mg-tp-val live" id="mg-listeners-val">0</span></span>',
-      '<span class="mg-tp-sep"></span>',
+      '<span class="mg-tp-item" id="mg-listeners-wrap" style="display:none"><span class="mg-tp-dot"></span><span class="mg-tp-lbl">Oyentes</span><span class="mg-tp-val live" id="mg-listeners-val">0</span></span>',
+      '<span class="mg-tp-sep" id="mg-listeners-sep" style="display:none"></span>',
       '<span class="mg-tp-item"><span class="mg-tp-lbl">Visitas</span><span class="mg-tp-val cyan" id="mg-visits-val">--</span></span>',
       '<span class="mg-tp-sep"></span>',
       '<span class="mg-tp-item mg-tp-you" id="mg-you-loc"><span class="mg-tp-lbl">IP...</span></span>',
@@ -112,6 +112,7 @@
     return '';
   }
 
+  function syncListenersVis(v){var w=document.getElementById('mg-listeners-wrap'),s=document.getElementById('mg-listeners-sep');var show=Number(v)>=3;if(w)w.style.display=show?'inline-flex':'none';if(s)s.style.display=show?'inline-block':'none';}
   async function refreshListeners() {
     var el = document.getElementById('mg-listeners-val');
     if (!el) return;
@@ -122,7 +123,7 @@
       if (rApi.ok) {
         var dApi = await rApi.json();
         if (dApi && typeof dApi.listeners === 'number') {
-          el.textContent = String(Math.max(0, dApi.listeners));
+          var __n=Number(Math.max(0, dApi.listeners));
           return;
         }
       }
@@ -138,7 +139,7 @@
       } else if (src && typeof src === 'object') {
         total = Number(src.listeners || 0);
       }
-      el.textContent = String(isNaN(total) ? 0 : total);
+      var __n=Number(isNaN(total) ? 0 : total);
     } catch (e) {}
   }
 
@@ -176,7 +177,7 @@
       if (r.ok) {
         var d = await r.json();
         if (typeof d.value === 'number' && d.value >= 0) {
-          if (vEl) vEl.textContent = d.value.toLocaleString('es-ES');
+          if (vEl) vEl.textContent = d.value.toLocaleString('es-ES'); syncListenersVis(el.textContent);
           try { sessionStorage.setItem(hitKey, '1'); } catch (e) {}
         }
       }
@@ -184,7 +185,7 @@
       if (vEl && vEl.textContent === '--') {
         var localV = Number(localStorage.getItem('mg_local_visits') || '0') + (already ? 0 : 1);
         localStorage.setItem('mg_local_visits', String(localV));
-        vEl.textContent = String(localV);
+        vEl.textContent = String(localV); syncListenersVis(el.textContent);
       }
     }
 
@@ -386,7 +387,7 @@
           v.style.display = 'none';
           imgEl.src = src;
           imgEl.style.display = 'block';
-          if (statusEl) statusEl.textContent = 'Publicidad ' + (idx + 1) + ' / ' + ads.length;
+          if (statusEl) statusEl.textContent = 'Publicidad ' + (idx + 1) + ' / ' + ads.length; syncListenersVis(el.textContent);
           imgTimer = setTimeout(function () { playAd(idx + 1); }, (Number(data.intervalo) || 8) * 1000);
           return;
         }
@@ -397,10 +398,10 @@
         v.src = src;
         v.onended = function () { playAd(idx + 1); };
         v.play().then(function () {
-          if (playEl) playEl.textContent = 'Pausar';
-          if (statusEl) statusEl.textContent = 'Publicidad ' + (idx + 1) + ' / ' + ads.length;
+          if (playEl) playEl.textContent = 'Pausar'; syncListenersVis(el.textContent);
+          if (statusEl) statusEl.textContent = 'Publicidad ' + (idx + 1) + ' / ' + ads.length; syncListenersVis(el.textContent);
         }).catch(function () {
-          if (statusEl) statusEl.textContent = 'Publicidad ' + (idx + 1) + ' / ' + ads.length + ' lista.';
+          if (statusEl) statusEl.textContent = 'Publicidad ' + (idx + 1) + ' / ' + ads.length + ' lista.'; syncListenersVis(el.textContent);
         });
       }
 

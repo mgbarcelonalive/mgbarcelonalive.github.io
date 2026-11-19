@@ -133,7 +133,7 @@ if ('serviceWorker' in navigator) {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 2rem;
+    padding: 4.5rem 2rem 1.5rem;
     overflow: hidden;
     z-index: 1;
   }
@@ -335,10 +335,8 @@ if ('serviceWorker' in navigator) {
 
   /* Scroll arrow */
   .scroll-arrow {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    position: static;
+    margin-top: 1.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -767,7 +765,7 @@ if ('serviceWorker' in navigator) {
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--gold); }
-  @media(max-width:500px) { .nav-links { display: none; } }
+  @media(max-width:500px) { .nav-links { display: flex; gap: 0.9rem; overflow-x: auto; max-width: 58vw; white-space: nowrap; } }
 
   /* Ticket button */
   .nav-ticket {
@@ -1031,7 +1029,7 @@ if ('serviceWorker' in navigator) {
     #hero {
       padding: 1rem 0.9rem 2.8rem;
       min-height: auto;
-      padding-top: 4.6rem;
+      padding-top: 6.4rem;
     }
     .hero-title {
       font-size: clamp(2.8rem, 12vw, 4.5rem);
@@ -1039,8 +1037,10 @@ if ('serviceWorker' in navigator) {
       margin-top: 0.2rem;
     }
     .hero-sub {
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.82);
+      white-space: nowrap;
       margin-top: 0.6rem;
     }
     .live-badge {
@@ -1249,13 +1249,13 @@ if ('serviceWorker' in navigator) {
     <li><a href="#" onclick="event.preventDefault(); window.__mgOpenReqModal && window.__mgOpenReqModal();">📞 Buzón</a></li>
     <li><a href="#videos">Vídeos</a></li>
     <li><a href="#events">Eventos</a></li>
-    <li><a href="#sponsors">Sponsors</a></li>
+    <li><a href="#sponsors">Locales</a></li>
     <li><a href="#about">Nosotros</a></li>
     <li><a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener">Instagram</a></li>
     <li><a href="https://www.tiktok.com/@mgbarcelonalive7" target="_blank" rel="noopener">TikTok</a></li>
     <li><a href="https://www.facebook.com/MGBarcelonaLIVE/" target="_blank" rel="noopener">Facebook</a></li>
   </ul>
-  <a href="#events" class="nav-ticket">🎟 Eventos</a>
+  <a href="#podcast" class="nav-ticket">🎙️ Pódcast</a>
 </nav>
 
 <!-- Particle canvas -->
@@ -1276,10 +1276,11 @@ if ('serviceWorker' in navigator) {
   <p class="hero-eyebrow">🔴 Emitiendo desde Barcelona</p>
   <h1 class="hero-title">MG<br>Barcelona<br>Live</h1>
   <p class="hero-sub">Radio · Eventos · Discoteca</p>
+  <p style="font-size:0.9rem; color:var(--gold); letter-spacing:0.06em; margin-top:0.35rem;">El Teléfono Rojo del Gaixample - Radio House Classic 24/7</p>
 
-  <div class="live-badge">
-    <span class="live-dot"></span>
-    En directo ahora
+  <div class="live-badge" id="live-badge">
+    <span class="live-dot" id="live-dot"></span>
+    <span id="live-badge-text">En directo ahora</span>
   </div>
 
   <div class="hero-ctas">
@@ -1400,7 +1401,12 @@ if ('serviceWorker' in navigator) {
     <div class="stream-url" id="stream-info">
       🔗 Cargando enlace de emisión...
     </div>
+    <div id="stream-retry-wrap" style="display:none;margin-top:0.65rem;text-align:center;"><button type="button" class="btn btn-outline" id="stream-retry-btn" style="padding:0.4rem 1rem;font-size:0.8rem;">🔄 Reintentar</button></div>
   </div>
+  <p style="text-align:center; color:rgba(255,255,255,0.68); max-width:680px; margin:1rem auto 0; font-size:0.86rem; line-height:1.5;">
+    Parte de la programación (guiones, voces, anuncios y boletines) se crea con inteligencia artificial y es revisada por nuestro equipo.<br>
+    Web en fase de pruebas: algunos eventos y colaboradores son provisionales.
+  </p>
 </section>
 
 <!-- Podcast Virtual IA Section -->
@@ -1475,7 +1481,8 @@ if ('serviceWorker' in navigator) {
       <!-- Info del episodio actual -->
       <h3 id="pod-title" style="font-family:'Bebas Neue',sans-serif; font-size:1.72rem; letter-spacing:0.04em; color:var(--gold); margin-bottom:0.35rem; line-height:1.15; text-shadow:0 2px 12px rgba(0,0,0,0.8);">Cargando episodio...</h3>
       <p id="pod-desc" style="color:rgba(255,255,255,0.88); font-size:0.9rem; line-height:1.52; margin-bottom:0.55rem;"></p>
-      <p id="pod-voices" style="color:var(--cyan); font-size:0.74rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.9rem;"></p>
+      <p id="pod-voices" style="color:var(--cyan); font-size:0.74rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.35rem;"></p>
+      <p style="color:rgba(255,255,255,0.68); font-size:0.78rem; margin-bottom:0.9rem;">Voces virtuales creadas con IA a partir de voces autorizadas. Guion revisado por MG Barcelona Live.</p>
 
       <!-- Reproductor -->
       <audio id="podcast-audio" controls playsinline preload="metadata" crossorigin="anonymous" style="width:100%; border-radius:12px; margin-bottom:0.95rem;"></audio>
@@ -1794,7 +1801,7 @@ if ('serviceWorker' in navigator) {
     <div class="mg-video-card ad-card">
       <div class="mg-video-header">
         <h3 class="mg-video-title pink">Publicidad de la Radio</h3>
-        <span class="tag tag-pink">Anuncios MG</span>
+        <span class="tag tag-pink">Publicidad</span>
       </div>
       <div class="mg-video-screen">
         <video id="adVideo" autoplay playsinline muted preload="metadata"></video>
@@ -1814,53 +1821,17 @@ if ('serviceWorker' in navigator) {
   <p class="section-label" style="text-align:center">📅 Próximos Eventos</p>
   <h2 class="section-title" style="text-align:center">Noches de Barcelona</h2>
 
-  <div class="events-grid">
-    <div class="event-card e1">
-      <div class="event-thumb">🎧</div>
-      <div class="event-body">
-        <p class="event-date">Próximamente</p>
-        <p class="event-name">Noche Electrónica BCN</p>
-        <p class="event-venue">📍 Club Moog · El Raval</p>
-        <div class="event-tags">
-          <span class="tag tag-neon">Techno</span>
-          <span class="tag tag-cyan">House</span>
-        </div>
-      </div>
-    </div>
-    <div class="event-card e2">
-      <div class="event-thumb">🌊</div>
-      <div class="event-body">
-        <p class="event-date">Próximamente</p>
-        <p class="event-name">Rooftop Ibiza Vibes</p>
-        <p class="event-venue">📍 W Barcelona · La Barceloneta</p>
-        <div class="event-tags">
-          <span class="tag tag-pink">Dance</span>
-          <span class="tag tag-gold">Summer</span>
-        </div>
-      </div>
-    </div>
-    <div class="event-card e3">
-      <div class="event-thumb">🔥</div>
-      <div class="event-body">
-        <p class="event-date">Próximamente</p>
-        <p class="event-name">MG Live Showcase</p>
-        <p class="event-venue">📍 Razzmatazz · Poblenou</p>
-        <div class="event-tags">
-          <span class="tag tag-neon">Live</span>
-          <span class="tag tag-pink">DJ Set</span>
-          <span class="tag tag-cyan">VIP</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <p style="text-align:center; color:rgba(255,255,255,0.72); max-width:620px; margin:1.5rem auto 0; font-size:1rem;">
+    Estamos preparando la agenda. Síguenos en <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="color:var(--gold);">Instagram</a>.
+  </p>
 </section>
 
 <!-- Sponsors -->
 <section id="sponsors">
   <p class="section-label" style="text-align:center">📢 Red de Ocio y Noche</p>
-  <h2 class="section-title" style="text-align:center">Nuestros Sponsors Oficiales</h2>
+  <h2 class="section-title" style="text-align:center">Locales recomendados</h2>
   <p style="text-align:center; color:rgba(255,255,255,0.55); max-width:660px; margin:0 auto;">
-    Las salas, clubes y eventos imprescindibles que impulsan el arte, la música y la noche de Barcelona.
+    Locales que nos gustan. Es una recomendación editorial de MG Barcelona Live y no implica relación comercial.
   </p>
   <div class="sponsors-grid">
     <div class="sponsor-card">
@@ -1876,7 +1847,7 @@ if ('serviceWorker' in navigator) {
       <p class="sponsor-desc">Bar y ocio LGTBIQ+, cócteles y ambientazo.<br>📍 C/ del Consell de Cent, 245 bis · Barcelona<br><a href="https://www.instagram.com/lasastreriacafebcn/" target="_blank" rel="noopener">@lasastreriacafebcn</a></p>
     </div>
     <div class="sponsor-card">
-      <span class="sponsor-tier">Sponsor Oficial</span>
+      <span class="sponsor-tier">Recomendado</span>
       <div class="sponsor-logo-wrap" style="background:linear-gradient(135deg, #00f0ff, #0072ff); box-shadow:0 0 20px rgba(0,240,255,0.5);"><img src="sponsors/bcn_sound_pro.jpg" alt="BCN Sound Pro" loading="lazy"></div>
       <div class="sponsor-name">BCN Sound Pro</div>
       <p class="sponsor-desc">Sonido, iluminación LED y producción para cabinas y discotecas.</p>
@@ -1909,7 +1880,7 @@ if ('serviceWorker' in navigator) {
       <span class="sponsor-tier">Macrofestival Mundial · Barcelona</span>
       <div class="sponsor-logo-wrap"><img src="sponsors/circuit_festival_bcn.jpg" alt="Circuit Festival Barcelona" loading="lazy"></div>
       <div class="sponsor-name">Circuit Festival</div>
-      <p class="sponsor-desc">El mayor festival LGTBIQ+ del planeta producido por Matinée Group.<br>📍 Barcelona (Agosto 2026)<br><a href="https://www.instagram.com/circuitfestival/" target="_blank" rel="noopener">@circuitfestival</a></p>
+      <p class="sponsor-desc">El mayor festival LGTBIQ+ del planeta producido por Matinée Group.<br>📍 Barcelona<br><a href="https://www.instagram.com/circuitfestival/" target="_blank" rel="noopener">@circuitfestival</a></p>
     </div>
     <div class="sponsor-card">
       <span class="sponsor-tier">Discoteca &amp; Fiestas · Poblenou</span>
@@ -1966,6 +1937,15 @@ if ('serviceWorker' in navigator) {
       <p class="sponsor-desc">Líder mundial en festivales, giras de club y macroeventos LGTBIQ+.<br>📍 Barcelona · Ibiza · World Tour<br><a href="https://www.instagram.com/matineegroup/" target="_blank" rel="noopener">@matineegroup</a></p>
     </div>
     <div class="sponsor-card">
+      <span class="sponsor-tier">Espacio Disponible</span>
+      <div class="sponsor-logo-wrap" style="background:linear-gradient(135deg, #f5c842, #ff7a00); box-shadow:0 0 20px rgba(245,200,66,0.5);"><img src="sponsors/tu_marca_aqui.jpg" alt="Tu Marca Aquí" loading="lazy"></div>
+      <div class="sponsor-name">¿Quieres colaborar con nosotros?</div>
+      <p class="sponsor-desc">Escríbenos a mgbarcelonalive@gmail.com</p>
+    </div>
+  </div>
+  <h3 class="section-title" style="text-align:center">Proyectos de MG</h3>
+  <div class="sponsors-grid">
+    <div class="sponsor-card">
       <span class="sponsor-tier">Media Partner</span>
       <div class="sponsor-logo-wrap" style="background:linear-gradient(135deg, #b44fff, #ff2d78); box-shadow:0 0 20px rgba(180,79,255,0.5);"><img src="sponsors/mg_visual_studio.jpg" alt="MG Visual Studio" loading="lazy"></div>
       <div class="sponsor-name">MG Visual Studio</div>
@@ -1981,16 +1961,13 @@ if ('serviceWorker' in navigator) {
         <a href="https://www.youtube.com/@MGMEDIAGRAPHICS" target="_blank" rel="noopener">YouTube</a>
       </p>
     </div>
-    <div class="sponsor-card">
-      <span class="sponsor-tier">Espacio Disponible</span>
-      <div class="sponsor-logo-wrap" style="background:linear-gradient(135deg, #f5c842, #ff7a00); box-shadow:0 0 20px rgba(245,200,66,0.5);"><img src="sponsors/tu_marca_aqui.jpg" alt="Tu Marca Aquí" loading="lazy"></div>
-      <div class="sponsor-name">Tu Marca Aquí</div>
-      <p class="sponsor-desc">Anúnciate en nuestra radio 24H, en el reproductor y en la web oficial.</p>
-    </div>
   </div>
   <div class="sponsor-cta">
-    <a href="#player" class="btn-secondary">📢 Patrocina MG Barcelona Live</a>
+    <a href="mailto:mgbarcelonalive@gmail.com" class="btn-secondary">¿Quieres colaborar con nosotros? Escríbenos a mgbarcelonalive@gmail.com</a>
   </div>
+  <p style="text-align:center; color:rgba(255,255,255,0.55); max-width:660px; margin:1rem auto 0;">
+    Si eres titular de alguno de estos locales y quieres modificar o retirar tu ficha, escríbenos a mgbarcelonalive@gmail.com y lo haremos lo antes posible.
+  </p>
 </section>
 
 <!-- About -->
@@ -2007,7 +1984,7 @@ if ('serviceWorker' in navigator) {
     <div class="mg-video-card">
       <div class="mg-video-header">
         <div>
-          <p style="font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--cyan); font-weight:700; margin:0 0 0.25rem;">🎬 Entrevista · iclubbing.tv</p>
+          <p style="font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--cyan); font-weight:700; margin:0 0 0.25rem;">🎬 Entrevista de archivo</p>
           <h3 class="mg-video-title">Moisés Gallardo en Saturgays</h3>
         </div>
         <span class="tag tag-pink">Saturgays BCN</span>
@@ -2018,14 +1995,14 @@ if ('serviceWorker' in navigator) {
         </video>
       </div>
       <p class="mg-video-status">
-        Reportaje en <strong style="color:#fff;">Saturgays</strong> (Barcelona) junto a <strong style="color:var(--gold);">iclubbing.tv</strong>, presentando a Moisés como fotógrafo oficial de la noche de Barcelona.
+        Entrevista de [CONFIRMAR: nombre del reportero] - Saturgays (Fin de Año), Barcelona - Archivo (hace unos 15 años). Publicada originalmente por iclubbing.tv (canal ya inactivo). Fotógrafo de la noche de Barcelona desde [CONFIRMAR: año].
       </p>
     </div>
 
     <div class="mg-video-card ad-card">
       <div class="mg-video-header">
         <div>
-          <p style="font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--pink); font-weight:700; margin:0 0 0.25rem;">🎬 Entrevista · iclubbing.tv</p>
+          <p style="font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--pink); font-weight:700; margin:0 0 0.25rem;">🎬 Entrevista de archivo</p>
           <h3 class="mg-video-title">Sara Gallardo en Saturgays</h3>
         </div>
         <span class="tag tag-cyan">Familia MG</span>
@@ -2036,7 +2013,7 @@ if ('serviceWorker' in navigator) {
         </video>
       </div>
       <p class="mg-video-status">
-        La hermana de Moisés en la misma noche de <strong style="color:#fff;">Saturgays</strong> junto a <strong style="color:var(--gold);">iclubbing.tv</strong>: <em>&laquo;Mi hermano es el fotógrafo, el más queridito del ambiente&raquo;</em>.
+        Entrevista de [CONFIRMAR: nombre del reportero] - Saturgays (Fin de Año), Barcelona - Archivo (hace unos 15 años). Publicada originalmente por iclubbing.tv (canal ya inactivo). Sara Gallardo: <em>&laquo;Mi hermano es el fotógrafo, el más queridito del ambiente&raquo;</em>.
       </p>
     </div>
   </div>
@@ -2060,6 +2037,7 @@ if ('serviceWorker' in navigator) {
 <footer>
   <div class="footer-logo">MG Barcelona Live</div>
   <p>Radio · Eventos · Discoteca · Barcelona · <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="color:var(--gold); font-weight:700; text-decoration:none;">📸 @mgbarcelonalive</a> · <a href="https://www.tiktok.com/@mgbarcelonalive7" target="_blank" rel="noopener" style="color:#fff; font-weight:700; text-decoration:none;">🎵 TikTok</a> · <a href="https://www.facebook.com/MGBarcelonaLIVE/" target="_blank" rel="noopener" style="color:var(--cyan); font-weight:700; text-decoration:none;">📘 Facebook</a> · <a href="mailto:mgbarcelonalive@gmail.com" style="color:var(--pink); font-weight:700; text-decoration:none;">✉️ mgbarcelonalive@gmail.com</a><br>
+  <a href="aviso-legal.html" style="color:rgba(255,255,255,0.55);text-decoration:none;">Aviso legal</a> · <a href="privacidad.html" style="color:rgba(255,255,255,0.55);text-decoration:none;">Privacidad</a> · <a href="cookies.html" style="color:rgba(255,255,255,0.55);text-decoration:none;">Cookies</a><br>
   <span style="color:rgba(255,255,255,0.15);">© 2026 MG Barcelona Live · Todos los derechos reservados</span></p>
 </footer>
 
@@ -2276,8 +2254,15 @@ audio.addEventListener('ended', () => {
   else setPlayingUI(false);
 });
 audio.addEventListener('error', () => {
-  if (userWantsPlay) reconnectRadioStream();
+  var lbt = document.getElementById('live-badge-text'); if (lbt) lbt.textContent = 'Fuera de emisión';
+  var rw = document.getElementById('stream-retry-wrap'); if (rw) rw.style.display = 'block';
+  if (userWantsPlay) { npSub.textContent = '⚠️ No se pudo conectar con la emisión'; reconnectRadioStream(); }
 });
+audio.addEventListener('playing', () => {
+  var lbt = document.getElementById('live-badge-text'); if (lbt) lbt.textContent = 'En directo ahora';
+  var rw = document.getElementById('stream-retry-wrap'); if (rw) rw.style.display = 'none';
+});
+(function(){ var rb = document.getElementById('stream-retry-btn'); if (rb) rb.onclick = function(){ userWantsPlay = true; reconnectRadioStream(); }; })();
 audio.addEventListener('stalled', () => {
   if (userWantsPlay) reconnectRadioStream();
 });
@@ -2864,7 +2849,7 @@ if (bgVid) {
       <div style="display:flex;align-items:center;gap:0.75rem;">
         <img src="icon-192.png" alt="MG BCN Live" style="width:52px;height:52px;border-radius:14px;border:2px solid #f5c842;flex-shrink:0;">
         <div>
-          <div style="font-size:0.68rem;color:#00ff99;font-weight:700;letter-spacing:0.05em;">🛡️ VERIFICADA · SSL / EULA</div>
+          <div style="font-size:0.68rem;color:#00ff99;font-weight:700;letter-spacing:0.05em;">🔒 Conexión segura HTTPS</div>
           <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:0.05em;color:#f5c842;margin:0;line-height:1.05;">MG Barcelona Live · App</h3>
           <div style="font-size:0.7rem;color:rgba(255,255,255,0.72);">Android, iPhone/iPad y PC</div>
         </div>
@@ -2879,9 +2864,6 @@ if (bgVid) {
       </button>
       <a id="mgBtnAndroidIntent" href="intent://mgbarcelonalive.github.io/?autoinstall=1#Intent;scheme=https;package=com.android.chrome;end" style="display:none;text-align:center;text-decoration:none;width:100%;padding:0.72rem 1rem;border-radius:999px;border:1px solid #f5c842;background:rgba(245,200,66,0.16);color:#f5c842;font-weight:700;font-size:0.82rem;">
         🚀 Abrir Instalador Directo en Google Chrome (Android)
-      </a>
-      <a id="mgBtnIosProfile" href="MG_Barcelona_Live.mobileconfig" download="MG_Barcelona_Live.mobileconfig" style="display:none;text-align:center;text-decoration:none;width:100%;padding:0.72rem 1rem;border-radius:999px;border:1px solid #00f0ff;background:rgba(0,240,255,0.15);color:#00f0ff;font-weight:700;font-size:0.82rem;">
-        📥 Descargar Perfil Instalable iPhone/iPad (con EULA)
       </a>
     </div>
 
@@ -2903,7 +2885,7 @@ if (bgVid) {
       <summary style="cursor:pointer;color:#00f0ff;font-weight:700;">📜 Ver Acuerdo de Licencia EULA y Seguridad</summary>
       <div style="margin-top:0.4rem;">
         <b>1. Licencia Oficial EULA:</b> MG Barcelona Live (Moisés Gallardo) concede licencia gratuita y segura para instalar esta app oficial.<br>
-        <b>2. Permisos:</b> Audio en 2º plano (MediaSession / WakeLock) y conexión cifrada HTTPS 24/7. Libre de virus, sin acceso a contactos ni cámara. (<a href="EULA_LICENCIA.txt" target="_blank" style="color:#f5c842;">Texto completo</a>)
+        <b>2. Permisos:</b> Audio en 2º plano y conexión segura HTTPS. Sin acceso a contactos ni cámara. (<a href="EULA_LICENCIA.txt" target="_blank" style="color:#f5c842;">Texto completo</a>)
       </div>
     </details>
 
@@ -2981,7 +2963,7 @@ if (bgVid) {
       if (btnIos) btnIos.style.display = 'none';
     } else if (isIOS) {
       btnMain.textContent = '✅ ACEPTAR EULA Y ACTIVAR PERMISOS iOS';
-      txt.innerHTML = '📱 <b>Instalación en iPhone / iPad:</b> Pulsa el botón verde o descarga el <b>Perfil Instalable</b> azul; también puedes usar <b>Compartir ⬆️ → Añadir a pantalla de inicio</b>.';
+      txt.innerHTML = '📱 <b>Instalación en iPhone / iPad:</b> Pulsa <b>Compartir ⬆️ → Añadir a pantalla de inicio</b> en Safari.';
       if (btnIos) btnIos.style.display = 'block';
       if (btnIntent) btnIntent.style.display = 'none';
     } else if (isAndroid) {
@@ -2989,7 +2971,7 @@ if (bgVid) {
       if (isInAppBrowser) {
         txt.innerHTML = '⚠️ Estás en el navegador interno de una red social. Pulsa <b>«🚀 Abrir Instalador Directo en Google Chrome»</b> para instalar la App sin bloqueos.';
       } else {
-        txt.innerHTML = '📱 <b>Instalación en Android:</b> Pulsa el botón verde arriba. Si no salta la ventana sola, toca los <b>3 puntos (⋮)</b> arriba a la derecha en Chrome y pulsa <b>«Instalar aplicación»</b>.';
+        txt.innerHTML = '📱 <b>Instalación en Android:</b> Pulsa el botón verde arriba o toca los <b>3 puntos (⋮)</b> de Chrome → <b>«Instalar app»</b>.';
       }
       if (btnIntent) btnIntent.style.display = 'block';
       if (btnIos) btnIos.style.display = 'none';
@@ -3183,5 +3165,13 @@ if (bgVid) {
   if (btnTt) btnTt.onclick = function(){ copyAndOpen('https://www.tiktok.com/@mgbarcelonalive7', 'TikTok'); };
 })();
 </script>
+<div id="mg-cookie-banner" style="display:none;position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:9990;background:rgba(12,9,24,0.95);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:0.75rem 1rem;max-width:520px;width:92vw;color:#e9e4f5;font-size:0.8rem;box-shadow:0 8px 28px rgba(0,0,0,0.6);">
+  <span>Usamos cookies técnicas y de terceros. Consulta la <a href="cookies.html" style="color:#00f0ff;">Política de Cookies</a>.</span>
+  <div style="margin-top:0.5rem;display:flex;gap:0.5rem;justify-content:flex-end;">
+    <button type="button" onclick="localStorage.setItem('mg_cookies_ok','0');this.closest('#mg-cookie-banner').style.display='none';" style="background:transparent;border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:999px;padding:0.3rem 0.75rem;cursor:pointer;font-size:0.75rem;">Rechazar</button>
+    <button type="button" onclick="localStorage.setItem('mg_cookies_ok','1');this.closest('#mg-cookie-banner').style.display='none';" style="background:#00f0ff;border:none;color:#07050f;border-radius:999px;padding:0.3rem 0.85rem;font-weight:700;cursor:pointer;font-size:0.75rem;">Aceptar</button>
+  </div>
+</div>
+<script>try{if(!localStorage.getItem('mg_cookies_ok'))document.getElementById('mg-cookie-banner').style.display='block';}catch(e){}</script>
 </body>
 </html>
