@@ -2847,7 +2847,7 @@ if (bgVid) {
       <div style="display:flex;align-items:center;gap:0.75rem;">
         <img src="icon-192.png" alt="MG BCN Live" style="width:52px;height:52px;border-radius:14px;border:2px solid #f5c842;flex-shrink:0;">
         <div>
-          <div style="font-size:0.68rem;color:#00ff99;font-weight:700;letter-spacing:0.05em;">🛡️ VERIFICADA · SSL / EULA</div>
+          <div style="font-size:0.68rem;color:#00ff99;font-weight:700;letter-spacing:0.05em;">🔒 Conexión segura HTTPS</div>
           <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:0.05em;color:#f5c842;margin:0;line-height:1.05;">MG Barcelona Live · App</h3>
           <div style="font-size:0.7rem;color:rgba(255,255,255,0.72);">Android, iPhone/iPad y PC</div>
         </div>
@@ -2862,9 +2862,6 @@ if (bgVid) {
       </button>
       <a id="mgBtnAndroidIntent" href="intent://mgbarcelonalive.github.io/?autoinstall=1#Intent;scheme=https;package=com.android.chrome;end" style="display:none;text-align:center;text-decoration:none;width:100%;padding:0.72rem 1rem;border-radius:999px;border:1px solid #f5c842;background:rgba(245,200,66,0.16);color:#f5c842;font-weight:700;font-size:0.82rem;">
         🚀 Abrir Instalador Directo en Google Chrome (Android)
-      </a>
-      <a id="mgBtnIosProfile" href="MG_Barcelona_Live.mobileconfig" download="MG_Barcelona_Live.mobileconfig" style="display:none;text-align:center;text-decoration:none;width:100%;padding:0.72rem 1rem;border-radius:999px;border:1px solid #00f0ff;background:rgba(0,240,255,0.15);color:#00f0ff;font-weight:700;font-size:0.82rem;">
-        📥 Descargar Perfil Instalable iPhone/iPad (con EULA)
       </a>
     </div>
 
@@ -2886,7 +2883,7 @@ if (bgVid) {
       <summary style="cursor:pointer;color:#00f0ff;font-weight:700;">📜 Ver Acuerdo de Licencia EULA y Seguridad</summary>
       <div style="margin-top:0.4rem;">
         <b>1. Licencia Oficial EULA:</b> MG Barcelona Live (Moisés Gallardo) concede licencia gratuita y segura para instalar esta app oficial.<br>
-        <b>2. Permisos:</b> Audio en 2º plano (MediaSession / WakeLock) y conexión cifrada HTTPS 24/7. Libre de virus, sin acceso a contactos ni cámara. (<a href="EULA_LICENCIA.txt" target="_blank" style="color:#f5c842;">Texto completo</a>)
+        <b>2. Permisos:</b> Audio en 2º plano y conexión segura HTTPS. Sin acceso a contactos ni cámara. (<a href="EULA_LICENCIA.txt" target="_blank" style="color:#f5c842;">Texto completo</a>)
       </div>
     </details>
 
@@ -2964,7 +2961,7 @@ if (bgVid) {
       if (btnIos) btnIos.style.display = 'none';
     } else if (isIOS) {
       btnMain.textContent = '✅ ACEPTAR EULA Y ACTIVAR PERMISOS iOS';
-      txt.innerHTML = '📱 <b>Instalación en iPhone / iPad:</b> Pulsa el botón verde o descarga el <b>Perfil Instalable</b> azul; también puedes usar <b>Compartir ⬆️ → Añadir a pantalla de inicio</b>.';
+      txt.innerHTML = '📱 <b>Instalación en iPhone / iPad:</b> Pulsa <b>Compartir ⬆️ → Añadir a pantalla de inicio</b> en Safari.';
       if (btnIos) btnIos.style.display = 'block';
       if (btnIntent) btnIntent.style.display = 'none';
     } else if (isAndroid) {
@@ -2972,7 +2969,7 @@ if (bgVid) {
       if (isInAppBrowser) {
         txt.innerHTML = '⚠️ Estás en el navegador interno de una red social. Pulsa <b>«🚀 Abrir Instalador Directo en Google Chrome»</b> para instalar la App sin bloqueos.';
       } else {
-        txt.innerHTML = '📱 <b>Instalación en Android:</b> Pulsa el botón verde arriba. Si no salta la ventana sola, toca los <b>3 puntos (⋮)</b> arriba a la derecha en Chrome y pulsa <b>«Instalar aplicación»</b>.';
+        txt.innerHTML = '📱 <b>Instalación en Android:</b> Pulsa el botón verde arriba o toca los <b>3 puntos (⋮)</b> de Chrome → <b>«Instalar app»</b>.';
       }
       if (btnIntent) btnIntent.style.display = 'block';
       if (btnIos) btnIos.style.display = 'none';
