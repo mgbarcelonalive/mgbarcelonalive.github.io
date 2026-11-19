@@ -113,7 +113,8 @@
       wrap.style.cssText = 'position:relative;z-index:2;padding:3rem 1.2rem;max-width:1320px;margin:0 auto;text-align:center;';
       wrap.innerHTML =
         '<p class="section-label" style="text-align:center;margin-bottom:0.5rem;">📸 Galería Visual</p>' +
-        '<h2 class="section-title" style="text-align:center;margin-bottom:2rem;">Fotografías · Moisés Gallardo</h2>';
+        '<h2 class="section-title" style="text-align:center;margin-bottom:0.6rem;">Fotografías · Moisés Gallardo</h2>' +
+        '<p style="text-align:center;color:rgba(255,255,255,0.65);margin:0 auto 1.5rem;font-size:0.95rem;">Contenido para mayores de 18 años.</p>';
 
       var box = document.createElement('div');
       box.id = 'mg-evf-section';
@@ -133,6 +134,10 @@
         '</div>'
       ].join('');
       wrap.appendChild(box);
+      var legalNote = document.createElement('p');
+      legalNote.style.cssText = 'text-align:center;color:rgba(255,255,255,0.6);max-width:720px;margin:1rem auto 0;font-size:0.88rem;line-height:1.5;';
+      legalNote.textContent = 'Fotografías (c) Moisés Gallardo. Prohibida su reproducción sin permiso. Para solicitar la retirada de una fotografía, escríbenos a mgbarcelonalive@gmail.com.';
+      wrap.appendChild(legalNote);
 
       var target = document.querySelector('#videos') || document.querySelector('#events') || document.querySelector('#sponsors') || document.querySelector('footer');
       if (target && target.parentNode) {
