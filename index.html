@@ -58,6 +58,8 @@
 </script>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#07050f">
+<meta name="color-scheme" content="only dark">
+<meta name="darkreader-lock">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -72,7 +74,7 @@ window.addEventListener('beforeinstallprompt', function(e) {
   window.__mgDeferredPrompt = e;
 });
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js?v=40', { scope: './', updateViaCache: 'none' }).then(function(reg) {
+  navigator.serviceWorker.register('sw.js?v=41', { scope: './', updateViaCache: 'none' }).then(function(reg) {
     if (reg && reg.update) reg.update();
   }).catch(function(){});
 }
@@ -81,6 +83,7 @@ if ('serviceWorker' in navigator) {
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap');
 
   :root {
+    color-scheme: only dark;
     --gold:   #f5c842;
     --neon:   #b44fff;
     --cyan:   #00f0ff;
@@ -242,14 +245,13 @@ if ('serviceWorker' in navigator) {
     font-size: clamp(4rem, 14vw, 11rem);
     line-height: 0.9;
     letter-spacing: 0.03em;
-    color: #ffffff;
-    background: linear-gradient(105deg, #f9e294 0%, #f5c842 28%, #e5a07c 52%, #ba77c7 78%, #ad62f3 100%);
+    background: linear-gradient(135deg, #fff 0%, var(--gold) 40%, var(--neon) 80%, var(--cyan) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 25px rgba(245,200,66,0.6), 0 0 50px rgba(180,79,255,0.5), 0 0 75px rgba(0,240,255,0.5);
+    filter: drop-shadow(0 0 40px rgba(180,79,255,0.5));
     opacity: 1;
-    animation: fadeUp 0.4s ease-out forwards;
+    animation: fadeUp 0.4s ease-out forwards, titleGlow 4s 0.5s ease-in-out infinite alternate;
   }
   @keyframes titleGlow {
     from { filter: drop-shadow(0 0 30px rgba(180,79,255,0.4)); }
@@ -382,7 +384,7 @@ if ('serviceWorker' in navigator) {
     text-align: center;
     line-height: 1;
     margin-bottom: 3rem;
-    background: linear-gradient(105deg, #f9e294 0%, #f5c842 28%, #e5a07c 52%, #ba77c7 78%, #ad62f3 100%);
+    background: linear-gradient(90deg, #fff, var(--gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
