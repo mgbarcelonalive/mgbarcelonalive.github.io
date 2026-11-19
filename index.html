@@ -1451,10 +1451,10 @@ if ('serviceWorker' in navigator) {
         <!-- Locutora: Marta (Foto Real Rubia) -->
         <div id="pod-host-marta" style="display:flex; flex-direction:column; align-items:center; min-width:86px; transition:transform 0.12s ease;">
           <div id="marta-avatar-frame" style="width:76px; height:76px; border-radius:50%; padding:2.5px; background:linear-gradient(135deg, #ff4da6, #ffcc4d); box-shadow:0 0 16px rgba(255,77,166,0.65); transition:all 0.15s ease; position:relative;">
-            <img src="img/locutora_marta.jpg" alt="Marta - Locutora MG Barcelona Live" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; border:2px solid #0c0a14;" />
+            <img id="marta-avatar-img" src="img/locutora_marta.jpg" alt="Marta - Locutora MG Barcelona Live" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; border:2px solid #0c0a14;" />
             <span style="position:absolute; bottom:2px; right:2px; width:13px; height:13px; border-radius:50%; background:#22c55e; border:2px solid #0c0a14; box-shadow:0 0 6px #22c55e;" title="En cabina"></span>
           </div>
-          <span style="font-size:0.7rem; font-weight:800; letter-spacing:0.1em; color:#ff7ac2; margin-top:0.3rem;">🎙️ MARTA</span>
+          <span id="marta-name-lbl" style="font-size:0.7rem; font-weight:800; letter-spacing:0.1em; color:#ff7ac2; margin-top:0.3rem;">🎙️ MARTA</span>
           <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="font-size:0.6rem; color:rgba(255,204,77,0.85); text-decoration:none; font-weight:600;">@marta.mgbcn</a>
         </div>
 
@@ -1470,10 +1470,10 @@ if ('serviceWorker' in navigator) {
         <!-- Locutor: Javier (Foto Real Moreno) -->
         <div id="pod-host-javier" style="display:flex; flex-direction:column; align-items:center; min-width:86px; transition:transform 0.12s ease;">
           <div id="javier-avatar-frame" style="width:76px; height:76px; border-radius:50%; padding:2.5px; background:linear-gradient(135deg, #00e5ff, #3b82f6); box-shadow:0 0 16px rgba(0,229,255,0.65); transition:all 0.15s ease; position:relative;">
-            <img src="img/locutor_javier.jpg" alt="Javier - Locutor MG Barcelona Live" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; border:2px solid #0c0a14;" />
+            <img id="javier-avatar-img" src="img/locutor_javier.jpg" alt="Javier - Locutor MG Barcelona Live" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; border:2px solid #0c0a14;" />
             <span style="position:absolute; bottom:2px; right:2px; width:13px; height:13px; border-radius:50%; background:#22c55e; border:2px solid #0c0a14; box-shadow:0 0 6px #22c55e;" title="En cabina"></span>
           </div>
-          <span style="font-size:0.7rem; font-weight:800; letter-spacing:0.1em; color:#5ce1ff; margin-top:0.3rem;">🎙️ JAVIER</span>
+          <span id="javier-name-lbl" style="font-size:0.7rem; font-weight:800; letter-spacing:0.1em; color:#5ce1ff; margin-top:0.3rem;">🎙️ JAVIER</span>
           <a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener" style="font-size:0.6rem; color:rgba(0,229,255,0.85); text-decoration:none; font-weight:600;">@javier.mgbcn</a>
         </div>
       </div>
@@ -1690,6 +1690,29 @@ if ('serviceWorker' in navigator) {
     if (podTitle) podTitle.textContent = ep.titulo || 'Pódcast Virtual IA';
     if (podDesc) podDesc.textContent = ep.descripcion || '';
     if (podVoices) podVoices.textContent = ep.voces ? ('🎙️ Voces: ' + ep.voces) : '';
+    (function(){
+      var info = ((ep.voces || '') + ' ' + (ep.archivo || '') + ' ' + (ep.id || '')).toLowerCase();
+      var lImg = document.getElementById('marta-avatar-img');
+      var lLbl = document.getElementById('marta-name-lbl');
+      var rImg = document.getElementById('javier-avatar-img');
+      var rLbl = document.getElementById('javier-name-lbl');
+      if (hostJavier) hostJavier.style.display = 'flex';
+      if (/elena|pablo|mañanas|manana|ep28|ep3[3-9]/.test(info)) {
+        if (lImg) lImg.src = 'img/locutora_elena.jpg';
+        if (lLbl) lLbl.textContent = '🎙️ ELENA';
+        if (rImg) rImg.src = 'img/locutor_pablo.jpg';
+        if (rLbl) rLbl.textContent = '🎙️ PABLO';
+      } else if (/ep32|nicolas|madrugada|contestador|moises|moisés/.test(info)) {
+        if (lImg) lImg.src = 'img/moises_gallardo.jpg';
+        if (lLbl) lLbl.textContent = '🎙️ MOISÉS · NOCHE';
+        if (hostJavier) hostJavier.style.display = 'none';
+      } else {
+        if (lImg) lImg.src = 'img/locutora_marta.jpg';
+        if (lLbl) lLbl.textContent = '🎙️ MARTA';
+        if (rImg) rImg.src = 'img/locutor_javier.jpg';
+        if (rLbl) rLbl.textContent = '🎙️ JAVIER';
+      }
+    })();
     if (podBg) {
       var cover = ep.imagen || ep.portada || ('podcasts/covers/' + ep.id + '.jpg');
       podBg.style.backgroundImage = "url('" + cover + "')";
@@ -1974,6 +1997,12 @@ if ('serviceWorker' in navigator) {
 <section id="about">
   <p class="section-label">✨ Sobre Nosotros</p>
   <h2 class="section-title">La Voz de Barcelona</h2>
+  <div style="display:flex; flex-direction:column; align-items:center; margin:0 auto 1.2rem;">
+    <div style="width:116px; height:116px; border-radius:50%; padding:3px; background:linear-gradient(135deg,#f5c842,#ff2d78,#00f0ff); box-shadow:0 0 22px rgba(245,200,66,0.45);">
+      <img src="img/moises_gallardo.jpg" alt="Moisés Gallardo - MG Barcelona Live" style="width:100%; height:100%; object-fit:cover; border-radius:50%; display:block; border:2px solid #07050f;">
+    </div>
+    <p style="margin-top:0.55rem; font-size:0.82rem; color:rgba(255,255,255,0.75);">Moisés Gallardo · Foto: Ramón Redel (<a href="https://www.instagram.com/ramonredelofficial/" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none;">@ramonredelofficial</a>)</p>
+  </div>
   <p style="color:rgba(255,255,255,0.5); font-size:1rem; line-height:1.8; max-width:600px; margin:0 auto;">
     MG Barcelona Live es más que una radio — somos la banda sonora de la ciudad. 
     Música, cultura y eventos en directo desde el corazón de Barcelona. 
