@@ -765,7 +765,7 @@ if ('serviceWorker' in navigator) {
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--gold); }
-  @media(max-width:500px) { .nav-links { display: none; } }
+  @media(max-width:500px) { .nav-links { display: flex; gap: 0.9rem; overflow-x: auto; max-width: 58vw; white-space: nowrap; } }
 
   /* Ticket button */
   .nav-ticket {
@@ -1249,7 +1249,7 @@ if ('serviceWorker' in navigator) {
     <li><a href="#" onclick="event.preventDefault(); window.__mgOpenReqModal && window.__mgOpenReqModal();">📞 Buzón</a></li>
     <li><a href="#videos">Vídeos</a></li>
     <li><a href="#events">Eventos</a></li>
-    <li><a href="#sponsors">Sponsors</a></li>
+    <li><a href="#sponsors">Locales</a></li>
     <li><a href="#about">Nosotros</a></li>
     <li><a href="https://www.instagram.com/mgbarcelonalive/" target="_blank" rel="noopener">Instagram</a></li>
     <li><a href="https://www.tiktok.com/@mgbarcelonalive7" target="_blank" rel="noopener">TikTok</a></li>
