@@ -378,6 +378,15 @@
       "voces": "Marta, Javier & Diva Folclórica (Parodia Ficción) · MG Barcelona Live",
       "fecha": "2026-11-23",
       "imagen": "logo.png"
+    },
+    {
+      "id": "ep45",
+      "titulo": "Ep. 45 · Equipo de Investigación (Parodia): ¡Tráfico de Pelucas y Pestañas Falsas desde India y Turquía!",
+      "descripcion": "Parodia cómica de ficción con Marta y Javier: una periodista de investigación llama en exclusiva para destapar la 'Operación Laca', un supuesto fraude en un local gay con una fábrica clandestina de pelucas y pestañas postizas falsas entre la India y Turquía.",
+      "archivo": "podcasts/MAÑANAS/ep45_investigacion_trafico_pelucas_drag.mp3",
+      "voces": "Marta, Javier & Periodista de Investigación (Parodia Ficción) · MG Barcelona Live",
+      "fecha": "2026-11-23",
+      "imagen": "logo.png"
     }
   ]
 }
