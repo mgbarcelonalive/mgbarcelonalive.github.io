@@ -369,6 +369,15 @@
       "voces": "Marta, Javier & Invitados Glam (Parodia Ficción) · MG Barcelona Live",
       "fecha": "2026-11-23",
       "imagen": "logo.png"
+    },
+    {
+      "id": "ep44",
+      "titulo": "Ep. 44 · Parodia Folclórica: ¡El Pendiente de Oro Robado para el Show Drag en Madrid!",
+      "descripcion": "Parodia cómica de ficción con Marta y Javier: una diva folclórica llama indignada tras un evento gay en Madrid porque le desapareció su pendiente de oro en el camerino... ¡y descubre a una reina drag en pleno escenario usándolo como complemento para su show!",
+      "archivo": "podcasts/MAÑANAS/ep44_parodia_diva_pendiente_oro_madrid.mp3",
+      "voces": "Marta, Javier & Diva Folclórica (Parodia Ficción) · MG Barcelona Live",
+      "fecha": "2026-11-23",
+      "imagen": "logo.png"
     }
   ]
 }
