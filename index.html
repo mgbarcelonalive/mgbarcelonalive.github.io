@@ -1499,7 +1499,7 @@ if ('serviceWorker' in navigator) {
       <p style="color:rgba(255,255,255,0.68); font-size:0.78rem; margin-bottom:0.9rem;">Voces virtuales creadas con IA a partir de voces autorizadas. Guion revisado por MG Barcelona Live.</p>
 
       <!-- Reproductor -->
-      <audio id="podcast-audio" controls playsinline preload="metadata" style="width:100%; border-radius:12px; margin-bottom:0.55rem;"></audio>
+      <audio id="podcast-audio" controls controlsList="nodownload" oncontextmenu="return false;" playsinline preload="metadata" style="width:100%; border-radius:12px; margin-bottom:0.55rem;"></audio>
       <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.9rem; padding:0.35rem 0.65rem; background:rgba(255,255,255,0.05); border-radius:10px;">
         <span style="font-size:0.78rem; color:var(--gold); font-weight:700;">🔊 Volumen</span>
         <input id="pod-vol" type="range" min="0" max="1" step="0.02" value="1" aria-label="Volumen del pódcast" style="flex:1; accent-color:#ff4da6; cursor:pointer;" />
