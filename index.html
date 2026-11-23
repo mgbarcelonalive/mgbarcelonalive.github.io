@@ -1499,7 +1499,12 @@ if ('serviceWorker' in navigator) {
       <p style="color:rgba(255,255,255,0.68); font-size:0.78rem; margin-bottom:0.9rem;">Voces virtuales creadas con IA a partir de voces autorizadas. Guion revisado por MG Barcelona Live.</p>
 
       <!-- Reproductor -->
-      <audio id="podcast-audio" controls playsinline preload="metadata" style="width:100%; border-radius:12px; margin-bottom:0.95rem;"></audio>
+      <audio id="podcast-audio" controls playsinline preload="metadata" style="width:100%; border-radius:12px; margin-bottom:0.55rem;"></audio>
+      <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.9rem; padding:0.35rem 0.65rem; background:rgba(255,255,255,0.05); border-radius:10px;">
+        <span style="font-size:0.78rem; color:var(--gold); font-weight:700;">🔊 Volumen</span>
+        <input id="pod-vol" type="range" min="0" max="1" step="0.02" value="1" aria-label="Volumen del pódcast" style="flex:1; accent-color:#ff4da6; cursor:pointer;" />
+        <span id="pod-vol-pct" style="font-size:0.74rem; color:rgba(255,255,255,0.75); min-width:34px; text-align:right;">100%</span>
+      </div>
 
       <!-- Navegación de Ventana: Anterior / Siguiente -->
       <div style="display:flex; align-items:center; justify-content:space-between; gap:0.6rem; flex-wrap:wrap; margin-bottom:0.9rem;">
@@ -1530,6 +1535,8 @@ if ('serviceWorker' in navigator) {
   var podPills = document.getElementById('pod-pills');
   var podPrev = document.getElementById('pod-prev');
   var podNext = document.getElementById('pod-next');
+  var podVol = document.getElementById('pod-vol');
+  var podVolPct = document.getElementById('pod-vol-pct');
   var podOnAir = document.getElementById('pod-onair');
   var canvas = document.getElementById('pod-eq');
   var ctx = canvas ? canvas.getContext('2d') : null;
@@ -1726,7 +1733,10 @@ if ('serviceWorker' in navigator) {
       podBg.style.backgroundImage = "url('" + cover + "')";
     }
     if (podAudio && ep.archivo) {
-      podAudio.src = encodeURI(ep.archivo) + '?t=' + Date.now();
+      if (podAudio.dataset.epFile !== ep.archivo) {
+        podAudio.dataset.epFile = ep.archivo;
+        podAudio.src = encodeURI(ep.archivo) + '?t=' + Date.now();
+      }
       if (autoPlay) podAudio.play().catch(function(){});
     }
     updateControls();
@@ -1735,6 +1745,16 @@ if ('serviceWorker' in navigator) {
   if (podPrev) podPrev.onclick = function(){ loadEp(currentIdx - 1, true); };
   if (podNext) podNext.onclick = function(){ loadEp(currentIdx + 1, true); };
   if (podSelect) podSelect.onchange = function(){ loadEp(parseInt(podSelect.value, 10) || 0, true); };
+  if (podVol && podAudio) {
+    var applyPodVol = function(){
+      var v = Math.max(0, Math.min(1, parseFloat(podVol.value || '1')));
+      podAudio.muted = (v === 0);
+      podAudio.volume = v;
+      if (podVolPct) podVolPct.textContent = Math.round(v * 100) + '%';
+    };
+    podVol.addEventListener('input', applyPodVol);
+    podVol.addEventListener('change', applyPodVol);
+  }
 
   var FALLBACK_EPISODES = [
     {"id":"ep01","titulo":"Ep. 1 · La Ruta VIP del Gaixample y los Mejores Clubs de Barcelona","descripcion":"Debate entre Marta y Javier sobre dónde salir en Barcelona: La Sastrería, Priscilla Café, Punto BCN, New Strass, Believe Club, Arena Experience, Safari Disco Club, Razzmatazz y Churros con Chocolate.","archivo":"podcasts/ep01_ruta_gaixample_bcn.mp3","voces":"Marta & Javier (Voces Reales) · MG Barcelona Live","imagen":"podcasts/covers/ep01.jpg"},
