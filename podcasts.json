@@ -5,7 +5,7 @@
       "id": "ep01",
       "titulo": "Ep. 1 · La Ruta VIP del Gaixample y los Mejores Clubs de Barcelona",
       "descripcion": "Debate entre Marta y Javier sobre dónde salir en Barcelona: La Sastrería, Priscilla Café, Punto BCN, New Strass, Believe Club, Arena Experience, Safari Disco Club, Razzmatazz y Churros con Chocolate.",
-      "archivo": "podcasts/TARDE/ep01_ruta_gaixample_bcn.mp3",
+      "archivo": "podcasts/ep01_ruta_gaixample_bcn.mp3",
       "voces": "Marta & Javier (Voces Reales) · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep01.jpg"
@@ -14,7 +14,7 @@
       "id": "ep02",
       "titulo": "Ep. 2 · Llamada desde Camerinos de New Strass: Samantha Ballentines y Sharonne",
       "descripcion": "Marta y Javier conectan en directo con Samantha Ballentines y Sharonne desde el camerino de New Strass Barcelona contando el caos de laca y pelucas y los castings de Drag Race España.",
-      "archivo": "podcasts/TARDE/ep02_llamada_drag_casting.mp3",
+      "archivo": "podcasts/ep02_llamada_drag_casting.mp3",
       "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep02.jpg"
@@ -23,7 +23,7 @@
       "id": "ep03",
       "titulo": "Ep. 3 · Llamada desde BoysBar: Cómo Sobrevivir a la Fiesta en Barcelona",
       "descripcion": "Marta y Javier hablan con Carlos desde el Gaixample sobre la ruta completa de copas y discotecas: BoysBar, Punto BCN, Bacon Bear, Night, Arena, Safari, POPair, Razzmatazz, Apolo y Circuit.",
-      "archivo": "podcasts/TARDE/ep03_ruta_fiesta_barcelona.mp3",
+      "archivo": "podcasts/ep03_ruta_fiesta_barcelona.mp3",
       "voces": "Marta, Javier & Carlos en Directo · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep03.jpg"
@@ -32,7 +32,7 @@
       "id": "ep04",
       "titulo": "Ep. 4 · Especial Reinas del Drag con Samantha Ballentines y Sharonne",
       "descripcion": "Marta y Javier reciben en cabina a Samantha Ballentines y Sharonne para revelar las anécdotas reales de pasarela: el autobronceador de Mercadona, los Masters del Universo y los garitos de Barcelona.",
-      "archivo": "podcasts/TARDE/ep04_especial_reinas_drag.mp3",
+      "archivo": "podcasts/ep04_especial_reinas_drag.mp3",
       "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep04.jpg"
@@ -41,7 +41,7 @@
       "id": "ep05",
       "titulo": "Ep. 5 · El Xokas Llama por Knoweats, Entradas de Ibai 2027 y su Club con Cuarto Oscuro sin Puerta",
       "descripcion": "El Xokas llama en directo para anunciar su comida rápida Knoweats tras su enfado con Hacienda rumbo a Andorra, pide a Moisés Gallardo una sesión de fotos con su novia, regala entradas de Ibai 2027 y ficha a Samantha Ballentines y Sharonne como imagen de su nuevo club gay en Madrid y Barcelona.",
-      "archivo": "podcasts/TARDE/ep05_parodia_gamer_lol.mp3",
+      "archivo": "podcasts/ep05_parodia_gamer_lol.mp3",
       "voces": "Marta, Javier, El Xokas, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep05.jpg"
@@ -50,7 +50,7 @@
       "id": "ep06",
       "titulo": "Ep. 6 · Sátira de Humor con Samantha y Sharonne: Don Promesas vs. Don Tacaño",
       "descripcion": "Samantha Ballentines y Sharonne ponen firmes en directo a dos políticos ficticios (Don Promesas y Don Tacaño) que discuten sobre bolas de discoteca de oro y acaban pidiendo lista VIP en el Gaixample.",
-      "archivo": "podcasts/TARDE/ep06_satira_politica_radio.mp3",
+      "archivo": "podcasts/ep06_satira_politica_radio.mp3",
       "voces": "Marta, Javier, Samantha, Sharonne & Sátira Ficticia · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep06.jpg"
@@ -59,7 +59,7 @@
       "id": "ep07",
       "titulo": "Ep. 7 · Anécdota Surrealista: Las Llaves en el Cuarto Oscuro y el Doble de Sálvame",
       "descripcion": "Lucía llama muerta de risa a Marta y Javier para contar cuando perdió sus llaves en el cuarto oscuro, encendieron el foco en pleno ligoteo y apareció un doble clavado a Jorge Javier Vázquez.",
-      "archivo": "podcasts/TARDE/ep07_llaves_cuarto_oscuro.mp3",
+      "archivo": "podcasts/ep07_llaves_cuarto_oscuro.mp3",
       "voces": "Marta, Javier & Lucía en Directo · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep07.jpg"
@@ -68,7 +68,7 @@
       "id": "ep08",
       "titulo": "Ep. 8 · El Rubius Sin Internet en Andorra Pide el Módem de Elon Musk para el Estreno de GTA 6",
       "descripcion": "El Rubius llama desesperado desde Andorra tras una nevada que le cortó la fibra y pide el módem satelital SpaceX Starship para emitir GTA 6 en directo poniendo MG Barcelona Live de fondo e invitando a Marta, Javier, Samantha Ballentines y Sharonne al Casino de Andorra.",
-      "archivo": "podcasts/TARDE/ep08_telefonia_spacex.mp3",
+      "archivo": "podcasts/ep08_telefonia_spacex.mp3",
       "voces": "Marta, Javier, El Rubius, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep08.jpg"
@@ -77,7 +77,7 @@
       "id": "ep09",
       "titulo": "Ep. 9 · Doña Carmen Busca a su Hijo: ¡Lleva 2 Días Montando a Caballo en el Cuarto Oscuro!",
       "descripcion": "Una madre llama preocupada porque su hijo salió con un amigo hace 2 días y no contesta al móvil; Marta y Javier le explican entre risas qué ha pasado con el teléfono.",
-      "archivo": "podcasts/TARDE/ep09_madre_busca_hijo.mp3",
+      "archivo": "podcasts/ep09_madre_busca_hijo.mp3",
       "voces": "Marta, Javier & Doña Carmen en Directo · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep09.jpg"
@@ -86,7 +86,7 @@
       "id": "ep10",
       "titulo": "Ep. 10 · ¡Alerta en Camerinos! Samantha en el Lavabo con Blanco España y Sharonne en Directo",
       "descripcion": "Se pierde Samantha antes del directo de TV mientras Sharonne espera con el micro. Marta exige tacones Versace para suplirla hasta que Samantha aparece en el lavabo repasando las racholas con un chulazo.",
-      "archivo": "podcasts/TARDE/ep10_drag_desaparecida_strass.mp3",
+      "archivo": "podcasts/ep10_drag_desaparecida_strass.mp3",
       "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep10.jpg"
@@ -95,7 +95,7 @@
       "id": "ep11",
       "titulo": "Ep. 11 · Samantha Quiere ir a Miss Universo y Acaba con Sharonne en Churros con Chocolate",
       "descripcion": "Samantha Ballentines y Sharonne llaman desde el taxi porque Samantha quiere presentarse a Miss Belleza Universo y Javier las manda entre risas a cantar temazos petardos a Churros con Chocolate en Apolo.",
-      "archivo": "podcasts/TARDE/ep11_parodia_petarda_churros.mp3",
+      "archivo": "podcasts/ep11_parodia_petarda_churros.mp3",
       "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16",
       "imagen": "podcasts/covers/ep11.jpg"
@@ -104,7 +104,7 @@
       "id": "ep12",
       "titulo": "Ep. 12 · ¡Alerta Estafa de TikTok! El Masajeador Gay con Voz y el Cupón de la Sagrada Familia",
       "descripcion": "Un falso anuncio viral de TikTok patrocinado por IAs intenta estafar a mujeres solteras vendiendo un 'masajeador gay' con control por voz, carga rápida de 2 horas y un cupón trampa para la Sagrada Familia donde los chicos entran gratis y las chicas pagan.",
-      "archivo": "podcasts/TARDE/ep12_teletienda_masajeador.mp3",
+      "archivo": "podcasts/ep12_teletienda_masajeador.mp3",
       "imagen": "podcasts/covers/ep12.jpg",
       "voces": "Marta, Javier & Teletienda Estafadora IA · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -113,7 +113,7 @@
       "id": "ep13",
       "titulo": "Ep. 13 · GTA 6 en Barcelona con El Xokas, Samantha y Sharonne: Libertad vs. Vida Real",
       "descripcion": "Marta, Javier, El Xokas, Samantha Ballentines y Sharonne debaten sobre el lanzamiento de GTA 6, robar el coche al vecino con 5 estrellas de la Guardia Urbana y una misión secreta en el Gaixample.",
-      "archivo": "podcasts/TARDE/ep13_gta6_libertad.mp3",
+      "archivo": "podcasts/ep13_gta6_libertad.mp3",
       "imagen": "podcasts/covers/ep13.jpg",
       "voces": "Marta, Javier, El Xokas, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -122,7 +122,7 @@
       "id": "ep14",
       "titulo": "Ep. 14 · Euro Truck Simulator 2 vs. Aparcar en el Gaixample con El Xokas, Samantha y Sharonne",
       "descripcion": "Debate sin filtros con Marta, Javier, El Xokas, Samantha Ballentines y Sharonne: los mods 3D de camiones de Moisés Gallardo frente al riesgo extremo de aparcar en el Gaixample con pamela un sábado noche.",
-      "archivo": "podcasts/TARDE/ep14_simuladores_ets2_gaixample.mp3",
+      "archivo": "podcasts/ep14_simuladores_ets2_gaixample.mp3",
       "imagen": "podcasts/covers/ep14.jpg",
       "voces": "Marta, Javier, El Xokas, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -131,7 +131,7 @@
       "id": "ep15",
       "titulo": "Ep. 15 · Navidad y Subida de Precios: Espárragos a 4€ en el Mercadona vs. Alfombra Roja en el Gaixample",
       "descripcion": "Marta estalla por la subida de precios navideños y los espárragos a 4 euros con el IPC al 2%, y Javier le aconseja comprar en las tiendas del Gaixample con descuento, alfombra roja y espárragos recogidos haciendo cruising.",
-      "archivo": "podcasts/TARDE/ep15_navidad_mercadona_gaixample.mp3",
+      "archivo": "podcasts/ep15_navidad_mercadona_gaixample.mp3",
       "imagen": "podcasts/covers/ep15.jpg",
       "voces": "Marta & Javier · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -140,7 +140,7 @@
       "id": "ep16",
       "titulo": "Ep. 16 · ¡Escándalo en la Puerta! Hetero Feminista vs. El Carnet del Sindicato LGTB",
       "descripcion": "Una hetero feminista llama indignada porque no la dejan entrar en un local de lesbianas del Gaixample; Bea le explica en directo que allí solo se entra con el carnet oficial del Sindicato del LGTB.",
-      "archivo": "podcasts/TARDE/ep16_debate_fiesta_vs_manifiesto.mp3",
+      "archivo": "podcasts/ep16_debate_fiesta_vs_manifiesto.mp3",
       "imagen": "podcasts/covers/ep16.jpg",
       "voces": "Marta, Javier, Bea & Feminista en Directo · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -149,7 +149,7 @@
       "id": "ep17",
       "titulo": "Ep. 17 · El Rubius y El Xokas Llaman desde Andorra por el Fortnite con Samantha y Sharonne",
       "descripcion": "El Rubius ('criaturitas del señor') y El Xokas llaman juntos en directo hablando de Andorra, el Fortnite, los tápers de Knoweats y bajar al Gaixample al show de Samantha Ballentines y Sharonne.",
-      "archivo": "podcasts/TARDE/ep17_nino_fortnite_xokas_rubius.mp3",
+      "archivo": "podcasts/ep17_nino_fortnite_xokas_rubius.mp3",
       "imagen": "podcasts/covers/ep17.jpg",
       "voces": "Marta, Javier, El Rubius, El Xokas, Samantha & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -158,7 +158,7 @@
       "id": "ep18",
       "titulo": "Ep. 18 · El Show Business Drag con Sharonne y Samantha: Silicona Caliente y Escenarios",
       "descripcion": "Marta y Javier charlan en cabina con Sharonne y Samantha Ballentines sobre las maletas de 25 kilos, pegarse cristales con silicona caliente a las 4 de la mañana y las tablas del club nocturno.",
-      "archivo": "podcasts/TARDE/ep18_show_business_drag_queen.mp3",
+      "archivo": "podcasts/ep18_show_business_drag_queen.mp3",
       "imagen": "podcasts/covers/ep18.jpg",
       "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -167,7 +167,7 @@
       "id": "ep19",
       "titulo": "Ep. 19 · Un Nuevo Bazar en el Barrio Gay: ¡Tangas, Bañadores y Crema Corporal!",
       "descripcion": "Un comerciante llama pidiendo consejo para abrir un bazar en pleno Gaixample y Marta y Javier le recomiendan llenar el escaparate de tangas, bañadores, pantalones cortos y crema corporal para las emergencias nocturnas.",
-      "archivo": "podcasts/TARDE/ep19_bazar_barrio_gaixample.mp3",
+      "archivo": "podcasts/ep19_bazar_barrio_gaixample.mp3",
       "imagen": "podcasts/covers/ep19.jpg",
       "voces": "Marta, Javier & Chen en Directo · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -176,7 +176,7 @@
       "id": "ep20",
       "titulo": "Ep. 20 · Comedia Drag Auténtica con Samantha y Sharonne: Rodillas de Robocop en Directo",
       "descripcion": "Marta y Javier se parten de risa con Samantha Ballentines y Sharonne contando sus batallas por las tarimas de España y la noche en que una fan les quitó el micrófono en pleno espectáculo.",
-      "archivo": "podcasts/TARDE/ep20_reina_comedia_autentica.mp3",
+      "archivo": "podcasts/ep20_reina_comedia_autentica.mp3",
       "imagen": "podcasts/covers/ep20.jpg",
       "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -185,7 +185,7 @@
       "id": "ep21",
       "titulo": "Ep. 21 · Especial Orgullo con Sharonne y Samantha: Secretos de Camerino y Transformismo",
       "descripcion": "Marta, Javier, Sharonne y Samantha Ballentines revelan qué pasa a las 5 de la mañana tras quitarse el corsé y rinden homenaje a las grandes pioneras del transformismo en Barcelona.",
-      "archivo": "podcasts/TARDE/ep21_secretos_polemicas_transformismo.mp3",
+      "archivo": "podcasts/ep21_secretos_polemicas_transformismo.mp3",
       "imagen": "podcasts/covers/ep21.jpg",
       "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -194,7 +194,7 @@
       "id": "ep22",
       "titulo": "Ep. 22 · Primeras (Malas) Impresiones en el Camerino: Samantha Ballentines vs. Sharonne",
       "descripcion": "Samantha Ballentines y Sharonne confiesan ante Marta y Javier qué pensaron realmente la una de la otra el primer día que coincidieron en un camerino antes de hacerse hermanas inseparables.",
-      "archivo": "podcasts/TARDE/ep22_primeras_malas_impresiones_drag.mp3",
+      "archivo": "podcasts/ep22_primeras_malas_impresiones_drag.mp3",
       "imagen": "podcasts/covers/ep22.jpg",
       "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -203,7 +203,7 @@
       "id": "ep23",
       "titulo": "Ep. 23 · ¿Se Puede Vivir del Drag en España? Cuentas Reales con Samantha y Sharonne",
       "descripcion": "Marta, Javier, Samantha Ballentines y Sharonne responden con humor: entre pelucas, vestidos a medida y promotores que pagan en 'visibilidad', ¿cómo se vive del espectáculo en España?",
-      "archivo": "podcasts/TARDE/ep23_vivir_del_drag_espana.mp3",
+      "archivo": "podcasts/ep23_vivir_del_drag_espana.mp3",
       "imagen": "podcasts/covers/ep23.jpg",
       "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -212,7 +212,7 @@
       "id": "ep24",
       "titulo": "Ep. 24 · Amor, Haters y el Precio de Drag Race con Samantha Ballentines y Sharonne",
       "descripcion": "Samantha Ballentines y Sharonne charlan sin filtros con Marta y Javier sobre las pelucas voladoras en el lipsync, el cariño del público y cómo mandar un abanico a los haters de internet.",
-      "archivo": "podcasts/TARDE/ep24_odio_amor_precio_drag_race.mp3",
+      "archivo": "podcasts/ep24_odio_amor_precio_drag_race.mp3",
       "imagen": "podcasts/covers/ep24.jpg",
       "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -221,7 +221,7 @@
       "id": "ep25",
       "titulo": "Ep. 25 · Especial: El Hacker de las Tazas, el Gaixample y Razzmatazz",
       "descripcion": "Especial largo con Marta, Javier, Samantha Ballentines y Sharonne destapando con humor la surrealista aventura del hacker de Indiana, las tazas de regalo y las fotos de Razzmatazz.",
-      "archivo": "podcasts/TARDE/ep25_hacker_de_las_tazas.mp3",
+      "archivo": "podcasts/ep25_hacker_de_las_tazas.mp3",
       "imagen": "podcasts/covers/ep25.jpg",
       "voces": "Marta, Javier, Samantha Ballentines & Sharonne · MG Barcelona Live",
       "fecha": "2026-11-16"
@@ -230,7 +230,7 @@
       "id": "ep26",
       "titulo": "Ep. 26 · Llamadas, saludos y temazos",
       "descripcion": "Marta y Javier abren la tarde con llamadas de oyentes, saludos, dedicatorias y peticiones musicales. Humor, cariño y buena música para acompañar la vuelta a casa.",
-      "archivo": "podcasts/TARDE/ep26_llamadas_saludos_temazos.mp3",
+      "archivo": "podcasts/ep26_llamadas_saludos_temazos.mp3",
       "voces": "Marta & Javier · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
@@ -239,7 +239,7 @@
       "id": "ep27",
       "titulo": "Ep. 27 · El contestador nocturno",
       "descripcion": "Marta y Javier repasan los mensajes que deja la audiencia en el contestador: historias de madrugada, confidencias, risas y algún que otro drama con final feliz.",
-      "archivo": "podcasts/TARDE/ep27_contestador_nocturno.mp3",
+      "archivo": "podcasts/ep27_contestador_nocturno.mp3",
       "voces": "Marta & Javier · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
@@ -248,7 +248,7 @@
       "id": "ep28",
       "titulo": "Ep. 28 · Buenos días Barcelona · Elena y Pablo",
       "descripcion": "El arranque de las mañanas con Elena y Pablo: café, buen humor, mensajes de oyentes y las primeras historias del día en MG Barcelona Live.",
-      "archivo": "podcasts/MAÑANAS/ep28_manana_elena_pablo.mp3",
+      "archivo": "podcasts/ep28_manana_elena_pablo.mp3",
       "voces": "Elena & Pablo · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
@@ -257,7 +257,7 @@
       "id": "ep29",
       "titulo": "Ep. 29 · Buenos días Barcelona con Lola",
       "descripcion": "Versión especial del despertador con Lola: energía, saludos y conversación para empezar la mañana con buen pie.",
-      "archivo": "podcasts/MAÑANAS/ep28_buenos_dias_barcelona_lola.mp3",
+      "archivo": "podcasts/ep28_buenos_dias_barcelona_lola.mp3",
       "voces": "Lola · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
@@ -266,7 +266,7 @@
       "id": "ep30",
       "titulo": "Ep. 30 · Buenos días Barcelona con Kiko",
       "descripcion": "Otra mirada del programa de mañanas, con Kiko al frente: cercanía, humor y la actualidad contada sin prisas.",
-      "archivo": "podcasts/MAÑANAS/ep28_buenos_dias_barcelona_kiko.mp3",
+      "archivo": "podcasts/ep28_buenos_dias_barcelona_kiko.mp3",
       "voces": "Kiko · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
@@ -275,7 +275,7 @@
       "id": "ep31",
       "titulo": "Ep. 31 · La Noche te Escucha · Nicolás",
       "descripcion": "Nicolás acompaña la madrugada con historias de oyentes que trabajan de noche, confidencias y música tranquila. Un refugio para los que siguen despiertos.",
-      "archivo": "podcasts/MADRUGADA/ep32_nicolas_la_noche_te_escucha.mp3",
+      "archivo": "podcasts/ep32_nicolas_la_noche_te_escucha.mp3",
       "voces": "Nicolás · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
@@ -284,7 +284,7 @@
       "id": "ep32",
       "titulo": "Ep. 32 · Despierta Barcelona 07:00",
       "descripcion": "Elena y Pablo arrancan las mañanas de MG Barcelona Live: café, negociación con el despertador, tiempo, tráfico y mensajes para empezar el día con una sonrisa.",
-      "archivo": "podcasts/MAÑANAS/ep33_despierta_barcelona_07_00.mp3",
+      "archivo": "podcasts/ep33_despierta_barcelona_07_00.mp3",
       "voces": "Elena & Pablo · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
@@ -293,7 +293,7 @@
       "id": "ep33",
       "titulo": "Ep. 33 · Noticias 08:00",
       "descripcion": "Boletín de actualidad de las mañanas: movilidad, cultura, tiempo, tráfico y consejos prácticos contados con calma y conversación.",
-      "archivo": "podcasts/MAÑANAS/ep34_noticias_08_00_manana.mp3",
+      "archivo": "podcasts/ep34_noticias_08_00_manana.mp3",
       "voces": "Elena & Pablo · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
@@ -302,7 +302,7 @@
       "id": "ep34",
       "titulo": "Ep. 34 · Debate 08:10 · Mensajes de madrugada",
       "descripcion": "Tertulia de Elena y Pablo sobre los mensajes de madrugada, el scroll infinito y cómo llegar al despertador sin perder el humor.",
-      "archivo": "podcasts/MAÑANAS/ep35_debate_08_10_09_00_manana.mp3",
+      "archivo": "podcasts/ep35_debate_08_10_09_00_manana.mp3",
       "voces": "Elena & Pablo · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
@@ -311,7 +311,7 @@
       "id": "ep35",
       "titulo": "Ep. 35 · The MG Project · La entrevista con Luna Brillante",
       "descripcion": "The MG Project: Elena y el locutor Pablo reciben a Luna Brillante, drag queen y creadora de contenido. La entrevista sin filtros de las mañanas de MG Barcelona Live. Personaje de ficción.",
-      "archivo": "podcasts/MAÑANAS/ep37_entrevista_drag_influencer_manana.mp3",
+      "archivo": "podcasts/ep37_entrevista_drag_influencer_manana.mp3",
       "voces": "Elena, Pablo (voz Jordi Wild) & Luna Brillante (ficción) · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
@@ -320,7 +320,7 @@
       "id": "ep36",
       "titulo": "Ep. 36 · Monólogo y sátira 11:00 · Cameos",
       "descripcion": "Monólogo con cameos y parodia: la noche, la mañana, las llaves perdidas, el café frío y personajes ficticios del desayuno. Humor con cariño.",
-      "archivo": "podcasts/MAÑANAS/ep36_monologo_satira_cameos_11_12.mp3",
+      "archivo": "podcasts/ep36_monologo_satira_cameos_11_12.mp3",
       "voces": "Elena & Pablo + cameos (ficción) · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
@@ -329,7 +329,7 @@
       "id": "ep37",
       "titulo": "Ep. 37 · Llamadas y peticiones 12:00-14:00",
       "descripcion": "El tramo más participativo de las mañanas: saludos, dedicatorias, cumpleaños, ánimos y peticiones musicales de la audiencia.",
-      "archivo": "podcasts/MAÑANAS/ep38_llamadas_peticiones_12_14_manana.mp3",
+      "archivo": "podcasts/ep38_llamadas_peticiones_12_14_manana.mp3",
       "voces": "Elena & Pablo + oyentes · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"
@@ -338,7 +338,7 @@
       "id": "ep38",
       "titulo": "Ep. 38 · Debate · Libertad de expresión y redes sociales",
       "descripcion": "Elena y Pablo debaten con Rubén, abogado y analista geopolítico liberal (ficticio), sobre libertad de expresión, nuevas leyes de redes sociales, políticas de YouTube y control gubernamental de plataformas.",
-      "archivo": "podcasts/MAÑANAS/ep39_debate_libertad_expresion_redes.mp3",
+      "archivo": "podcasts/ep39_debate_libertad_expresion_redes.mp3",
       "voces": "Elena, Pablo (voz Jordi Wild) & Rubén (ficción) · MG Barcelona Live",
       "fecha": "2026-11-17",
       "imagen": "logo.png"

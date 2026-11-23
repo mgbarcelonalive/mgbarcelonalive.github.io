@@ -1490,7 +1490,7 @@ if ('serviceWorker' in navigator) {
       <p style="color:rgba(255,255,255,0.68); font-size:0.78rem; margin-bottom:0.9rem;">Voces virtuales creadas con IA a partir de voces autorizadas. Guion revisado por MG Barcelona Live.</p>
 
       <!-- Reproductor -->
-      <audio id="podcast-audio" controls playsinline preload="metadata" crossorigin="anonymous" style="width:100%; border-radius:12px; margin-bottom:0.95rem;"></audio>
+      <audio id="podcast-audio" controls playsinline preload="metadata" style="width:100%; border-radius:12px; margin-bottom:0.95rem;"></audio>
 
       <!-- Navegación de Ventana: Anterior / Siguiente -->
       <div style="display:flex; align-items:center; justify-content:space-between; gap:0.6rem; flex-wrap:wrap; margin-bottom:0.9rem;">
@@ -1537,20 +1537,8 @@ if ('serviceWorker' in navigator) {
   var tick = 0;
 
   function initAudioGraph() {
-    if (audioCtx || !podAudio) return;
-    try {
-      var AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return;
-      audioCtx = new AC();
-      analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 64;
-      srcNode = audioCtx.createMediaElementSource(podAudio);
-      srcNode.connect(analyser);
-      analyser.connect(audioCtx.destination);
-      dataArray = new Uint8Array(analyser.frequencyBinCount);
-    } catch (e) {
-      audioCtx = null;
-    }
+    // Reproduccion nativa directa para evitar bloqueos de AudioContext en moviles/Safari
+    return;
   }
 
   function renderVisualizer() {
