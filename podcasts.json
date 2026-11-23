@@ -360,6 +360,15 @@
       "voces": "Elena, Pablo, Rubén, Paco Drag, Rosi, Gamer & Diputado (Ficción) · MG Barcelona Live",
       "fecha": "2026-11-19",
       "imagen": "podcasts/covers/ep41.jpg"
+    },
+    {
+      "id": "ep43",
+      "titulo": "Ep. 43 · Parodia Glam-Pop: Disco Nuevo, Autógrafo en los Tacones y Peluca Perdida en el Arena",
+      "descripcion": "Parodia cómica de ficción con Marta y Javier: la pareja glam-rock más petarda llama al Teléfono Rojo para presentar su disco nuevo y contar cómo una fan en tacones les pidió un autógrafo en el zapato y la peluca... ¡y acabó perdiendo la peluca en el cuarto oscuro del Arena!",
+      "archivo": "podcasts/MAÑANAS/ep43_llamada_glam_arena.mp3",
+      "voces": "Marta, Javier & Invitados Glam (Parodia Ficción) · MG Barcelona Live",
+      "fecha": "2026-11-23",
+      "imagen": "logo.png"
     }
   ]
 }
