@@ -1430,6 +1430,8 @@ if ('serviceWorker' in navigator) {
     }
     #pod-window.is-playing { animation: podPulseGlow 2.4s ease-in-out infinite; }
     .pod-live-dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:#ff3b7f; margin-right:5px; animation:podDotBlink 1s infinite; }
+    #podcast-audio::-webkit-media-controls-mute-button,
+    #podcast-audio::-webkit-media-controls-volume-slider { display: none !important; }
     @media (max-width: 640px) {
       .nav-logo { white-space: nowrap; font-size: 1rem !important; }
       #pod-window > div[style*="padding:1.5rem"] { padding: 1rem 0.85rem !important; }
