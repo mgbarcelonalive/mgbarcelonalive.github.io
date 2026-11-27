@@ -136,7 +136,7 @@ if ('serviceWorker' in navigator) {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 4.5rem 2rem 1.5rem;
+    padding: 5.5rem 2rem 3.5rem;
     overflow: hidden;
     z-index: 1;
   }
@@ -2054,7 +2054,7 @@ if ('serviceWorker' in navigator) {
         </video>
       </div>
       <p class="mg-video-status">
-        Entrevista de [CONFIRMAR: nombre del reportero] - Saturgays (Fin de Año), Barcelona - Archivo (hace unos 15 años). Publicada originalmente por iclubbing.tv (canal ya inactivo). Fotógrafo de la noche de Barcelona desde [CONFIRMAR: año].
+        Entrevista en Saturgays (Fin de Año), Barcelona — Archivo (hace unos 15 años). Publicada originalmente por iclubbing.tv (canal ya inactivo). Fotógrafo de la noche de Barcelona.
       </p>
     </div>
 
@@ -2072,7 +2072,7 @@ if ('serviceWorker' in navigator) {
         </video>
       </div>
       <p class="mg-video-status">
-        Entrevista de [CONFIRMAR: nombre del reportero] - Saturgays (Fin de Año), Barcelona - Archivo (hace unos 15 años). Publicada originalmente por iclubbing.tv (canal ya inactivo). Sara Gallardo: <em>&laquo;Mi hermano es el fotógrafo, el más queridito del ambiente&raquo;</em>.
+        Entrevista en Saturgays (Fin de Año), Barcelona — Archivo (hace unos 15 años). Publicada originalmente por iclubbing.tv (canal ya inactivo). Sara Gallardo: <em>&laquo;Mi hermano es el fotógrafo, el más queridito del ambiente&raquo;</em>.
       </p>
     </div>
   </div>
@@ -2899,7 +2899,7 @@ if (bgVid) {
   }, 2000);
 })();
 </script>
-<script src="stats-widget.js?v=7" defer></script>
+<script src="stats-widget.js?v=8" defer></script>
 <script src="eventos-fotos.js?v=4" defer></script>
 <!-- Modal Oficial de Instalación de App Móvil con Licencia EULA + Permisos de Seguridad -->
 <div id="mg-pwa-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(7,5,15,0.48);backdrop-filter:blur(3px);align-items:center;justify-content:center;padding:0.75rem;overflow-y:auto;-webkit-overflow-scrolling:touch;">
@@ -3163,7 +3163,7 @@ if (bgVid) {
 </div>
 
 <!-- Botón flotante rápido del Buzón (directo en body) -->
-<button id="btn-float-req" type="button" onclick="window.__mgOpenReqModal && window.__mgOpenReqModal();" aria-label="Abrir Buzón de la Radio" style="position:fixed; bottom:18px; right:18px; z-index:9990; background:linear-gradient(135deg, #ff2d78, #ffcc4d); color:#0b0814; border:none; border-radius:999px; padding:0.65rem 1.15rem; font-size:0.84rem; font-weight:800; cursor:pointer; box-shadow:0 8px 28px rgba(255,45,120,0.55); display:flex; align-items:center; gap:0.4rem;">
+<button id="btn-float-req" type="button" onclick="window.__mgOpenReqModal && window.__mgOpenReqModal();" aria-label="Abrir Buzón de la Radio" style="position:fixed; bottom:18px; right:18px; z-index:9990; background:linear-gradient(135deg, #ff2d78, #ffcc4d); color:#0b0814; border:none; border-radius:999px; padding:0.65rem 1.15rem; font-size:0.84rem; font-weight:800; cursor:pointer; box-shadow:0 8px 28px rgba(255,45,120,0.55); display:flex; align-items:center; gap:0.4rem; opacity:0; transform:translateY(14px); pointer-events:none; transition:opacity 0.28s ease, transform 0.28s ease;">
   📞 Buzón
 </button>
 
@@ -3222,6 +3222,16 @@ if (bgVid) {
   if (btnIg) btnIg.onclick = function(){ copyAndOpen('https://www.instagram.com/mgbarcelonalive/', 'Instagram'); };
   var btnTt = document.getElementById('req-send-tt');
   if (btnTt) btnTt.onclick = function(){ copyAndOpen('https://www.tiktok.com/@mgbarcelonalive7', 'TikTok'); };
+  var floatReqBtn = document.getElementById('btn-float-req');
+  function syncFloatReqBtn() {
+    if (!floatReqBtn) return;
+    var show = (window.scrollY || window.pageYOffset || 0) > 340;
+    floatReqBtn.style.opacity = show ? '1' : '0';
+    floatReqBtn.style.transform = show ? 'translateY(0)' : 'translateY(14px)';
+    floatReqBtn.style.pointerEvents = show ? 'auto' : 'none';
+  }
+  syncFloatReqBtn();
+  window.addEventListener('scroll', syncFloatReqBtn, { passive: true });
 })();
 </script>
 <div id="mg-cookie-banner" style="display:none;position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:9990;background:rgba(12,9,24,0.95);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:0.75rem 1rem;max-width:520px;width:92vw;color:#e9e4f5;font-size:0.8rem;box-shadow:0 8px 28px rgba(0,0,0,0.6);">
